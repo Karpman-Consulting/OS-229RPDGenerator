@@ -1,0 +1,20 @@
+{
+  "run_directory": "",
+  "measure_paths": [
+    ".."
+  ],
+  "steps": [
+    {
+      "arguments": {
+        "osm_file_path": "osm_lah"
+      },
+      "measure_dir_name": "create_cp_csv"
+    }
+  ],
+  "run_options": {
+    "fast": true,
+        "no_simulation":true,
+    "skip_expand_objects": true,
+    "skip_energyplus_preprocess": true
+  }
+}
