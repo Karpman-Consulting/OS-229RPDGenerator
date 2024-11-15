@@ -1525,14 +1525,14 @@ OS:AdditionalProperties,
 {c0fbe2aa-f96a-451c-a5a0-a9f892c9876b}, !- Handle
 {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
 RulesetModelDescription_measured_infiltration_pressure_difference,           !- Feature Name 1
-String,                                 !- Feature Data Type 1
+Double,                                 !- Feature Data Type 1
 50;                                !- Feature Value 1
 
 OS:AdditionalProperties,
 {b0c16963-bf29-4919-9474-4e647b365c01}, !- Handle
 {93cdb752-87b0-46d4-907b-1080f96a2f06}, !- Object Name
 RulesetModelDescriptionis_measured_infiltration_based_on_test,           !- Feature Name 1
-String,                                 !- Feature Data Type 1
+Boolean,                                 !- Feature Data Type 1
 false;                               !- Feature Value 1
 
 OS:AdditionalProperties,
