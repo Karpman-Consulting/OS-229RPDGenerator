@@ -1530,8 +1530,8 @@ Double,                                 !- Feature Data Type 1
 
 OS:AdditionalProperties,
 {b0c16963-bf29-4919-9474-4e647b365c01}, !- Handle
-{93cdb752-87b0-46d4-907b-1080f96a2f06}, !- Object Name
-RulesetModelDescriptionis_measured_infiltration_based_on_test,           !- Feature Name 1
+{f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+RulesetModelDescription_is_measured_infiltration_based_on_test,           !- Feature Name 1
 Boolean,                                 !- Feature Data Type 1
 false;                               !- Feature Value 1
 
@@ -1540,7 +1540,7 @@ OS:AdditionalProperties,
 {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
 RulesetModelDescription_site_zone_type,           !- Feature Name 1
 String,                                 !- Feature Data Type 1
-ZONE_1_DEVELOPED_RURAL_AND_PARK;          !- Feature Value 1
+test_string;          !- Feature Value 1
 
 OS:AdditionalProperties,
 {b0c16963-bf29-4919-9474-4e647b365c04}, !- Handle
@@ -1548,6 +1548,35 @@ OS:AdditionalProperties,
 Building_building_open_schedule,           !- Feature Name 1
 String,                                 !- Feature Data Type 1
 ALWAYS ON DISCRETE;         !- Feature Value 1
+
+OS:AdditionalProperties,
+{b0c16963-bf29-4919-9474-4e647b365c33}, !- Handle
+{f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+Building_is_all_new,           !- Feature Name 1
+Boolean,                                 !- Feature Data Type 1
+false;         !- Feature Value 1
+
+OS:AdditionalProperties,  
+{b0c16963-bf29-4919-9474-4e647b365c31}, !- Handle
+{f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+BuildingSegment_lighting_building_area_type,           !- Feature Name 1
+String,                                 !- Feature Data Type 1
+test;         !- Feature Value 1
+
+
+OS:AdditionalProperties,
+{b0c16963-bf29-4919-9474-4e647b365c32}, !- Handle
+{f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+BuildingSegment_area_type_vertical_fenestration,           !- Feature Name 1
+String,                                 !- Feature Data Type 1
+test;         !- Feature Value 1
+
+OS:AdditionalProperties,
+{b0c16963-bf29-4919-9474-4e647b365c44}, !- Handle
+{f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+BuildingSegment_area_type_heating_ventilating_air_conditioning_system,           !- Feature Name 1
+String,                                 !- Feature Data Type 1
+test;         !- Feature Value 1
 
 OS:AdditionalProperties,
   {da169d38-5d7e-4f14-b3a7-65dfae3ea30f}, !- Handle
