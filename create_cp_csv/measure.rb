@@ -4,6 +4,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 require 'openstudio'
+require 'csv'
 require 'pry-byebug'
 
 # start the measure
@@ -42,6 +43,39 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     return args
   end
 
+  def does_os_object_have_parent?(os_object)
+
+    begin
+      os_object.parent.get
+    rescue RuntimeError => e
+      if e.message == "Optional not initialized"
+        # handle the specific error here
+        return false
+      else
+        raise
+      end
+    end
+    true
+  end
+
+  def get_additional_property_feature(os_object, feature_name)
+    if os_object.hasFeature(feature_name)
+      case os_object.getFeatureDataType(feature_name).get
+      when "Integer"
+        os_object.getFeatureAsInteger(feature_name).get
+      when "String"
+        os_object.getFeatureAsString(feature_name).get
+      when "Boolean"
+        os_object.getFeatureAsBoolean(feature_name).get
+      when "Double"
+        os_object.getFeatureAsDouble(feature_name).get
+      else
+        raise RuntimeError, "Feature #{feature_name} of #{os_object.name.get} has an unknown data type, please check your osm file"
+      end
+    else
+      raise RuntimeError, "Feature #{feature_name} not found in on additional property #{os_object.name.get}"
+    end
+  end
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)  # Do **NOT** remove this line
@@ -59,7 +93,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       runner.registerError('osm_file_path')
       return false
     end
-    binding.pry
+
     # report initial condition of model
     #
     #
@@ -67,16 +101,43 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
     path = OpenStudio::Path.new(osm_file_path)
+
     model = translator.loadModel(path)
 
     @model = model.get
-    # The measure will open the .osm file and search it for instances of “model objects” that are associated with compliance parameters. The search will be limited to OS Model objects associated with the compliance parameters listed in Appendix A
 
-    # For each qualified parent object found, the measure will look for an attached OS:AdditionalProperties object. This is an extensible OS object that uses a “key, value” structure to attach “generic” data to specific objects within the OpenStudio data model.
+    compliance_parameters = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
 
-    # When a pre-existing value for a compliance parameter is found, it will be written (pre-populated) in the ‘parameter value’ cell of the row of the .csv file. If a value for the compliance parameter is not found, the compliance parameter value cell of the row in the .csv file will be left empty.
-    csv_name = File.basename("#{osm_file_path}_cp-empty.csv")
-    # The measure will output a csv file named “filename_cp-empty.csv”
+    #compliance_cps
+    csv_data = [['OS Parent Object','OS Parent Object Name','Ruleset Category','compliance parameter name','compliance parameter value']]
+
+    compliance_parameters.each do |compliance_parameter|
+
+      if does_os_object_have_parent?(compliance_parameter)
+        binding.pry
+        csv_data << [
+        compliance_parameter.parent.class.to_s,
+        os_object.parent.get.name.get.to_s,
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_category'),
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_name'),
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_value')]
+      else
+        csv_data << [
+        'None',
+        'None',
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_category'),
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_name'),
+        get_additional_property_feature(compliance_parameter, 'compliance_parameter_value')]
+      end
+    end
+
+    csv_name = "#{File.basename(osm_file_path)}-complete.csv"
+
+    CSV.open(csv_name, "w") do |csv|
+      csv_data.each do |row|
+        csv << row
+      end
+    end
 
     # report final condition of model
     runner.registerFinalCondition("Out put csv file path is #{csv_name} add csv data in compliance parameter value as needed!")

@@ -52,6 +52,19 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
       return false
     end
 
+
+    ### CAB 11.18.2024
+    #
+    #### At least one of htese has to have a valid value
+    # lighting_building_area_type
+    # area_type_vertical_fenestration
+    # area_type_heating_ventilating_air_conditioning_system
+    ### TODO figure out how to validate these - THEY would not be in the initial osm
+    # BuildingSegment	is_all_new
+    # BuildingSegment	lighting_building_area_type
+    # BuildingSegment	area_type_vertical_fenestration
+    # BuildingSegment	area_type_heating_ventilating_air_conditioning_system
+
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
 
