@@ -3,12 +3,15 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
+require 'openstudio'
+require 'pry-byebug'
+
 # start the measure
-class NewMeasure < OpenStudio::Measure::ModelMeasure
+class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'New Measure'
+    return 'CreateComplianceParameterCsvFromOsm'
   end
 
   # human readable description
@@ -25,7 +28,6 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # the name of the space to add to the model
     osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
     osm_file_path.setDisplayName('Osm file path')
     osm_file_path.setDescription('Osm file path')
@@ -34,7 +36,7 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
     output_csv_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('output_csv_file_path', true)
     output_csv_file_path.setDisplayName('output csv file path')
     output_csv_file_path.setDescription('output csv file path')
-    output_csv_file_path.setDefaultValue('output.csv')
+    output_csv_file_path.setDefaultValue('create_cp_csv.csv')
     args << output_csv_file_path
 
     return args
@@ -57,12 +59,17 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
       runner.registerError('osm_file_path')
       return false
     end
-
+    binding.pry
     # report initial condition of model
     #
     #
     ##OpenStudio Measure pseudocode:
 
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = OpenStudio::Path.new(osm_file_path)
+    model = translator.loadModel(path)
+
+    @model = model.get
     # The measure will open the .osm file and search it for instances of “model objects” that are associated with compliance parameters. The search will be limited to OS Model objects associated with the compliance parameters listed in Appendix A
 
     # For each qualified parent object found, the measure will look for an attached OS:AdditionalProperties object. This is an extensible OS object that uses a “key, value” structure to attach “generic” data to specific objects within the OpenStudio data model.
@@ -79,4 +86,4 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
 end
 
 # register the measure to be used by the application
-NewMeasure.new.registerWithApplication
+CreateComplianceParameterCsvFromOsm.new.registerWithApplication
