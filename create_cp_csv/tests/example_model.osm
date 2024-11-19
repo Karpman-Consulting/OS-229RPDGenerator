@@ -1614,6 +1614,24 @@ OS:AdditionalProperties,
   NATURAL;                     !- Feature Value 4
 
 
+  OS:AdditionalProperties,
+  {b0c16963-bf29-4919-9474-4e647b365c22}, !- Handle
+  {631394ae-ffb7-4c0b-bf06-c90fdd4aaf0a}, !- Object Name
+  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  Boolean,                                 !- Feature Data Type 1
+  true,                     !- Feature Value 1
+  compliance_parameter_category,        !- Feature Name 2
+  String,                                 !- Feature Data Type 2
+  Zone.Infiltration,                   !- Feature Value 2
+  compliance_parameter_name,        !- Feature Name 3
+  String,                                 !- Feature Data Type 3
+  measured_air_leakage_rate, !- Feature Value 3
+  compliance_parameter_value,        !- Feature Name 4
+  Double,                                 !- Feature Data Type 4
+  22;                     !- Feature Value 4
+
+
+
 !!!! Test compliance parameters;
 
 OS:AdditionalProperties,
