@@ -1565,7 +1565,7 @@ OS:AdditionalProperties,
   Double,                                 !- Feature Data Type 4
   50;                     !- Feature Value 4
 
-    OS:AdditionalProperties,
+  OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c17}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
   is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
@@ -1596,6 +1596,23 @@ OS:AdditionalProperties,
   compliance_parameter_value,        !- Feature Name 4
   String,                                 !- Feature Data Type 4
   Test;                     !- Feature Value 4
+
+  OS:AdditionalProperties,
+  {b0c16963-bf29-4919-9474-4e647b365c19}, !- Handle
+  {93c390f3-3e3a-4e2c-b7ac-677b7c3a304e}, !- Object Name
+  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  Boolean,                                 !- Feature Data Type 1
+  true,                     !- Feature Value 1
+  compliance_parameter_category,        !- Feature Name 2
+  String,                                 !- Feature Data Type 2
+  Boiler,                   !- Feature Value 2
+  compliance_parameter_name,        !- Feature Name 3
+  String,                                 !- Feature Data Type 3
+  draft_type, !- Feature Value 3
+  compliance_parameter_value,        !- Feature Name 4
+  String,                                 !- Feature Data Type 4
+  NATURAL;                     !- Feature Value 4
+
 
 !!!! Test compliance parameters;
 
