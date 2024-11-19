@@ -111,6 +111,14 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     #compliance_cps
     csv_data = [['OS Parent Object','OS Parent Object Name','Ruleset Category','compliance parameter name','compliance parameter value']]
 
+    ###
+    # Write the building segment compliance parameters and make them empty
+    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
+
+
     compliance_parameters.each do |os_compliance_parameter|
 
       csv_data << [

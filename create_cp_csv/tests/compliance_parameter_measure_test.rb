@@ -128,27 +128,29 @@ class CreateComplianceParameterCsvFromOsmTestMethods < Minitest::Test
     path = OpenStudio::Path.new('./example_model.osm')
     translator = OpenStudio::OSVersion::VersionTranslator.new
 
-    @model = translator.loadModel(path)
+    @model = translator.loadModel(path).get
 
   end
 
   def test_get_object_type_of_additional_property
 
-    additional_properties = @model.get.getAdditionalPropertiess
+    additional_properties = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
 
-    a_additional_property = additional_properties.first
+    zone_infiltration_object = additional_properties.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c22}' }
+
+    #a_additional_property = additional_properties.first
 
     # With no model object for additional properties (not sure if this is possible?)
-    #
 
-    result = CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(a_additional_property)
-    # With model object not initialized
-    #
-    print(result,'result' )
-    result2 = CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(a_additional_property)
-    #
-    binding.pry
-    print(result2,'result2' )
+    print(CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(zone_infiltration_object))
+
+    assert_equal 'OS:Space', CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(zone_infiltration_object)
+
+    assert_equal 'Zone.Infiltration',CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(zone_infiltration_object,'compliance_parameter_category')
+
+    assert_equal 'measured_air_leakage_rate',CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(zone_infiltration_object,'compliance_parameter_name')
+
+    assert_equal 22,CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(zone_infiltration_object,'compliance_parameter_value')
 
   end
 
