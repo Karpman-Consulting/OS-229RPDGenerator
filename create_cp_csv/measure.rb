@@ -53,29 +53,42 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
   def self.get_object_name_of_additional_property(os_additional_property)
     ### Should return Building 1
-    if os_additional_property.modelObject.initialized && os_additional_property.modelObject.name.is_initialized
+    if self.does_object_model_of_additional_property_have_name?(os_additional_property)
       os_additional_property.modelObject.name.get
     else
       "None"
     end
   end
 
-  def self.get_additional_property_feature_value(os_object, feature_name)
-    if os_object.hasFeature(feature_name)
-      case os_object.getFeatureDataType(feature_name).get
+  def self.does_object_model_of_additional_property_have_name?(os_additional_property)
+    os_additional_property.modelObject.initialized && os_additional_property.modelObject.name.is_initialized
+  end
+
+  def self.get_additional_property_feature_value(os_additional_property, feature_name)
+
+    if os_additional_property.hasFeature(feature_name)
+
+      case os_additional_property.getFeatureDataType(feature_name).get
       when "Integer"
-        os_object.getFeatureAsInteger(feature_name).get
+        os_additional_property.getFeatureAsInteger(feature_name).is_initialized ? os_additional_property.getFeatureAsInteger(feature_name).get : ""
       when "String"
-        os_object.getFeatureAsString(feature_name).get
+        os_additional_property.getFeatureAsString(feature_name).is_initialized ? os_additional_property.getFeatureAsString(feature_name).get : ""
       when "Boolean"
-        os_object.getFeatureAsBoolean(feature_name).get
+        os_additional_property.getFeatureAsBoolean(feature_name).is_initialized ? os_additional_property.getFeatureAsBoolean(feature_name).get : ""
       when "Double"
-        os_object.getFeatureAsDouble(feature_name).get
+        os_additional_property.getFeatureAsDouble(feature_name).is_initialized ? os_additional_property.getFeatureAsDouble(feature_name).get : ""
       else
-        raise RuntimeError, "Feature #{feature_name} of #{os_object.name.get} has an unknown data type, please check your osm file"
+        raise RuntimeError, "Feature #{feature_name} of additional property with handle #{os_additional_property.handle} has an unknown data type, please check your osm file"
       end
     else
-      raise RuntimeError, "Feature #{feature_name} not found in on additional property #{os_object.name.get}"
+
+      error_message = if self.does_object_model_of_additional_property_have_name?(os_additional_property)
+        "Feature #{feature_name} not found in on additional property with handle #{os_additional_property.handle} and object #{os_additional_property.modelObject.name.get}"
+      else
+        "Feature #{feature_name} not found in on additional property with handle #{os_additional_property.handle} and no associated object"
+      end
+
+      raise RuntimeError, error_message
     end
   end
 
@@ -117,7 +130,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
     csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
     csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
-
 
     compliance_parameters.each do |os_compliance_parameter|
 
