@@ -2,7 +2,6 @@
 
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
-require_relative 'resources/parse_osm_helpers'
 require 'openstudio'
 require 'csv'
 require 'pry-byebug'
@@ -43,6 +42,43 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     return args
   end
 
+  def self.get_object_type_of_additional_property(os_additional_property)
+    ### Should return OS:Building etc
+    if os_additional_property.modelObject.initialized
+      os_additional_property.modelObject.to_s.split(',').first
+    else
+      "None"
+    end
+  end
+
+  def self.get_object_name_of_additional_property(os_additional_property)
+    ### Should return Building 1
+    if os_additional_property.modelObject.initialized && os_additional_property.modelObject.name.is_initialized
+      os_additional_property.modelObject.name.get
+    else
+      "None"
+    end
+  end
+
+  def self.get_additional_property_feature_value(os_object, feature_name)
+    if os_object.hasFeature(feature_name)
+      case os_object.getFeatureDataType(feature_name).get
+      when "Integer"
+        os_object.getFeatureAsInteger(feature_name).get
+      when "String"
+        os_object.getFeatureAsString(feature_name).get
+      when "Boolean"
+        os_object.getFeatureAsBoolean(feature_name).get
+      when "Double"
+        os_object.getFeatureAsDouble(feature_name).get
+      else
+        raise RuntimeError, "Feature #{feature_name} of #{os_object.name.get} has an unknown data type, please check your osm file"
+      end
+    else
+      raise RuntimeError, "Feature #{feature_name} not found in on additional property #{os_object.name.get}"
+    end
+  end
+
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)  # Do **NOT** remove this line
@@ -61,9 +97,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    # report initial condition of model
-    #
-    #
     ##OpenStudio Measure pseudocode:
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -78,39 +111,18 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     #compliance_cps
     csv_data = [['OS Parent Object','OS Parent Object Name','Ruleset Category','compliance parameter name','compliance parameter value']]
 
-
-    def get_object_type_of_additional_properties(os_additional_properties)
-      ### Should return OS:Building etc
-      if os_additional_properties.modelObject.initialized
-        os_additional_properties.modelObject.to_s.split(',').first
-      else
-        ""
-      end
-    end
-
-    def get_object_name_of_additional_properties(os_additional_properties)
-      ### Should return Building 1
-      if os_additional_properties.modelObject.initialized && os_additional_properties.modelObject.name.is_initialized
-        os_additional_properties.modelObject.name.get
-      else
-        "None"
-      end
-    end
-
-    #binding.pry
-
     compliance_parameters.each do |os_compliance_parameter|
 
       csv_data << [
-      get_object_type_of_additional_properties(os_compliance_parameter),
-      get_object_name_of_additional_properties(os_compliance_parameter),
-      ParseOsm.get_additional_property_feature(os_compliance_parameter, 'compliance_parameter_category'),
-      ParseOsm.get_additional_property_feature(os_compliance_parameter, 'compliance_parameter_name'),
-      ParseOsm.get_additional_property_feature(os_compliance_parameter, 'compliance_parameter_value')]
+      CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(os_compliance_parameter),
+      CreateComplianceParameterCsvFromOsm.get_object_name_of_additional_property(os_compliance_parameter),
+      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_category'),
+      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_name'),
+      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_value')]
 
     end
 
-    csv_name = "#{File.basename(osm_file_path)}-complete.csv"
+    csv_name = "#{File.basename(osm_file_path)}-empty.csv"
 
     CSV.open(csv_name, "w") do |csv|
       csv_data.each do |row|

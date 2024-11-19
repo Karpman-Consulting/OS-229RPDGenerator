@@ -1515,7 +1515,7 @@ OS:Building,
   ;                                       !- Default Schedule Set Name
 
 !!!! Test compliance parameters;
-!!! Compliance parameters with no parent;
+
 OS:AdditionalProperties,
     {b0c16963-bf29-4919-9474-4e647b365c33}, !- Handle
     {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
@@ -1531,8 +1531,6 @@ OS:AdditionalProperties,
     compliance_parameter_value,        !- Feature Name 4
     Boolean,                                 !- Feature Data Type 4
     true;                     !- Feature Value 4
-
-!!! Compliance parameters with building as parent;
 
 OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c04}, !- Handle
@@ -1555,7 +1553,7 @@ OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c03}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
   is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
-  boolean,                                 !- Feature Data Type 1
+  Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
   String,                                 !- Feature Data Type 2
@@ -1566,6 +1564,38 @@ OS:AdditionalProperties,
   compliance_parameter_value,        !- Feature Name 4
   Double,                                 !- Feature Data Type 4
   50;                     !- Feature Value 4
+
+    OS:AdditionalProperties,
+  {b0c16963-bf29-4919-9474-4e647b365c17}, !- Handle
+  {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  Boolean,                                 !- Feature Data Type 1
+  true,                     !- Feature Value 1
+  compliance_parameter_category,        !- Feature Name 2
+  String,                                 !- Feature Data Type 2
+  RulesetModelDescription,                   !- Feature Value 2
+  compliance_parameter_name,        !- Feature Name 3
+  String,                                 !- Feature Data Type 3
+  is_measured_infiltration_based_on_test, !- Feature Value 3
+  compliance_parameter_value,        !- Feature Name 4
+  String,                                 !- Feature Data Type 4
+  Test;                     !- Feature Value 4
+
+    OS:AdditionalProperties,
+  {b0c16963-bf29-4919-9474-4e647b365c18}, !- Handle
+  {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
+  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  Boolean,                                 !- Feature Data Type 1
+  true,                     !- Feature Value 1
+  compliance_parameter_category,        !- Feature Name 2
+  String,                                 !- Feature Data Type 2
+  RulesetModelDescription,                   !- Feature Value 2
+  compliance_parameter_name,        !- Feature Name 3
+  String,                                 !- Feature Data Type 3
+  site_zone_type, !- Feature Value 3
+  compliance_parameter_value,        !- Feature Name 4
+  String,                                 !- Feature Data Type 4
+  Test;                     !- Feature Value 4
 
 !!!! Test compliance parameters;
 
