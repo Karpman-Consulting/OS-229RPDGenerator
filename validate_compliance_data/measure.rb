@@ -2,9 +2,11 @@
 
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
+require 'csv'
+require_relative 'resources/validate_cp_csv'
 
 # start the measure
-class NewMeasure < OpenStudio::Measure::ModelMeasure
+class ValidateComplianceParameter < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
@@ -22,13 +24,18 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model)
+  def arguments(model = OpenStudio::OpenStudio::Model::Model.new)
     args = OpenStudio::Measure::OSArgumentVector.new
 
+    osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
+    osm_file_path.setDisplayName('Osm file path')
+    osm_file_path.setDescription('Osm file path')
+    args << osm_file_path
+
     # the name of the space to add to the model
-    space_name = OpenStudio::Measure::OSArgument.makeStringArgument('space_name', true)
-    space_name.setDisplayName('New space name')
-    space_name.setDescription('This name will be used as the name of the new space.')
+    space_name = OpenStudio::Measure::OSArgument.makeStringArgument('csv_cp_complete', true)
+    space_name.setDisplayName('csv_cp_complete')
+    space_name.setDescription('Csv cp complete')
     args << space_name
 
     return args
@@ -38,20 +45,43 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)  # Do **NOT** remove this line
 
+    ### NOTE from Jackon just use ASHRAE229.schema.json
+
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
 
     # assign the user inputs to variables
-    space_name = runner.getStringArgumentValue('space_name', user_arguments)
+    cp_csv_to_validate = runner.getStringArgumentValue('csv_cp_complete', user_arguments)
 
     # check the space_name for reasonableness
-    if space_name.empty?
-      runner.registerError('Empty space name was entered.')
+    # check the space_name for reasonableness
+    if cp_csv_to_validate.nil? || cp_csv_to_validate.empty? || !File.exist?(cp_csv_to_validate)
+      runner.registerError('Invalid csv file path was entered.')
       return false
     end
 
+    osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
+
+    # check the space_name for reasonableness
+    if osm_file_path.nil? || osm_file_path.empty? || !File.exist?(osm_file_path)
+      runner.registerError('Invalid osm file path was entered.')
+      return false
+    end
+
+    csv_data = nil
+
+    begin
+      # Skip the first row thats a header
+      csv_data = CSV.read(path)[1..]
+    rescue CSV::MalformedCSVError => e
+      runner.registerError("#{cp_csv_to_validate} The file appears to be malformed: #{e.message}")
+      return false
+    end
+
+
+    ValidateCPCSV.validate_csv_cp_complete(csv_data)
 
     ### CAB 11.18.2024
     #
@@ -65,22 +95,9 @@ class NewMeasure < OpenStudio::Measure::ModelMeasure
     # BuildingSegment	area_type_vertical_fenestration
     # BuildingSegment	area_type_heating_ventilating_air_conditioning_system
 
-    # report initial condition of model
-    runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
-
-    # add a new space to the model
-    new_space = OpenStudio::Model::Space.new(model)
-    new_space.setName(space_name)
-
-    # echo the new space's name back to the user
-    runner.registerInfo("Space #{new_space.name} was added.")
-
-    # report final condition of model
-    runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
-
     return true
   end
 end
 
 # register the measure to be used by the application
-NewMeasure.new.registerWithApplication
+ValidateComplianceParameter.new.registerWithApplication

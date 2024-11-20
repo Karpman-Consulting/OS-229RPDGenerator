@@ -25,7 +25,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model)
+  def arguments(model = OpenStudio::OpenStudio::Model::Model.new)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
@@ -105,8 +105,8 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
 
     # check the space_name for reasonableness
-    if osm_file_path.nil? || osm_file_path.empty?
-      runner.registerError('osm_file_path')
+    if osm_file_path.nil? || osm_file_path.empty? || !File.exist?(osm_file_path)
+      runner.registerError('Invalid osm file path was entered.')
       return false
     end
 
@@ -126,10 +126,10 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     ###
     # Write the building segment compliance parameters and make them empty
-    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','Building Segment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
+    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
 
     compliance_parameters.each do |os_compliance_parameter|
 
