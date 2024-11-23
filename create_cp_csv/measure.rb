@@ -119,28 +119,25 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     @model = model.get
 
-    compliance_parameters = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
+    ###compliance_parameters = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
 
     #compliance_cps
     csv_data = [['OS Parent Object','OS Parent Object Name','Ruleset Category','compliance parameter name','compliance parameter value']]
 
     ###
-    # Write the building segment compliance parameters and make them empty
+    # Write the building segment compliance parameters and make them empty - write them every time regardless of the osm
+    # with headers - BuildingSegmentId	SchemaParentID	Ruleset Category	compliance parameter name	compliance parameter value
     csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
     csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
     csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
     csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
 
-    compliance_parameters.each do |os_compliance_parameter|
+    ### WRite compliance parameters in csv
+    #### use headers OS Parent Object	OS Parent Object Name	SchemaParentID	Ruleset Category	compliance parameter name	compliance parameter value
 
-      csv_data << [
-      CreateComplianceParameterCsvFromOsm.get_object_type_of_additional_property(os_compliance_parameter),
-      CreateComplianceParameterCsvFromOsm.get_object_name_of_additional_property(os_compliance_parameter),
-      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_category'),
-      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_name'),
-      CreateComplianceParameterCsvFromOsm.get_additional_property_feature_value(os_compliance_parameter, 'compliance_parameter_value')]
 
-    end
+	### TODO logic from ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json to CSV and FILTER
+
 
     csv_name = "#{File.basename(osm_file_path)}-empty.csv"
 
