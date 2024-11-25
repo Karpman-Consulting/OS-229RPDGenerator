@@ -1,4 +1,7 @@
 
+
+C:\EnergyPlusV23-2-0\ConvertInputFormat.exe --help
+
 User Steps:
 
 1. Run command  createOSRulesetProjectDescription --create_cp_csv filename.osm

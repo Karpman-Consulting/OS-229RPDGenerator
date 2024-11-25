@@ -110,6 +110,11 @@ required_compliance_parameters = [
     "compliance_parameter": "has_manual_interior_shades",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
   },
+    {
+    "compliance_parameter_category":"HeatingVentilatingAirConditioningSystem",
+    "compliance_parameter": "status_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+  },
 #   {
 #     "Boiler": "draft_type"
 #   },
@@ -141,6 +146,9 @@ def get_last_part_json_path(json_path):
 csv_data = [['229 data group id','229 parent type','229 parent id','compliance_parameter_category','compliance parameter name','compliance parameter value']]
 
 for compliance_parameter in required_compliance_parameters:
+
+    # if compliance_parameter["compliance_parameter"] == "status_type":
+    #   breakpoint()
     
     ids = jsonpath.jsonpath(rpd, compliance_parameter["comp_param_path"] + '.' + 'id')
 
@@ -163,6 +171,7 @@ for compliance_parameter in required_compliance_parameters:
         compliance_parameter["compliance_parameter"],values[index]])
 
 
-with open('output_comp_param.csv', 'w', newline='') as file:  # Ensure `file` is opened in write mode
+breakpoint()
+with open('./output_comp_param.csv', 'w', newline='') as file:  # Ensure `file` is opened in write mode
     writer = csv.writer(file)  # Create a CSV writer
     writer.writerows(csv_data)  # Write the rows to the file
