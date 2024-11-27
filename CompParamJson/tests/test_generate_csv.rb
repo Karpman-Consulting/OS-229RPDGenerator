@@ -59,20 +59,33 @@ class GenerateCsvDataTest < Minitest::Test
 
     new_status_type = "a_test_of_status_type_update"
 
-    new_zone_aggregation_factor = 0.5
+    new_zone_aggregation_factor = 0.7
 
+    zn_two_wall_east_window_four_updated_framing_type = "a_test_of_framing_type_update"
+
+    ### Update zone aggreation factor for PERIMETER_ZN_1
 
     csv_row_of_perimeter_zn_one_ag_factor = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id].downcase == "PERIMETER_ZN_1".downcase &&
     csv_row_data[:compliance_parameter_name].downcase == "aggregation_factor" }
 
     csv_row_of_perimeter_zn_one_ag_factor[:compliance_parameter_value] = new_zone_aggregation_factor
 
+    ### Update PSZ-AC:3
+
     csv_row_of_psz_ac_3 = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id].downcase == "PSZ-AC:3".downcase &&
     csv_row_data[:compliance_parameter_name].downcase == "status_type" }
 
     csv_row_of_psz_ac_3[:compliance_parameter_value] = new_status_type
 
-    #binding.pry
+    ### Update PERIMETER_ZN_2_WALL_EAST_WINDOW_4 framing_type
+
+    csv_row_of_zn_two_wall_east_window_four_framing_type = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id].downcase == "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase &&
+    csv_row_data[:compliance_parameter_name].downcase == "framing_type" }
+
+    csv_row_of_zn_two_wall_east_window_four_framing_type[:compliance_parameter_value] = zn_two_wall_east_window_four_updated_framing_type
+
+    ### Run the code
+
     updated_cp_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
 
     csv_row_of_perimeter_zn_one_updated = GenerateCsvOfCompParamJson.find_by_id(updated_cp_json, "PERIMETER_ZN_1".downcase)
@@ -83,20 +96,10 @@ class GenerateCsvDataTest < Minitest::Test
 
     assert_equal new_status_type, csv_row_of_psz_ac_3_updated["status_type"]
 
+    zn_two_wall_east_window_four = GenerateCsvOfCompParamJson.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
 
+    assert_equal zn_two_wall_east_window_four_updated_framing_type, zn_two_wall_east_window_four["framing_type"]
 
-
-    # # Set the path to the JSON file
-    # # Read and parse the JSON file
-    # #
-    # #File.write('./output_with_parent.json', JSON.pretty_generate(@rpd))
-
-    # # Define required compliance parameters
-    # # # Initialize CSV data
-    # csv_data = GenerateCsvOfCompParamJson.produce_csv_data(@rpd)
-
-    # GenerateCsvOfCompParamJson.write_csv_data(csv_data,'./output_comp_param.csv')
-    # # Write CSV data to a file
   end
 
 end
