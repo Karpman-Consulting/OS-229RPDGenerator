@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'openstudio'
 require 'json'
 require_relative './parse_osm_additional_properties'
-require_relative './generate_csv'
+require_relative '../CompParamJson/generate_csv'
 
 class GetComplianceParameterFromOsm < Minitest::Test
 
