@@ -42,56 +42,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     return args
   end
 
-  def self.get_object_type_of_additional_property(os_additional_property)
-    ### Should return OS:Building etc
-    if os_additional_property.modelObject.initialized
-      os_additional_property.modelObject.to_s.split(',').first
-    else
-      "None"
-    end
-  end
-
-  def self.get_object_name_of_additional_property(os_additional_property)
-    ### Should return Building 1
-    if self.does_object_model_of_additional_property_have_name?(os_additional_property)
-      os_additional_property.modelObject.name.get
-    else
-      "None"
-    end
-  end
-
-  def self.does_object_model_of_additional_property_have_name?(os_additional_property)
-    os_additional_property.modelObject.initialized && os_additional_property.modelObject.name.is_initialized
-  end
-
-  def self.get_additional_property_feature_value(os_additional_property, feature_name)
-
-    if os_additional_property.hasFeature(feature_name)
-
-      case os_additional_property.getFeatureDataType(feature_name).get
-      when "Integer"
-        os_additional_property.getFeatureAsInteger(feature_name).is_initialized ? os_additional_property.getFeatureAsInteger(feature_name).get : ""
-      when "String"
-        os_additional_property.getFeatureAsString(feature_name).is_initialized ? os_additional_property.getFeatureAsString(feature_name).get : ""
-      when "Boolean"
-        os_additional_property.getFeatureAsBoolean(feature_name).is_initialized ? os_additional_property.getFeatureAsBoolean(feature_name).get : ""
-      when "Double"
-        os_additional_property.getFeatureAsDouble(feature_name).is_initialized ? os_additional_property.getFeatureAsDouble(feature_name).get : ""
-      else
-        raise RuntimeError, "Feature #{feature_name} of additional property with handle #{os_additional_property.handle} has an unknown data type, please check your osm file"
-      end
-    else
-
-      error_message = if self.does_object_model_of_additional_property_have_name?(os_additional_property)
-        "Feature #{feature_name} not found in on additional property with handle #{os_additional_property.handle} and object #{os_additional_property.modelObject.name.get}"
-      else
-        "Feature #{feature_name} not found in on additional property with handle #{os_additional_property.handle} and no associated object"
-      end
-
-      raise RuntimeError, error_message
-    end
-  end
-
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)  # Do **NOT** remove this line
@@ -118,26 +68,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     model = translator.loadModel(path)
 
     @model = model.get
-
-    ###compliance_parameters = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
-
-    #compliance_cps
-    csv_data = [['OS Parent Object','OS Parent Object Name','Ruleset Category','compliance parameter name','compliance parameter value']]
-
-    ###
-    # Write the building segment compliance parameters and make them empty - write them every time regardless of the osm
-    # with headers - BuildingSegmentId	SchemaParentID	Ruleset Category	compliance parameter name	compliance parameter value
-    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
-    csv_data << ['Building','Building 1','BuildingSegment','Building Segment Compliance','']
-
-    ### WRite compliance parameters in csv
-    #### use headers OS Parent Object	OS Parent Object Name	SchemaParentID	Ruleset Category	compliance parameter name	compliance parameter value
-
-
-	### TODO logic from ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json to CSV and FILTER
-
 
     csv_name = "#{File.basename(osm_file_path)}-empty.csv"
 
