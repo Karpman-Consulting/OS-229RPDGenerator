@@ -1,8 +1,6 @@
 require 'json'
 require 'csv'
 require 'jsonpath'
-require 'pry-byebug'
-
 
 module GenerateCsvOfCompParamJson
 
@@ -254,32 +252,6 @@ module GenerateCsvOfCompParamJson
     end
 
     csv_data
-  end
-
-  def self.write_csv_data(csv_data, output_file_path)
-    # Write CSV data to a file
-
-
-    CSV.open(output_file_path, 'w') do |csv_data_as_excel|
-
-      csv_data_as_excel <<
-      ['229 data group id',
-      '229 parent type',
-      '229 parent id',
-      'compliance parameter category',
-      'compliance parameter name',
-      'compliance parameter value']
-
-        csv_data.each { |row_as_hash_of_data| csv_data_as_excel << [
-          row_as_hash_of_data[:two_twenty_nine_group_id],
-          row_as_hash_of_data[:two_twenty_nine_parent_type],
-          row_as_hash_of_data[:two_twenty_nine_parent_id],
-          row_as_hash_of_data[:compliance_parameter_category],
-          row_as_hash_of_data[:compliance_parameter_name],
-          row_as_hash_of_data[:compliance_parameter_value]
-        ]
-      }
-    end
   end
 
   private

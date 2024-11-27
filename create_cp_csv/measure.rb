@@ -4,7 +4,8 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 require 'openstudio'
 require 'csv'
-require 'pry-byebug'
+require_relative './generate_csv/generate_csv'
+require_relative './generate_csv/parse_osm_additional_properties'
 
 # start the measure
 class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
@@ -25,7 +26,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model = OpenStudio::OpenStudio::Model::Model.new)
+  def arguments(model = OpenStudio::Model::Model.new)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
@@ -33,10 +34,15 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     osm_file_path.setDescription('Osm file path')
     args << osm_file_path
 
+    empty_comp_param_json_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('empty_comp_param_json_file_path', true)
+    empty_comp_param_json_file_path.setDisplayName('path to empty comp param json file')
+    empty_comp_param_json_file_path.setDescription('path to empty comp param json file')
+    args << empty_comp_param_json_file_path
+
     output_csv_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('output_csv_file_path', true)
     output_csv_file_path.setDisplayName('output csv file path')
     output_csv_file_path.setDescription('output csv file path')
-    output_csv_file_path.setDefaultValue('create_cp_csv.csv')
+    output_csv_file_path.setDefaultValue('./')
     args << output_csv_file_path
 
     return args
@@ -54,13 +60,19 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     # assign the user inputs to variables
     osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
 
-    # check the space_name for reasonableness
     if osm_file_path.nil? || osm_file_path.empty? || !File.exist?(osm_file_path)
-      runner.registerError('Invalid osm file path was entered.')
+      runner.registerError("Could not find file #{osm_file_path}.")
       return false
     end
 
-    ##OpenStudio Measure pseudocode:
+    empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)
+
+    if empty_comp_param_json_file_path.nil? || empty_comp_param_json_file_path.empty? || !File.exist?(empty_comp_param_json_file_path)
+      runner.registerError("Could not find file #{empty_comp_param_json_file_path}.")
+      return false
+    end
+
+    output_csv_file_path = runner.getStringArgumentValue('output_csv_file_path', user_arguments)
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
     path = OpenStudio::Path.new(osm_file_path)
@@ -71,12 +83,30 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     csv_name = "#{File.basename(osm_file_path)}-empty.csv"
 
-    CSV.open(csv_name, "w") do |csv|
-      csv_data.each do |row|
-        csv << row
-      end
-    end
+    csv_data = ParseOsmAdditionalProperties.parse_osm_and_place_compliance_parameter_values_in_csv(@model,
+    GenerateCsvOfCompParamJson.produce_csv_data(JSON.parse(File.read(empty_comp_param_json_file_path))))
 
+    CSV.open(File.join(output_csv_file_path,csv_name), 'w') do |csv_data_as_excel|
+
+        csv_data_as_excel <<
+        ['229 data group id',
+        '229 parent type',
+        '229 parent id',
+        'compliance parameter category',
+        'compliance parameter name',
+        'compliance parameter value']
+
+        csv_data.each { |row_as_hash_of_data|
+          csv_data_as_excel << [
+              row_as_hash_of_data[:two_twenty_nine_group_id],
+              row_as_hash_of_data[:two_twenty_nine_parent_type],
+              row_as_hash_of_data[:two_twenty_nine_parent_id],
+              row_as_hash_of_data[:compliance_parameter_category],
+              row_as_hash_of_data[:compliance_parameter_name],
+              row_as_hash_of_data[:compliance_parameter_value]
+            ]
+          }
+    end
     # report final condition of model
     runner.registerFinalCondition("Out put csv file path is #{csv_name} add csv data in compliance parameter value as needed!")
 

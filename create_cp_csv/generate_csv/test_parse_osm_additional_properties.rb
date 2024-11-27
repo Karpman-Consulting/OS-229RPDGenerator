@@ -8,9 +8,9 @@ class GetComplianceParameterFromOsm < Minitest::Test
 
   def setup
 
-    path = OpenStudio::Path.new('./example_model.osm')
+    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','example_model.osm'))
 
-    path_bad_values = OpenStudio::Path.new('./example_model_with_bad_values.osm')
+    path_bad_values = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','example_model_with_bad_values.osm'))
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
 
@@ -114,7 +114,7 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
   def setup
 
-    path = OpenStudio::Path.new('./ASHRAE901_OfficeSmall_STD2019_Denver.osm')
+    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','ASHRAE901_OfficeSmall_STD2019_Denver.osm'))
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
 
@@ -122,6 +122,8 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
     # Parse the JSON
     @comp_param_json = JSON.parse(File.read(File.join(File.dirname(File.realpath(__FILE__)),
+    '..',
+    'test_files',
     'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')))
 
     @csv_data = GenerateCsvOfCompParamJson.produce_csv_data(@comp_param_json)
