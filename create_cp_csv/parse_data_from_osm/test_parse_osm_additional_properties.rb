@@ -2,15 +2,15 @@ require 'minitest/autorun'
 require 'openstudio'
 require 'json'
 require_relative './parse_osm_additional_properties'
-require_relative '../CompParamJson/generate_csv'
+require_relative '../../CompParamJson/generate_csv'
 
 class GetComplianceParameterFromOsm < Minitest::Test
 
   def setup
 
-    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','example_model.osm'))
+    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'example_model.osm'))
 
-    path_bad_values = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','example_model_with_bad_values.osm'))
+    path_bad_values = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'example_model_with_bad_values.osm'))
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
 
@@ -114,7 +114,7 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
   def setup
 
-    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'..','test_files','ASHRAE901_OfficeSmall_STD2019_Denver.osm'))
+    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'ASHRAE901_OfficeSmall_STD2019_Denver.osm'))
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
 
@@ -122,11 +122,9 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
     # Parse the JSON
     @comp_param_json = JSON.parse(File.read(File.join(File.dirname(File.realpath(__FILE__)),
-    '..',
-    'test_files',
     'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')))
 
-    @csv_data = GenerateCsvOfCompParamJson.produce_csv_data(@comp_param_json)
+    @csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@comp_param_json)
 
     ### This code will count the number of times that the compliance_parameter_value
     ### has been set

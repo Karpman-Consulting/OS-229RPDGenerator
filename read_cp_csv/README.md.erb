@@ -1,25 +1,19 @@
 <%#= README.md.erb is used to auto-generate README.md. %>
 <%#= To manually maintain README.md throw away README.md.erb and manually edit README.md %>
 
-#### This measure will:
+### This measure will:
 
+The measure will open the .osm file and search it for instances of “model objects” 
+that are associated with compliance parameters. 
+The search will be limited to OS Model objects associated with the compliance parameters listed in Appendix A 
 
-A second OpenStudio measure in the workflow will prepare ”filename.osm.” 
-for .idf translation and post-conditioning. 
- This OpenStudio measure will have (1) argument – The name and location of the .osm file to act on. 
- This measure will: 
+For each qualified parent object found, the measure will look for an 
+attached OS:AdditionalProperties object. This is an extensible OS object that uses a 
+“key, value” structure to attach “generic” data to specific objects within the OpenStudio data model.  
 
-
-modify the OS:OutputTableSummaryReports object to ensure the “AllSummaryMonthly” report is generated. 
-
-modify the OS:OutputJSON object to ensure JSON output is created by EnergyPlus.  
-
-modify the OS:OutputControlTableStyle object to ensure SI units will be used by EnergyPlus. 
-
-modify the OS:OutputVariable object to ensure hourly output for each schedule is created by EnergyPlus 
-
-modify the OS:OutputSchedules object to ensure adequate schedule information will be included in EnergyPlus 
-generated reports.  
+When a pre-existing value for a compliance parameter is found, it will be written (pre-populated) 
+in the ‘parameter value’ cell of the row of the .csv file. If a value for the compliance parameter is not found,
+ the compliance parameter value cell of the row in the .csv file will be left empty.  
 
 
 ###### (Automatically generated documentation)

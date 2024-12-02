@@ -5,6 +5,11 @@ module ParseOsmAdditionalProperties
 
     ap_with_compliance_parameters = osm_model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
 
+    if ap_with_compliance_parameters.empty?
+      print('No 90.1 2019 prm compliance parameters found in osm model')
+      return csv_data
+    end
+
     ap_with_compliance_parameters.each do |os_additional_property|
 
       csv_data.each do |row_of_csv_data|

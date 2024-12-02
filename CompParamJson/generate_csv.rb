@@ -219,7 +219,7 @@ module GenerateCsvOfCompParamJson
 
   ]
 
-  def self.produce_csv_data(comp_param_json)
+  def self.produce_csv_data_from_comp_param_json(comp_param_json)
 
 
     add_parent_ids_and_path(comp_param_json)
@@ -295,28 +295,7 @@ module GenerateCsvOfCompParamJson
           with value: #{updated_compliace_parameter_value} in comp_param_json")
 
         end
-
-        # if values.empty?
-        #   puts "### Could not get data for compliance parameter: #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
-        #   next
-        # end
-
-        # two_twenty_nine_type = JsonPath.new("#{compliance_parameter[:comp_param_path]}.json_path").on(comp_param_json)
-        # two_twenty_nine_parent_id = JsonPath.new("#{compliance_parameter[:comp_param_path]}.parent_id").on(comp_param_json)
-        # compliance_parameter_category = compliance_parameter[:compliance_parameter_category]
-
-        #   values.each_with_index do |value, index|
-        #     csv_data << {
-        #       two_twenty_nine_group_id: ids[index],
-        #       two_twenty_nine_parent_type: self.get_last_part_json_path(two_twenty_nine_type[index]),
-        #       two_twenty_nine_parent_id: self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
-        #       compliance_parameter_category: compliance_parameter_category,
-        #       compliance_parameter_name: compliance_parameter[:compliance_parameter],
-        #       compliance_parameter_value: value
-        #   }
-        #   end
       end
-
     end
 
     comp_param_json
@@ -342,7 +321,6 @@ module GenerateCsvOfCompParamJson
     nil
   end
 
-  private
 
   def self.add_parent_ids_and_path(obj, parent_ids = [], path = "")
     # Recursively adds a parent_id and simplified JSON path (keys only, no $ or indices)
@@ -365,12 +343,12 @@ module GenerateCsvOfCompParamJson
     elsif obj.is_a?(Array)
       obj.each { |item| add_parent_ids_and_path(item, parent_ids, path) }
     end
-
-    #obj
-
   end
 
   def self.get_last_part_json_path(json_path)
     json_path.split('.').last
   end
+
+  private_class_method :add_parent_ids_and_path, :get_last_part_json_path
+
 end

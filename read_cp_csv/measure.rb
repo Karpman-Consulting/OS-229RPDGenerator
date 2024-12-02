@@ -4,15 +4,16 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 require 'openstudio'
 require 'csv'
-require_relative './generate_csv/generate_csv'
-require_relative './parse_data_from_osm/parse_osm_additional_properties'
+require 'json'
+require 'pry-byebug'
+require_relative '../CompParamJson/generate_csv'
 
 # start the measure
-class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
+class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'CreateComplianceParameterCsvFromOsm'
+    return 'ReadComplianceParameterCsvFromOsm'
   end
 
   # human readable description
@@ -34,16 +35,16 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     empty_comp_param_json_file_path.setDescription('path to empty comp param json file')
     args << empty_comp_param_json_file_path
 
+    output_csv_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('csv_file_path', true)
+    output_csv_file_path.setDisplayName('csv_file_path')
+    output_csv_file_path.setDescription('csv_file_path')
+    args << output_csv_file_path
+
     osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
     osm_file_path.setDisplayName('Osm file path')
     osm_file_path.setDescription('Osm file path')
+    osm_file_path.setDefaultValue('')
     args << osm_file_path
-
-    output_csv_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('output_csv_file_path', true)
-    output_csv_file_path.setDisplayName('output csv file path')
-    output_csv_file_path.setDescription('output csv file path')
-    output_csv_file_path.setDefaultValue('./')
-    args << output_csv_file_path
 
     return args
   end
@@ -60,16 +61,47 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     # assign the user inputs to variables
     osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
 
-    output_csv_file_path = runner.getStringArgumentValue('output_csv_file_path', user_arguments)
+    csv_file_path = runner.getStringArgumentValue('csv_file_path', user_arguments)
 
     empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)
 
     if empty_comp_param_json_file_path.nil? || empty_comp_param_json_file_path.empty? || !File.exist?(empty_comp_param_json_file_path)
-      runner.registerError("Could not find file #{empty_comp_param_json_file_path}.")
+      runner.registerError("Could not find file #{empty_comp_param_json_file_path} to write to.")
       return false
     end
 
-    csv_data = GenerateCsv.generate_csv_data_from_empty_comp_param_json(empty_comp_param_json_file_path)
+    if csv_file_path.nil? || csv_file_path.empty? || !File.exist?(csv_file_path)
+      runner.registerError("Could not find csv file #{csv_file_path} to read from")
+      return false
+    end
+
+    csv_data = []
+
+    expected_headers = {
+      '229 data group id' => :two_twenty_nine_group_id,
+      '229 parent type' => :two_twenty_nine_parent_type,
+      '229 parent id' => :two_twenty_nine_parent_id,
+      'compliance parameter category' => :compliance_parameter_category,
+      'compliance parameter name' => :compliance_parameter_name,
+      'compliance parameter value' => :compliance_parameter_value
+    }
+
+    csv = CSV.read(csv_file_path, headers: true)
+
+    if csv.headers != expected_headers.keys
+      runner.registerError("Expected headers #{expected_headers.keys} but got #{csv.headers} headers in
+      the csv must be exactly the same headers produced by the create_cp_csv measure")
+      return false
+    end
+
+    csv.each do |row|
+      # Map headers to their snake_case symbols
+      row_hash = row.to_h.transform_keys { |key| expected_headers[key] }
+      csv_data << row_hash
+    end
+
+    comp_param_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(JSON.parse(File.read(empty_comp_param_json_file_path)),csv_data)
+
 
     if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
 
@@ -79,44 +111,21 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       model = translator.loadModel(path)
 
       if !model.is_initialized
-        runner.registerError("A osm was provided but could not be loaded. Aborting")
+        runner.registerError("A osm was provided to write additional properties to but could not be loaded. Aborting")
         return false
       end
 
-      csv_data = ParseOsmAdditionalProperties.parse_osm_and_place_compliance_parameter_values_in_csv(model.get,csv_data)
-
+      ### TODO - not critical path write out additional properties to osm
     end
 
-    csv_name = "#{File.basename(osm_file_path)}-empty.csv"
-
-    CSV.open(File.join(output_csv_file_path,csv_name), 'w') do |csv_data_as_excel|
-
-      csv_data_as_excel <<
-          ['229 data group id',
-          '229 parent type',
-          '229 parent id',
-          'compliance parameter category',
-          'compliance parameter name',
-          'compliance parameter value']
-
-          csv_data.each { |row_as_hash_of_data|
-            csv_data_as_excel << [
-                row_as_hash_of_data[:two_twenty_nine_group_id],
-                row_as_hash_of_data[:two_twenty_nine_parent_type],
-                row_as_hash_of_data[:two_twenty_nine_parent_id],
-                row_as_hash_of_data[:compliance_parameter_category],
-                row_as_hash_of_data[:compliance_parameter_name],
-                row_as_hash_of_data[:compliance_parameter_value]
-              ]
-            }
-    end
-
-    # report final condition of model
-    runner.registerFinalCondition("Out put csv file path is #{csv_name} add csv data in compliance parameter value as needed!")
+    File.write(empty_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
 
     return true
   end
 end
 
+
+
+
 # register the measure to be used by the application
-CreateComplianceParameterCsvFromOsm.new.registerWithApplication
+ReadComplianceParameterCsvFromOsm.new.registerWithApplication

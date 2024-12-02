@@ -19,7 +19,7 @@ class GenerateCsvDataTest < Minitest::Test
     # #
     # #File.write('./output_with_parent.json', JSON.pretty_generate(@rpd))
     #
-    csv_data = GenerateCsvOfCompParamJson.produce_csv_data(@empty_cp_json)
+    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
     # # Define required compliance parameters
     # # # Initialize CSV data
@@ -55,7 +55,7 @@ class GenerateCsvDataTest < Minitest::Test
   def test_set_comp_param_json_from_csv_data
 
 
-    csv_data = GenerateCsvOfCompParamJson.produce_csv_data(@empty_cp_json)
+    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
     new_status_type = "a_test_of_status_type_update"
 
