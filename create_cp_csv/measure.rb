@@ -4,7 +4,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 require 'openstudio'
 require 'csv'
-require_relative './generate_csv/generate_csv'
+require_relative '../CompParamJson/generate_csv'
 require_relative './parse_data_from_osm/parse_osm_additional_properties'
 
 # start the measure
@@ -50,7 +50,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
-    super(model, runner, user_arguments)  # Do **NOT** remove this line
+    super(model, runner, user_arguments)
 
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
@@ -69,7 +69,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    csv_data = GenerateCsv.generate_csv_data_from_empty_comp_param_json(empty_comp_param_json_file_path)
+    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(Json.parse(File.read(empty_comp_param_json_file_path)))
 
     if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
 

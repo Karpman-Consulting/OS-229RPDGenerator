@@ -51,7 +51,7 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
-    super(model, runner, user_arguments)  # Do **NOT** remove this line
+    super(model, runner, user_arguments)
 
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
@@ -101,7 +101,6 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     end
 
     comp_param_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(JSON.parse(File.read(empty_comp_param_json_file_path)),csv_data)
-
 
     if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
 
