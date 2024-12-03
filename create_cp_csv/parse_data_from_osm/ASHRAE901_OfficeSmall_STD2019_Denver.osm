@@ -3631,7 +3631,7 @@ OS:Surface,
 OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c33}, !- Handle
   {05828367-1875-4ebe-8e0a-697eb2a5390a}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
+  is_229_compliance_parameter,  !- Feature Name 1
   Boolean,                                !- Feature Data Type 1
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
