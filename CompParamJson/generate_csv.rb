@@ -2,8 +2,8 @@ require 'json'
 require 'csv'
 require 'jsonpath'
 
-module GenerateCsvOfCompParamJson
-
+module GenerateTwoTwoNineCompParamJsonCsv
+  ##
   REQUIRED_COMPLIANCE_PARAMETERS = [
   ### com_param_path is taken from comp param file
   ### Project and building
@@ -32,11 +32,11 @@ module GenerateCsvOfCompParamJson
     "compliance_parameter": "site_zone_type",
     "comp_param_path":'$.ruleset_model_descriptions[0]'
   },
-  {
-    "compliance_parameter_category": "building",
-    "compliance_parameter": "building_open_schedule",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0]'
-  },
+  # {
+  #   "compliance_parameter_category": "building",
+  #   "compliance_parameter": "building_open_schedule",
+  #   "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0]'
+  # },
     {
     "compliance_parameter_category":"building_segment",
     "compliance_parameter":"is_all_new",
@@ -221,7 +221,6 @@ module GenerateCsvOfCompParamJson
 
   def self.produce_csv_data_from_comp_param_json(comp_param_json)
 
-
     add_parent_ids_and_path(comp_param_json)
 
     csv_data = []
@@ -229,10 +228,10 @@ module GenerateCsvOfCompParamJson
     # Process compliance parameters
     REQUIRED_COMPLIANCE_PARAMETERS.each do |compliance_parameter|
       ids = JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
-      values = JsonPath.new("#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}").on(comp_param_json)
+      #values = JsonPath.new("#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}").on(comp_param_json)
 
-      if values.empty?
-        puts "### Could not get data for compliance parameter: #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
+      if ids.empty?
+        puts "### Could not get ids #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
         next
       end
 
@@ -240,14 +239,14 @@ module GenerateCsvOfCompParamJson
       two_twenty_nine_parent_id = JsonPath.new("#{compliance_parameter[:comp_param_path]}.parent_id").on(comp_param_json)
       compliance_parameter_category = compliance_parameter[:compliance_parameter_category]
 
-      values.each_with_index do |value, index|
+      ids.each_with_index do |id, index|
         csv_data << {
-          two_twenty_nine_group_id: ids[index],
+          two_twenty_nine_group_id: id,
           two_twenty_nine_parent_type: self.get_last_part_json_path(two_twenty_nine_type[index]),
           two_twenty_nine_parent_id: self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
           compliance_parameter_category: compliance_parameter_category,
           compliance_parameter_name: compliance_parameter[:compliance_parameter],
-          compliance_parameter_value: value
+          compliance_parameter_value: ""
       }
       end
     end
@@ -263,7 +262,7 @@ module GenerateCsvOfCompParamJson
         if csv_row_data[:compliance_parameter_name] != compliance_parameter[:compliance_parameter]
           next
         end
-
+        ## Ignore if em,pty compliance parameter value
         if csv_row_data[:compliance_parameter_value].nil? ||
           (csv_row_data[:compliance_parameter_name].is_a?(String) && csv_row_data[:compliance_parameter_name].empty?)
 

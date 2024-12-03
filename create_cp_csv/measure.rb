@@ -57,6 +57,8 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
+
+    ### the original compliance parameter json will ONLY ever have one building segment
     # assign the user inputs to variables
     osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
 

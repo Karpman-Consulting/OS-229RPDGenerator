@@ -7,9 +7,40 @@ require 'csv'
 require 'json'
 require 'pry-byebug'
 require_relative '../CompParamJson/generate_csv'
+require_relative './set_building_segments'
 
 # start the measure
 class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
+
+  def self.read_comp_param_csv_data(csv_file_path,runner)
+    ### Only read rows that contain a value ignore the rest
+    csv_data = []
+
+    expected_headers = {
+      '229 data group id' => :two_twenty_nine_group_id,
+      '229 parent type' => :two_twenty_nine_parent_type,
+      '229 parent id' => :two_twenty_nine_parent_id,
+      'compliance parameter category' => :compliance_parameter_category,
+      'compliance parameter name' => :compliance_parameter_name,
+      'compliance parameter value' => :compliance_parameter_value
+    }
+
+    csv = CSV.read(csv_file_path, headers: true)
+
+    if csv.headers != expected_headers.keys
+      runner.registerError("Expected headers #{expected_headers.keys} but got #{csv.headers} headers in
+      the csv must be exactly the same headers produced by the create_cp_csv measure")
+      return false
+    end
+
+    csv.each do |row|
+      # Map headers to their snake_case symbols
+      row_hash = row.to_h.transform_keys { |key| expected_headers[key] }
+      csv_data << row_hash
+    end
+
+    csv_data
+  end
   # human readable name
   def name
     # Measure name should be the title case of the class name.
@@ -49,6 +80,8 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     return args
   end
 
+
+
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
@@ -75,32 +108,11 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    csv_data = []
+    csv_data = ReadComplianceParameterCsvFromOsm.read_comp_param_csv_data(csv_file_path,runner)
 
-    expected_headers = {
-      '229 data group id' => :two_twenty_nine_group_id,
-      '229 parent type' => :two_twenty_nine_parent_type,
-      '229 parent id' => :two_twenty_nine_parent_id,
-      'compliance parameter category' => :compliance_parameter_category,
-      'compliance parameter name' => :compliance_parameter_name,
-      'compliance parameter value' => :compliance_parameter_value
-    }
+    comp_param_json = SetBuildingSegements.read_csv_and_set_building_segments_in_comp_param_json(csv_data,JSON.parse(File.read(empty_comp_param_json_file_path)))
 
-    csv = CSV.read(csv_file_path, headers: true)
-
-    if csv.headers != expected_headers.keys
-      runner.registerError("Expected headers #{expected_headers.keys} but got #{csv.headers} headers in
-      the csv must be exactly the same headers produced by the create_cp_csv measure")
-      return false
-    end
-
-    csv.each do |row|
-      # Map headers to their snake_case symbols
-      row_hash = row.to_h.transform_keys { |key| expected_headers[key] }
-      csv_data << row_hash
-    end
-
-    comp_param_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(JSON.parse(File.read(empty_comp_param_json_file_path)),csv_data)
+    comp_param_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
 
     if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
 
