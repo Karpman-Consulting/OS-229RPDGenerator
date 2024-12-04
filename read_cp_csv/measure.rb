@@ -17,6 +17,7 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     ### ["229 data group id``", "229 parent type", "229 parent id",
     ### "compliance parameter category", "compliance parameter name", "compliance parameter value"]
     ### make sure that they are removed
+
     headers.map { |header| header.gsub('`', '') }
   end
 
@@ -73,6 +74,11 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     empty_comp_param_json_file_path.setDescription('path to empty comp param json file')
     args << empty_comp_param_json_file_path
 
+    updated_comp_param_json_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('updated_comp_param_json_file_path', true)
+    updated_comp_param_json_file_path.setDisplayName('path to updated comp param json file')
+    updated_comp_param_json_file_path.setDescription('path to updated comp param json file')
+    args << updated_comp_param_json_file_path
+
     output_csv_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('csv_file_path', true)
     output_csv_file_path.setDisplayName('csv_file_path')
     output_csv_file_path.setDescription('csv_file_path')
@@ -86,8 +92,6 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     return args
   end
-
-
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
@@ -104,6 +108,8 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     csv_file_path = runner.getStringArgumentValue('csv_file_path', user_arguments)
 
     empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)
+
+    updated_comp_param_json_file_path = runner.getStringArgumentValue('updated_comp_param_json_file_path', user_arguments)
 
     if empty_comp_param_json_file_path.nil? || empty_comp_param_json_file_path.empty? || !File.exist?(empty_comp_param_json_file_path)
       runner.registerError("Could not find file #{empty_comp_param_json_file_path} to write to.")
@@ -136,7 +142,7 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       ### TODO - not critical path write out additional properties to osm
     end
 
-    File.write(empty_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
+    File.write(updated_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
 
     return true
   end
