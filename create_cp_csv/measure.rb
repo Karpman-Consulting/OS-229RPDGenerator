@@ -4,9 +4,10 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 require 'openstudio'
 require 'csv'
+require 'json'
 require_relative '../CompParamJson/generate_csv'
 require_relative './parse_data_from_osm/parse_osm_additional_properties'
-
+require 'pry-byebug'
 ### TODO rename everything - is_229_compliance_parameter as per Jacksons request
 
 
@@ -74,7 +75,9 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(Json.parse(File.read(empty_comp_param_json_file_path)))
+    empty_comp_param_json = JSON.parse(File.read(empty_comp_param_json_file_path))
+
+    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
 
     if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
 

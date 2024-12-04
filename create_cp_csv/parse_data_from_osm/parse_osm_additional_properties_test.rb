@@ -114,7 +114,12 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
   def setup
 
-    path = OpenStudio::Path.new(File.join(File.dirname(File.realpath(__FILE__)),'ASHRAE901_OfficeSmall_STD2019_Denver.osm'))
+    test_file_path = File.join(File.dirname(File.realpath(__FILE__)),'ASHRAE901_OfficeSmall_STD2019_Denver.osm')
+    path = OpenStudio::Path.new(test_file_path)
+
+    unless File.exist?(test_file_path)
+      raise "Test file not found: #{test_file_path}"
+    end
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
 

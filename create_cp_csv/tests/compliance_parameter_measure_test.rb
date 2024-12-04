@@ -69,11 +69,18 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
+    test_file = "#{File.dirname(__FILE__)}/../../test_files/ASHRAE901_OfficeSmall_STD2019_Denver.osm"
+
+    unless File.exist?(test_file)
+      # download the test files if they are not present
+      raise "Could #{test_file} not found "
+    end
+
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['osm_file_path'] = "#{File.dirname(__FILE__)}/../test_files/ASHRAE901_OfficeSmall_STD2019_Denver.osm"
-    args_hash['empty_comp_param_json_file_path'] = "#{File.dirname(__FILE__)}/../test_files/ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json"
+    args_hash['osm_file_path'] = test_file
+    args_hash['empty_comp_param_json_file_path'] = "#{File.dirname(__FILE__)}/ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json"
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
