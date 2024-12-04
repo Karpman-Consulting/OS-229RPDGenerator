@@ -124,7 +124,7 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
     @comp_param_json = JSON.parse(File.read(File.join(File.dirname(File.realpath(__FILE__)),
     'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')))
 
-    @csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@comp_param_json)
+    @csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@comp_param_json)
 
     ### This code will count the number of times that the compliance_parameter_value
     ### has been set

@@ -246,6 +246,7 @@ module GenerateTwoTwoNineCompParamJsonCsv
           two_twenty_nine_parent_id: self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
           compliance_parameter_category: compliance_parameter_category,
           compliance_parameter_name: compliance_parameter[:compliance_parameter],
+          ### NOTE do not read values from comp param empty json
           compliance_parameter_value: ""
       }
       end

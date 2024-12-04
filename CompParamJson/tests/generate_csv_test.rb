@@ -19,7 +19,7 @@ class GenerateCsvDataTest < Minitest::Test
     # #
     # #File.write('./output_with_parent.json', JSON.pretty_generate(@rpd))
     #
-    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@empty_cp_json)
+    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
     # # Define required compliance parameters
     # # # Initialize CSV data
@@ -55,7 +55,7 @@ class GenerateCsvDataTest < Minitest::Test
   def test_set_comp_param_json_from_csv_data
 
 
-    csv_data = GenerateCsvOfCompParamJson.produce_csv_data_from_comp_param_json(@empty_cp_json)
+    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
     new_status_type = "a_test_of_status_type_update"
 
@@ -86,17 +86,17 @@ class GenerateCsvDataTest < Minitest::Test
 
     ### Run the code
 
-    updated_cp_json = GenerateCsvOfCompParamJson.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
+    updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
 
-    csv_row_of_perimeter_zn_one_updated = GenerateCsvOfCompParamJson.find_by_id(updated_cp_json, "PERIMETER_ZN_1".downcase)
+    csv_row_of_perimeter_zn_one_updated = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_1".downcase)
 
     assert_equal new_zone_aggregation_factor, csv_row_of_perimeter_zn_one_updated["aggregation_factor"]
 
-    csv_row_of_psz_ac_3_updated = GenerateCsvOfCompParamJson.find_by_id(updated_cp_json, "PSZ-AC:3".downcase)
+    csv_row_of_psz_ac_3_updated = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PSZ-AC:3".downcase)
 
     assert_equal new_status_type, csv_row_of_psz_ac_3_updated["status_type"]
 
-    zn_two_wall_east_window_four = GenerateCsvOfCompParamJson.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
+    zn_two_wall_east_window_four = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
 
     assert_equal zn_two_wall_east_window_four_updated_framing_type, zn_two_wall_east_window_four["framing_type"]
 
