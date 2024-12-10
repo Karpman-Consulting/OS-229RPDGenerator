@@ -30,7 +30,7 @@ schedule_data_occ = {
   'rules' => rules
 }
 
-#binding.prycle
+
 # Create schedule using create_complex_schedule method
 @sch.create_complex_schedule(model,schedule_data_occ)
 

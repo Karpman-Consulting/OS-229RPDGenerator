@@ -75,6 +75,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
       return false
     end
 
+
     empty_comp_param_json = JSON.parse(File.read(empty_comp_param_json_file_path))
 
     csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
