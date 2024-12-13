@@ -3382,10 +3382,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  0, 0, 2.3293,                           !- X,Y,Z Vertex 1 {m}
-  0, 0, 1.0793,                           !- X,Y,Z Vertex 2 {m}
-  15.8242, 0, 1.0793,                     !- X,Y,Z Vertex 3 {m}
-  15.8242, 0, 2.3293;                     !- X,Y,Z Vertex 4 {m}
+  0, 0, 2.4,                              !- X,Y,Z Vertex 1 {m}
+  0, 0, 1.0,                              !- X,Y,Z Vertex 2 {m}
+  15.8242, 0, 1.0,                        !- X,Y,Z Vertex 3 {m}
+  15.8242, 0, 2.4;                        !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {5a0ebc74-01e1-44f7-980d-0cbc65b1a3a3}, !- Handle
@@ -3398,10 +3398,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  17.0434, 0, 2.3293,                     !- X,Y,Z Vertex 1 {m}
-  17.0434, 0, 1.0793,                     !- X,Y,Z Vertex 2 {m}
-  32.8676, 0, 1.0793,                     !- X,Y,Z Vertex 3 {m}
-  32.8676, 0, 2.3293;                     !- X,Y,Z Vertex 4 {m}
+  17.0434, 0, 2.4,                        !- X,Y,Z Vertex 1 {m}
+  17.0434, 0, 1.0,                        !- X,Y,Z Vertex 2 {m}
+  32.8676, 0, 1.0,                        !- X,Y,Z Vertex 3 {m}
+  32.8676, 0, 2.4;                        !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {8101fef5-2ed7-484b-9cc4-009d364ecfb9}, !- Handle
@@ -3414,10 +3414,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  34.0868, 0, 2.3293,                     !- X,Y,Z Vertex 1 {m}
-  34.0868, 0, 1.0793,                     !- X,Y,Z Vertex 2 {m}
-  49.91, 0, 1.0793,                       !- X,Y,Z Vertex 3 {m}
-  49.91, 0, 2.3293;                       !- X,Y,Z Vertex 4 {m}
+  34.0868, 0, 2.4,                        !- X,Y,Z Vertex 1 {m}
+  34.0868, 0, 1.0,                        !- X,Y,Z Vertex 2 {m}
+  49.91, 0, 1.0,                          !- X,Y,Z Vertex 3 {m}
+  49.91, 0, 2.4;                          !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {9138deee-c6b9-4f10-94e4-93972ca323c2}, !- Handle
@@ -3446,10 +3446,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  49.911, 0, 2.3293,                      !- X,Y,Z Vertex 1 {m}
-  49.911, 0, 0.97196720032,               !- X,Y,Z Vertex 2 {m}
-  49.911, 30.8353, 0.97196720032,         !- X,Y,Z Vertex 3 {m}
-  49.911, 30.8353, 2.3293;                !- X,Y,Z Vertex 4 {m}
+  49.911, 0, 2.4,                         !- X,Y,Z Vertex 1 {m}
+  49.911, 0, 1.0,                         !- X,Y,Z Vertex 2 {m}
+  49.911, 30.8353, 1.0,                   !- X,Y,Z Vertex 3 {m}
+  49.911, 30.8353, 2.4;                   !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {5a99c109-dc3a-4ed9-8504-ad4aa954390f}, !- Handle
@@ -3462,10 +3462,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  49.911, 32.0545, 2.3293,                !- X,Y,Z Vertex 1 {m}
-  49.911, 32.0545, 0.97196720032,         !- X,Y,Z Vertex 2 {m}
-  49.911, 33.2737, 0.97196720032,         !- X,Y,Z Vertex 3 {m}
-  49.911, 33.2737, 2.3293;                !- X,Y,Z Vertex 4 {m}
+  49.911, 32.0545, 2.4,                   !- X,Y,Z Vertex 1 {m}
+  49.911, 32.0545, 1.0,                   !- X,Y,Z Vertex 2 {m}
+  49.911, 33.2737, 1.0,                   !- X,Y,Z Vertex 3 {m}
+  49.911, 33.2737, 2.4;                   !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {bb0927fa-52da-404f-b308-238c3da658c2}, !- Handle
@@ -3510,10 +3510,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  49.91, 33.2738, 2.3293,                 !- X,Y,Z Vertex 1 {m}
-  49.91, 33.2738, 1.0793,                 !- X,Y,Z Vertex 2 {m}
-  34.0868, 33.2738, 1.0793,               !- X,Y,Z Vertex 3 {m}
-  34.0868, 33.2738, 2.3293;               !- X,Y,Z Vertex 4 {m}
+  49.91, 33.2738, 2.4,                    !- X,Y,Z Vertex 1 {m}
+  49.91, 33.2738, 1.0,                    !- X,Y,Z Vertex 2 {m}
+  34.0868, 33.2738, 1.0,                  !- X,Y,Z Vertex 3 {m}
+  34.0868, 33.2738, 2.4;                  !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {c30b641f-38ea-40c8-8247-a2e592e4c1c2}, !- Handle
@@ -3526,10 +3526,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  32.8676, 33.2738, 2.3293,               !- X,Y,Z Vertex 1 {m}
-  32.8676, 33.2738, 1.0793,               !- X,Y,Z Vertex 2 {m}
-  17.0434, 33.2738, 1.0793,               !- X,Y,Z Vertex 3 {m}
-  17.0434, 33.2738, 2.3293;               !- X,Y,Z Vertex 4 {m}
+  32.8676, 33.2738, 2.4,                  !- X,Y,Z Vertex 1 {m}
+  32.8676, 33.2738, 1.0,                  !- X,Y,Z Vertex 2 {m}
+  17.0434, 33.2738, 1.0,                  !- X,Y,Z Vertex 3 {m}
+  17.0434, 33.2738, 2.4;                  !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {723d98a5-a0e4-4250-85b7-3d4ce874ee49}, !- Handle
@@ -3542,10 +3542,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  15.8242, 33.2738, 2.3293,               !- X,Y,Z Vertex 1 {m}
-  15.8242, 33.2738, 1.0793,               !- X,Y,Z Vertex 2 {m}
-  0, 33.2738, 1.0793,                     !- X,Y,Z Vertex 3 {m}
-  0, 33.2738, 2.3293;                     !- X,Y,Z Vertex 4 {m}
+  15.8242, 33.2738, 2.4,                  !- X,Y,Z Vertex 1 {m}
+  15.8242, 33.2738, 1.0,                  !- X,Y,Z Vertex 2 {m}
+  0, 33.2738, 1.0,                        !- X,Y,Z Vertex 3 {m}
+  0, 33.2738, 2.4;                        !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {e58b910e-84e8-4564-938f-9bdecbe1b004}, !- Handle
@@ -3575,10 +3575,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  0, 33.2737, 2.3293,                     !- X,Y,Z Vertex 1 {m}
-  0, 33.2737, 0.97196720032,              !- X,Y,Z Vertex 2 {m}
-  0, 2.4384, 0.97196720032,               !- X,Y,Z Vertex 3 {m}
-  0, 2.4384, 2.3293;                      !- X,Y,Z Vertex 4 {m}
+  0, 33.2737, 2.4,                        !- X,Y,Z Vertex 1 {m}
+  0, 33.2737, 1.0,                        !- X,Y,Z Vertex 2 {m}
+  0, 2.4384, 1.0,                         !- X,Y,Z Vertex 3 {m}
+  0, 2.4384, 2.4;                         !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {b68217c9-a085-45a2-8410-12dbe7343c03}, !- Handle
@@ -3591,10 +3591,10 @@ OS:SubSurface,
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
-  0, 1.2192, 2.3293,                      !- X,Y,Z Vertex 1 {m}
-  0, 1.2192, 0.97196720032,               !- X,Y,Z Vertex 2 {m}
-  0, 0, 0.97196720032,                    !- X,Y,Z Vertex 3 {m}
-  0, 0, 2.3293;                           !- X,Y,Z Vertex 4 {m}
+  0, 1.2192, 2.4,                         !- X,Y,Z Vertex 1 {m}
+  0, 1.2192, 1.0,                         !- X,Y,Z Vertex 2 {m}
+  0, 0, 1.0,                              !- X,Y,Z Vertex 3 {m}
+  0, 0, 2.4;                              !- X,Y,Z Vertex 4 {m}
 
 OS:InternalMass:Definition,
   {37a62e06-f4f7-4ad6-9862-71bad8a1afef}, !- Handle
@@ -7333,8 +7333,29 @@ OS:Rendering:Color,
   250,                                    !- Rendering Green Value
   230;                                    !- Rendering Blue Value
 
+OS:Rendering:Color,
+  {b786a413-ddce-40cc-a092-fd296011fec3}, !- Handle
+  Rendering Color 96,                     !- Name
+  219,                                    !- Rendering Red Value
+  147,                                    !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {a5b17f23-1cad-47bd-8e9b-07bbd177e3cf}, !- Handle
+  Rendering Color 97,                     !- Name
+  106,                                    !- Rendering Red Value
+  205,                                    !- Rendering Green Value
+  90;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {a73849a1-d4bf-476a-a7b5-24d58ae9b064}, !- Handle
+  Rendering Color 98,                     !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  140;                                    !- Rendering Blue Value
+
 OS:WeatherFile,
-  {ed411e91-82db-4357-9b9c-75e47732a475}, !- Handle
+  {a17e85e7-95e1-4c1e-9bad-3a6522bf7d1c}, !- Handle
   Denver.Intl.AP,                         !- City
   CO,                                     !- State Province Region
   USA,                                    !- Country
@@ -7350,9 +7371,9 @@ OS:WeatherFile,
   Sunday;                                 !- Start Day of Week
 
 OS:Rendering:Color,
-  {b786a413-ddce-40cc-a092-fd296011fec3}, !- Handle
-  Rendering Color 96,                     !- Name
-  219,                                    !- Rendering Red Value
-  147,                                    !- Rendering Green Value
-  112;                                    !- Rendering Blue Value
+  {9bec1617-c859-4616-9a3c-3702d20fa512}, !- Handle
+  Rendering Color 99,                     !- Name
+  240,                                    !- Rendering Red Value
+  128,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
 
