@@ -123,30 +123,15 @@ class CreatePreconditionedIdf < OpenStudio::Measure::EnergyPlusMeasure
       return false
     end
 
-    osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
+    CreatePreconditionedIdf.add_output_table_summary_report(model)
 
-    if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
+    CreatePreconditionedIdf.set_output_variable_schedule_hourly(model)
 
-      translator = OpenStudio::OSVersion::VersionTranslator.new
-      path = OpenStudio::Path.new(osm_file_path)
+    CreatePreconditionedIdf.set_output_json_to_true(model)
 
-      model = translator.loadModel(path)
+    CreatePreconditionedIdf.set_output_schedules(model)
 
-      if !model.is_initialized
-        runner.registerError("A osm was provided but could not be loaded. Aborting")
-        return false
-      end
-
-      @model = model.get
-    end
-
-    CreatePreconditionedIdf.add_output_table_summary_report(@model)
-
-    CreatePreconditionedIdf.set_output_variable_schedule_hourly(@model)
-
-    CreatePreconditionedIdf.set_output_json_to_true(@model)
-
-    CreatePreconditionedIdf.set_output_schedules(@model)
+    CreatePreconditionedIdf.set_output_table_style(model)
 
     runner.registerInitialCondition("Added reports required for 229")
 
