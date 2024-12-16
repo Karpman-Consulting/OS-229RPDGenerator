@@ -4083,7 +4083,7 @@ OS:SpaceInfiltration:DesignFlowRate,
   {3d124017-17b2-4c54-aac9-ece721b6b153}, !- Schedule Name
   Flow/Area,                              !- Design Flow Rate Calculation Method
   0,                                      !- Design Flow Rate {m3/s}
-  40.90924,                               !- Flow per Space Floor Area {m3/s-m2}
+  0.0004090924,                           !- Flow per Space Floor Area {m3/s-m2}
   0,                                      !- Flow per Exterior Surface Area {m3/s-m2}
   0,                                      !- Air Changes per Hour {1/hr}
   0,                                      !- Constant Term Coefficient
@@ -4101,8 +4101,8 @@ OS:DesignSpecification:OutdoorAir,
   {4f14bd22-c668-4ca2-8498-26c944e15b00}, !- Handle
   Core_Zone_Design_OA,                    !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0.0006096,                              !- Outdoor Air Flow per Floor Area {m3/s-m2}
   0,                                      !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
@@ -4111,8 +4111,8 @@ OS:DesignSpecification:OutdoorAir,
   {7c85d2f0-cb80-43b7-9a20-c9e259504efe}, !- Handle
   Perimeter_Zone_1_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0.0006096,                              !- Outdoor Air Flow per Floor Area {m3/s-m2}
   0,                                      !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
@@ -4121,8 +4121,8 @@ OS:DesignSpecification:OutdoorAir,
   {130ce244-6e22-41ea-8882-6cb942ce5d40}, !- Handle
   Perimeter_Zone_2_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0.0006096,                              !- Outdoor Air Flow per Floor Area {m3/s-m2}
   0,                                      !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
@@ -4131,8 +4131,8 @@ OS:DesignSpecification:OutdoorAir,
   {187159cb-c262-461a-b0c8-289f2b7d9b26}, !- Handle
   Perimeter_Zone_3_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0.0006096,                              !- Outdoor Air Flow per Floor Area {m3/s-m2}
   0,                                      !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
@@ -4141,8 +4141,8 @@ OS:DesignSpecification:OutdoorAir,
   {3db07e2f-5666-4307-ad7a-1146146a2cb1}, !- Handle
   Perimeter_Zone_4_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0.0006096,                              !- Outdoor Air Flow per Floor Area {m3/s-m2}
   0,                                      !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
@@ -6332,7 +6332,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.6,                                    !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -7632,7 +7632,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.13,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -8156,12 +8156,12 @@ OS:AirLoopHVAC:OutdoorAirSystem,
 
 OS:Controller:OutdoorAir,
   {ad2d02a7-d2ef-4b8c-8573-820afabc8228}, !- Handle
-  Controller Outdoor Air 3,               !- Name
+  PSZ_HP_Perimeter_Zone_2_Controller_Outdoor_Air_3, !- Name
   ,                                       !- Relief Air Outlet Node Name
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.08,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -8685,12 +8685,12 @@ OS:AirLoopHVAC:OutdoorAirSystem,
 
 OS:Controller:OutdoorAir,
   {a98a7a71-2585-4acb-93bd-d683e9f77d89}, !- Handle
-  Controller Outdoor Air 4,               !- Name
+  Perimeter_Zone_3_Controller_Outdoor_Air_4, !- Name
   ,                                       !- Relief Air Outlet Node Name
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.13,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -9219,7 +9219,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.08,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -9855,4 +9855,284 @@ OS:Rendering:Color,
   255,                                    !- Rendering Red Value
   0,                                      !- Rendering Green Value
   215;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {16af5981-2668-4489-bd6f-134b6124e083}, !- Handle
+  Rendering Color 132,                    !- Name
+  222,                                    !- Rendering Red Value
+  135,                                    !- Rendering Green Value
+  184;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {5e021e36-4b81-4782-bcb1-446ca4bd7fc3}, !- Handle
+  Rendering Color 133,                    !- Name
+  255,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {d58785c7-f2e4-4543-84bf-f0bc88f91d96}, !- Handle
+  Rendering Color 134,                    !- Name
+  255,                                    !- Rendering Red Value
+  225,                                    !- Rendering Green Value
+  228;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {4fa95e3f-44f3-4b9f-813d-1b12bd276c2e}, !- Handle
+  Rendering Color 135,                    !- Name
+  238,                                    !- Rendering Red Value
+  238,                                    !- Rendering Green Value
+  130;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {8ddf8699-d907-4d8b-a392-70cd9904968a}, !- Handle
+  Rendering Color 136,                    !- Name
+  105,                                    !- Rendering Red Value
+  105,                                    !- Rendering Green Value
+  105;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7b601ea5-5849-4595-8042-d39902ec4b27}, !- Handle
+  Rendering Color 137,                    !- Name
+  253,                                    !- Rendering Red Value
+  230,                                    !- Rendering Green Value
+  245;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7bf84953-9338-4c8c-863e-ac3acd69128b}, !- Handle
+  Rendering Color 138,                    !- Name
+  199,                                    !- Rendering Red Value
+  133,                                    !- Rendering Green Value
+  21;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {89634da5-9497-4ee1-a4ee-cb47dc40f390}, !- Handle
+  Rendering Color 139,                    !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  165;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {eb4306ae-e4c7-4e95-86ee-5590e3835400}, !- Handle
+  Rendering Color 140,                    !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {707b57ac-ff4c-40ba-aaa4-4d7c189c59f4}, !- Handle
+  Rendering Color 141,                    !- Name
+  95,                                     !- Rendering Red Value
+  160,                                    !- Rendering Green Value
+  158;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e5ce2a03-0b24-4567-96b4-c53455d2a563}, !- Handle
+  Rendering Color 142,                    !- Name
+  47,                                     !- Rendering Red Value
+  79,                                     !- Rendering Green Value
+  79;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {6a5c0b49-5f6c-40fe-8468-d3441dc8434b}, !- Handle
+  Rendering Color 143,                    !- Name
+  124,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  252;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {b3b41415-b060-4ddc-bfcb-48e3f2c1662c}, !- Handle
+  Rendering Color 144,                    !- Name
+  255,                                    !- Rendering Red Value
+  71,                                     !- Rendering Green Value
+  99;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {321a866b-960a-43dd-ba75-0cb17476f513}, !- Handle
+  Rendering Color 145,                    !- Name
+  127,                                    !- Rendering Red Value
+  212,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {0bb11442-a305-406c-b6e0-ecd0bfb261a5}, !- Handle
+  Rendering Color 146,                    !- Name
+  143,                                    !- Rendering Red Value
+  143,                                    !- Rendering Green Value
+  188;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {275a70c1-2937-499d-adb9-753712a86b46}, !- Handle
+  Rendering Color 147,                    !- Name
+  128,                                    !- Rendering Red Value
+  128,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {70a785e1-5afc-4fed-af62-ac28dbfda08f}, !- Handle
+  Rendering Color 148,                    !- Name
+  238,                                    !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  232;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {23eb65c3-2ef9-4258-965f-08408ed3a088}, !- Handle
+  Rendering Color 149,                    !- Name
+  165,                                    !- Rendering Red Value
+  42,                                     !- Rendering Green Value
+  42;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {ad87f77d-8884-4381-86c6-ec5046ea1212}, !- Handle
+  Rendering Color 150,                    !- Name
+  216,                                    !- Rendering Red Value
+  216,                                    !- Rendering Green Value
+  191;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c2c96ff3-0f62-4169-a40e-abe9db21b654}, !- Handle
+  Rendering Color 151,                    !- Name
+  169,                                    !- Rendering Red Value
+  169,                                    !- Rendering Green Value
+  169;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c87c76f1-5970-40d2-ba23-97ddbc3be22d}, !- Handle
+  Rendering Color 152,                    !- Name
+  255,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  250;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {3b4c5b99-6ba5-4a3c-9fef-7a932d050fea}, !- Handle
+  Rendering Color 153,                    !- Name
+  240,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  248;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {00b3c778-75c6-4f18-b997-a8e2be01ecbf}, !- Handle
+  Rendering Color 154,                    !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  140;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {95cf5529-bfa5-4513-bae7-7958015a17ec}, !- Handle
+  Rendering Color 155,                    !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  140;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {86921795-5d5c-4595-9b66-b5cb7e053752}, !- Handle
+  Rendering Color 156,                    !- Name
+  188,                                    !- Rendering Red Value
+  143,                                    !- Rendering Green Value
+  143;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {9a51b3eb-7102-49ef-92a5-d2db0562d317}, !- Handle
+  Rendering Color 157,                    !- Name
+  224,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {dab8db54-2115-4471-9fa0-508c5650dc77}, !- Handle
+  Rendering Color 158,                    !- Name
+  25,                                     !- Rendering Red Value
+  112,                                    !- Rendering Green Value
+  25;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {3ff62b8f-a436-4cee-8fe9-4a57efc641cd}, !- Handle
+  Rendering Color 159,                    !- Name
+  75,                                     !- Rendering Red Value
+  130,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c9e288fe-6beb-4428-b9f5-bc197899d642}, !- Handle
+  Rendering Color 160,                    !- Name
+  75,                                     !- Rendering Red Value
+  130,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {1b5bd641-2e26-4d3c-b443-e11ce7e53d01}, !- Handle
+  Rendering Color 161,                    !- Name
+  210,                                    !- Rendering Red Value
+  140,                                    !- Rendering Green Value
+  180;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c6f29750-dd33-4fda-840b-26445ed63dad}, !- Handle
+  Rendering Color 162,                    !- Name
+  127,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {2f108f70-0409-45d0-997d-7b5a44966d3f}, !- Handle
+  Rendering Color 163,                    !- Name
+  102,                                    !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  205;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {b60a34bb-bb59-4e87-942b-82b4f0240078}, !- Handle
+  Rendering Color 164,                    !- Name
+  72,                                     !- Rendering Red Value
+  139,                                    !- Rendering Green Value
+  61;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7f6aa4c3-2e7e-4344-8de7-c7a13f38afbf}, !- Handle
+  Rendering Color 165,                    !- Name
+  135,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  206;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {1afea60f-61c1-46a5-ae5c-5739946d8fdb}, !- Handle
+  Rendering Color 166,                    !- Name
+  240,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {867ea358-f80c-4da7-827b-6cb597d0bf4b}, !- Handle
+  Rendering Color 167,                    !- Name
+  218,                                    !- Rendering Red Value
+  32,                                     !- Rendering Green Value
+  165;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {a0118b3a-2e48-4957-92fb-b6aa2d2e8b6e}, !- Handle
+  Rendering Color 168,                    !- Name
+  128,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {90e86416-0e90-4d0b-a1c2-ae0ca116f2aa}, !- Handle
+  Rendering Color 169,                    !- Name
+  127,                                    !- Rendering Red Value
+  212,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {fae0bd77-e096-4eff-93e9-760a55c0476b}, !- Handle
+  Rendering Color 170,                    !- Name
+  245,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {09010d7b-bc67-43fd-a27e-79f18cb23a41}, !- Handle
+  Rendering Color 171,                    !- Name
+  123,                                    !- Rendering Red Value
+  238,                                    !- Rendering Green Value
+  104;                                    !- Rendering Blue Value
 
