@@ -8952,3 +8952,7 @@ OS:WeatherFile,
   ,                                       !- Start Date Actual Year
   Sunday;                                 !- Start Day of Week
 
+OS:OutputControl:Table:Style,
+  {e7250413-868b-4604-9b16-21635a240cbd}, !- Handle
+  HTML,                                   !- Column Separator
+  JtoMJ;                                   !- Unit Conversion

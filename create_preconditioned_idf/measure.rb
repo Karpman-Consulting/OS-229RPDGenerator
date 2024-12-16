@@ -32,6 +32,27 @@ class CreatePreconditionedIdf < OpenStudio::Measure::EnergyPlusMeasure
     return args
   end
 
+  def self.set_output_table_style(workspace)
+
+    output_control_table = workspace.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
+
+    if output_control_table.empty?
+      new_output_schedule = "
+        OutputControl:Table:Style,
+          HTML,                    !- Column Separator
+          None;                    !- Unit Conversion
+      "
+
+      idfObject = OpenStudio::IdfObject.load(new_output_schedule)
+      object = idfObject.get
+
+      workspace.addObject(object)
+    else
+      output_control_table.first.setString(1, 'None')
+    end
+
+  end
+
   def self.add_output_table_summary_report(workspace)
     if not workspace.getOptionalOutputTableSummaryReports.is_initialized or
       not workspace.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"

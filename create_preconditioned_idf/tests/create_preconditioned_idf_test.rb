@@ -16,12 +16,6 @@ class CreatePreconditionedIdfTest < Minitest::Test
     assert(!model.empty?)
     @model_with_outputs = model.get
 
-    translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = "#{File.dirname(__FILE__)}/example_model_no_outputs.osm"
-    model = translator.loadModel(path)
-    assert(!model.empty?)
-    @model_with_no_outputs = model.get
-
     @empty_model = OpenStudio::Model::Model.new
 
   end
@@ -80,6 +74,21 @@ class CreatePreconditionedIdfTest < Minitest::Test
 
     assert output_schedules.first.getString(0).get, 'Hourly'
 
+  end
+
+  def test_set_output_table_style
+
+    CreatePreconditionedIdf.set_output_table_style(@model_with_outputs)
+
+    output_control_table = @model_with_outputs.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
+
+    assert output_control_table.first.getString(1).get, "None"
+
+    CreatePreconditionedIdf.set_output_table_style(@empty_model)
+
+    output_control_table = @empty_model.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
+
+    assert output_control_table.first.getString(1).get, "None"
   end
 
   def test_write_out_idf_from_empty_model
