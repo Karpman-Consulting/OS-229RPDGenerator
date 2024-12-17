@@ -4,7 +4,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 # start the measure
-class CreatePreconditionedIdf < OpenStudio::Measure::EnergyPlusMeasure
+class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
@@ -24,11 +24,6 @@ class CreatePreconditionedIdf < OpenStudio::Measure::EnergyPlusMeasure
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
-    osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
-    osm_file_path.setDisplayName('Osm file path')
-    osm_file_path.setDescription('Osm file path')
-    osm_file_path.setDefaultValue('')
-    args << osm_file_path
     return args
   end
 
@@ -133,7 +128,7 @@ class CreatePreconditionedIdf < OpenStudio::Measure::EnergyPlusMeasure
 
     CreatePreconditionedIdf.set_output_table_style(model)
 
-    runner.registerInitialCondition("Added reports required for 229")
+    runner.registerInitialCondition("Successfully added EnergyPlus outputs required for 229 compliance parameters")
 
     return true
   end

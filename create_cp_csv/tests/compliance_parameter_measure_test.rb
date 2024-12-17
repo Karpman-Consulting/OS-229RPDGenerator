@@ -16,7 +16,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     model = OpenStudio::Model::Model.new
 
     arguments = measure.arguments(model)
-    assert_equal(3, arguments.size)
+    assert_equal(2, arguments.size)
   end
 
   def bad_argument_values
@@ -36,7 +36,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
 
     # create hash of argument values
     args_hash = {}
-    args_hash['osm_file_path'] = ''
+    args_hash['blah'] = ''
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|
@@ -76,10 +76,17 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
       raise "Could #{test_file} not found "
     end
 
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = OpenStudio::Path.new(test_file)
+    model = translator.loadModel(path)
+    assert((not model.empty?))
+    model = model.get
+
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['osm_file_path'] = test_file
+    #args_hash['osm_file_path'] = test_file
+    args_hash['output_csv_file_path'] = "#{File.dirname(__FILE__)}/ASHRAE901_OfficeSmall_STD2019_Denver.csv"
     args_hash['empty_comp_param_json_file_path'] = "#{File.dirname(__FILE__)}/ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json"
     # using defaults values from measure.rb for other arguments
 
@@ -93,7 +100,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(OpenStudio::Model::Model.new, runner, argument_map)
+    measure.run(model, runner, argument_map)
     result = runner.result
 
     # show the output

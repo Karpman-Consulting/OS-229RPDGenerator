@@ -5,7 +5,6 @@
 require 'openstudio'
 require 'csv'
 require 'json'
-require 'pry-byebug'
 require_relative '../CompParamJson/generate_csv'
 require_relative './set_building_segments'
 
@@ -66,7 +65,7 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model = OpenStudio::Model::Model.new)
+  def arguments(model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     empty_comp_param_json_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('empty_comp_param_json_file_path', true)
@@ -84,12 +83,6 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     output_csv_file_path.setDescription('csv_file_path')
     args << output_csv_file_path
 
-    osm_file_path = OpenStudio::Measure::OSArgument.makeStringArgument('osm_file_path', true)
-    osm_file_path.setDisplayName('Osm file path')
-    osm_file_path.setDescription('Osm file path')
-    osm_file_path.setDefaultValue('')
-    args << osm_file_path
-
     return args
   end
 
@@ -103,7 +96,6 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    osm_file_path = runner.getStringArgumentValue('osm_file_path', user_arguments)
 
     csv_file_path = runner.getStringArgumentValue('csv_file_path', user_arguments)
 
@@ -127,20 +119,8 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     comp_param_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
 
-    if !osm_file_path.nil? && !osm_file_path.empty? && File.exist?(osm_file_path)
+    ### TODO - not critical path write out additional properties to osm
 
-      translator = OpenStudio::OSVersion::VersionTranslator.new
-      path = OpenStudio::Path.new(osm_file_path)
-
-      model = translator.loadModel(path)
-
-      if !model.is_initialized
-        runner.registerError("A osm was provided to write additional properties to but could not be loaded. Aborting")
-        return false
-      end
-
-      ### TODO - not critical path write out additional properties to osm
-    end
 
     File.write(updated_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
 

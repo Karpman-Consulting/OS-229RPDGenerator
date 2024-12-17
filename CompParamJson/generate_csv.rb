@@ -1,7 +1,6 @@
 require 'json'
 require 'csv'
 require 'jsonpath'
-
 module GenerateTwoTwoNineCompParamJsonCsv
   ##
   REQUIRED_COMPLIANCE_PARAMETERS = [

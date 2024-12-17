@@ -1,4 +1,3 @@
-
 !!! Contains x3 is_compliance_parameter_90_1_2019_prm
 
 OS:Version,
@@ -7,11 +6,11 @@ OS:Version,
 
 OS:Site,
   {da87e12f-b768-4a5b-8817-211eda15c51d}, !- Handle
-  Denver-Aurora-Buckley.AFB_CO_USA WMO=724695, !- Name
-  39.72,                                  !- Latitude {deg}
-  -104.75,                                !- Longitude {deg}
+  Denver.Intl.AP,                         !- Name
+  39.833,                                 !- Latitude {deg}
+  -104.658,                               !- Longitude {deg}
   -7,                                     !- Time Zone {hr}
-  1726,                                   !- Elevation {m}
+  1650.2,                                 !- Elevation {m}
   City;                                   !- Terrain
 
 OS:SimulationControl,
@@ -3636,13 +3635,13 @@ OS:AdditionalProperties,
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
   String,                                 !- Feature Data Type 2
-  surface,                        !- Feature Value 2
+  surface,                                !- Feature Value 2
   compliance_parameter_name,              !- Feature Name 3
   String,                                 !- Feature Data Type 3
-  status_type,                             !- Feature Value 3
+  status_type,                            !- Feature Value 3
   compliance_parameter_value,             !- Feature Name 4
-  String,                                !- Feature Data Type 4
-  status_type_updated;                                   !- Feature Value 4
+  String,                                 !- Feature Data Type 4
+  status_type_updated;                    !- Feature Value 4
 
 OS:Surface,
   {3344ea62-2e75-4cff-b423-f86e19192884}, !- Handle
@@ -3727,7 +3726,6 @@ OS:Surface,
   28.29, -0.6, 3.05,                      !- X,Y,Z Vertex 2 {m}
   28.29, 19.06, 3.05;                     !- X,Y,Z Vertex 3 {m}
 
-
 OS:Surface,
   {6037aca2-e4f9-489c-973e-d0e1d0181688}, !- Handle
   Attic_roof_south,                       !- Name
@@ -3761,8 +3759,7 @@ OS:SubSurface,
   3.22, 0, 0.9,                           !- X,Y,Z Vertex 3 {m}
   3.22, 0, 2.424;                         !- X,Y,Z Vertex 4 {m}
 
-
-  OS:AdditionalProperties,
+OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c37}, !- Handle
   {341403d3-224b-40da-b83b-4a4ed8e91245}, !- Object Name
   is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
@@ -3770,14 +3767,13 @@ OS:SubSurface,
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
   String,                                 !- Feature Data Type 2
-  subsurface,                        !- Feature Value 2
+  subsurface,                             !- Feature Value 2
   compliance_parameter_name,              !- Feature Name 3
   String,                                 !- Feature Data Type 3
-  has_manual_interior_shades,                             !- Feature Value 3
+  has_manual_interior_shades,             !- Feature Value 3
   compliance_parameter_value,             !- Feature Name 4
   Boolean,                                !- Feature Data Type 4
-  false;                                   !- Feature Value 4
-
+  false;                                  !- Feature Value 4
 
 OS:SubSurface,
   {3704c641-beb3-42c3-ae9d-904b77cb468b}, !- Handle
@@ -3795,7 +3791,7 @@ OS:SubSurface,
   7.84, 0, 0.9,                           !- X,Y,Z Vertex 3 {m}
   7.84, 0, 2.424;                         !- X,Y,Z Vertex 4 {m}
 
-  OS:AdditionalProperties,
+OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c38}, !- Handle
   {3704c641-beb3-42c3-ae9d-904b77cb468b}, !- Object Name
   is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
@@ -3803,13 +3799,13 @@ OS:SubSurface,
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
   String,                                 !- Feature Data Type 2
-  subsurface,                        !- Feature Value 2
+  subsurface,                             !- Feature Value 2
   compliance_parameter_name,              !- Feature Name 3
   String,                                 !- Feature Data Type 3
-  has_open_sensor,                             !- Feature Value 3
+  has_open_sensor,                        !- Feature Value 3
   compliance_parameter_value,             !- Feature Name 4
   Boolean,                                !- Feature Data Type 4
-  false;                                   !- Feature Value 4
+  false;                                  !- Feature Value 4
 
 OS:SubSurface,
   {2b091bb9-b8de-42da-86ab-cee22fd71301}, !- Handle
@@ -5884,4 +5880,20 @@ OS:StandardsInformation:Construction,
 OS:StandardsInformation:Construction,
   {50c42138-37ac-4364-b8f9-baee58f94287}, !- Handle
   {74de1fad-e30d-4da5-b42d-db0ea5073a46}; !- Construction Name
+
+OS:WeatherFile,
+  {e426ad28-e6d9-4ef9-aac8-365875493e1b}, !- Handle
+  Denver.Intl.AP,                         !- City
+  CO,                                     !- State Province Region
+  USA,                                    !- Country
+  SRC-TMYx,                               !- Data Source
+  725650,                                 !- WMO Number
+  39.833,                                 !- Latitude {deg}
+  -104.658,                               !- Longitude {deg}
+  -7,                                     !- Time Zone {hr}
+  1650.2,                                 !- Elevation {m}
+  USA_CO_Denver.Intl.AP.725650_TMYx.epw,  !- Url
+  0FE00629,                               !- Checksum
+  ,                                       !- Start Date Actual Year
+  Sunday;                                 !- Start Day of Week
 
