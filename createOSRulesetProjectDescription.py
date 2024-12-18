@@ -7,6 +7,31 @@ import shutil
 from rpdvalidator import validate_rpd
 
 
+def return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_file_name):
+    return {
+        "seed_file": seed_model_path,
+        "weather_file": weather_file_name,
+        "measure_paths": [
+          "..",
+          "../measures/"
+        ],
+        "file_paths": [
+          "../weather",
+          "./weather",
+          "./seed",
+          "."
+        ],
+        "run_directory": "./run",
+        "steps": [
+          {
+            "measure_dir_name": "create_preconditioned_idf",
+            "name": "CreatePreconditionedIdf",
+            "arguments": {
+            }
+          },
+        ]
+    }
+
 def return_open_studio_workflow_read_cp_csv(seed_model_path, 
                                             weather_file_name, 
                                             empty_comp_param_json_file_path,
@@ -42,11 +67,11 @@ def return_open_studio_workflow_read_cp_csv(seed_model_path,
 
 
 def return_open_studio_workflow_create_cp(seed_model_path, 
-                                                      weather_file_name,
-                                                      empty_comp_param_json_file_path,
-                                                      output_csv_file_path
-                                                  ):
-    breakpoint()
+                                          weather_file_name,
+                                          empty_comp_param_json_file_path,
+                                          output_csv_file_path
+                                        ):
+
     return {
         "seed_file": seed_model_path,
         "weather_file": weather_file_name,
@@ -62,12 +87,12 @@ def return_open_studio_workflow_create_cp(seed_model_path,
         ],
         "run_directory": "./run",
         "steps": [
-          {
-            "measure_dir_name": "create_preconditioned_idf",
-            "name": "CreatePreconditionedIdf",
-            "arguments": {
-            }
-          },
+          # {
+          #   "measure_dir_name": "create_preconditioned_idf",
+          #   "name": "CreatePreconditionedIdf",
+          #   "arguments": {
+          #   }
+          # },
           {
             "measure_dir_name": "create_cp_csv",
             "name": "CreateComplianceParameterCsvFromOsm",
@@ -80,8 +105,8 @@ def return_open_studio_workflow_create_cp(seed_model_path,
     }
 
 
-def construct_idf_path(openstudio_model_path):
-    return Path(openstudio_model_path).with_suffix('.idf')
+def idf_path(openstudio_model_path):
+    return openstudio_model_path.parent / 'run/in.idf'
 
 
 def construct_epjson_path(openstudio_model_path):
@@ -166,33 +191,46 @@ def main():
                                     f"EnergyPlus utility ConvertInputFormat.exe "
                                     f"at {args.convert_input_format_exe_path}")
 
-        osw_path = analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw'
+        first_osw_path = analysis_path / f'{openstudio_model_path.stem}_simulate_model.osw'
 
         path_to_move_osm_to = analysis_path / openstudio_model_path.name
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
         # Convert the data to a JSON-formatted string
         
-        output_csv_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.csv'
-        breakpoint()
-        create_cp_csv_osw = json.dumps(
-            return_open_studio_workflow_create_cp(
-                str(path_to_move_osm_to),
-                weather_file_name,
-                str(empty_comp_param_json_file_path),
-                str(output_csv_file_path)
-            ),
+        # output_csv_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.csv'
+        # breakpoint()
+
+        run_osm_osw = json.dumps(
+            return_openstudio_workflow_add_analysis_outputs(str(path_to_move_osm_to), weather_file_name),
             indent=4
         )
 
+        #return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_file_name)
+
+        # create_cp_csv_osw = json.dumps(
+        #     return_open_studio_workflow_create_cp(
+        #         str(path_to_move_osm_to),
+        #         weather_file_name,
+        #         str(empty_comp_param_json_file_path),
+        #         str(output_csv_file_path)
+        #     ),
+        #     indent=4
+        # )
+
         # Write the JSON string to a file
-        with open(osw_path.as_posix(), "w") as file:
-            file.write(create_cp_csv_osw)
+        with open(first_osw_path.as_posix(), "w") as file:
+            file.write(run_osm_osw)
 
-        if is_osw_success(osw_path.as_posix()):
+        if is_osw_success(first_osw_path.as_posix()):
+            
+            idf_file_path = idf_path(path_to_move_osm_to)
 
-            idf_file_path = construct_idf_path(openstudio_model_path)
+            if not idf_file_path.exists():
+                raise FileNotFoundError(f"Could not find the idf file at {idf_file_path}, did the simulation run correctly?")
+
             breakpoint()
+
             if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path ,idf_file_path):
 
                 print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model 
