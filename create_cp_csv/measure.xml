@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_compliance_parameter_csv_from_osm</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>f6c9dfff-84b5-41f6-a548-4a31d015330e</version_id>
-  <version_modified>2024-12-17T18:27:42Z</version_modified>
+  <version_id>122dcd31-3d54-4b35-b813-e8b02871fb45</version_id>
+  <version_modified>2024-12-18T20:28:34Z</version_modified>
   <xml_checksum>BED8DECF</xml_checksum>
   <class_name>CreateComplianceParameterCsvFromOsm</class_name>
   <display_name>Create ComplianceParameter Csv From Osm</display_name>
@@ -36,7 +36,7 @@
   <attributes>
     <attribute>
       <name>Measure Type</name>
-      <value>ModelMeasure</value>
+      <value>ReportingMeasure</value>
       <datatype>string</datatype>
     </attribute>
     <attribute>
@@ -94,7 +94,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E30BE802</checksum>
+      <checksum>C3D7EEFE</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -124,7 +124,7 @@
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>AC3E9909</checksum>
+      <checksum>FD5D19FD</checksum>
     </file>
   </files>
 </measure>
