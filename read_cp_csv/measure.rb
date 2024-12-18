@@ -121,8 +121,9 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     ### TODO - not critical path write out additional properties to osm
 
-
     File.write(updated_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
+
+    runner.registerFinalCondition("Successfully wrote out updated comp param json to #{updated_comp_param_json_file_path}")
 
     return true
   end

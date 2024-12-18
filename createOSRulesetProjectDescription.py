@@ -77,7 +77,28 @@ def return_open_studio_workflow_create_cp(seed_model_path,
         ]
     }
 
+def construct_idf_path(openstudio_model_path):
+    return Path(openstudio_model_path).with_suffix('.idf')
+
+def construct_epjson_path(openstudio_model_path):
+    return Path(openstudio_model_path).with_suffix('.epJson')
+
+def succcessfully_ran_convert_input_format(convert_input_format_exe_path,idf_file_path):
+    try:
+        subprocess.check_call([convert_input_format_exe_path, idf_file_path])
+        return True
+    except subprocess.CalledProcessError:
+        print(f"Failed to run the command {convert_input_format_exe} on {idf_file_path}")
+        return False
+
+  # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "MediumOffice-90.1-2013-ASHRAE 169-2013-5B-no_user_data_remove_transformer.idf"
+
+def create_empty_cp_json_file(empty_comp_param_json_file_path):
+  pass
+
+
 def is_osw_success(command_args):
+
     try:
         run_osw = ['openstudio', 'run','-w']
         # Run the command
@@ -98,14 +119,16 @@ def main():
     subparsers = parser.add_subparsers(title="Commands", dest="command", required=True)
     ### Create cp csv
     subparsers1 = subparsers.add_parser("create_cp_csv", help="Create CSV with compliance parameters")
+    subparsers1.add_argument("--convert_input_format_exe_path", type=str, required=True, help="The path to the EnergyPlus Convert Input Format executable")
     subparsers1.add_argument("--openstudio_model_path", type=str, required=True, help=" The OpenStudio model file path")
     subparsers1.add_argument("--weather_file_name", type=str, required=True, help="weather file name, the weather file must be placed in the weather directory")
 
     subparsers2 = subparsers.add_parser("create_rpd", help="Read CSV with compliance parameters and validate")
-    subparsers2.add_argument("--empty_comp_param_json_file_path", type=str, required=True, help=" The OpenStudio model file path")
-    subparsers2.add_argument("--csv_file_path", type=str, required=True, help=" The OpenStudio model file path")
-    subparsers2.add_argument("--weather_file_name", type=str, required=True, help="weather file name, the weather file must be placed in the weather directory")
     subparsers2.add_argument("--openstudio_model_path", type=str, required=True, help=" The OpenStudio model file path")
+    subparsers2.add_argument("--weather_file_name", type=str, required=True, help="weather file name, the weather file must be placed in the weather directory")
+    subparsers2.add_argument("--csv_file_path", type=str, required=True, help="Csv file path with filled in compliance parameter values")
+    subparsers2.add_argument("--empty_comp_param_json_file_path", type=str,required=False, help="The path of the empty compliance parameter json (no updated values)")
+    subparsers2.add_argument("--comp_param_json_file_path", type=str, required=False, help="The path of compliance parameter json with updated values")
 
     ### Create rmd
     args = parser.parse_args()
@@ -126,8 +149,15 @@ def main():
 
     analysis_path = Path(__file__).resolve().parent / openstudio_model_path.stem
     analysis_path.mkdir(parents=True, exist_ok=True)
-    
+
+    empty_comp_param_json_file_path = analysis_path / f'empty_cp_#{openstudio_model_path.name}.json'
+
     if args.command == "create_cp_csv":
+
+        if not Path(args.convert_input_format_exe_path).exists():
+            raise FileNotFoundError(f"Could not find executable for "
+                                    f"EnergyPlus utility ConvertInputFormat.exe "
+                                    f"at {args.convert_input_format_exe_path}")
 
         osw_path = analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw'
 
@@ -135,8 +165,8 @@ def main():
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
         # Convert the data to a JSON-formatted string
-        empty_comp_param_json_file_path = analysis_path / f'empty_comp_param.json'
-        output_csv_file_path = Path(os.path.join(Path(__file__).resolve().parent, 'compliance_parameters.csv'))
+        
+        output_csv_file_path = analysis_path / f'empty_cp_#{openstudio_model_path.name}.csv'
 
         #breakpoint()
         create_cp_csv_osw = json.dumps(
@@ -155,9 +185,21 @@ def main():
 
         if is_osw_success(osw_path.as_posix()):
 
-            print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model 
-            {openstudio_model_path.name} please fill in compliance parameter values in the file 
-            {openstudio_model_path.name + 'compliance_parameters.csv'} """)
+            idf_file_path = construct_idf_path(openstudio_model_path)
+ 
+            if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path,idf_file_path):
+
+              print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model 
+              {openstudio_model_path.name} please fill in compliance parameter values in the file 
+              {openstudio_model_path.name + 'compliance_parameters.csv'} """)
+
+            else:
+              print(f"""\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
+              utilty ConvertInputFormat.exe. Please ensure that the idf file and the path to the exe is correct
+              and try again.\033[0m""")
+
+
+
         else:
             print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model {openstudio_model_path.name}, "
                   "please ensure that the openstudio model simulated correctly.\033[0m""")
@@ -170,21 +212,31 @@ def main():
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
 
+        if not args.csv_file_path.exists():
+          raise FileNotFoundError(
+              f"The csv file '{csv_file_path}' does not exist, the csv with compliance parameter values must be provided, "
+              "you can create it by running the command 'create_cp_csv' first."
+          )
+        
+        if args.empty_comp_param_json_file_path is not None:
+          empty_comp_param_json_file_path = args.empty_comp_param_json_file_path
 
-        empty_comp_param_json_file_path = Path(args.empty_comp_param_json_file_path)
-        csv_file_path = Path(args.csv_file_path)
+        if empty_comp_param_json_file_path.exists():
+          raise FileNotFoundError(
+            f"comp param json file generated by running the command create_cp_csv first cannot be found "
+            f"'{empty_comp_param_json_file_path}' does not exist, this is required."
+          )
 
-        ### User will call - createOSRulesetProjectDescription --create_rmd filename.osm filename_cp-complete.csv 
-        ## Requires csv and filename.comp,param json
-
-        shutil.copy(str(openstudio_model_path), str(osw_path.parent / openstudio_model_path.name ))
-
-        weather_file_path = Path(os.path.join(Path(__file__).resolve().parent, 'weather', weather_file_name))
+        if args.comp_param_json_file_path is not None:
+          comp_param_json_file_path = args.comp_param_json_file_path
 
         create_cp_csv_osw = json.dumps(
               return_open_studio_workflow_read_cp_csv(
-                  openstudio_model_path, 
-                  weather_file_name
+                  path_to_move_osm_to.as_posix(), 
+                  weather_file_name,
+                  empty_comp_param_json_file_path.as_posix(),
+                  comp_param_json_file_path.as_posix(),
+                  args.csv_file_path.as_posix(),
               ),
               indent=4
         )
@@ -193,29 +245,20 @@ def main():
         with open(osw_path.as_posix(), "w") as file:
             file.write(create_cp_csv_osw)
 
-        if is_osw_success(f'./{openstudio_model_path.stem}/{openstudio_model_path.stem}.osw'):
-            pass
-        else :
-            print("Failed to create the RPD file, please ensure that the openstudio model simulated correctly.")
+        if is_osw_success(osw_path.as_posix()):
 
-        ### After this python script will call
+            print(f"""\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
+            {openstudio_model_path.name} 
+            and have updated the compliance parameter json file #{comp_param_json_file_path.name}
+            with the values. 
+            Attempting to validate with rpd validator
+            """)
 
-        ### Convert .idf file into .epjson format for a given .osm file  -
-        # ConvertInputFormat in.idf from (step 4)
+            validate_rpd()
 
-        ## Create initial .rmd file for a given .osm file  call energyplus_create_rmd in.epJSON”,  
-        # # where “in.epJSON (step 5)
-
-        ## 
-
-        # Step 6
-
-        # In this step, the initial .rmd file generated from the step above will be merged with compliance data retrieved from the validated .csv file. This will be accomplished by transforming the ‘new’ compliance parameter data read from the .csv file (by object class) into json dictionary structures, and merging the json structures into the existing .json structure of the previously generated .rmd file.  
-
-        # The merged file will be named “filename.rmd”. This file will be used as input into the Ruleset Checking Tool being developed by PNNL.  
-
-    # A command will be available to combine merge multiple .RMD files into a single RPD file. This command will take the (3) .RMD file names as command arguments and will produce (output) a single .RPD file.    The command will be called “combine_rmds”. 
-
+        else:
+            print(f"""\033[91mFailed to read the CSV file with compliance parameters
+             values for the model {openstudio_model_path.name}, .\033[0m""")
 
 if __name__ == "__main__":
   main()
