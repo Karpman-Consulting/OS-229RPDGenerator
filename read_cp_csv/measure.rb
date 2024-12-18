@@ -5,6 +5,7 @@
 require 'openstudio'
 require 'csv'
 require 'json'
+require 'open3'
 require_relative '../CompParamJson/generate_csv'
 require_relative './set_building_segments'
 
@@ -117,8 +118,29 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
 
     comp_param_json = SetBuildingSegements.read_csv_and_set_building_segments_in_comp_param_json(csv_data,JSON.parse(File.read(empty_comp_param_json_file_path)))
 
-    comp_param_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
+    set_comp_param_script_path = File.expand_path('set_comp_param_json_from_csv_data.rb', __dir__)
 
+    runner.registerInfo("Running script to generate comp param json: #{set_comp_param_script_path}")
+
+
+    Dir.mktmpdir do |dir|
+      comp_param_json_file = File.join(dir, 'comp_param_json.json')
+      csv_data_file = File.join(dir, 'csv_data.json')
+
+      # Write the JSON data to files in the temporary directory
+      File.write(comp_param_json_file, comp_param_json.to_json)
+      File.write(csv_data_file, csv_data.to_json)
+
+      # Run the separate Ruby script using Open3 and pass the paths of the temporary files as arguments
+      stdout, stderr, status = Open3.capture3("ruby", set_comp_param_script_path, comp_param_json_file, csv_data_file)
+
+      if status.success?
+        comp_param_json = JSON.parse(stdout)
+      else
+        runner.registerError("Failed to generate CSV data: #{stderr}")
+        return false
+      end
+    end
     ### TODO - not critical path write out additional properties to osm
 
     File.write(updated_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
