@@ -6,6 +6,7 @@ import os
 import shutil
 from rpdvalidator import validate_rpd
 
+
 def return_open_studio_workflow_read_cp_csv(seed_model_path, 
                                             weather_file_name, 
                                             empty_comp_param_json_file_path,
@@ -39,12 +40,13 @@ def return_open_studio_workflow_read_cp_csv(seed_model_path,
         ]
     }
 
+
 def return_open_studio_workflow_create_cp(seed_model_path, 
                                                       weather_file_name,
                                                       empty_comp_param_json_file_path,
                                                       output_csv_file_path
                                                   ):
-    
+    breakpoint()
     return {
         "seed_file": seed_model_path,
         "weather_file": weather_file_name,
@@ -77,11 +79,14 @@ def return_open_studio_workflow_create_cp(seed_model_path,
         ]
     }
 
+
 def construct_idf_path(openstudio_model_path):
     return Path(openstudio_model_path).with_suffix('.idf')
 
+
 def construct_epjson_path(openstudio_model_path):
     return Path(openstudio_model_path).with_suffix('.epJson')
+
 
 def succcessfully_ran_convert_input_format(convert_input_format_exe_path,idf_file_path):
     try:
@@ -92,6 +97,7 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path,idf_fil
         return False
 
   # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "MediumOffice-90.1-2013-ASHRAE 169-2013-5B-no_user_data_remove_transformer.idf"
+
 
 def create_empty_cp_json_file(empty_comp_param_json_file_path):
   pass
@@ -111,6 +117,7 @@ def is_osw_success(command_args):
         return True
     except subprocess.CalledProcessError:
         return False
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run 229 compliance commands")
@@ -150,7 +157,7 @@ def main():
     analysis_path = Path(__file__).resolve().parent / openstudio_model_path.stem
     analysis_path.mkdir(parents=True, exist_ok=True)
 
-    empty_comp_param_json_file_path = analysis_path / f'empty_cp_#{openstudio_model_path.name}.json'
+    empty_comp_param_json_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.json'
 
     if args.command == "create_cp_csv":
 
@@ -166,15 +173,14 @@ def main():
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
         # Convert the data to a JSON-formatted string
         
-        output_csv_file_path = analysis_path / f'empty_cp_#{openstudio_model_path.name}.csv'
-
-        #breakpoint()
+        output_csv_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.csv'
+        breakpoint()
         create_cp_csv_osw = json.dumps(
             return_open_studio_workflow_create_cp(
-                path_to_move_osm_to.as_posix(),
+                str(path_to_move_osm_to),
                 weather_file_name,
-                empty_comp_param_json_file_path.as_posix(),
-                output_csv_file_path.as_posix()
+                str(empty_comp_param_json_file_path),
+                str(output_csv_file_path)
             ),
             indent=4
         )
@@ -186,8 +192,8 @@ def main():
         if is_osw_success(osw_path.as_posix()):
 
             idf_file_path = construct_idf_path(openstudio_model_path)
- 
-            if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path,idf_file_path):
+            breakpoint()
+            if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path ,idf_file_path):
 
                 print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model 
                 {openstudio_model_path.name} please fill in compliance parameter values in the file 
