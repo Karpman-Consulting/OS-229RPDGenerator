@@ -82,23 +82,12 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
 
     stdout, stderr, status = Open3.capture3("ruby", generate_csv_script_path, empty_comp_param_json_file_path)
 
-    stdout_file_path = File.join(File.dirname(__dir__), 'stdout_output.json')
-    File.open(stdout_file_path, 'w') do |file|
-      file.write(JSON.parse(stdout))
-    end
-
     if status.success?
       csv_data = JSON.parse(stdout).each { |row| row.transform_keys!(&:to_sym) }
     else
       runner.registerError("Failed to generate CSV data: #{stderr}")
       return false
     end
-
-    #csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
-
-    #runner.registerInfo("#{csv_data.to_s}")
-
-    #csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
 
     csv_data = ParseOsmAdditionalProperties.parse_osm_and_place_compliance_parameter_values_in_csv(model,csv_data)
 
