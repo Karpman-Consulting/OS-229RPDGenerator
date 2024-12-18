@@ -5,6 +5,8 @@
 require 'openstudio'
 require 'json'
 require 'csv'
+#require 'open3'
+require 'pry-byebug'
 require_relative '../CompParamJson/generate_csv'
 require_relative './parse_data_from_osm/parse_osm_additional_properties'
 ### TODO rename everything - is_229_compliance_parameter as per Jacksons request
@@ -45,13 +47,20 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
   end
 
   # define what happens when the measure is run
-  def run(model, runner, user_arguments)
-    super(model, runner, user_arguments)
+  def run(runner, user_arguments)
+    super(runner, user_arguments)
 
     # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
+    if !runner.validateUserArguments(arguments(), user_arguments)
       return false
     end
+    binding.pry
+    model = runner.lastOpenStudioModel
+    if model.empty?
+      runner.registerError('Cannot find last model.')
+      return false
+    end
+    model = model.get
 
     ### the original compliance parameter json will ONLY ever have one building segment
     # assign the user inputs to variables
@@ -66,7 +75,16 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
 
     empty_comp_param_json = JSON.parse(File.read(empty_comp_param_json_file_path))
 
+
+    #csv_data = nil
+    #thread = Thread.new do
     csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
+    #end
+    # binding.pry
+    # # Wait for the thread to finish
+    # thread.join
+
+    #csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
 
     csv_data = ParseOsmAdditionalProperties.parse_osm_and_place_compliance_parameter_values_in_csv(model,csv_data)
 
@@ -91,6 +109,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
               ]
             }
     end
+
 
     # report final condition of model
     runner.registerFinalCondition("CSV with 229 compliance parameters has been created at path

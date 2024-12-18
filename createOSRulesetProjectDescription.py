@@ -88,7 +88,7 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path,idf_fil
         subprocess.check_call([convert_input_format_exe_path, idf_file_path])
         return True
     except subprocess.CalledProcessError:
-        print(f"Failed to run the command {convert_input_format_exe} on {idf_file_path}")
+        print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
         return False
 
   # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "MediumOffice-90.1-2013-ASHRAE 169-2013-5B-no_user_data_remove_transformer.idf"

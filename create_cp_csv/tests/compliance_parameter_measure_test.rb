@@ -76,11 +76,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
       raise "Could #{test_file} not found "
     end
 
-    translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(test_file)
-    model = translator.loadModel(path)
-    assert((not model.empty?))
-    model = model.get
+    runner.setLastOpenStudioModelPath(test_file)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -100,7 +96,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(model, runner, argument_map)
+    measure.run(runner, argument_map)
     result = runner.result
 
     # show the output
