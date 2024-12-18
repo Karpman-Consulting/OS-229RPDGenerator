@@ -5,9 +5,8 @@
 require 'openstudio'
 require 'json'
 require 'csv'
-#require 'open3'
-require 'pry-byebug'
-require_relative '../CompParamJson/generate_csv'
+require 'open3'
+#require_relative '../CompParamJson/generate_csv'
 require_relative './parse_data_from_osm/parse_osm_additional_properties'
 ### TODO rename everything - is_229_compliance_parameter as per Jacksons request
 
@@ -50,11 +49,13 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
   def run(runner, user_arguments)
     super(runner, user_arguments)
 
+    runner.registerInfo("blah blah")
+
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(), user_arguments)
       return false
     end
-    binding.pry
+
     model = runner.lastOpenStudioModel
     if model.empty?
       runner.registerError('Cannot find last model.')
@@ -69,20 +70,33 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
     empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)
 
     if empty_comp_param_json_file_path.nil? || empty_comp_param_json_file_path.empty? || !File.exist?(empty_comp_param_json_file_path)
+      runner.registerInfo("Getting here")
       runner.registerError("Could not find file #{empty_comp_param_json_file_path}.")
       return false
     end
 
-    empty_comp_param_json = JSON.parse(File.read(empty_comp_param_json_file_path))
+    # Run the method in a child process using Open3
+    generate_csv_script_path = File.expand_path('produce_csv_data_from_comp_param_json.rb', __dir__)
 
+    runner.registerInfo("Running script to generate CSV data from empty comp param json: #{generate_csv_script_path}")
 
-    #csv_data = nil
-    #thread = Thread.new do
-    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
-    #end
-    # binding.pry
-    # # Wait for the thread to finish
-    # thread.join
+    stdout, stderr, status = Open3.capture3("ruby", generate_csv_script_path, empty_comp_param_json_file_path)
+
+    stdout_file_path = File.join(File.dirname(__dir__), 'stdout_output.json')
+    File.open(stdout_file_path, 'w') do |file|
+      file.write(JSON.parse(stdout))
+    end
+
+    if status.success?
+      csv_data = JSON.parse(stdout).each { |row| row.transform_keys!(&:to_sym) }
+    else
+      runner.registerError("Failed to generate CSV data: #{stderr}")
+      return false
+    end
+
+    #csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
+
+    #runner.registerInfo("#{csv_data.to_s}")
 
     #csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(empty_comp_param_json)
 

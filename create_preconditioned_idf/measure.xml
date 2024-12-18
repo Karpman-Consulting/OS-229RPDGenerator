@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_preconditioned_idf</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>9fa4d35e-e429-40bb-8f15-ffa0c82a4275</version_id>
-  <version_modified>2024-12-17T18:18:50Z</version_modified>
+  <version_id>ea7ace86-5d91-4411-9b01-45ea095da84a</version_id>
+  <version_modified>2024-12-18T20:28:39Z</version_modified>
   <xml_checksum>BED8DECF</xml_checksum>
   <class_name>CreatePreconditionedIdf</class_name>
   <display_name>Create pre conditioned idf</display_name>
@@ -54,7 +54,7 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>AE5CF68D</checksum>
+      <checksum>1C298BBF</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -71,13 +71,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B3D27805</checksum>
+      <checksum>FE1F3303</checksum>
+    </file>
+    <file>
+      <filename>Test_E1.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>045A1B4F</checksum>
     </file>
     <file>
       <filename>create_preconditioned_idf_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>C08C26E4</checksum>
+      <checksum>431A0715</checksum>
     </file>
     <file>
       <filename>empty_model.osm</filename>

@@ -4,8 +4,8 @@
   <error>Failed to infer measure name from 'C:/Users/AntonSzilasi/Documents/OpenStudio20RPD20Generator/read_cp_csv/measure.rb'</error>
   <name>new_measure</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>c122d063-4bd6-4a9c-951e-0418394e3308</version_id>
-  <version_modified>2024-12-17T18:18:51Z</version_modified>
+  <version_id>2ff499c1-bc83-45d4-aad7-a5575d6f42a2</version_id>
+  <version_modified>2024-12-18T20:28:40Z</version_modified>
   <xml_checksum>BED8DECF</xml_checksum>
   <class_name>NewMeasure</class_name>
   <display_name>New Measure</display_name>
@@ -108,7 +108,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>313C1EA7</checksum>
+      <checksum>858E216F</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -168,7 +168,7 @@
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>81EAD3D3</checksum>
+      <checksum>9F16F185</checksum>
     </file>
     <file>
       <filename>set_building_segments_test.rb</filename>
