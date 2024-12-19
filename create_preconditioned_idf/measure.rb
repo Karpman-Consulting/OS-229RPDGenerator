@@ -8,7 +8,7 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'Create pre conditioned idf'
+    return 'CreatePreconditionedIdf'
   end
 
   # human readable description
@@ -27,30 +27,10 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
     return args
   end
 
-  def self.set_output_table_style(workspace)
-
-    output_control_table = workspace.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
-
-    if output_control_table.empty?
-      new_output_schedule = "
-        OutputControl:Table:Style,
-          HTML,                    !- Column Separator
-          None;                    !- Unit Conversion
-      "
-
-      idfObject = OpenStudio::IdfObject.load(new_output_schedule)
-      object = idfObject.get
-
-      workspace.addObject(object)
-    else
-      output_control_table.first.setString(1, 'None')
-    end
-
-  end
-
   def self.add_output_table_summary_report(workspace)
     if not workspace.getOptionalOutputTableSummaryReports.is_initialized or
       not workspace.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"
+      workspace.getOutputTableSummaryReports.removeAllSummaryReports
 
       workspace.getOutputTableSummaryReports.addSummaryReport("AllSummaryAndMonthly")
     end
@@ -69,46 +49,6 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
 
   end
 
-  def self.set_output_json_to_true(workspace)
-
-    if not workspace.outputJSON.is_initialized
-      output_table_summary_report = "
-        Output:JSON,
-          TimeSeriesAndTabular,                   !- Option Type
-          Yes,                                    !- Output JSON
-          No,                                     !- Output CBOR
-          No;                                     !- Output MessagePack
-      "
-
-      idfObject = OpenStudio::IdfObject.load(output_table_summary_report)
-      object = idfObject.get
-
-      workspace.addObject(object)
-    else
-      workspace.getOutputJSON.setOutputJSON(true)
-    end
-
-  end
-
-  def self.set_output_schedules(workspace)
-
-    output_schedules = workspace.getObjectsByType('Output:Schedules'.to_IddObjectType)
-
-    if output_schedules.empty?
-      new_output_schedule = "
-        Output:Schedules,
-        Hourly;                  !- Key Field
-      "
-
-      idfObject = OpenStudio::IdfObject.load(new_output_schedule)
-      object = idfObject.get
-
-      workspace.addObject(object)
-    else
-      output_schedules.first.setString(0, 'Hourly')
-    end
-  end
-
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
@@ -122,13 +62,7 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
 
     CreatePreconditionedIdf.set_output_variable_schedule_hourly(model)
 
-    CreatePreconditionedIdf.set_output_json_to_true(model)
-
-    CreatePreconditionedIdf.set_output_schedules(model)
-
-    CreatePreconditionedIdf.set_output_table_style(model)
-
-    runner.registerInitialCondition("Successfully added EnergyPlus outputs required for 229 compliance parameters")
+    runner.registerFinalCondition("Successfully added EnergyPlus outputs required for 229 compliance parameters")
 
     return true
   end

@@ -3,9 +3,9 @@
   <schema_version>3.1</schema_version>
   <name>create_compliance_parameter_csv_from_osm</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>122dcd31-3d54-4b35-b813-e8b02871fb45</version_id>
-  <version_modified>2024-12-18T20:28:34Z</version_modified>
-  <xml_checksum>BED8DECF</xml_checksum>
+  <version_id>ea607c72-2d5d-4b1d-8885-c805cfcf28e7</version_id>
+  <version_modified>2024-12-19T18:29:58Z</version_modified>
+  <xml_checksum>44311B6C</xml_checksum>
   <class_name>CreateComplianceParameterCsvFromOsm</class_name>
   <display_name>Create ComplianceParameter Csv From Osm</display_name>
   <description>Replace this text with an explanation of what the measure does in terms that can be understood by a general building professional audience (building owners, architects, engineers, contractors, etc.).  This description will be used to create reports aimed at convincing the owner and/or design team to implement the measure in the actual building design.  For this reason, the description may include details about how the measure would be implemented, along with explanations of qualitative benefits associated with the measure.  It is good practice to include citations in the measure if the description is taken from a known source or if specific benefits are listed.</description>
@@ -94,7 +94,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C3D7EEFE</checksum>
+      <checksum>59F5C848</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -125,6 +125,12 @@
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>FD5D19FD</checksum>
+    </file>
+    <file>
+      <filename>stdout_output.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C4B39947</checksum>
     </file>
   </files>
 </measure>

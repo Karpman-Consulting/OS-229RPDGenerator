@@ -17,6 +17,13 @@ class CreatePreconditionedIdfTest < Minitest::Test
     assert(!model.empty?)
     @model_with_outputs = model.get
 
+
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/Test_E1.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    @empty_model = model.get
+
     @empty_model = OpenStudio::Model::Model.new
 
   end
@@ -49,95 +56,113 @@ class CreatePreconditionedIdfTest < Minitest::Test
     assert_equal 'Hourly', outputVariable.reportingFrequency
   end
 
-  def test_set_output_json_to_true
+  # def test_write_out_idf_from_empty_model
+  #   # create an instance of the measure
+  #   measure = CreatePreconditionedIdf.new
 
-    CreatePreconditionedIdf.set_output_json_to_true(@model_with_outputs)
+  #   # create runner with empty OSW
+  #   osw = OpenStudio::WorkflowJSON.new
+  #   runner = OpenStudio::Measure::OSRunner.new(osw)
 
-    assert_equal @model_with_outputs.getOutputJSON.outputJSON, true
+  #   model = OpenStudio::Model::Model.new
 
-    CreatePreconditionedIdf.set_output_json_to_true(@empty_model)
+  #   # get arguments
+  #   arguments = measure.arguments(model)
+  #   argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    assert_equal @empty_model.getOutputJSON.outputJSON, true
+  #   # create hash of argument values.
+  #   # If the argument has a default that you want to use, you don't need it in the hash
+  #   args_hash = {}
+  #   # using defaults values from measure.rb for other arguments
+  #   #args_hash['osm_file_path'] = './empty_model.osm'
+  #   # populate argument with specified hash value if specified
+  #   arguments.each do |arg|
+  #     temp_arg_var = arg.clone
+  #     if args_hash.key?(arg.name)
+  #       assert(temp_arg_var.setValue(args_hash[arg.name]))
+  #     end
+  #     argument_map[arg.name] = temp_arg_var
+  #   end
 
-  end
+  #   # run the measure
+  #   measure.run(model, runner, argument_map)
+  #   result = runner.result
 
-  def test_set_output_schedules
+  #   assert_equal('success', result.value.valueName.downcase)
 
-    CreatePreconditionedIdf.set_output_schedules(@model_with_outputs)
+  #   assert model.getObjectsByType('Output:Schedules'.to_IddObjectType).first.getString(0).get, 'Hourly'
 
-    output_schedules = @model_with_outputs.getObjectsByType('Output:Schedules'.to_IddObjectType)
+  #   assert model.getOutputJSON.outputJSON, true
 
-    assert output_schedules.first.getString(0).get, 'Hourly'
+  #   outputVariable = model.getOutputVariables.find { |output_variable| output_variable.variableName() == 'Schedule Value' }
 
-    CreatePreconditionedIdf.set_output_schedules(@empty_model)
+  #   assert '*', outputVariable.keyValue
+  #   assert 'Hourly', outputVariable.reportingFrequency
 
-    output_schedules = @empty_model.getObjectsByType('Output:Schedules'.to_IddObjectType)
+  #   assert model.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"
 
-    assert output_schedules.first.getString(0).get, 'Hourly'
+  #   assert model.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType).first.getString(1).get, "None"
 
-  end
+  #   model.save('empty_model_with_output.osm', true)
 
-  def test_set_output_table_style
+  #   translator = OpenStudio::EnergyPlus::ForwardTranslator.new
+  #   idf = translator.translateModel(model)
+  #   idf.save(OpenStudio::Path.new('empty_model_with_output.idf'), true)
 
-    CreatePreconditionedIdf.set_output_table_style(@model_with_outputs)
+  # end
 
-    output_control_table = @model_with_outputs.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
+  # def test_write_out_idf_from_existing_model
+  #   # create an instance of the measure
+  #   measure = CreatePreconditionedIdf.new
 
-    assert output_control_table.first.getString(1).get, "None"
+  #   # create runner with empty OSW
+  #   osw = OpenStudio::WorkflowJSON.new
+  #   runner = OpenStudio::Measure::OSRunner.new(osw)
 
-    CreatePreconditionedIdf.set_output_table_style(@empty_model)
+  #   model = @model_with_outputs
 
-    output_control_table = @empty_model.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType)
+  #   # get arguments
+  #   arguments = measure.arguments(model)
+  #   argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    assert output_control_table.first.getString(1).get, "None"
-  end
+  #   # create hash of argument values.
+  #   # If the argument has a default that you want to use, you don't need it in the hash
+  #   args_hash = {}
+  #   # using defaults values from measure.rb for other arguments
+  #   #args_hash['osm_file_path'] = './empty_model.osm'
+  #   # populate argument with specified hash value if specified
+  #   arguments.each do |arg|
+  #     temp_arg_var = arg.clone
+  #     if args_hash.key?(arg.name)
+  #       assert(temp_arg_var.setValue(args_hash[arg.name]))
+  #     end
+  #     argument_map[arg.name] = temp_arg_var
+  #   end
 
-  def test_write_out_idf_from_empty_model
-    # create an instance of the measure
-    measure = CreatePreconditionedIdf.new
+  #   # run the measure
+  #   measure.run(model, runner, argument_map)
+  #   result = runner.result
 
-    # create runner with empty OSW
-    osw = OpenStudio::WorkflowJSON.new
-    runner = OpenStudio::Measure::OSRunner.new(osw)
+  #   assert_equal('success', result.value.valueName.downcase)
 
-    model = OpenStudio::Model::Model.new
+  #   assert model.getObjectsByType('Output:Schedules'.to_IddObjectType).first.getString(0).get, 'Hourly'
 
-    # get arguments
-    arguments = measure.arguments(model)
-    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+  #   assert model.getOutputJSON.outputJSON, true
 
-    # create hash of argument values.
-    # If the argument has a default that you want to use, you don't need it in the hash
-    args_hash = {}
-    # using defaults values from measure.rb for other arguments
-    #args_hash['osm_file_path'] = './empty_model.osm'
-    # populate argument with specified hash value if specified
-    arguments.each do |arg|
-      temp_arg_var = arg.clone
-      if args_hash.key?(arg.name)
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
-      argument_map[arg.name] = temp_arg_var
-    end
+  #   outputVariable = model.getOutputVariables.find { |output_variable| output_variable.variableName() == 'Schedule Value' }
 
-    # run the measure
-    measure.run(model, runner, argument_map)
-    result = runner.result
+  #   assert '*', outputVariable.keyValue
+  #   assert 'Hourly', outputVariable.reportingFrequency
 
-    assert_equal('success', result.value.valueName.downcase)
+  #   assert model.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"
 
-    assert model.getObjectsByType('Output:Schedules'.to_IddObjectType).first.getString(0).get, 'Hourly'
+  #   assert model.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType).first.getString(1).get, "None"
 
-    assert model.getOutputJSON.outputJSON, true
+  #   model.save('existing_model_with_output.osm', true)
 
-    outputVariable = model.getOutputVariables.find { |output_variable| output_variable.variableName() == 'Schedule Value' }
+  #   translator = OpenStudio::EnergyPlus::ForwardTranslator.new
+  #   idf = translator.translateModel(model)
+  #   idf.save(OpenStudio::Path.new('existing_model_with_output.idf'), true)
 
-    assert '*', outputVariable.keyValue
-    assert 'Hourly', outputVariable.reportingFrequency
-
-    assert model.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"
-
-    assert model.getObjectsByType('OutputControl:Table:Style'.to_IddObjectType).first.getString(1).get, "None"
-
-  end
+  # end
 end

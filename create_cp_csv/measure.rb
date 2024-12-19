@@ -15,7 +15,7 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'Create ComplianceParameter Csv From Osm'
+    return 'CreateComplianceParameterCsvFromOsm'
   end
 
   # human readable description

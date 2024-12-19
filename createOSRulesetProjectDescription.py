@@ -29,6 +29,12 @@ def return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_fil
             "arguments": {
             }
           },
+           {
+            "measure_dir_name": "create_preconditioned_idf_energyplus",
+            "name": "CreatePreconditionedIdfEnergyPlus",
+            "arguments": {
+            }
+          },
         ]
     }
 
@@ -104,6 +110,11 @@ def return_open_studio_workflow_create_cp(seed_model_path,
         ]
     }
 
+def out_json_path(openstudio_model_path):
+    return openstudio_model_path.parent / 'run/out.json'
+
+def inepJSON_path(openstudio_model_path):
+    return openstudio_model_path.parent / 'run/in.epJSON'
 
 def idf_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.idf'
@@ -112,17 +123,14 @@ def idf_path(openstudio_model_path):
 def construct_epjson_path(openstudio_model_path):
     return Path(openstudio_model_path).with_suffix('.epJson')
 
-
-def succcessfully_ran_convert_input_format(convert_input_format_exe_path,idf_file_path):
+def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_file_path):
+  # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
     try:
         subprocess.check_call([convert_input_format_exe_path, idf_file_path])
         return True
     except subprocess.CalledProcessError:
         print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
         return False
-
-  # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "MediumOffice-90.1-2013-ASHRAE 169-2013-5B-no_user_data_remove_transformer.idf"
-
 
 def create_empty_cp_json_file(empty_comp_param_json_file_path):
   pass
@@ -191,7 +199,7 @@ def main():
                                     f"EnergyPlus utility ConvertInputFormat.exe "
                                     f"at {args.convert_input_format_exe_path}")
 
-        first_osw_path = analysis_path / f'{openstudio_model_path.stem}_simulate_model.osw'
+        simulate_model_with_outputs = analysis_path / f'{openstudio_model_path.stem}_simulate_model.osw'
 
         path_to_move_osm_to = analysis_path / openstudio_model_path.name
 
@@ -218,24 +226,22 @@ def main():
         #     indent=4
         # )
 
+
+
         # Write the JSON string to a file
-        with open(first_osw_path.as_posix(), "w") as file:
+        with open(simulate_model_with_outputs.as_posix(), "w") as file:
             file.write(run_osm_osw)
 
-        if is_osw_success(first_osw_path.as_posix()):
+        if is_osw_success(simulate_model_with_outputs.as_posix()):
             
             idf_file_path = idf_path(path_to_move_osm_to)
 
             if not idf_file_path.exists():
                 raise FileNotFoundError(f"Could not find the idf file at {idf_file_path}, did the simulation run correctly?")
 
-            breakpoint()
+            if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path, idf_file_path):
 
-            if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path ,idf_file_path):
 
-                print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model 
-                {openstudio_model_path.name} please fill in compliance parameter values in the file 
-                {openstudio_model_path.name + 'compliance_parameters.csv'} """)
 
             else:
                 print(f"""\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
