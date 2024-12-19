@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>create_preconditioned_idf_energyplus</name>
+  <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
+  <version_id>e1392792-6c5c-4b0f-9c68-6cb380c8b3cf</version_id>
+  <version_modified>2024-12-19T18:30:05Z</version_modified>
+  <xml_checksum>BED8DECF</xml_checksum>
+  <class_name>CreatePreconditionedIdfEnergyPlus</class_name>
+  <display_name>Create pre conditioned idf</display_name>
+  <description>Create pre conditioned idf.</description>
+  <modeler_description>Create pre conditioned idf</modeler_description>
+  <arguments />
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>EnergyPlusMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Language</name>
+      <value>Ruby</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>AE5CF68D</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>DE40D4A5</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.7.0</identifier>
+        <min_compatible>3.7.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>CCD1AF67</checksum>
+    </file>
+    <file>
+      <filename>Test_E1.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>045A1B4F</checksum>
+    </file>
+    <file>
+      <filename>Test_E1_simulate_model.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>42D7397B</checksum>
+    </file>
+    <file>
+      <filename>create_preconditioned_idf_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7F50008F</checksum>
+    </file>
+    <file>
+      <filename>empty_model_with_output.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A956D2C1</checksum>
+    </file>
+    <file>
+      <filename>empty_model_with_output.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8F5480CF</checksum>
+    </file>
+    <file>
+      <filename>example_model_all_required_outputs.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3721F058</checksum>
+    </file>
+    <file>
+      <filename>example_model_no_outputs.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4B8B54E9</checksum>
+    </file>
+    <file>
+      <filename>existing_model_with_output.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>test</usage_type>
+      <checksum>369BFC78</checksum>
+    </file>
+    <file>
+      <filename>existing_model_with_output.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>406B14BD</checksum>
+    </file>
+  </files>
+</measure>

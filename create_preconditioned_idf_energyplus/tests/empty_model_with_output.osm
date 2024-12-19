@@ -1,0 +1,36 @@
+
+OS:Version,
+  {82907108-c1d8-425f-90e9-bbef4052a2f3}, !- Handle
+  3.9.0;                                  !- Version Identifier
+
+OS:Output:Table:SummaryReports,
+  {ea3d2e6b-f794-4c06-8cde-5daf5fc50e2f}, !- Handle
+  AllSummaryAndMonthly;                   !- Report Name 1
+
+OS:Output:Variable,
+  {efbbbc07-7d74-457f-aa62-ca7a82b047a3}, !- Handle
+  Output Variable 1,                      !- Name
+  *,                                      !- Key Value
+  Schedule Value,                         !- Variable Name
+  Hourly;                                 !- Reporting Frequency
+
+Output:JSON,
+  TimeSeriesAndTabular,                   !- Option Type
+  Yes,                                    !- Output JSON
+  No,                                     !- Output CBOR
+  No;                                     !- Output MessagePack
+
+Output:Schedules,
+  Hourly;                                 !- Key Field
+
+OutputControl:Table:Style,
+  HTML,                                   !- Column Separator
+  None;                                   !- Unit Conversion
+
+OS:Output:JSON,
+  {e0f460e3-cc8e-4718-b5fd-91b046a4f0ba}, !- Handle
+  TimeSeriesAndTabular,                   !- Option Type
+  Yes,                                    !- Output JSON
+  No,                                     !- Output CBOR
+  No;                                     !- Output MessagePack
+
