@@ -72,7 +72,7 @@ def return_open_studio_workflow_read_cp_csv(seed_model_path,
     }
 
 
-def return_open_studio_workflow_create_cp(seed_model_path, 
+def return_open_studio_workflow_create_cp_csv(seed_model_path, 
                                           weather_file_name,
                                           empty_comp_param_json_file_path,
                                           output_csv_file_path
@@ -110,6 +110,9 @@ def return_open_studio_workflow_create_cp(seed_model_path,
         ]
     }
 
+def analysis_run_path(analysis_path):
+    return analysis_path / 'run'
+
 def out_json_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/out.json'
 
@@ -134,6 +137,16 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_fi
 
 def create_empty_cp_json_file(empty_comp_param_json_file_path):
   pass
+
+def create_empty_cp(analysis_path):
+
+  try:
+    subprocess.check_call(['createRulesetProjectDescription', 'in.epJSON'],cwd=analysis_run_path(analysis_path))
+    return True
+  except subprocess.CalledProcessError:
+      print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
+      return False
+
 
 
 def is_osw_success(command_args):
@@ -205,28 +218,11 @@ def main():
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
         # Convert the data to a JSON-formatted string
-        
-        # output_csv_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.csv'
-        # breakpoint()
 
         run_osm_osw = json.dumps(
             return_openstudio_workflow_add_analysis_outputs(str(path_to_move_osm_to), weather_file_name),
             indent=4
         )
-
-        #return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_file_name)
-
-        # create_cp_csv_osw = json.dumps(
-        #     return_open_studio_workflow_create_cp(
-        #         str(path_to_move_osm_to),
-        #         weather_file_name,
-        #         str(empty_comp_param_json_file_path),
-        #         str(output_csv_file_path)
-        #     ),
-        #     indent=4
-        # )
-
-
 
         # Write the JSON string to a file
         with open(simulate_model_with_outputs.as_posix(), "w") as file:
@@ -237,7 +233,8 @@ def main():
             idf_file_path = idf_path(path_to_move_osm_to)
 
             if not idf_file_path.exists():
-                raise FileNotFoundError(f"Could not find the idf file at {idf_file_path}, did the simulation run correctly?")
+                raise FileNotFoundError(f"Could not find the idf file at {idf_file_path}, 
+                did the simulation run correctly?")
 
             if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path, idf_file_path):
 
