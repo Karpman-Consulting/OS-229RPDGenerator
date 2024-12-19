@@ -113,18 +113,11 @@ def return_open_studio_workflow_create_cp_csv(seed_model_path,
 def analysis_run_path(analysis_path):
     return analysis_path / 'run'
 
-def out_json_path(openstudio_model_path):
-    return openstudio_model_path.parent / 'run/out.json'
-
 def inepJSON_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.epJSON'
 
 def idf_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.idf'
-
-
-def construct_epjson_path(openstudio_model_path):
-    return Path(openstudio_model_path).with_suffix('.epJson')
 
 def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_file_path):
   # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
@@ -135,19 +128,15 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_fi
         print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
         return False
 
-def create_empty_cp_json_file(empty_comp_param_json_file_path):
-  pass
-
-def create_empty_cp(analysis_path):
-
-  try:
-    subprocess.check_call(['createRulesetProjectDescription', 'in.epJSON'],cwd=analysis_run_path(analysis_path))
-    return True
-  except subprocess.CalledProcessError:
-      print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
-      return False
-
-
+def create_empty_cp_json_file_success(analysis_run_path):
+    # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
+    breakpoint()
+    try:
+        subprocess.check_call(['createRulesetProjectDescription','--create_empty_cp', 'in.epJSON'], cwd=analysis_run_path)
+        return True
+    except subprocess.CalledProcessError:
+        print(f"Failed to run the command createRulesetProjectDescript in {analysis_run_path}")
+        return False
 
 def is_osw_success(command_args):
 
@@ -231,21 +220,46 @@ def main():
         if is_osw_success(simulate_model_with_outputs.as_posix()):
             
             idf_file_path = idf_path(path_to_move_osm_to)
-
+            breakpoint()
             if not idf_file_path.exists():
-                raise FileNotFoundError(f"Could not find the idf file at {idf_file_path}, 
-                did the simulation run correctly?")
+                raise FileNotFoundError(f'Could not find the idf file at {idf_file_path}, did the simulation run correctly?')
 
             if succcessfully_ran_convert_input_format(args.convert_input_format_exe_path, idf_file_path):
 
+                if create_empty_cp_json_file_success(analysis_run_path(analysis_path).as_posix()):
 
+                    create_cp_csv_osw = json.dumps(
+                        return_open_studio_workflow_create_cp_csv(
+                            path_to_move_osm_to.as_posix(), 
+                            weather_file_name,
+                            empty_comp_param_json_file_path.as_posix(),
+                            args.csv_file_path
+                        ),
+                        indent=4
+                    )
+
+                    # Write the JSON string to a file
+                    with open(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', "w") as file:
+                        file.write(create_cp_csv_osw)
+
+                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw'):
+
+                        print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
+                        and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
+
+                    else:
+                        print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model {openstudio_model_path.name}, 
+                        please ensure that the openstudio model simulated correctly.\033[0m""")
+
+                else: 
+                    print(f"""\033[91m Failed to run command createRulesetProjectDescription to create empty cp json file at path 
+                    {analysis_run_path(analysis_path).as_posix()},
+                    and try again.\033[0m""")
 
             else:
                 print(f"""\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
                 utilty ConvertInputFormat.exe. Please ensure that the idf file and the path to the exe is correct
                 and try again.\033[0m""")
-
-
 
         else:
             print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model {openstudio_model_path.name}, "
