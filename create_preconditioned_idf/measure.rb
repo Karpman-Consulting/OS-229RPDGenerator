@@ -27,6 +27,12 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
     return args
   end
 
+  def self.set_output_json_to_true(workspace)
+    if workspace.outputJSON.is_initialized
+      workspace.getOutputJSON.setOutputJSON(true)
+    end
+  end
+
   def self.add_output_table_summary_report(workspace)
     if not workspace.getOptionalOutputTableSummaryReports.is_initialized or
       not workspace.getOutputTableSummaryReports.summaryReports.include? "AllSummaryAndMonthly"
@@ -57,6 +63,8 @@ class CreatePreconditionedIdf < OpenStudio::Measure::ModelMeasure
     if !runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
+
+    CreatePreconditionedIdf.set_output_json_to_true(model)
 
     CreatePreconditionedIdf.add_output_table_summary_report(model)
 

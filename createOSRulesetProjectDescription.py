@@ -24,18 +24,23 @@ def return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_fil
         "run_directory": "./run",
         "steps": [
           {
-            "measure_dir_name": "create_preconditioned_idf",
-            "name": "CreatePreconditionedIdf",
-            "arguments": {
-            }
+              "measure_dir_name": "create_preconditioned_idf",
+              "name": "CreatePreconditionedIdf",
+              "arguments": {
+              }
           },
-           {
-            "measure_dir_name": "create_preconditioned_idf_energyplus",
-            "name": "CreatePreconditionedIdfEnergyPlus",
-            "arguments": {
-            }
+          {
+              "measure_dir_name": "create_preconditioned_idf_energyplus",
+              "name": "CreatePreconditionedIdfEnergyPlus",
+              "arguments": {
+              }
           },
-        ]
+        ],
+        "run_options": {
+        "fast": False,
+        "skip_expand_objects": False,
+        "skip_energyplus_preprocess": False
+        }
     }
 
 def return_open_studio_workflow_read_cp_csv(seed_model_path, 
@@ -220,7 +225,7 @@ def main():
         if is_osw_success(simulate_model_with_outputs.as_posix()):
             
             idf_file_path = idf_path(path_to_move_osm_to)
-            breakpoint()
+
             if not idf_file_path.exists():
                 raise FileNotFoundError(f'Could not find the idf file at {idf_file_path}, did the simulation run correctly?')
 
