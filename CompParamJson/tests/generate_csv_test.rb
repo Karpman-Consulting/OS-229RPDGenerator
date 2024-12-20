@@ -10,6 +10,10 @@ class GenerateCsvDataTest < Minitest::Test
     @empty_cp_json_file_path = File.join(File.dirname(File.realpath(__FILE__)), 'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')
 
     @empty_cp_json = JSON.parse(File.read(@empty_cp_json_file_path))
+
+    @empty_cp_json_file_path_e1 = File.join(File.dirname(File.realpath(__FILE__)), 'E1.comp-param-empty.json')
+
+    @empty_cp_json_e1 = JSON.parse(File.read(@empty_cp_json_file_path_e1))
   end
 
   def test_generate_comp_param_empty_csv
@@ -52,7 +56,7 @@ class GenerateCsvDataTest < Minitest::Test
   end
 
 
-  def test_set_comp_param_json_from_csv_data
+  def test_comp_param_json_to_csv_data
 
 
     csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json)
@@ -99,6 +103,14 @@ class GenerateCsvDataTest < Minitest::Test
     zn_two_wall_east_window_four = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
 
     assert_equal zn_two_wall_east_window_four_updated_framing_type, zn_two_wall_east_window_four["framing_type"]
+
+  end
+
+  def test_comp_param_json_to_csv_data_e1
+
+    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json_e1)
+
+    assert csv_data.length > 0
 
   end
 

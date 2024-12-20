@@ -230,7 +230,8 @@ module GenerateTwoTwoNineCompParamJsonCsv
       #values = JsonPath.new("#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}").on(comp_param_json)
 
       if ids.empty?
-        puts "### Could not get ids #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
+        ## Print this produces additional output, which means that we cant parse the json when it is sent back to the measure
+        #puts "### Could not get ids #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
         next
       end
 

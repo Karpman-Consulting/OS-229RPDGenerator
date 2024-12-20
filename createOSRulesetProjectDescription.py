@@ -150,15 +150,15 @@ def create_empty_cp_json_file_success(analysis_run_path):
 def is_osw_success(command_args, measures_only=False, reporting_measures_only=False):
 
     try:
-        run_osw = ['openstudio', 'run' ,'-w']
+        run_osw = ['openstudio', 'run','-w']
 
         if measures_only and reporting_measures_only:
             raise ValueError("Only one of measures_only and reporting_measures_only can be True.")
 
         if measures_only:
-            run_osw = ['openstudio', 'run', '--measures-only', '-w']
+            run_osw = ['openstudio', 'run', '--measures_only', '-w']
         if reporting_measures_only:
-            run_osw = ['openstudio', 'run', '--reporting-measures-only', '-w']
+            run_osw = ['openstudio', 'run', '--postprocess_only', '-w']
 
         # Run the command
         if isinstance(command_args, str):
@@ -170,6 +170,30 @@ def is_osw_success(command_args, measures_only=False, reporting_measures_only=Fa
         return True
     except subprocess.CalledProcessError:
         return False
+
+
+def get_resource_path(script_arg, default_path=None):
+
+    if script_arg is None and default_path is None:
+        raise ValueError("You must provide either a script_arg or a default_path")
+
+    if script_arg is None:
+
+        if not Path(default_path).exists():
+
+            raise FileNotFoundError(
+            f"Attempted to find {Path(default_path).name} at {default_path}, as you did not specify a path in the command arguments "
+             f"but could not find the file {default_path}, something went wrong sorry"
+            )
+        else: 
+            return Path(default_path)
+
+    else:
+        if not Path(script_arg).exists():
+            raise FileNotFoundError(
+                f"The file '{script_arg}' which you specified in the command arguements does not exist."
+            )
+
 
 
 def main():
@@ -186,7 +210,7 @@ def main():
     subparsers2 = subparsers.add_parser("create_rpd", help="Read CSV with compliance parameters and validate")
     subparsers2.add_argument("--openstudio_model_path", type=str, required=True, help=" The OpenStudio model file path")
     subparsers2.add_argument("--weather_file_name", type=str, required=True, help="weather file name, the weather file must be placed in the weather directory")
-    subparsers2.add_argument("--csv_file_path", type=str, required=True, help="Csv file path with filled in compliance parameter values")
+    subparsers2.add_argument("--csv_file_path", type=str, required=False, help="Csv file path with filled in compliance parameter values")
     subparsers2.add_argument("--empty_comp_param_json_file_path", type=str,required=False, help="The path of the empty compliance parameter json (no updated values)")
     subparsers2.add_argument("--comp_param_json_file_path", type=str, required=False, help="The path of compliance parameter json with updated values")
 
@@ -196,7 +220,9 @@ def main():
     openstudio_model_path = Path(args.openstudio_model_path)
     weather_file_name = args.weather_file_name
 
-    weather_file_path = Path(os.path.join(Path(__file__).resolve().parent, 'weather', weather_file_name))
+    script_dir_path = Path(__file__).resolve().parent
+
+    weather_file_path = Path(os.path.join(script_dir_path, 'weather', weather_file_name))
 
     if not openstudio_model_path.exists():
         raise FileNotFoundError(f"The seed model file '{openstudio_model_path}' does not exist.")
@@ -207,7 +233,7 @@ def main():
           "Please ensure that it is placed there."
         )
 
-    analysis_path = Path(__file__).resolve().parent / openstudio_model_path.stem
+    analysis_path = script_dir_path / openstudio_model_path.stem
     analysis_path.mkdir(parents=True, exist_ok=True)
 
     empty_comp_param_json_file_path = empty_comp_param_json_path(openstudio_model_path)
@@ -260,7 +286,7 @@ def main():
                     with open(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', "w") as file:
                         file.write(create_cp_csv_osw)
                     
-                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', measures_only=False, reporting_measures_only=False):
+                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', measures_only=False, reporting_measures_only=True):
 
                         print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
                         and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
@@ -278,9 +304,10 @@ def main():
                 print(f"""\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
                 utilty ConvertInputFormat.exe. Please ensure that the idf file and the path to the exe is correct
                 and try again.\033[0m""")
-
+    
         else:
-            print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model {openstudio_model_path.name}, "
+            print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model 
+            {openstudio_model_path.name}, "
                   "please ensure that the openstudio model simulated correctly.\033[0m""")
 
     elif args.command == "create_rpd":
@@ -291,40 +318,36 @@ def main():
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
 
-        if not args.csv_file_path.exists():
-            raise FileNotFoundError(
-                f"The csv file '{args.csv_file_path}' does not exist, the csv with compliance parameter values must be provided, "
-                "you can create it by running the command 'create_cp_csv' first."
-            )
-        
-        if args.empty_comp_param_json_file_path is not None:
-            empty_comp_param_json_file_path = args.empty_comp_param_json_file_path
+        csv_file_path = get_resource_path(
+            args.csv_file_path, 
+            default_path=f'{analysis_run_path(analysis_path)}/{openstudio_model_path.stem}.csv'
+        )
 
-        if empty_comp_param_json_file_path.exists():
-            raise FileNotFoundError(
-              f"comp param json file generated by running the command create_cp_csv first cannot be found "
-              f"'{empty_comp_param_json_file_path}' does not exist, this is required."
-            )
+        empty_comp_param_json_file_path = get_resource_path(args.empty_comp_param_json_file_path, 
+        default_path=f'{analysis_run_path(analysis_path)}/in.comp-param-empty.json')
 
-        if args.comp_param_json_file_path is not None:
-            comp_param_json_file_path = args.comp_param_json_file_path
+        if args.comp_param_json_file_path is None:
+            # Create a default path
+            comp_param_json_file_path = Path(f"{analysis_run_path(analysis_path)}/in.comp-param.json")
+        else:
+            comp_param_json_file_path = Path(args.comp_param_json_file_path)
 
-        create_cp_csv_osw = json.dumps(
+        read_cp_csv_osw = json.dumps(
               return_open_studio_workflow_read_cp_csv(
                   path_to_move_osm_to.as_posix(), 
                   weather_file_name,
                   empty_comp_param_json_file_path.as_posix(),
                   comp_param_json_file_path.as_posix(),
-                  args.csv_file_path.as_posix(),
+                  csv_file_path.as_posix(),
               ),
               indent=4
         )
 
         # Write the JSON string to a file
         with open(osw_path.as_posix(), "w") as file:
-            file.write(create_cp_csv_osw)
+            file.write(read_cp_csv_osw)
 
-        if is_osw_success(osw_path.as_posix(), measures_only=True):
+        if is_osw_success(osw_path.as_posix(), measures_only=False, reporting_measures_only=True):
 
             print(f"""\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
             {openstudio_model_path.name} 
@@ -332,7 +355,7 @@ def main():
             with the values. 
             Attempting to validate with rpd validator
             """)
-
+            breakpoint()
             validate_rpd()
 
         else:
@@ -340,4 +363,4 @@ def main():
              values for the model {openstudio_model_path.name}, .\033[0m""")
 
 if __name__ == "__main__":
-  main()
+    main()

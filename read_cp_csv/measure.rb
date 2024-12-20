@@ -6,11 +6,10 @@ require 'openstudio'
 require 'csv'
 require 'json'
 require 'open3'
-require_relative '../CompParamJson/generate_csv'
 require_relative './set_building_segments'
 
 # start the measure
-class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
+class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
 
   def self.remove_backticks_from_headers(headers)
     ### Sometimes the headers have backticks in them, so that the headers look like this
@@ -88,16 +87,15 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ModelMeasure
   end
 
   # define what happens when the measure is run
-  def run(model, runner, user_arguments)
-    super(model, runner, user_arguments)
+  def run(runner, user_arguments)
+    super(runner, user_arguments)
 
     # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
+    if !runner.validateUserArguments(arguments(), user_arguments)
       return false
     end
 
     # assign the user inputs to variables
-
     csv_file_path = runner.getStringArgumentValue('csv_file_path', user_arguments)
 
     empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)

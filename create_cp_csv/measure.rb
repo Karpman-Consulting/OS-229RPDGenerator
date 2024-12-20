@@ -49,8 +49,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
   def run(runner, user_arguments)
     super(runner, user_arguments)
 
-    runner.registerInfo("blah blah")
-
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(), user_arguments)
       return false

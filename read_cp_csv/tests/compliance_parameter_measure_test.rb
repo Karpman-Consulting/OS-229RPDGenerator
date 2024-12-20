@@ -16,7 +16,7 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
     model = OpenStudio::Model::Model.new
 
     arguments = measure.arguments(model)
-    assert_equal(3, arguments.size)
+    assert_equal(2, arguments.size)
   end
 
   def bad_argument_values
@@ -92,7 +92,7 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(OpenStudio::Model::Model.new, runner, argument_map)
+    measure.run(runner, argument_map)
     result = runner.result
 
     # show the output
@@ -132,7 +132,7 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(OpenStudio::Model::Model.new, runner, argument_map)
+    measure.run(runner, argument_map)
     result = runner.result
 
     # show the output
