@@ -118,11 +118,17 @@ def return_open_studio_workflow_create_cp_csv(seed_model_path,
 def analysis_run_path(analysis_path):
     return analysis_path / 'run'
 
+
 def inepJSON_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.epJSON'
 
+
 def idf_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.idf'
+
+
+def empty_comp_param_json_path(openstudio_model_path):
+    return openstudio_model_path.parent / 'run/in.comp-param-empty.json'
 
 def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_file_path):
   # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
@@ -134,8 +140,6 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_fi
         return False
 
 def create_empty_cp_json_file_success(analysis_run_path):
-    # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
-    breakpoint()
     try:
         subprocess.check_call(['createRulesetProjectDescription','--create_empty_cp', 'in.epJSON'], cwd=analysis_run_path)
         return True
@@ -143,10 +147,19 @@ def create_empty_cp_json_file_success(analysis_run_path):
         print(f"Failed to run the command createRulesetProjectDescript in {analysis_run_path}")
         return False
 
-def is_osw_success(command_args):
+def is_osw_success(command_args, measures_only=False, reporting_measures_only=False):
 
     try:
-        run_osw = ['openstudio', 'run','-w']
+        run_osw = ['openstudio', 'run' ,'-w']
+
+        if measures_only and reporting_measures_only:
+            raise ValueError("Only one of measures_only and reporting_measures_only can be True.")
+
+        if measures_only:
+            run_osw = ['openstudio', 'run', '--measures-only', '-w']
+        if reporting_measures_only:
+            run_osw = ['openstudio', 'run', '--reporting-measures-only', '-w']
+
         # Run the command
         if isinstance(command_args, str):
             command_args = [command_args]
@@ -197,7 +210,7 @@ def main():
     analysis_path = Path(__file__).resolve().parent / openstudio_model_path.stem
     analysis_path.mkdir(parents=True, exist_ok=True)
 
-    empty_comp_param_json_file_path = analysis_path / f'empty_cp_{openstudio_model_path.stem}.json'
+    empty_comp_param_json_file_path = empty_comp_param_json_path(openstudio_model_path)
 
     if args.command == "create_cp_csv":
 
@@ -237,8 +250,8 @@ def main():
                         return_open_studio_workflow_create_cp_csv(
                             path_to_move_osm_to.as_posix(), 
                             weather_file_name,
-                            empty_comp_param_json_file_path.as_posix(),
-                            args.csv_file_path
+                            empty_comp_param_json_path(path_to_move_osm_to).as_posix(),
+                            args.csv_file_path  
                         ),
                         indent=4
                     )
@@ -246,8 +259,8 @@ def main():
                     # Write the JSON string to a file
                     with open(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', "w") as file:
                         file.write(create_cp_csv_osw)
-
-                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw'):
+                    
+                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', measures_only=False, reporting_measures_only=False):
 
                         print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
                         and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
@@ -311,7 +324,7 @@ def main():
         with open(osw_path.as_posix(), "w") as file:
             file.write(create_cp_csv_osw)
 
-        if is_osw_success(osw_path.as_posix()):
+        if is_osw_success(osw_path.as_posix(), measures_only=True):
 
             print(f"""\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
             {openstudio_model_path.name} 

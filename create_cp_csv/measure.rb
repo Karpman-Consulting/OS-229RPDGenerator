@@ -70,7 +70,6 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
     empty_comp_param_json_file_path = runner.getStringArgumentValue('empty_comp_param_json_file_path', user_arguments)
 
     if empty_comp_param_json_file_path.nil? || empty_comp_param_json_file_path.empty? || !File.exist?(empty_comp_param_json_file_path)
-      runner.registerInfo("Getting here")
       runner.registerError("Could not find file #{empty_comp_param_json_file_path}.")
       return false
     end
