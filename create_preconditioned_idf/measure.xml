@@ -2,12 +2,12 @@
 <measure>
   <schema_version>3.1</schema_version>
   <name>create_preconditioned_idf</name>
-  <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>e51ba666-7a9b-4670-96e0-71ccad3ca930</version_id>
-  <version_modified>2024-12-19T18:30:22Z</version_modified>
+  <uid>a4600335-80bd-461a-ae53-230d03793b16</uid>
+  <version_id>76dd7198-6df4-4029-a290-a2a3fb88fe99</version_id>
+  <version_modified>2024-12-20T16:38:01Z</version_modified>
   <xml_checksum>BED8DECF</xml_checksum>
   <class_name>CreatePreconditionedIdf</class_name>
-  <display_name>Create pre conditioned idf</display_name>
+  <display_name>CreatePreconditionedIdf</display_name>
   <description>Create pre conditioned idf.</description>
   <modeler_description>Create pre conditioned idf</modeler_description>
   <arguments />
@@ -54,7 +54,7 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>1C298BBF</checksum>
+      <checksum>B2EA35A4</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -71,7 +71,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1AB350BA</checksum>
+      <checksum>573D4EAD</checksum>
     </file>
     <file>
       <filename>Test_E1.osm</filename>

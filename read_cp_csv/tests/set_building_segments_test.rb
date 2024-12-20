@@ -2,7 +2,6 @@ require 'openstudio'
 require_relative '../set_building_segments'
 require_relative '../measure'
 require 'minitest/autorun'
-require 'pry-byebug'
 
 class SetBuildingSegementsTest < Minitest::Test
 

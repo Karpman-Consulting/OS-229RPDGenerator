@@ -3,11 +3,11 @@
   <schema_version>3.1</schema_version>
   <name>create_compliance_parameter_csv_from_osm</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>ea607c72-2d5d-4b1d-8885-c805cfcf28e7</version_id>
-  <version_modified>2024-12-19T18:29:58Z</version_modified>
+  <version_id>dfe40a4c-fd96-437d-86af-e5826bd75f93</version_id>
+  <version_modified>2024-12-20T20:53:31Z</version_modified>
   <xml_checksum>44311B6C</xml_checksum>
   <class_name>CreateComplianceParameterCsvFromOsm</class_name>
-  <display_name>Create ComplianceParameter Csv From Osm</display_name>
+  <display_name>CreateComplianceParameterCsvFromOsm</display_name>
   <description>Replace this text with an explanation of what the measure does in terms that can be understood by a general building professional audience (building owners, architects, engineers, contractors, etc.).  This description will be used to create reports aimed at convincing the owner and/or design team to implement the measure in the actual building design.  For this reason, the description may include details about how the measure would be implemented, along with explanations of qualitative benefits associated with the measure.  It is good practice to include citations in the measure if the description is taken from a known source or if specific benefits are listed.</description>
   <modeler_description>Replace this text with an explanation for the energy modeler specifically.  It should explain how the measure is modeled, including any requirements about how the baseline model must be set up, major assumptions, citations of references to applicable modeling resources, etc.  The energy modeler should be able to read this description and understand what changes the measure is making to the model and why these changes are being made.  Because the Modeler Description is written for an expert audience, using common abbreviations for brevity is good practice.</modeler_description>
   <arguments>
@@ -71,7 +71,7 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>C8D3AF44</checksum>
+      <checksum>CD351937</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -94,7 +94,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>59F5C848</checksum>
+      <checksum>564BFB64</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -121,16 +121,40 @@
       <checksum>0EFE96C3</checksum>
     </file>
     <file>
+      <filename>E1.comp-param-empty.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7DFB4EA6</checksum>
+    </file>
+    <file>
+      <filename>Test_E1.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4358597F</checksum>
+    </file>
+    <file>
+      <filename>Test_E1.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>045A1B4F</checksum>
+    </file>
+    <file>
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FD5D19FD</checksum>
+      <checksum>49DA2553</checksum>
     </file>
     <file>
       <filename>stdout_output.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
       <checksum>C4B39947</checksum>
+    </file>
+    <file>
+      <filename>test_produce_csv_data_from_comp_param.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4AC986FD</checksum>
     </file>
   </files>
 </measure>

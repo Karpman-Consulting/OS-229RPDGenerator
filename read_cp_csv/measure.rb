@@ -6,6 +6,7 @@ require 'openstudio'
 require 'csv'
 require 'json'
 require 'open3'
+require 'tmpdir'
 require_relative './set_building_segments'
 
 # start the measure

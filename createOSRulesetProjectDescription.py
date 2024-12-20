@@ -139,13 +139,24 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_fi
         print(f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}")
         return False
 
+
 def create_empty_cp_json_file_success(analysis_run_path):
     try:
         subprocess.check_call(['createRulesetProjectDescription','--create_empty_cp', 'in.epJSON'], cwd=analysis_run_path)
         return True
     except subprocess.CalledProcessError:
-        print(f"Failed to run the command createRulesetProjectDescript in {analysis_run_path}")
+        print(f"Failed to run the command createRulesetProjectDescription --create_empty_cp in {analysis_run_path}")
         return False
+
+
+def create_add_cp_json_file_success(analysis_run_path):
+    try:
+        subprocess.check_call(['createRulesetProjectDescription','--add_cp', 'in.epJSON'], cwd=analysis_run_path)
+        return True
+    except subprocess.CalledProcessError:
+        print(f"Failed to run the command createRulesetProjectDescriptopm --add_cp in {analysis_run_path}")
+        return False
+
 
 def is_osw_success(command_args, measures_only=False, reporting_measures_only=False):
 
@@ -351,12 +362,14 @@ def main():
 
             print(f"""\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
             {openstudio_model_path.name} 
-            and have updated the compliance parameter json file #{comp_param_json_file_path.name}
+            and have updated the compliance parameter json file {comp_param_json_file_path}
             with the values. 
             Attempting to validate with rpd validator
             """)
-            breakpoint()
-            validate_rpd()
+            
+            # in.comp-param.json
+
+            validate_rpd(comp_param_json_file_path.as_posix())
 
         else:
             print(f"""\033[91mFailed to read the CSV file with compliance parameters
