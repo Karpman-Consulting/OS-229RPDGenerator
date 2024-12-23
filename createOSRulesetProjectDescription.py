@@ -7,7 +7,7 @@ import shutil
 from rpdvalidator import validate_rpd
 
 
-def return_openstudio_workflow_add_analysis_outputs(seed_model_path, weather_file_name):
+def return_openstudio_workflow_simulate_model_and_add_analysis_outputs(seed_model_path, weather_file_name):
     return {
         "seed_file": seed_model_path,
         "weather_file": weather_file_name,
@@ -131,7 +131,22 @@ def empty_comp_param_json_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.comp-param-empty.json'
 
 def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_file_path):
+    """
+    Runs the ConvertInputFormat executable on the specified IDF file to produce in.epJSON 
+    and checks if it ran successfully.
+
+    Args:
+        convert_input_format_exe_path (str): The full path to the ConvertInputFormat executable.
+        idf_file_path (str): The full path to the IDF file to be converted.
+
+    Returns:
+        bool: True if the command ran successfully, False otherwise.
+
+    Raises:
+        subprocess.CalledProcessError: If the command fails to execute.
+    """
   # IE # C:\EnergyPlusV24-2-0\ConvertInputFormat.exe "full_path/in.idf"
+  ## converts 
     try:
         subprocess.check_call([convert_input_format_exe_path, idf_file_path])
         return True
@@ -141,6 +156,18 @@ def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_fi
 
 
 def create_empty_cp_json_file_success(analysis_run_path):
+    """
+    Attempts to create an empty cp JSON file by running the 'createRulesetProjectDescription' command.
+
+    Args:
+        analysis_run_path (str): The path to the directory where the command should be executed.
+
+    Returns:
+        bool: True if the command was executed successfully, False otherwise.
+
+    Raises:
+        subprocess.CalledProcessError: If the command execution fails.
+    """
     try:
         subprocess.check_call(['createRulesetProjectDescription','--create_empty_cp', 'in.epJSON'], cwd=analysis_run_path)
         return True
@@ -158,7 +185,26 @@ def create_add_cp_json_file_success(analysis_run_path):
         return False
 
 
-def is_osw_success(command_args, measures_only=False, reporting_measures_only=False):
+def is_osw_success(osw, path_to_osw, measures_only=False, reporting_measures_only=False):
+    """
+    Determines if an OpenStudio Workflow (OSW) run is successful.
+    This function writes the OSW JSON string to a file, constructs the appropriate
+    command to run the OSW using the OpenStudio CLI, and executes the command.
+    It returns True if the OSW run is successful, and False otherwise.
+    Args:
+        osw (str): The OSW JSON string to be written to a file.
+        path_to_osw (str): The path to the OSW file.
+        measures_only (bool, optional): If True, only the measures will be run. Defaults to False.
+        reporting_measures_only (bool, optional): If True, only the reporting measures will be run. Defaults to False.
+    Returns:
+        bool: True if the OSW run is successful, False otherwise.
+    Raises:
+        ValueError: If both measures_only and reporting_measures_only are set to True.
+    """
+
+    # Write the JSON string to a file
+    with open(path_to_osw, "w") as file:
+        file.write(osw)
 
     try:
         run_osw = ['openstudio', 'run','-w']
@@ -172,8 +218,8 @@ def is_osw_success(command_args, measures_only=False, reporting_measures_only=Fa
             run_osw = ['openstudio', 'run', '--postprocess_only', '-w']
 
         # Run the command
-        if isinstance(command_args, str):
-            command_args = [command_args]
+        if isinstance(path_to_osw, str):
+            command_args = [path_to_osw]
 
         full_command = run_osw + command_args
         subprocess.check_call(full_command)
@@ -261,18 +307,11 @@ def main():
         path_to_move_osm_to = analysis_path / openstudio_model_path.name
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
-        # Convert the data to a JSON-formatted string
 
-        run_osm_osw = json.dumps(
-            return_openstudio_workflow_add_analysis_outputs(str(path_to_move_osm_to), weather_file_name),
-            indent=4
-        )
-
-        # Write the JSON string to a file
-        with open(simulate_model_with_outputs.as_posix(), "w") as file:
-            file.write(run_osm_osw)
-
-        if is_osw_success(simulate_model_with_outputs.as_posix()):
+        if is_osw_success(json.dumps(
+                return_openstudio_workflow_simulate_model_and_add_analysis_outputs(str(path_to_move_osm_to), weather_file_name),
+                indent=4
+            ), simulate_model_with_outputs.as_posix()):
             
             idf_file_path = idf_path(path_to_move_osm_to)
 
@@ -283,7 +322,7 @@ def main():
 
                 if create_empty_cp_json_file_success(analysis_run_path(analysis_path).as_posix()):
 
-                    create_cp_csv_osw = json.dumps(
+                    if is_osw_success(json.dumps(
                         return_open_studio_workflow_create_cp_csv(
                             path_to_move_osm_to.as_posix(), 
                             weather_file_name,
@@ -291,20 +330,19 @@ def main():
                             args.csv_file_path  
                         ),
                         indent=4
-                    )
-
-                    # Write the JSON string to a file
-                    with open(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', "w") as file:
-                        file.write(create_cp_csv_osw)
-                    
-                    if is_osw_success(analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', measures_only=False, reporting_measures_only=True):
+                        ), 
+                        analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', 
+                        measures_only=False, 
+                        reporting_measures_only=True):
 
                         print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
                         and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
 
                     else:
-                        print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model {openstudio_model_path.name}, 
-                        please ensure that the openstudio model simulated correctly.\033[0m""")
+                        print(
+                            f"""\033[91mFailed to create the CSV file with compliance parameters for the model 
+                            {openstudio_model_path.name}, please ensure that the openstudio model simulated correctly.\033[0m"""
+                        )
 
                 else: 
                     print(f"""\033[91m Failed to run command createRulesetProjectDescription to create empty cp json file at path 

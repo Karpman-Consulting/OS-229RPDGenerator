@@ -6,11 +6,11 @@ module GenerateTwoTwoNineCompParamJsonCsv
   REQUIRED_COMPLIANCE_PARAMETERS = [
   ### com_param_path is taken from comp param file
   ### Project and building
-  # {
-  #   "compliance_parameter_category": "ruleset_project_description",
-  #   "compliance_parameter": "compliance_path",
-  #   "comp_param_path":'$.ruleset_model_descriptions[0]'
-  # },
+  {
+    "compliance_parameter_category": "ruleset_project_description",
+    "compliance_parameter": "compliance_path",
+    "comp_param_path":'$.ruleset_model_descriptions[0]'
+  },
   {
     "compliance_parameter_category": "ruleset_project_description",
     "compliance_parameter": "type",
@@ -31,17 +31,12 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter": "site_zone_type",
     "comp_param_path":'$.ruleset_model_descriptions[0]'
   },
-  # {
-  #   "compliance_parameter_category": "building",
-  #   "compliance_parameter": "building_open_schedule",
-  #   "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0]'
-  # },
-    {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"is_all_new",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+  {
+    "compliance_parameter_category": "building",
+    "compliance_parameter": "building_open_schedule",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0]'
   },
-      {
+    {
     "compliance_parameter_category":"building_segment",
     "compliance_parameter":"is_all_new",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
@@ -186,34 +181,37 @@ module GenerateTwoTwoNineCompParamJsonCsv
   },
   ### Pump
 
-    {
+  {
     "compliance_parameter_category":"pump",
     "compliance_parameter": "impeller_efficiency",
     "comp_param_path":'$.ruleset_model_descriptions[0].pumps[*]'
   },
-
-
-#   {
-#     "Boiler": "draft_type"
-#   },
-#   {
-#     "Chiller": "compressor_type"
-#   },
-#   {
-#     "HeatRejection": "fan_type"
-#   },
-#   {
-#     "heating_ventilating_air_conditioning_systems": "status_type"
-#   },
-#   {
-#     "heating_ventilating_air_conditioning_systems.fan_system": "air_filter_merv_rating"
-#   },
-#   {
-#     "zone": "aggregation_factor"
-#   },
-#   {
-#     "zone.infiltration": "measured_air_leakage_rate"
-#   },
+  {
+    "compliance_parameter_category":"boiler",
+    "compliance_parameter": "draft_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].boilers[*]'
+  },
+  {
+    "compliance_parameter_category":"chiller",
+    "compliance_parameter": "compressor_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
+  },
+  {
+    "compliance_parameter_category":"chiller",
+    "compliance_parameter": "compressor_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
+  },
+  {
+    "compliance_parameter_category":"chiller",
+    "compliance_parameter": "compressor_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
+  },
+  {
+    "zone": "aggregation_factor"
+  },
+  {
+    "zone.infiltration": "measured_air_leakage_rate"
+  },
 
 
   ]
