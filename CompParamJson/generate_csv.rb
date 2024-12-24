@@ -41,6 +41,11 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter":"is_all_new",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
+    {
+    "compliance_parameter_category":"building_segment",
+    "compliance_parameter":"is_all_new",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+  },
   {
     "compliance_parameter_category":"building_segment",
     "compliance_parameter":"lighting_building_area_type",
@@ -66,26 +71,18 @@ module GenerateTwoTwoNineCompParamJsonCsv
   {
     "compliance_parameter_category":"heating_ventilation_airconditioning_system",
     "compliance_parameter": "air_filter_merv_rating",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
   {
     "compliance_parameter_category":"heating_ventilation_airconditioning_system",
-    "compliance_parameter": "has_fully_ducted_return",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+    "compliance_parameter": "status_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
-  ### Zone
-    {
+  {
     "compliance_parameter_category":"zone",
     "compliance_parameter": "aggregation_factor",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
   },
-  {
-    "compliance_parameter_category":"zone",
-    "compliance_parameter": "conditioning_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
-  },
-
-
   ### Zone.Infiltration
   {
     "compliance_parameter_category":"infiltration",
@@ -98,67 +95,23 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter": "is_supply_ducted",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].terminals[*]'
   },
-
-  ### SUrfaces
-  {
-    "compliance_parameter_category":"surface",
-    "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*]'
-  },
-
-  ### Subsurfaces
-  {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "subclassification",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-  {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "has_manual_interior_shades",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-  {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "is_operable",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-      {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "framing_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-        {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-          {
-    "compliance_parameter_category":"subsurface",
-    "compliance_parameter": "has_open_sensor",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-  },
-  ### Spaces
+  ### Spaces - Note could not see this in comp param json
   {
     "compliance_parameter_category":"space",
     "compliance_parameter": "status_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
   },
-    {
+  {
     "compliance_parameter_category":"space",
     "compliance_parameter": "lighting_space_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
   },
-    {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "function",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
-  },
-    {
+  {
     "compliance_parameter_category":"space",
     "compliance_parameter": "ventilation_space_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
   },
-      {
+  {
     "compliance_parameter_category":"space",
     "compliance_parameter": "envelope_space_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
@@ -168,6 +121,54 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter": "occupancy_control_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
   },
+  {
+    "compliance_parameter_category":"space",
+    "compliance_parameter": "purpose_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
+  },
+  ### Miscellenous equipment
+  {
+    "compliance_parameter_category":"space",
+    "compliance_parameter": "type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
+  },
+  {
+    "compliance_parameter_category":"space",
+    "compliance_parameter": "has_automatic_control",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
+  },
+    ### Subsurfaces
+    {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "subclassification",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+    {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "has_manual_interior_shades",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+    {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "is_operable",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+        {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "framing_type",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+          {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "status_type",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+            {
+      "compliance_parameter_category":"subsurface",
+      "compliance_parameter": "has_open_sensor",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+    },
+
   ## Schedules
   {
     "compliance_parameter_category":"schedule",
@@ -178,6 +179,18 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter_category":"schedule",
     "compliance_parameter": "is_modified_for_workaround",
     "comp_param_path":'$.ruleset_model_descriptions[0].schedules[*]'
+  },
+
+  ### SUrfaces
+  {
+      "compliance_parameter_category":"surface",
+      "compliance_parameter": "status_type",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*]'
+  },
+  {
+    "compliance_parameter_category":"heating_ventilation_airconditioning_system",
+    "compliance_parameter": "has_fully_ducted_return",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
   },
   ### Pump
 
@@ -192,27 +205,27 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "comp_param_path":'$.ruleset_model_descriptions[0].boilers[*]'
   },
   {
-    "compliance_parameter_category":"chiller",
+    "compliance_parameter_category":"chillers",
     "compliance_parameter": "compressor_type",
     "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
   },
   {
-    "compliance_parameter_category":"chiller",
-    "compliance_parameter": "compressor_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
+    "compliance_parameter_category":"heating_ventilating_air_conditioning_system",
+    "compliance_parameter": "status_type",
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
   },
-  {
-    "compliance_parameter_category":"chiller",
-    "compliance_parameter": "compressor_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
-  },
-  {
-    "zone": "aggregation_factor"
-  },
-  {
-    "zone.infiltration": "measured_air_leakage_rate"
-  },
-
+    ### Zone
+    {
+      "compliance_parameter_category":"zone",
+      "compliance_parameter": "conditioning_type",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
+    },
+    ### Construction
+    {
+      "compliance_parameter_category":"construction",
+      "compliance_parameter": "classification",
+      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
+    },
 
   ]
 
@@ -277,12 +290,13 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
           if data_in_comp_param_json[compliance_parameter[:compliance_parameter]].nil?
             ### TODO need to resolve these parameters
-            if ["lighting_space_type","air_filter_merv_rating","has_fully_ducted_return","ventilation_space_type","envelope_space_type"]
-              .include? compliance_parameter[:compliance_parameter]
-              next
-            end
+            # if ["lighting_space_type","air_filter_merv_rating","has_fully_ducted_return","ventilation_space_type","envelope_space_type"]
+            #   .include? compliance_parameter[:compliance_parameter]
+            #   next
+            # end
 
-            raise "Something has gone wrong cannot find compliance parameter: #{compliance_parameter[:compliance_parameter]} in comp_param_json"
+            puts "### Could not find compliance parameter: #{compliance_parameter[:compliance_parameter]} in comp_param_json"
+            next
           end
 
           updated_compliace_parameter_value = csv_row_data[:compliance_parameter_value]

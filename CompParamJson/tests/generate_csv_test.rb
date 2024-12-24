@@ -10,7 +10,7 @@ class GenerateCsvDataTest < Minitest::Test
 
     @empty_cp_json = JSON.parse(File.read(@empty_cp_json_file_path))
 
-    @empty_cp_json_file_path_e1 = File.join(File.dirname(File.realpath(__FILE__)), 'E1.comp-param-empty.json')
+    @empty_cp_json_file_path_e1 = File.join(File.dirname(File.realpath(__FILE__)), '229_E1.comp-param-empty.json')
 
     @empty_cp_json_e1 = JSON.parse(File.read(@empty_cp_json_file_path_e1))
   end
