@@ -291,25 +291,9 @@ module GenerateTwoTwoNineCompParamJsonCsv
           the_id = ids.find { |id| id == csv_row_data[:two_twenty_nine_group_id] }
           data_in_comp_param_json = find_by_id(comp_param_json, the_id)
 
-          # if data_in_comp_param_json[compliance_parameter[:compliance_parameter]].nil?
-          #   binding.pry
-          #   ### TODO need to resolve these parameters
-          #   # if ["lighting_space_type","air_filter_merv_rating","has_fully_ducted_return","ventilation_space_type","envelope_space_type"]
-          #   #   .include? compliance_parameter[:compliance_parameter]
-          #   #   next
-          #   # end
-
-          #   puts "### Could not find compliance parameter: #{compliance_parameter[:compliance_parameter]} in comp_param_json"
-          #   next
-          # end
-
           updated_compliace_parameter_value = csv_row_data[:compliance_parameter_value]
-          #if the_id.downcase == "PERIMETER_ZN_1".downcase then binding.pry end
+
           data_in_comp_param_json[compliance_parameter[:compliance_parameter]] = updated_compliace_parameter_value
-
-          print("Updated compliance parameter: #{compliance_parameter[:compliance_parameter]} of object with id #{the_id}
-          with value: #{updated_compliace_parameter_value} in comp_param_json")
-
         end
       end
     end
