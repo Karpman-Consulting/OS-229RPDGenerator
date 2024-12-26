@@ -27,18 +27,29 @@ Setup:
     
     Please ensure that when you are installing the app that you are also installing the CLI.
     
-    2. 
+    2. The Openstudio-229RPDGenerator requires Python3 and Ruby 3.2.2 installed
+
+    3. Run `bundle install` to install Ruby dependencies
+
+    4. Run `pip install -r requirements.txt` to install Python dependencies
 
 
 
-1. Run command  createOSRulesetProjectDescription --create_cp_csv filename.osm
+1. Run command
+
+python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
+
+Where:
+--openstudio_model_path is the path to the openstudio model ie "./test_files/Test_E1.osm"
+--weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" ie a weather file places in the directory weather
+--convert_intput_format_exe_path, The path to the EnergyPlus utility ConvertInputFormat ie "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
 
 where  filename.osm is osm to process, this command will generate a csv 
 filename_cp-empty.csv
 
-2. Open filename_cp-empty.csv, be sure to provide data for ALL ROWS in the csv
-then save it as filename_cp-complete.csv”
+2. Open filename_cp-empty.csv, enter values in the compliance parameter value column, these values will be read back into the comp-param json
 
+3. Run the command 
 
 Developing the OpenStudio-229RPDGenerator
 

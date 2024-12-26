@@ -1,7 +1,7 @@
 import subprocess
 import argparse
 import json
-from pathlib import Path
+from pathlib import Path, WindowsPath
 import os
 import shutil
 from rpdvalidator import validate_rpd
@@ -82,7 +82,6 @@ def return_open_studio_workflow_create_cp_csv(seed_model_path,
                                           empty_comp_param_json_file_path,
                                           output_csv_file_path
                                         ):
-
     return {
         "seed_file": seed_model_path,
         "weather_file": weather_file_name,
@@ -98,12 +97,6 @@ def return_open_studio_workflow_create_cp_csv(seed_model_path,
         ],
         "run_directory": "./run",
         "steps": [
-          # {
-          #   "measure_dir_name": "create_preconditioned_idf",
-          #   "name": "CreatePreconditionedIdf",
-          #   "arguments": {
-          #   }
-          # },
           {
             "measure_dir_name": "create_cp_csv",
             "name": "CreateComplianceParameterCsvFromOsm",
@@ -129,6 +122,12 @@ def idf_path(openstudio_model_path):
 
 def empty_comp_param_json_path(openstudio_model_path):
     return openstudio_model_path.parent / 'run/in.comp-param-empty.json'
+
+
+def construct_csv_file_path(openstudio_model_path):
+
+    return openstudio_model_path.parent / f'run/{openstudio_model_path.stem}-empty.csv'
+
 
 def succcessfully_ran_convert_input_format(convert_input_format_exe_path, idf_file_path):
     """
@@ -202,6 +201,8 @@ def is_osw_success(osw, path_to_osw, measures_only=False, reporting_measures_onl
         ValueError: If both measures_only and reporting_measures_only are set to True.
     """
 
+    if isinstance(path_to_osw, WindowsPath):
+        raise ValueError("Path to OSW must be a string or array of strings")
     # Write the JSON string to a file
     with open(path_to_osw, "w") as file:
         file.write(osw)
@@ -217,10 +218,10 @@ def is_osw_success(osw, path_to_osw, measures_only=False, reporting_measures_onl
         if reporting_measures_only:
             run_osw = ['openstudio', 'run', '--postprocess_only', '-w']
 
+        command_args = path_to_osw
         # Run the command
         if isinstance(path_to_osw, str):
             command_args = [path_to_osw]
-
         full_command = run_osw + command_args
         subprocess.check_call(full_command)
         
@@ -324,40 +325,40 @@ def main():
 
                     if is_osw_success(json.dumps(
                         return_open_studio_workflow_create_cp_csv(
-                            path_to_move_osm_to.as_posix(), 
+                            path_to_move_osm_to.as_posix(),
                             weather_file_name,
                             empty_comp_param_json_path(path_to_move_osm_to).as_posix(),
-                            args.csv_file_path  
+                            construct_csv_file_path(path_to_move_osm_to).as_posix()
                         ),
                         indent=4
-                        ), 
-                        analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw', 
-                        measures_only=False, 
+                        ),
+                        (analysis_path / f'{openstudio_model_path.stem}_create_cp_csv.osw').as_posix(),
+                        measures_only=False,
                         reporting_measures_only=True):
 
-                        print(f"""\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
+                        print(f"""\n\n\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
                         and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
 
                     else:
                         print(
-                            f"""\033[91mFailed to create the CSV file with compliance parameters for the model 
+                            f"""\n\n\033[91mFailed to create the CSV file with compliance parameters for the model 
                             {openstudio_model_path.name}, please ensure that the openstudio model simulated correctly.\033[0m"""
                         )
 
                 else: 
-                    print(f"""\033[91m Failed to run command createRulesetProjectDescription to create empty cp json file at path 
+                    print(f"""\n\n\033[91m Failed to run command createRulesetProjectDescription to create empty cp json file at path 
                     {analysis_run_path(analysis_path).as_posix()},
-                    and try again.\033[0m""")
+                    and try again.\n\n\033[0m""")
 
             else:
-                print(f"""\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
+                print(f"""\n\n\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
                 utilty ConvertInputFormat.exe. Please ensure that the idf file and the path to the exe is correct
-                and try again.\033[0m""")
+                and try again.\n\n\033[0m""")
     
         else:
-            print(f"""\033[91mFailed to create the CSV file with compliance parameters for the model 
+            print(f"""\n\n\033[91mFailed to create the CSV file with compliance parameters for the model 
             {openstudio_model_path.name}, "
-                  "please ensure that the openstudio model simulated correctly.\033[0m""")
+                  "please ensure that the openstudio model simulated correctly.\n\n\033[0m""")
 
     elif args.command == "create_rpd":
 
@@ -398,7 +399,7 @@ def main():
 
         if is_osw_success(osw_path.as_posix(), measures_only=False, reporting_measures_only=True):
 
-            print(f"""\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
+            print(f"""\n\n\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
             {openstudio_model_path.name} 
             and have updated the compliance parameter json file {comp_param_json_file_path}
             with the values. 
@@ -406,12 +407,12 @@ def main():
             """)
             
             # in.comp-param.json
-
             validate_rpd(comp_param_json_file_path.as_posix())
 
         else:
             print(f"""\033[91mFailed to read the CSV file with compliance parameters
              values for the model {openstudio_model_path.name}, .\033[0m""")
+
 
 if __name__ == "__main__":
     main()

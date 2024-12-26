@@ -180,7 +180,6 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter": "is_modified_for_workaround",
     "comp_param_path":'$.ruleset_model_descriptions[0].schedules[*]'
   },
-
   ### SUrfaces
   {
       "compliance_parameter_category":"surface",
@@ -190,10 +189,9 @@ module GenerateTwoTwoNineCompParamJsonCsv
   {
     "compliance_parameter_category":"heating_ventilation_airconditioning_system",
     "compliance_parameter": "has_fully_ducted_return",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
   ### Pump
-
   {
     "compliance_parameter_category":"pump",
     "compliance_parameter": "impeller_efficiency",
@@ -226,7 +224,6 @@ module GenerateTwoTwoNineCompParamJsonCsv
       "compliance_parameter": "classification",
       "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
     },
-
   ]
 
   def self.produce_csv_data_from_comp_param_json(comp_param_json)
