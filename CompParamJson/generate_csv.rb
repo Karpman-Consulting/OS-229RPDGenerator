@@ -267,6 +267,11 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
     csv_data.each_with_index do |csv_row_data,index|
 
+      if csv_row_data[:compliance_parameter_name].nil? or csv_row_data[:two_twenty_nine_group_id].nil?
+        raise ArgumentError, "Either compliance parameter name or two_twenty_nine_group_id are
+        nil of a csv row they cannot be"
+      end
+
       if csv_row_data[:compliance_parameter_value].nil?
         next
       end
@@ -288,7 +293,7 @@ module GenerateTwoTwoNineCompParamJsonCsv
           the_id = ids.find { |id| id == csv_row_data[:two_twenty_nine_group_id] }
           data_in_comp_param_json = find_by_id(comp_param_json, the_id)
 
-          updated_compliace_parameter_value = csv_row_data[:compliance_parameter_value]
+          updated_compliace_parameter_value = (Float(csv_row_data[:compliance_parameter_value]) rescue false) ? csv_row_data[:compliance_parameter_value].to_f : csv_row_data[:compliance_parameter_value].to_s
 
           data_in_comp_param_json[compliance_parameter[:compliance_parameter]] = updated_compliace_parameter_value
         end

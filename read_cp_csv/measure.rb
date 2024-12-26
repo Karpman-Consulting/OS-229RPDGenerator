@@ -121,8 +121,9 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
 
     runner.registerInfo("Running script to generate comp param json: #{set_comp_param_script_path}")
 
-
+    updated_comp_param_json = nil
     Dir.mktmpdir do |dir|
+
       comp_param_json_file = File.join(dir, 'comp_param_json.json')
       csv_data_file = File.join(dir, 'csv_data.json')
 
@@ -131,10 +132,11 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
       File.write(csv_data_file, csv_data.to_json)
 
       # Run the separate Ruby script using Open3 and pass the paths of the temporary files as arguments
+
       stdout, stderr, status = Open3.capture3("ruby", set_comp_param_script_path, comp_param_json_file, csv_data_file)
 
       if status.success?
-        comp_param_json = JSON.parse(stdout)
+        updated_comp_param_json = JSON.parse(stdout)
       else
         runner.registerError("Failed to generate CSV data: #{stderr}")
         return false
@@ -142,16 +144,13 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
     end
     ### TODO - not critical path write out additional properties to osm
 
-    File.write(updated_comp_param_json_file_path, JSON.pretty_generate(comp_param_json))
+    File.write(updated_comp_param_json_file_path, JSON.pretty_generate(updated_comp_param_json))
 
     runner.registerFinalCondition("Successfully wrote out updated comp param json to #{updated_comp_param_json_file_path}")
 
     return true
   end
 end
-
-
-
 
 # register the measure to be used by the application
 ReadComplianceParameterCsvFromOsm.new.registerWithApplication

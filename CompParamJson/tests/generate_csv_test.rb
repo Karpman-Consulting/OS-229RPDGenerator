@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require_relative '../generate_csv'
-require 'pry-byebug'
 
 class GenerateCsvDataTest < Minitest::Test
 
@@ -85,8 +84,6 @@ class GenerateCsvDataTest < Minitest::Test
       row[:compliance_parameter_value] = new_status_type_two
     end
 
-    #csv_row_of_psz_ac_3[:compliance_parameter_value] = new_status_type_two
-
     csv_row_of_psz_ac_3_fan = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id] == "PSZ-AC:3 FAN-fansystem" &&
     csv_row_data[:compliance_parameter_name].downcase == "status_type" }
 
@@ -97,10 +94,22 @@ class GenerateCsvDataTest < Minitest::Test
     csv_row_of_zn_two_wall_east_window_four_framing_type = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id].downcase == "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase &&
     csv_row_data[:compliance_parameter_name].downcase == "framing_type" }
 
+    ###
+
+    csv_row_of_zn_two_wall_east_window_four_framing_type[:compliance_parameter_value] = zn_two_wall_east_window_four_updated_framing_type
+
+    measured_air_leakage_rates = csv_data.select { |csv_row_data| csv_row_data[:compliance_parameter_name] == "measured_air_leakage_rate" }
+
+    measured_air_leakage_rates.each do |row|
+      row[:compliance_parameter_value] = 9.999
+    end
+
     csv_row_of_zn_two_wall_east_window_four_framing_type[:compliance_parameter_value] = zn_two_wall_east_window_four_updated_framing_type
 
     ### Run the code
     updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
+
+    assert_equal updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"], 9.999
 
     csv_row_of_perimeter_zn_one_updated = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_1".downcase)
 

@@ -100,6 +100,18 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
+
+    updated_cp_json_path = args_hash['updated_comp_param_json_file_path']
+
+    unless File.exist?(updated_cp_json_path)
+      raise "Test file not found: #{updated_cp_json_path}"
+    end
+
+    updated_cp_json = JSON.parse(File.read(updated_cp_json_path))
+
+    assert_equal updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"], 9.999
+
+
   end
 
   def test_good_argument_values_bad_csv

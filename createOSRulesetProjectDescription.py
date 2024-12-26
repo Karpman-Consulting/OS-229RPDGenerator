@@ -268,7 +268,7 @@ def main():
     subparsers2 = subparsers.add_parser("create_rpd", help="Read CSV with compliance parameters and validate")
     subparsers2.add_argument("--openstudio_model_path", type=str, required=True, help=" The OpenStudio model file path")
     subparsers2.add_argument("--weather_file_name", type=str, required=True, help="weather file name, the weather file must be placed in the weather directory")
-    subparsers2.add_argument("--csv_file_path", type=str, required=False, help="Csv file path with filled in compliance parameter values")
+    subparsers2.add_argument("--csv_file_path", type=str, required=True, help="Csv file path with filled in compliance parameter values")
     subparsers2.add_argument("--empty_comp_param_json_file_path", type=str,required=False, help="The path of the empty compliance parameter json (no updated values)")
     subparsers2.add_argument("--comp_param_json_file_path", type=str, required=False, help="The path of compliance parameter json with updated values")
 
@@ -337,7 +337,7 @@ def main():
                         reporting_measures_only=True):
 
                         print(f"""\n\n\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
-                        and have updated the compliance parameter json file #{empty_comp_param_json_file_path.name} with the values.\033[0m""")
+                        and have updated the compliance parameter json file {empty_comp_param_json_file_path.name} with the values.\033[0m""")
 
                     else:
                         print(
@@ -368,12 +368,12 @@ def main():
 
         shutil.copy(str(openstudio_model_path), path_to_move_osm_to)
 
-        csv_file_path = get_resource_path(
-            args.csv_file_path, 
-            default_path=f'{analysis_run_path(analysis_path)}/{openstudio_model_path.stem}.csv'
-        )
+        csv_file_path = args.csv_file_path
 
-        empty_comp_param_json_file_path = get_resource_path(args.empty_comp_param_json_file_path, 
+        if not Path(args.csv_file_path).exists():
+            raise FileNotFoundError(f"Could not find csv file at {args.csv_file_path}")
+
+        empty_comp_param_json_file_path = get_resource_path(args.empty_comp_param_json_file_path,
         default_path=f'{analysis_run_path(analysis_path)}/in.comp-param-empty.json')
 
         if args.comp_param_json_file_path is None:
@@ -384,20 +384,16 @@ def main():
 
         read_cp_csv_osw = json.dumps(
               return_open_studio_workflow_read_cp_csv(
-                  path_to_move_osm_to.as_posix(), 
+                  path_to_move_osm_to.as_posix(),
                   weather_file_name,
                   empty_comp_param_json_file_path.as_posix(),
                   comp_param_json_file_path.as_posix(),
-                  csv_file_path.as_posix(),
+                  csv_file_path,
               ),
               indent=4
         )
 
-        # Write the JSON string to a file
-        with open(osw_path.as_posix(), "w") as file:
-            file.write(read_cp_csv_osw)
-
-        if is_osw_success(osw_path.as_posix(), measures_only=False, reporting_measures_only=True):
+        if is_osw_success(read_cp_csv_osw, osw_path.as_posix(), measures_only=False, reporting_measures_only=True):
 
             print(f"""\n\n\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
             {openstudio_model_path.name} 
@@ -406,6 +402,7 @@ def main():
             Attempting to validate with rpd validator
             """)
             
+            breakpoint()
             # in.comp-param.json
             validate_rpd(comp_param_json_file_path.as_posix())
 
