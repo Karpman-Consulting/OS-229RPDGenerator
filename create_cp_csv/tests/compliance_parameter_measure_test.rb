@@ -9,8 +9,8 @@ require 'pry-byebug'
 
 class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
 
-  def number_of_arguments_and_argument_names
-    # TODO
+  def test_number_of_arguments_and_argument_names
+
     measure = CreateComplianceParameterCsvFromOsm.new
 
     # make an empty model
@@ -20,7 +20,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     assert_equal(2, arguments.size)
   end
 
-  def bad_argument_values
+  def test_bad_argument_values
     # create an instance of the measure
     measure = CreateComplianceParameterCsvFromOsm.new
 
@@ -49,7 +49,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(model, runner, argument_map)
+    measure.run(runner, argument_map)
     result = runner.result
 
   # show the output

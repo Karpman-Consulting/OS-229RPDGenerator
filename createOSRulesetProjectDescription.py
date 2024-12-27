@@ -504,7 +504,7 @@ def main():
             if result['passed']:
                 print(
                     f"""\033[92mThe compliance parameter json file {comp_param_json_file_path.name} 
-                for the model {openstudio_model_path.name} has passed validation.\033[0m"""
+                for the model {openstudio_model_path.name} has passed validation with details {result}.\033[0m"""
                 )
 
                 if create_add_cp_json_file_success(analysis_run_path(analysis_path).as_posix()):
@@ -514,12 +514,12 @@ def main():
                         )
                 else:
                     print(
-                            f"""\033[91m Failed to generate rpd.json!\033[0m"""
+                            """\033[91m Failed to generate rpd.json!\033[0m"""
                         )
             else:
                 print(
                     f"""\033[91mThe compliance parameter json file {comp_param_json_file_path.name} 
-                for the model {openstudio_model_path.name} has failed validation.\033[0m"""
+                for the model {openstudio_model_path.name} has failed validation with details {result}.\033[0m"""
                 )
 
         else:

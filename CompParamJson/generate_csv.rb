@@ -226,6 +226,23 @@ module GenerateTwoTwoNineCompParamJsonCsv
     },
   ]
 
+  def self.parse_value(value)
+    # Check if the value can be converted to a float
+    if (Float(value) rescue false)
+      return value.to_f
+    end
+
+    # Check if the value is a boolean
+    if value.downcase == 'true'
+      return true
+    elsif value.downcase == 'false'
+      return false
+    end
+
+    # Otherwise, treat it as a string
+    return value.to_s
+  end
+
   def self.produce_csv_data_from_comp_param_json(comp_param_json)
 
     add_parent_ids_and_path(comp_param_json)
@@ -293,7 +310,7 @@ module GenerateTwoTwoNineCompParamJsonCsv
           the_id = ids.find { |id| id == csv_row_data[:two_twenty_nine_group_id] }
           data_in_comp_param_json = find_by_id(comp_param_json, the_id)
 
-          updated_compliace_parameter_value = (Float(csv_row_data[:compliance_parameter_value]) rescue false) ? csv_row_data[:compliance_parameter_value].to_f : csv_row_data[:compliance_parameter_value].to_s
+          updated_compliace_parameter_value = parse_value(csv_row_data[:compliance_parameter_value])
 
           data_in_comp_param_json[compliance_parameter[:compliance_parameter]] = updated_compliace_parameter_value
         end

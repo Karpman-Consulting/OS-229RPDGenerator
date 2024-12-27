@@ -5,21 +5,100 @@ require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
+require 'pry-byebug'
+
+class TestSetValuesToEmpty < Minitest::Test
+  def test_set_values_to_empty_with_hash
+    input = {
+      "name" => "Building",
+      "id" => 123,
+      "details" => {
+        "location" => "City",
+        "id" => 456
+      }
+    }
+    expected_output = {
+      "name" => "",
+      "id" => 123,
+      "details" => {
+        "location" => "",
+        "id" => 456
+      }
+    }
+    assert_equal expected_output, ReadComplianceParameterCsvFromOsm.set_values_to_empty(input)
+  end
+
+  def test_set_values_to_empty_with_array
+    input = [
+      {
+        "name" => "Building",
+        "id" => 123
+      },
+      {
+        "location" => "City",
+        "id" => 456
+      }
+    ]
+    expected_output = [
+      {
+        "name" => "",
+        "id" => 123
+      },
+      {
+        "location" => "",
+        "id" => 456
+      }
+    ]
+    assert_equal expected_output, ReadComplianceParameterCsvFromOsm.set_values_to_empty(input)
+  end
+
+  def test_set_values_to_empty_with_nested_array
+    input = {
+      "name" => "Building",
+      "id" => 123,
+      "details" => [
+        {
+          "location" => "City",
+          "id" => 456
+        },
+        {
+          "location" => "Town",
+          "id" => 789
+        }
+      ]
+    }
+    expected_output = {
+      "name" => "",
+      "id" => 123,
+      "details" => [
+        {
+          "location" => "",
+          "id" => 456
+        },
+        {
+          "location" => "",
+          "id" => 789
+        }
+      ]
+    }
+    assert_equal expected_output, ReadComplianceParameterCsvFromOsm.set_values_to_empty(input)
+  end
+end
 
 class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
 
-  def number_of_arguments_and_argument_names
-    # TODO
+  def test_number_of_arguments_and_argument_names
+
     measure = ReadComplianceParameterCsvFromOsm.new
 
     # make an empty model
     model = OpenStudio::Model::Model.new
 
     arguments = measure.arguments(model)
-    assert_equal(2, arguments.size)
+    assert_equal(3, arguments.size)
   end
 
-  def bad_argument_values
+  def test_bad_argument_values
     # create an instance of the measure
     measure = ReadComplianceParameterCsvFromOsm.new
 
@@ -36,6 +115,8 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
 
     # create hash of argument values
     args_hash = {}
+    args_hash['empty_comp_param_json_file_path'] = ''
+    args_hash['updated_comp_param_json_file_path'] = ''
     args_hash['csv_file_path'] = ''
 
     # populate argument with specified hash value if specified
@@ -48,7 +129,7 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
     end
 
     # run the measure
-    measure.run(model, runner, argument_map)
+    measure.run(runner, argument_map)
     result = runner.result
 
     # show the output
