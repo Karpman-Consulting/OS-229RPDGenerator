@@ -8,7 +8,6 @@ require 'csv'
 require 'open3'
 #require_relative '../CompParamJson/generate_csv'
 require_relative './parse_data_from_osm/parse_osm_additional_properties'
-### TODO rename everything - is_229_compliance_parameter as per Jacksons request
 
 # start the measure
 class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
