@@ -4,7 +4,7 @@ import json
 from pathlib import Path, WindowsPath
 import os
 import shutil
-from rpdvalidator import validate_rpd
+from rpdvalidator.validate import schema_validate
 
 
 def return_openstudio_workflow_simulate_model_and_add_analysis_outputs(
@@ -172,10 +172,22 @@ def create_add_cp_json_file_success(analysis_run_path):
         )
         return True
     except subprocess.CalledProcessError:
-        print(
-            f"Failed to run the command createRulesetProjectDescriptopm --add_cp in {analysis_run_path}"
-        )
         return False
+
+
+def remove_output_object(json_file_path):
+    # Read the JSON file
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    # Remove the 'output' object if it exists
+    for description in data.get("ruleset_model_descriptions", []):
+        if "output" in description:
+            del description["output"]
+
+    # Write the modified JSON data back to the file
+    with open(json_file_path, 'w') as file:
+        json.dump(data, file, indent=4)
 
 
 def is_osw_success(
@@ -484,9 +496,32 @@ def main():
             Attempting to validate with rpd validator
             """
             )
-
+            remove_output_object(comp_param_json_file_path.as_posix())
             # in.comp-param.json
-            validate_rpd(comp_param_json_file_path.as_posix())
+
+            result = schema_validate(comp_param_json_file_path.as_posix())
+
+            if result['passed']:
+                print(
+                    f"""\033[92mThe compliance parameter json file {comp_param_json_file_path.name} 
+                for the model {openstudio_model_path.name} has passed validation.\033[0m"""
+                )
+
+                if create_add_cp_json_file_success(analysis_run_path(analysis_path).as_posix()):
+                    print(
+                            f"""\033[92m Successfully generated rpd.json at {analysis_run_path(analysis_path).as_posix()}
+                             \033[0m"""
+                        )
+                else:
+                    print(
+                            f"""\033[91m Failed to generate rpd.json!\033[0m"""
+                        )
+            else:
+                print(
+                    f"""\033[91mThe compliance parameter json file {comp_param_json_file_path.name} 
+                for the model {openstudio_model_path.name} has failed validation.\033[0m"""
+                )
+
         else:
             print(
                 f"""\033[91mFailed to read the CSV file with compliance parameters
