@@ -1,5 +1,5 @@
 
-!!! Contains x3 is_compliance_parameter_90_1_2019_prm
+!!! Contains x3 is_229_compliance_parameter
 
 OS:Version,
   {d0716cd3-0841-4378-9fe1-20a6011f91a7}, !- Handle
@@ -3631,7 +3631,7 @@ OS:Surface,
 OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c33}, !- Handle
   {05828367-1875-4ebe-8e0a-697eb2a5390a}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
+  is_229_compliance_parameter,  !- Feature Name 1
   Boolean,                                !- Feature Data Type 1
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
@@ -3765,7 +3765,7 @@ OS:SubSurface,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c37}, !- Handle
   {341403d3-224b-40da-b83b-4a4ed8e91245}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
+  is_229_compliance_parameter,  !- Feature Name 1
   Boolean,                                !- Feature Data Type 1
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2
@@ -3798,7 +3798,7 @@ OS:SubSurface,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c38}, !- Handle
   {3704c641-beb3-42c3-ae9d-904b77cb468b}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,  !- Feature Name 1
+  is_229_compliance_parameter,  !- Feature Name 1
   Boolean,                                !- Feature Data Type 1
   true,                                   !- Feature Value 1
   compliance_parameter_category,          !- Feature Name 2

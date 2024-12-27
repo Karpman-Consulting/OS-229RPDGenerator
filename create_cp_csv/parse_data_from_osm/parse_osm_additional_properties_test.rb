@@ -24,7 +24,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
 
   def test_get_object_type_of_additional_property
 
-    additional_properties = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
+    additional_properties = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_229_compliance_parameter") }
 
     zone_infiltration_object = additional_properties.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c22}' }
 
@@ -47,7 +47,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
     # OS:AdditionalProperties,
     # {b0c16963-bf29-4919-9474-4e647b365c23}, !- Handle
     # {30fea77d-d1c6-417c-9fd9-e5ee4bea434a}, !- Object Name
-    # is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+    # is_229_compliance_parameter,        !- Feature Name 1
     # Boolean,                                 !- Feature Data Type 1
     # true,                     !- Feature Value 1
     # compliance_parameter_category,        !- Feature Name 2
@@ -60,7 +60,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
     # Double,                                 !- Feature Data Type 4
     # ;                     !- Feature Value 4
 
-    additional_properties = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
+    additional_properties = @model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_229_compliance_parameter") }
 
     zone_infiltration_object_no_value = additional_properties.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c23}' }
 
@@ -78,7 +78,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
     #   OS:AdditionalProperties,
     # {b0c16963-bf29-4919-9474-4e647b365c24}, !- Handle
     # {1c7487fe-94e4-4b4b-924e-bc15951fc750}, !- Object Name
-    # is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+    # is_229_compliance_parameter,        !- Feature Name 1
     # Boolean,                                 !- Feature Data Type 1
     # true,                     !- Feature Value 1
     # compliance_parameter_category,        !- Feature Name 2
@@ -88,7 +88,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
     # String,                                 !- Feature Data Type 3
     # measured_air_leakage_rate; !- Feature Value 3
 
-    additional_properties = @model_bad_values.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
+    additional_properties = @model_bad_values.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_229_compliance_parameter") }
 
     zone_infiltration_object_no_value = additional_properties.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c24}' }
 
@@ -160,7 +160,7 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
   def test_is_additional_property_this_compliance_parameter?
 
-    compliance_parameters = @test_model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_compliance_parameter_90_1_2019_prm") }
+    compliance_parameters = @test_model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_229_compliance_parameter") }
 
     additional_property_of_subsurface_with_compliance_parameter = compliance_parameters.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c38}' }
 

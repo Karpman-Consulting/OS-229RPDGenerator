@@ -1519,7 +1519,7 @@ OS:Building,
 OS:AdditionalProperties,
     {b0c16963-bf29-4919-9474-4e647b365c33}, !- Handle
     {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
-    is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+    is_229_compliance_parameter,        !- Feature Name 1
     Boolean,                                 !- Feature Data Type 1
     true,                     !- Feature Value 1
     compliance_parameter_category,        !- Feature Name 2
@@ -1535,7 +1535,7 @@ OS:AdditionalProperties,
 OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c04}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1552,7 +1552,7 @@ OS:AdditionalProperties,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c03}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1568,7 +1568,7 @@ OS:AdditionalProperties,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c17}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1584,7 +1584,7 @@ OS:AdditionalProperties,
     OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c18}, !- Handle
   {f5bbce56-f6d7-4881-a015-17f31a661ded}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1600,7 +1600,7 @@ OS:AdditionalProperties,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c19}, !- Handle
   {93c390f3-3e3a-4e2c-b7ac-677b7c3a304e}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1617,7 +1617,7 @@ OS:AdditionalProperties,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c22}, !- Handle
   {631394ae-ffb7-4c0b-bf06-c90fdd4aaf0a}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
@@ -1634,7 +1634,7 @@ OS:AdditionalProperties,
   OS:AdditionalProperties,
   {b0c16963-bf29-4919-9474-4e647b365c23}, !- Handle
   {30fea77d-d1c6-417c-9fd9-e5ee4bea434a}, !- Object Name
-  is_compliance_parameter_90_1_2019_prm,        !- Feature Name 1
+  is_229_compliance_parameter,        !- Feature Name 1
   Boolean,                                 !- Feature Data Type 1
   true,                     !- Feature Value 1
   compliance_parameter_category,        !- Feature Name 2
