@@ -4,6 +4,7 @@ import json
 from pathlib import Path, WindowsPath
 import os
 import shutil
+from pprint import pprint
 from rpdvalidator.validate import schema_validate
 
 
@@ -499,9 +500,13 @@ def main():
             remove_output_object(comp_param_json_file_path.as_posix())
             # in.comp-param.json
 
-            result = schema_validate(comp_param_json_file_path.as_posix())
+            if not comp_param_json_file_path.exists():
+                raise FileNotFoundError(f"Could not find in.comp-param.json at {comp_param_json_file_path.as_posix()}")
+
+            result = schema_validate(json.load(open(comp_param_json_file_path.as_posix(), 'r')))
 
             if result['passed']:
+
                 print(
                     f"""\033[92mThe compliance parameter json file {comp_param_json_file_path.name} 
                 for the model {openstudio_model_path.name} has passed validation with details {result}.\033[0m"""
@@ -517,10 +522,16 @@ def main():
                             """\033[91m Failed to generate rpd.json!\033[0m"""
                         )
             else:
+
                 print(
                     f"""\033[91mThe compliance parameter json file {comp_param_json_file_path.name} 
-                for the model {openstudio_model_path.name} has failed validation with details {result}.\033[0m"""
+                for the model {openstudio_model_path.name} 
+                at path {analysis_run_path(analysis_path).as_posix()} 
+                has failed validation with {len(result['errors'])} please see below \n\n.\033[0m"""
                 )
+
+                for index, error in enumerate(result['errors']):
+                    print(f"\033[91m-{index+1}. {error}\033[0m""\n")
 
         else:
             print(
