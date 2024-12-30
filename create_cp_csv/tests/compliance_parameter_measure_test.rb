@@ -5,7 +5,7 @@ require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
-require 'pry-byebug'
+
 
 class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
 

@@ -74,7 +74,10 @@ entered in step 2.
 
 
 
-## Tests, run all tests by running "rake"
+
+### Development
+
+Tests - run all tests by running "rake"
 
 ## Disclaimer Notice
 Acknowledgment: This material is based upon work supported by the U.S. Department of Energy’s Office of Energy Efficiency and Renewable Energy (EERE) under the Building Technologies Office - DE-FOA-0002813 - Bipartisan Infrastructure Law Resilient and Efficient Codes Implementation.

@@ -1260,7 +1260,9 @@
     }
   ],
   "weather": {
-    "data_source_type": "HISTORIC_AGGREGATION"
+    "data_source_type": "HISTORIC_AGGREGATION",
+    "climate_zone": "CZ0A"
+
   },
   "calendar": {}
 }

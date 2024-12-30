@@ -1,6 +1,6 @@
 require 'json'
 require_relative '../CompParamJson/generate_csv'
-require 'pry-byebug'
+
 
 comp_param_json_file_path = ARGV[0]
 csv_data_file_path = ARGV[1]

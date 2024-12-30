@@ -5,7 +5,7 @@ require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
-require 'pry-byebug'
+
 
 class TestSetValuesToEmpty < Minitest::Test
   def test_set_values_to_empty_with_hash

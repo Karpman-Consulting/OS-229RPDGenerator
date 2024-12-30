@@ -1,15 +1,23 @@
 require 'json'
 require 'csv'
 require 'jsonpath'
+
 module GenerateTwoTwoNineCompParamJsonCsv
   ##
   REQUIRED_COMPLIANCE_PARAMETERS = [
   ### com_param_path is taken from comp param file
   ### Project and building
   {
+    "compliance_parameter_category": "weather",
+    "compliance_parameter": "climate_zone",
+    "comp_param_path":'$.weather',
+    "compliance_parameter_has_no_id": true
+  },
+  {
     "compliance_parameter_category": "ruleset_project_description",
     "compliance_parameter": "compliance_path",
-    "comp_param_path":'$.ruleset_model_descriptions[0]'
+    "comp_param_path":'$.',
+    "compliance_parameter_has_no_id": true
   },
   {
     "compliance_parameter_category": "ruleset_project_description",
@@ -243,6 +251,13 @@ module GenerateTwoTwoNineCompParamJsonCsv
     return value.to_s
   end
 
+  def self.set_value_using_jsonpath(json_data, json_path, new_value)
+    ## See https://www.rubydoc.info/gems/jsonpath/1.1.5
+    modified_json_data = JsonPath.for(json_data).gsub(json_path) { |value| new_value }.to_hash
+
+    json_data.replace(modified_json_data)
+  end
+
   def self.produce_csv_data_from_comp_param_json(comp_param_json)
 
     add_parent_ids_and_path(comp_param_json)
@@ -251,7 +266,9 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
     # Process compliance parameters
     REQUIRED_COMPLIANCE_PARAMETERS.each do |compliance_parameter|
-      ids = JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
+
+      ids = compliance_parameter[:compliance_parameter_has_no_id] ? [""]
+      : JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
       #values = JsonPath.new("#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}").on(comp_param_json)
 
       if ids.empty?
@@ -267,8 +284,8 @@ module GenerateTwoTwoNineCompParamJsonCsv
       ids.each_with_index do |id, index|
         csv_data << {
           two_twenty_nine_group_id: id,
-          two_twenty_nine_parent_type: self.get_last_part_json_path(two_twenty_nine_type[index]),
-          two_twenty_nine_parent_id: self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
+          two_twenty_nine_parent_type: compliance_parameter[:compliance_parameter_has_no_id] ? "": self.get_last_part_json_path(two_twenty_nine_type[index]),
+          two_twenty_nine_parent_id: compliance_parameter[:compliance_parameter_has_no_id] ? "": self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
           compliance_parameter_category: compliance_parameter_category,
           compliance_parameter_name: compliance_parameter[:compliance_parameter],
           ### NOTE do not read values from comp param empty json
@@ -283,6 +300,7 @@ module GenerateTwoTwoNineCompParamJsonCsv
   def self.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
 
     csv_data.each_with_index do |csv_row_data,index|
+
 
       if csv_row_data[:compliance_parameter_name].nil? or csv_row_data[:two_twenty_nine_group_id].nil?
         raise ArgumentError, "Either compliance parameter name or two_twenty_nine_group_id are
@@ -299,20 +317,30 @@ module GenerateTwoTwoNineCompParamJsonCsv
         end
         ## Ignore if em,pty compliance parameter value
         if (csv_row_data[:compliance_parameter_name].is_a?(String) && csv_row_data[:compliance_parameter_name].empty?)
-
+          print("### #{csv_row_data[:compliance_parameter_name]} Compliance parameter value is empty")
           next
         end
 
-        ids = JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
+        unless compliance_parameter[:compliance_parameter_has_no_id]
 
-        if ids.include?(csv_row_data[:two_twenty_nine_group_id])
+          ids = JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
 
-          the_id = ids.find { |id| id == csv_row_data[:two_twenty_nine_group_id] }
-          data_in_comp_param_json = find_by_id(comp_param_json, the_id)
+          if ids.include?(csv_row_data[:two_twenty_nine_group_id])
+
+            the_id = ids.find { |id| id == csv_row_data[:two_twenty_nine_group_id] }
+            data_in_comp_param_json = find_by_id(comp_param_json, the_id)
+
+            updated_compliace_parameter_value = parse_value(csv_row_data[:compliance_parameter_value])
+
+            data_in_comp_param_json[compliance_parameter[:compliance_parameter]] = updated_compliace_parameter_value
+          end
+        else
 
           updated_compliace_parameter_value = parse_value(csv_row_data[:compliance_parameter_value])
 
-          data_in_comp_param_json[compliance_parameter[:compliance_parameter]] = updated_compliace_parameter_value
+          self.set_value_using_jsonpath(comp_param_json, "#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}",
+          updated_compliace_parameter_value)
+
         end
       end
     end

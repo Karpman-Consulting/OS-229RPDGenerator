@@ -519,7 +519,8 @@ def main():
                         )
                 else:
                     print(
-                            """\033[91m Failed to generate rpd.json!\033[0m"""
+                            f"""\033[91m Failed to generate rpd.json! 
+                            at {analysis_run_path(analysis_path).as_posix()}\033[0m"""
                         )
             else:
 
@@ -527,7 +528,7 @@ def main():
                     f"""\033[91mThe compliance parameter json file {comp_param_json_file_path.name} 
                 for the model {openstudio_model_path.name} 
                 at path {analysis_run_path(analysis_path).as_posix()} 
-                has failed validation with {len(result['errors'])} please see below \n\n.\033[0m"""
+                has failed validation with {len(result['errors'])} errors, please see below \n\n.\033[0m"""
                 )
 
                 for index, error in enumerate(result['errors']):
