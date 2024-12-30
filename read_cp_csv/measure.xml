@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>read_compliance_parameter_csv_from_osm</name>
   <uid>03cd339f-4c29-4f65-9256-84850c6b1975</uid>
-  <version_id>84f1dd8d-9716-4f23-bbfc-194ed6e2d7b7</version_id>
-  <version_modified>2024-12-20T20:53:37Z</version_modified>
+  <version_id>1169e741-5626-413e-b164-5a4cc48793c7</version_id>
+  <version_modified>2024-12-30T14:15:07Z</version_modified>
   <xml_checksum>44311B6C</xml_checksum>
   <class_name>ReadComplianceParameterCsvFromOsm</class_name>
   <display_name>ReadComplianceParameterCsvFromOsm</display_name>
@@ -102,7 +102,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EAAF8CF2</checksum>
+      <checksum>345BA102</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -138,13 +138,13 @@
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-updated_success.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
-      <checksum>964320CD</checksum>
+      <checksum>4628DA26</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm-empty.csv</filename>
       <filetype>csv</filetype>
       <usage_type>test</usage_type>
-      <checksum>B418CD6E</checksum>
+      <checksum>78E31C90</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm-empty_bad.csv</filename>
@@ -156,19 +156,31 @@
       <filename>comp_param_two_building_segments.csv</filename>
       <filetype>csv</filetype>
       <usage_type>test</usage_type>
-      <checksum>C01B6968</checksum>
+      <checksum>0B3485FC</checksum>
     </file>
     <file>
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>6D87211F</checksum>
+      <checksum>A5629F48</checksum>
     </file>
     <file>
       <filename>set_building_segments_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>07F0B7BE</checksum>
+      <checksum>1EA5FEFE</checksum>
+    </file>
+    <file>
+      <filename>updated_json_values_empty</filename>
+      <filetype></filetype>
+      <usage_type>test</usage_type>
+      <checksum>6611AF9B</checksum>
+    </file>
+    <file>
+      <filename>updated_json_values_empty.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8BD12026</checksum>
     </file>
   </files>
 </measure>

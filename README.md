@@ -67,11 +67,14 @@ Where:
 
 --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" ie a weather file places in the directory weather
 
---csv_file_path, the absolute path to the csv where values in 2. where entered ie "C:\Users\AntonSzilasi\Documents\OpenStudio20RPD20Generator\Test_E1\run\Test_E1.csv"
+--csv_file_path, the absolute path to the csv were values in 2. where entered ie "C:\Users\AntonSzilasi\Documents\OpenStudio20RPD20Generator\Test_E1\run\Test_E1.csv"
 
 If successful this command will produce a validated rpd.json of the OpenStudio model and the compliance parameter values
 entered in step 2.
 
+
+
+## Tests, run all tests by running "rake"
 
 ## Disclaimer Notice
 Acknowledgment: This material is based upon work supported by the U.S. Department of Energy’s Office of Energy Efficiency and Renewable Energy (EERE) under the Building Technologies Office - DE-FOA-0002813 - Bipartisan Infrastructure Law Resilient and Efficient Codes Implementation.
