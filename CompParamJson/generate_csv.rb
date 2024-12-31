@@ -81,11 +81,12 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter": "air_filter_merv_rating",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
-  {
-    "compliance_parameter_category":"heating_ventilation_airconditioning_system",
-    "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
-  },
+  ### TODO question for JACKSON
+  # {
+  #   "compliance_parameter_category":"heating_ventilation_airconditioning_system",
+  #   "compliance_parameter": "status_type",
+  #   "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
+  # },
   {
     "compliance_parameter_category":"zone",
     "compliance_parameter": "aggregation_factor",
@@ -269,11 +270,8 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
       ids = compliance_parameter[:compliance_parameter_has_no_id] ? [""]
       : JsonPath.new("#{compliance_parameter[:comp_param_path]}.id").on(comp_param_json)
-      #values = JsonPath.new("#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}").on(comp_param_json)
 
       if ids.empty?
-        ## Print this produces additional output, which means that we cant parse the json when it is sent back to the measure
-        #puts "### Could not get ids #{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}"
         next
       end
 
@@ -283,9 +281,9 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
       ids.each_with_index do |id, index|
         csv_data << {
-          two_twenty_nine_group_id: id,
-          two_twenty_nine_parent_type: compliance_parameter[:compliance_parameter_has_no_id] ? "": self.get_last_part_json_path(two_twenty_nine_type[index]),
-          two_twenty_nine_parent_id: compliance_parameter[:compliance_parameter_has_no_id] ? "": self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
+          two_twenty_nine_group_id: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a" : id,
+          two_twenty_nine_parent_type: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a": self.get_last_part_json_path(two_twenty_nine_type[index]),
+          two_twenty_nine_parent_id: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a": self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
           compliance_parameter_category: compliance_parameter_category,
           compliance_parameter_name: compliance_parameter[:compliance_parameter],
           ### NOTE do not read values from comp param empty json
@@ -301,10 +299,9 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
     csv_data.each_with_index do |csv_row_data,index|
 
-
-      if csv_row_data[:compliance_parameter_name].nil? or csv_row_data[:two_twenty_nine_group_id].nil?
-        raise ArgumentError, "Either compliance parameter name or two_twenty_nine_group_id are
-        nil of a csv row they cannot be"
+      if csv_row_data[:compliance_parameter_name].nil?
+        raise ArgumentError, "Either compliance parameter name is
+        nil at csv row #{index+1} it cannot be"
       end
 
       if csv_row_data[:compliance_parameter_value].nil?
@@ -315,6 +312,12 @@ module GenerateTwoTwoNineCompParamJsonCsv
         if csv_row_data[:compliance_parameter_name] != compliance_parameter[:compliance_parameter]
           next
         end
+
+        if !csv_row_data[:compliance_parameter_has_no_id] &&  csv_row_data[:two_twenty_nine_group_id].nil?
+          raise ArgumentError, "two_twenty_nine_group_id is
+          nil at csv row #{index+1} it cannot be"
+        end
+
         ## Ignore if em,pty compliance parameter value
         if (csv_row_data[:compliance_parameter_name].is_a?(String) && csv_row_data[:compliance_parameter_name].empty?)
           print("### #{csv_row_data[:compliance_parameter_name]} Compliance parameter value is empty")
@@ -337,6 +340,8 @@ module GenerateTwoTwoNineCompParamJsonCsv
         else
 
           updated_compliace_parameter_value = parse_value(csv_row_data[:compliance_parameter_value])
+
+          #if csv_row_data[:compliance_parameter_name] == "compliance_path" then binding.pry end
 
           self.set_value_using_jsonpath(comp_param_json, "#{compliance_parameter[:comp_param_path]}.#{compliance_parameter[:compliance_parameter]}",
           updated_compliace_parameter_value)

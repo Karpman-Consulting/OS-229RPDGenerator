@@ -1,5 +1,7 @@
 {
+  "compliance_path": "CODE_COMPLIANT",
   "id": "project description root",
+  "data_timestamp": "2024-12-31T01:39Z",
   "ruleset_model_descriptions": [
     {
       "type": "PROPOSED",

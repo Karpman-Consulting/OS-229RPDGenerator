@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../generate_csv'
+require 'pry-byebug'
 
 class GenerateCsvDataTest < Minitest::Test
 
@@ -15,7 +16,7 @@ class GenerateCsvDataTest < Minitest::Test
     @empty_cp_json_e1 = JSON.parse(File.read(@empty_cp_json_file_path_e1))
   end
 
-  def generate_comp_param_empty_csv
+  def test_generate_comp_param_empty_csv
     ## Writes out csv for inspection
     csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
@@ -105,6 +106,8 @@ class GenerateCsvDataTest < Minitest::Test
 
     ### Run the code
     updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
+
+    File.write('./updated_output.json', JSON.pretty_generate(updated_cp_json))
 
     assert_equal "CZ_111" ,updated_cp_json.dig('weather',"climate_zone")
 
