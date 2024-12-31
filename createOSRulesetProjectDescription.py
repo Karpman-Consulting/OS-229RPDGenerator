@@ -4,7 +4,6 @@ import json
 from pathlib import Path, WindowsPath
 import os
 import shutil
-from pprint import pprint
 from rpdvalidator.validate import schema_validate
 
 
