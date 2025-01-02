@@ -239,3 +239,5 @@ HTGSETP_SCH_NO_OPTIMUM_W_SB,schedules,Only model description,schedule,is_modifie
 CLGSETP_SCH_NO_OPTIMUM,schedules,Only model description,schedule,is_modified_for_workaround,
 CLGSETP_SCH_NO_OPTIMUM_W_SB,schedules,Only model description,schedule,is_modified_for_workaround,
 SHWSYS1 PUMP,pumps,Only model description,pump,impeller_efficiency,
+n/a,n/a,n/a,weather,climate_zone,CZ5B
+n/a,n/a,n/a,ruleset_project_description,compliance_path,CODE_COMPLIANT

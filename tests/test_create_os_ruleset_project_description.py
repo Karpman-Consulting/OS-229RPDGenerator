@@ -2,7 +2,6 @@ import unittest
 import subprocess
 import os
 import shutil
-from parameterized import parameterized
 
 class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
 
@@ -56,8 +55,11 @@ class TestCreateOSRulesetProjectDescription_E1(BaseTestCreateOSRulesetProjectDes
 
     def setUp(self):
         super().setUp()
+        self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
         self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_E1.osm')
         self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_E1', 'run','Test_E1_filled.csv' )
+
+        print(f'Using openstudio model at: {self.openstudio_model_path}')
 
     def test_create_cp_csv(self):
         self.create_cp_csv()

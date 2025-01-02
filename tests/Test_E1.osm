@@ -2161,7 +2161,7 @@ OS:Sizing:Zone,
   12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  40,                                     !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2391,7 +2391,7 @@ OS:Sizing:Zone,
   12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
   8.33333333333333,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2514,7 +2514,7 @@ OS:Sizing:Zone,
   12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  40,                                     !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2637,7 +2637,7 @@ OS:Sizing:Zone,
   12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  40,                                     !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2760,7 +2760,7 @@ OS:Sizing:Zone,
   12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  40,                                     !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -3218,23 +3218,6 @@ OS:Surface,
   0, 33.2738, 3.9624;                     !- X,Y,Z Vertex 4 {m}
 
 OS:Surface,
-  {67a5d71a-af0b-45f5-9f71-8d4df94890e2}, !- Handle
-  Perimeter_Zone_3_Footing,               !- Name
-  Wall,                                   !- Surface Type
-  {bc666e05-b635-4240-a145-592fe76f70e5}, !- Construction Name
-  {66f87cc5-9990-444d-a08a-cd9e10a6fac4}, !- Space Name
-  Ground,                                 !- Outside Boundary Condition
-  ,                                       !- Outside Boundary Condition Object
-  NoSun,                                  !- Sun Exposure
-  NoWind,                                 !- Wind Exposure
-  ,                                       !- View Factor to Ground
-  ,                                       !- Number of Vertices
-  49.911, 33.2738, -0.6096,               !- X,Y,Z Vertex 1 {m}
-  49.911, 33.2738, 0,                     !- X,Y,Z Vertex 2 {m}
-  0, 33.2738, 0,                          !- X,Y,Z Vertex 3 {m}
-  0, 33.2738, -0.6096;                    !- X,Y,Z Vertex 4 {m}
-
-OS:Surface,
   {ffda940a-f216-42b2-bff0-0a25627b2299}, !- Handle
   Perimeter_Zone_3_Wall_West,             !- Name
   Wall,                                   !- Surface Type
@@ -3352,23 +3335,6 @@ OS:Surface,
   0, 33.2738, 0,                          !- X,Y,Z Vertex 2 {m}
   0, 0, 0,                                !- X,Y,Z Vertex 3 {m}
   0, 0, 3.9624;                           !- X,Y,Z Vertex 4 {m}
-
-OS:Surface,
-  {8c20e009-56cf-401f-93ea-66970fa31a8d}, !- Handle
-  Perimeter_Zone_4_Wall_West_Footing,     !- Name
-  Wall,                                   !- Surface Type
-  {bc666e05-b635-4240-a145-592fe76f70e5}, !- Construction Name
-  {ca6bb0e3-a3ce-402b-805d-ec2352328d32}, !- Space Name
-  Ground,                                 !- Outside Boundary Condition
-  ,                                       !- Outside Boundary Condition Object
-  NoSun,                                  !- Sun Exposure
-  NoWind,                                 !- Wind Exposure
-  ,                                       !- View Factor to Ground
-  ,                                       !- Number of Vertices
-  0, 33.2738, -0.6096,                    !- X,Y,Z Vertex 1 {m}
-  0, 33.2738, 0,                          !- X,Y,Z Vertex 2 {m}
-  0, 0, 0,                                !- X,Y,Z Vertex 3 {m}
-  0, 0, -0.6096;                          !- X,Y,Z Vertex 4 {m}
 
 OS:SubSurface,
   {eb74d6f6-3cad-429e-9592-0fe748da6b0e}, !- Handle
@@ -4083,7 +4049,7 @@ OS:SpaceInfiltration:DesignFlowRate,
   {3d124017-17b2-4c54-aac9-ece721b6b153}, !- Schedule Name
   Flow/Area,                              !- Design Flow Rate Calculation Method
   0,                                      !- Design Flow Rate {m3/s}
-  40.90924,                               !- Flow per Space Floor Area {m3/s-m2}
+  0.0004090924,                           !- Flow per Space Floor Area {m3/s-m2}
   0,                                      !- Flow per Exterior Surface Area {m3/s-m2}
   0,                                      !- Air Changes per Hour {1/hr}
   1,                                      !- Constant Term Coefficient
@@ -5767,9 +5733,9 @@ OS:Construction,
   {3fc08f74-62c5-4870-83fc-20105a63a087}, !- Handle
   Roof Type 1,                            !- Name
   {820db3b7-be36-4cf9-8f33-7a0da78817a6}, !- Surface Rendering Name
-  {21dc6163-5a54-48eb-9574-c3cc60ae2608}, !- Layer 1
+  {47f23054-8241-4cf1-8619-d2d5fc46eafe}, !- Layer 1
   {04c6b0cc-2c27-4505-8a4a-34369e9bb3b6}, !- Layer 2
-  {47f23054-8241-4cf1-8619-d2d5fc46eafe}; !- Layer 3
+  {21dc6163-5a54-48eb-9574-c3cc60ae2608}; !- Layer 3
 
 OS:Rendering:Color,
   {820db3b7-be36-4cf9-8f33-7a0da78817a6}, !- Handle
@@ -10605,4 +10571,109 @@ OS:Rendering:Color,
   135,                                    !- Rendering Red Value
   250,                                    !- Rendering Green Value
   206;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {a4836863-3636-474b-a460-588f57b0d4f4}, !- Handle
+  Rendering Color 162,                    !- Name
+  147,                                    !- Rendering Red Value
+  219,                                    !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {4c474771-2456-4671-b335-8a1755e86b8b}, !- Handle
+  Rendering Color 163,                    !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  100;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {dcbac6bb-ec60-4fc8-957c-49000925b336}, !- Handle
+  Rendering Color 164,                    !- Name
+  169,                                    !- Rendering Red Value
+  169,                                    !- Rendering Green Value
+  169;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {6c0d7b7d-b957-40dd-b390-3958360182fb}, !- Handle
+  Rendering Color 165,                    !- Name
+  112,                                    !- Rendering Red Value
+  144,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {f7e9c150-895d-4a6d-ab93-0ec04f87fa2f}, !- Handle
+  Rendering Color 166,                    !- Name
+  218,                                    !- Rendering Red Value
+  214,                                    !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {d1047732-6f5d-437d-a514-449afda57f52}, !- Handle
+  Rendering Color 167,                    !- Name
+  240,                                    !- Rendering Red Value
+  128,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {d29cef15-7a10-4d62-b3a2-ee264dd8f7da}, !- Handle
+  Rendering Color 168,                    !- Name
+  255,                                    !- Rendering Red Value
+  245,                                    !- Rendering Green Value
+  240;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {4dc9b7a8-81bc-405d-a2bc-bdcbc61e11ad}, !- Handle
+  Rendering Color 169,                    !- Name
+  255,                                    !- Rendering Red Value
+  122,                                    !- Rendering Green Value
+  160;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {0cc7844f-ed6c-4026-98fc-b1ceb10e16ce}, !- Handle
+  Rendering Color 170,                    !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c7d97611-efb2-4d4b-b144-3ccbad6e3ad0}, !- Handle
+  Rendering Color 171,                    !- Name
+  220,                                    !- Rendering Red Value
+  60,                                     !- Rendering Green Value
+  20;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {54855c4e-684c-4469-a73a-d41fcf709211}, !- Handle
+  Rendering Color 172,                    !- Name
+  135,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  206;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7c57f6ec-e7ff-431d-bf7b-6b0d78110ad4}, !- Handle
+  Rendering Color 173,                    !- Name
+  135,                                    !- Rendering Red Value
+  235,                                    !- Rendering Green Value
+  206;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {be845e95-9cd0-4173-b368-fb91b906cca1}, !- Handle
+  Rendering Color 174,                    !- Name
+  255,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e13e31b8-cb28-4089-b2fa-e2ee0cf48af8}, !- Handle
+  Rendering Color 175,                    !- Name
+  165,                                    !- Rendering Red Value
+  42,                                     !- Rendering Green Value
+  42;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {b593eb38-87a0-4bb2-af61-226985eb92d7}, !- Handle
+  Rendering Color 176,                    !- Name
+  250,                                    !- Rendering Red Value
+  114,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
 
