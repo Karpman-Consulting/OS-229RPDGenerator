@@ -54,8 +54,6 @@ class GenerateCsvDataTest < Minitest::Test
 
     csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json)
 
-    new_status_type = "a_test_of_status_type_update"
-
     new_status_type_two = "a_test_of_status_type_update2"
 
     new_zone_aggregation_factor = 0.7
@@ -77,15 +75,19 @@ class GenerateCsvDataTest < Minitest::Test
 
     csv_row_of_psz_ac_3 = csv_data.select { |csv_row_data| csv_row_data[:two_twenty_nine_group_id] == "PSZ-AC:3" &&
     csv_row_data[:compliance_parameter_name].downcase == "status_type" }
+
+    assert !csv_row_of_psz_ac_3.empty?
     ## In this case there are multiple complilance parameter values
     csv_row_of_psz_ac_3.each do |row|
       row[:compliance_parameter_value] = new_status_type_two
     end
 
     csv_row_of_psz_ac_3_fan = csv_data.find { |csv_row_data| csv_row_data[:two_twenty_nine_group_id] == "PSZ-AC:3 FAN-fansystem" &&
-    csv_row_data[:compliance_parameter_name].downcase == "status_type" }
+    csv_row_data[:compliance_parameter_name].downcase == "air_filter_merv_rating" }
 
-    csv_row_of_psz_ac_3_fan[:compliance_parameter_value] = new_status_type
+    assert !csv_row_of_psz_ac_3_fan.nil?
+
+    csv_row_of_psz_ac_3_fan[:compliance_parameter_value] = 'new_fan_system_air_filter_merv_rating'
 
     ### Update PERIMETER_ZN_2_WALL_EAST_WINDOW_4 framing_type
 
@@ -107,8 +109,6 @@ class GenerateCsvDataTest < Minitest::Test
     ### Run the code
     updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
 
-    File.write('./updated_output.json', JSON.pretty_generate(updated_cp_json))
-
     assert_equal "CZ_111" ,updated_cp_json.dig('weather',"climate_zone")
 
     assert_equal updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"], 9.999
@@ -123,7 +123,7 @@ class GenerateCsvDataTest < Minitest::Test
 
     csv_row_of_asz_ac_fan = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PSZ-AC:3 FAN-fansystem")
 
-    assert_equal new_status_type, csv_row_of_asz_ac_fan["status_type"]
+    assert_equal 'new_fan_system_air_filter_merv_rating', csv_row_of_asz_ac_fan['air_filter_merv_rating']
 
     zn_two_wall_east_window_four = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
 

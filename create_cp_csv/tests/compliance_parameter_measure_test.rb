@@ -70,7 +70,7 @@ class CreateComplianceParameterCsvFromOsmTest < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    test_file = "#{File.dirname(__FILE__)}/../../test_files/ASHRAE901_OfficeSmall_STD2019_Denver.osm"
+    test_file = "#{File.dirname(__FILE__)}/ASHRAE901_OfficeSmall_STD2019_Denver.osm"
 
     unless File.exist?(test_file)
       # download the test files if they are not present

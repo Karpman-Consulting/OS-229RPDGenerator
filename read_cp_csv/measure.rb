@@ -107,6 +107,24 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
     data
   end
 
+  def remove_empty_keys(json_data)
+    case json_data
+    when Hash
+      json_data.each do |key, value|
+        if value.nil? || (value.respond_to?(:empty?) && value.empty?)
+          json_data.delete(key)
+        else
+          remove_empty_keys(value)
+        end
+      end
+    when Array
+      json_data.each do |item|
+        remove_empty_keys(item)
+      end
+    end
+    json_data
+  end
+
   # define what happens when the measure is run
   def run(runner, user_arguments)
     super(runner, user_arguments)
@@ -135,11 +153,13 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
 
     csv_data = ReadComplianceParameterCsvFromOsm.read_comp_param_csv_data(csv_file_path,runner)
 
-    # comp_param_json = SetBuildingSegements.read_csv_and_set_building_segments_in_comp_param_json(csv_data,
-    # ReadComplianceParameterCsvFromOsm.set_values_to_empty(JSON.parse(File.read(empty_comp_param_json_file_path))))
-
     comp_param_json = SetBuildingSegements.read_csv_and_set_building_segments_in_comp_param_json(csv_data,
-    JSON.parse(File.read(empty_comp_param_json_file_path)))
+    ReadComplianceParameterCsvFromOsm.set_values_to_empty(JSON.parse(File.read(empty_comp_param_json_file_path))))
+
+    # comp_param_json = SetBuildingSegements.read_csv_and_set_building_segments_in_comp_param_json(csv_data,
+    # JSON.parse(File.read(empty_comp_param_json_file_path)))
+    #
+    comp_param_json = self.remove_empty_keys(comp_param_json)
 
     set_comp_param_script_path = File.expand_path('set_comp_param_json_from_csv_data.rb', __dir__)
 

@@ -1,6 +1,6 @@
 229 data group id,229 parent type,229 parent id,compliance parameter category,compliance parameter name,compliance parameter value
-"","","",weather,climate_zone,""
-"","","",ruleset_project_description,compliance_path,""
+n/a,n/a,n/a,weather,climate_zone,""
+n/a,n/a,n/a,ruleset_project_description,compliance_path,""
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,""
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,measured_infiltration_pressure_difference,""
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,is_measured_infiltration_based_on_test,""
