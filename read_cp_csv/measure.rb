@@ -12,6 +12,17 @@ require_relative './set_building_segments'
 # start the measure
 class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
 
+  REQUIRED_DATA_ELEMENTS = [
+    'id',
+    'data_source_type',
+    'data_timestamp',
+    'loop',
+    'loop_or_piping',
+    'cooling_loop',
+    'distribution_system',
+    'served_by_distribution_system'
+]
+
   def self.remove_backticks_from_headers(headers)
     ### Sometimes the headers have backticks in them, so that the headers look like this
     ### ["229 data group id``", "229 parent type", "229 parent id",
@@ -90,7 +101,7 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
   def self.set_values_to_empty(data)
     if data.is_a?(Hash)
       data.each do |key, value|
-        if !key.include?("id") and !key.include?("data_timestamp") and !key.include?("data_source_type")
+        if not ReadComplianceParameterCsvFromOsm::REQUIRED_DATA_ELEMENTS.include?(key)
           if value.is_a?(Hash) || value.is_a?(Array)
             set_values_to_empty(value)
           else
