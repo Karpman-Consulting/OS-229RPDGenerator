@@ -10,7 +10,7 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_E1.osm')
         self.weather_file_name = 'USA_CO_Denver.Intl.AP.725650_TMY3.epw'
         self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
-        self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_E1', 'run','Test_E1_filled.csv' )
+        self.filled_csv_file_path = ""
         self.weather_file_name = 'USA_CO_Denver.Intl.AP.725650_TMY3.epw'
         self.convert_input_format_exe_path = 'C:/EnergyPlusV24-2-0/ConvertInputFormat.exe'
         self.tests_dir = os.path.dirname(__file__)
