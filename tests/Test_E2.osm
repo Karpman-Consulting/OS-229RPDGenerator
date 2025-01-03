@@ -94,7 +94,7 @@ OS:RunPeriod,
 OS:YearDescription,
   {6f941808-f155-4e2e-ad0e-ce75e3f04f2e}, !- Handle
   ,                                       !- Calendar Year
-  Sunday,                                 !- Day of Week for Start Day
+  Friday,                                 !- Day of Week for Start Day
   ;                                       !- Is Leap Year
 
 OS:Schedule:Compact,
@@ -7721,14 +7721,14 @@ OS:Connector:Mixer,
   {cbc6ccd6-42fa-46ba-9c5d-411ef48f8d43}, !- Handle
   Connector Mixer 5,                      !- Name
   {2bc852f0-64d3-4d78-975e-7356915e35c2}, !- Outlet Branch Name
-  {938ff65f-33d8-4fe6-856b-fe96256a6baa}, !- Inlet Branch Name 1
+  {8fc4feca-9313-4ee6-a74e-61646c8d13b5}, !- Inlet Branch Name 1
   ;                                       !- Inlet Branch Name 2
 
 OS:Connector:Splitter,
   {7958d36c-6fa5-418a-a3f8-0c282c55365d}, !- Handle
   Connector Splitter 5,                   !- Name
   {7a244c7e-0c6a-4699-bee9-2b26fdb5ed71}, !- Inlet Branch Name
-  {1911c89b-2564-453e-8dae-82e77ea94990}, !- Outlet Branch Name 1
+  {138362da-9451-4bc6-a7b8-6bc93684addb}, !- Outlet Branch Name 1
   ;                                       !- Outlet Branch Name 2
 
 OS:Connection,
@@ -9612,90 +9612,6 @@ OS:Schedule:Day,
   0,                                      !- Minute 1
   21.1111111111111;                       !- Value Until Time 1
 
-OS:CoolingTower:VariableSpeed,
-  {b2de4804-2e8a-4986-b942-c55a64e27e73}, !- Handle
-  Var Spd Cooling Tower CoolToolsCrossFlow, !- Name
-  {ef33b0e2-7d1e-4056-ba11-9df45824f3e9}, !- Water Inlet Node
-  {b65909db-9f0d-4804-84bb-13a669423bb5}, !- Water Outlet Node
-  CoolToolsCrossFlow,                     !- Model Type
-  ,                                       !- Model Coefficient
-  25.0000000000001,                       !- Design Inlet Air Wet-Bulb Temperature {C}
-  3.8889,                                 !- Design Approach Temperature {deltaC}
-  5.5556,                                 !- Design Range Temperature {deltaC}
-  autosize,                               !- Design Water Flow Rate {m3/s}
-  autosize,                               !- Design Air Flow Rate {m3/s}
-  autosize,                               !- Design Fan Power {W}
-  {0b16d8d5-c09f-42a5-a884-02e9d262188d}, !- Fan Power Ratio Function of Air Flow Rate Ratio Curve
-  0.2,                                    !- Minimum Air Flow Rate Ratio
-  0.125,                                  !- Fraction of Tower Capacity in Free Convection Regime
-  0,                                      !- Basin Heater Capacity {W/K}
-  2,                                      !- Basin Heater Setpoint Temperature {C}
-  ,                                       !- Basin Heater Operating Schedule
-  SaturatedExit,                          !- Evaporation Loss Mode
-  0.2,                                    !- Evaporation Loss Factor {percent/K}
-  0.008,                                  !- Drift Loss Percent {percent}
-  ConcentrationRatio,                     !- Blowdown Calculation Mode
-  3,                                      !- Blowdown Concentration Ratio
-  ,                                       !- Blowdown Makeup Water Usage Schedule
-  ,                                       !- Supply Water Storage Tank
-  ,                                       !- Outdoor Air Inlet Node
-  ,                                       !- Number of Cells
-  ,                                       !- Cell Control
-  ,                                       !- Cell Minimum  Water Flow Rate Fraction
-  ,                                       !- Cell Maximum Water Flow Rate Fraction
-  1,                                      !- Sizing Factor
-  General;                                !- End-Use Subcategory
-
-OS:Curve:Cubic,
-  {0b16d8d5-c09f-42a5-a884-02e9d262188d}, !- Handle
-  Var Spd Cooling Tower CoolToolsCrossFlow Fan Power Ratio Curve, !- Name
-  -0.0093,                                !- Coefficient1 Constant
-  0.0512,                                 !- Coefficient2 x
-  -0.0838,                                !- Coefficient3 x**2
-  1.0419,                                 !- Coefficient4 x**3
-  0.15,                                   !- Minimum Value of x
-  1;                                      !- Maximum Value of x
-
-OS:Node,
-  {bc9677c4-3cf7-4e5c-9399-9bc449b3344f}, !- Handle
-  Node 40,                                !- Name
-  {1911c89b-2564-453e-8dae-82e77ea94990}, !- Inlet Port
-  {ef33b0e2-7d1e-4056-ba11-9df45824f3e9}; !- Outlet Port
-
-OS:Node,
-  {630d40c8-1ff8-427d-b917-8e645e2b5a61}, !- Handle
-  Node 81,                                !- Name
-  {b65909db-9f0d-4804-84bb-13a669423bb5}, !- Inlet Port
-  {938ff65f-33d8-4fe6-856b-fe96256a6baa}; !- Outlet Port
-
-OS:Connection,
-  {ef33b0e2-7d1e-4056-ba11-9df45824f3e9}, !- Handle
-  {bc9677c4-3cf7-4e5c-9399-9bc449b3344f}, !- Source Object
-  3,                                      !- Outlet Port
-  {b2de4804-2e8a-4986-b942-c55a64e27e73}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {b65909db-9f0d-4804-84bb-13a669423bb5}, !- Handle
-  {b2de4804-2e8a-4986-b942-c55a64e27e73}, !- Source Object
-  3,                                      !- Outlet Port
-  {630d40c8-1ff8-427d-b917-8e645e2b5a61}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {1911c89b-2564-453e-8dae-82e77ea94990}, !- Handle
-  {7958d36c-6fa5-418a-a3f8-0c282c55365d}, !- Source Object
-  3,                                      !- Outlet Port
-  {bc9677c4-3cf7-4e5c-9399-9bc449b3344f}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {938ff65f-33d8-4fe6-856b-fe96256a6baa}, !- Handle
-  {630d40c8-1ff8-427d-b917-8e645e2b5a61}, !- Source Object
-  3,                                      !- Outlet Port
-  {cbc6ccd6-42fa-46ba-9c5d-411ef48f8d43}, !- Target Object
-  3;                                      !- Inlet Port
-
 OS:HeatExchanger:FluidToFluid,
   {921355f2-a528-474b-8491-7b29e96c4a16}, !- Handle
   Waterside Economizer Heat Exchanger,    !- Name
@@ -10259,4 +10175,135 @@ OS:Connection,
   3,                                      !- Outlet Port
   {d5383516-ee19-4bd2-ad16-3b629e38ceec}, !- Target Object
   4;                                      !- Inlet Port
+
+OS:CoolingTower:VariableSpeed,
+  {3e658f8c-fefd-4dfa-aed9-b5ab12813863}, !- Handle
+  Cooling Tower Cool Tools User Defined,  !- Name
+  {1b5754e1-a00b-4c49-b3d4-a8e293a03eba}, !- Water Inlet Node
+  {6b5f5f0b-d26b-47ab-b421-ae4bb8d7b2b6}, !- Water Outlet Node
+  CoolToolsUserDefined,                   !- Model Type
+  {5f477348-9092-46e7-bd13-4c4ba611ab5b}, !- Model Coefficient
+  25.0000444444445,                       !- Design Inlet Air Wet-Bulb Temperature {C}
+  3.8889,                                 !- Design Approach Temperature {deltaC}
+  5.5556,                                 !- Design Range Temperature {deltaC}
+  autosize,                               !- Design Water Flow Rate {m3/s}
+  autosize,                               !- Design Air Flow Rate {m3/s}
+  autosize,                               !- Design Fan Power {W}
+  {4d4d0486-593c-41c9-9f8b-03d573e09c82}, !- Fan Power Ratio Function of Air Flow Rate Ratio Curve
+  0.2,                                    !- Minimum Air Flow Rate Ratio
+  0.125,                                  !- Fraction of Tower Capacity in Free Convection Regime
+  450,                                    !- Basin Heater Capacity {W/K}
+  4.5,                                    !- Basin Heater Setpoint Temperature {C}
+  ,                                       !- Basin Heater Operating Schedule
+  SaturatedExit,                          !- Evaporation Loss Mode
+  0.2,                                    !- Evaporation Loss Factor {percent/K}
+  0.05,                                   !- Drift Loss Percent {percent}
+  ConcentrationRatio,                     !- Blowdown Calculation Mode
+  4,                                      !- Blowdown Concentration Ratio
+  ,                                       !- Blowdown Makeup Water Usage Schedule
+  ,                                       !- Supply Water Storage Tank
+  ,                                       !- Outdoor Air Inlet Node
+  ,                                       !- Number of Cells
+  ,                                       !- Cell Control
+  ,                                       !- Cell Minimum  Water Flow Rate Fraction
+  ,                                       !- Cell Maximum Water Flow Rate Fraction
+  0.33,                                   !- Sizing Factor
+  General;                                !- End-Use Subcategory
+
+OS:Curve:Cubic,
+  {4d4d0486-593c-41c9-9f8b-03d573e09c82}, !- Handle
+  Cooling Tower Cool Tools User Defined Fan Power Ratio Curve, !- Name
+  -0.0093,                                !- Coefficient1 Constant
+  0.0512,                                 !- Coefficient2 x
+  -0.0838,                                !- Coefficient3 x**2
+  1.0419,                                 !- Coefficient4 x**3
+  0.15,                                   !- Minimum Value of x
+  1;                                      !- Maximum Value of x
+
+OS:CoolingTowerPerformance:CoolTools,
+  {5f477348-9092-46e7-bd13-4c4ba611ab5b}, !- Handle
+  Cooling Tower Performance Cool Tools,   !- Name
+  -1,                                     !- Minimum Inlet Air Wet-Bulb Temperature {C}
+  26.6667,                                !- Maximum Inlet Air Wet-Bulb Temperature {C}
+  1.1111,                                 !- Minimum Range Temperature {deltaC}
+  11.1111,                                !- Maximum Range Temperature {deltaC}
+  1.1111,                                 !- Minimum Approach Temperature {deltaC}
+  11.1111,                                !- Maximum Approach Temperature {deltaC}
+  0.75,                                   !- Minimum Water Flow Rate Ratio
+  1.25,                                   !- Maximum Water Flow Rate Ratio
+  0.52049709836241,                       !- Coefficient 1
+  -10.617046395344,                       !- Coefficient 2
+  10.7292974722538,                       !- Coefficient 3
+  -2.74988377158227,                      !- Coefficient 4
+  4.73629943913743,                       !- Coefficient 5
+  -8.25759700874711,                      !- Coefficient 6
+  1.57640938114136,                       !- Coefficient 7
+  6.51119643791324,                       !- Coefficient 8
+  1.50433525206692,                       !- Coefficient 9
+  -3.2888529287801,                       !- Coefficient 10
+  0.0257786145353773,                     !- Coefficient 11
+  0.182464289315254,                      !- Coefficient 12
+  -0.0818947291400898,                    !- Coefficient 13
+  -0.215010003996285,                     !- Coefficient 14
+  0.0186741309635284,                     !- Coefficient 15
+  0.0536824177590012,                     !- Coefficient 16
+  -0.00270968955115031,                   !- Coefficient 17
+  0.00112277498589279,                    !- Coefficient 18
+  -0.00127758497497718,                   !- Coefficient 19
+  7.60420796601607e-05,                   !- Coefficient 20
+  1.43600088336017,                       !- Coefficient 21
+  -0.5198695909109,                       !- Coefficient 22
+  0.117339576910507,                      !- Coefficient 23
+  1.50492810819924,                       !- Coefficient 24
+  -0.135898905926974,                     !- Coefficient 25
+  -0.152577581866506,                     !- Coefficient 26
+  -0.0533843828114562,                    !- Coefficient 27
+  0.00493294869565511,                    !- Coefficient 28
+  -0.00796260394174197,                   !- Coefficient 29
+  0.000222619828621544,                   !- Coefficient 30
+  -0.0543952001568055,                    !- Coefficient 31
+  0.00474266879161693,                    !- Coefficient 32
+  -0.0185854671815598,                    !- Coefficient 33
+  0.00115667701293848,                    !- Coefficient 34
+  0.000807370664460284;                   !- Coefficient 35
+
+OS:Node,
+  {b8c80743-dda4-4282-a1f2-eada96c91c86}, !- Handle
+  Node 92,                                !- Name
+  {138362da-9451-4bc6-a7b8-6bc93684addb}, !- Inlet Port
+  {1b5754e1-a00b-4c49-b3d4-a8e293a03eba}; !- Outlet Port
+
+OS:Node,
+  {1ddfc854-179b-4ab3-ab06-86e6f663bb42}, !- Handle
+  Node 93,                                !- Name
+  {6b5f5f0b-d26b-47ab-b421-ae4bb8d7b2b6}, !- Inlet Port
+  {8fc4feca-9313-4ee6-a74e-61646c8d13b5}; !- Outlet Port
+
+OS:Connection,
+  {1b5754e1-a00b-4c49-b3d4-a8e293a03eba}, !- Handle
+  {b8c80743-dda4-4282-a1f2-eada96c91c86}, !- Source Object
+  3,                                      !- Outlet Port
+  {3e658f8c-fefd-4dfa-aed9-b5ab12813863}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {6b5f5f0b-d26b-47ab-b421-ae4bb8d7b2b6}, !- Handle
+  {3e658f8c-fefd-4dfa-aed9-b5ab12813863}, !- Source Object
+  3,                                      !- Outlet Port
+  {1ddfc854-179b-4ab3-ab06-86e6f663bb42}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {138362da-9451-4bc6-a7b8-6bc93684addb}, !- Handle
+  {7958d36c-6fa5-418a-a3f8-0c282c55365d}, !- Source Object
+  3,                                      !- Outlet Port
+  {b8c80743-dda4-4282-a1f2-eada96c91c86}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {8fc4feca-9313-4ee6-a74e-61646c8d13b5}, !- Handle
+  {1ddfc854-179b-4ab3-ab06-86e6f663bb42}, !- Source Object
+  3,                                      !- Outlet Port
+  {cbc6ccd6-42fa-46ba-9c5d-411ef48f8d43}, !- Target Object
+  3;                                      !- Inlet Port
 
