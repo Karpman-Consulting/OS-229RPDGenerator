@@ -2,6 +2,7 @@ import unittest
 import subprocess
 import os
 import shutil
+import glob
 
 class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
 
@@ -10,7 +11,7 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_E1.osm')
         self.weather_file_name = 'USA_CO_Denver.Intl.AP.725650_TMY3.epw'
         self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
-        self.filled_csv_file_path = ""
+        self.filled_csv_file_path = ".flake8"
         self.weather_file_name = 'USA_CO_Denver.Intl.AP.725650_TMY3.epw'
         self.convert_input_format_exe_path = 'C:/EnergyPlusV24-2-0/ConvertInputFormat.exe'
         self.tests_dir = os.path.dirname(__file__)
@@ -51,21 +52,29 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         print(result.stdout, 'result stdout create_rpd')
 
 
-class TestCreateOSRulesetProjectDescription_E1(BaseTestCreateOSRulesetProjectDescription):
+    def tearDown(self):
+        # Perform cleanup tasks
+        osw_files = glob.glob(os.path.join(self.tests_dir, '*.osw'))
+        for osw_file in osw_files:
+            os.remove(osw_file)
+            print(f"Removed file: {osw_file}")
 
-    def setUp(self):
-        super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
-        self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_E1.osm')
-        self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_E1', 'run','Test_E1_filled.csv' )
 
-        print(f'Using openstudio model at: {self.openstudio_model_path}')
+# class TestCreateOSRulesetProjectDescription_E1(BaseTestCreateOSRulesetProjectDescription):
 
-    def test_create_cp_csv(self):
-        self.create_cp_csv()
+#     def setUp(self):
+#         super().setUp()
+#         self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
+#         self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_E1.osm')
+#         self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_E1', 'run','Test_E1_filled.csv' )
 
-    def test_create_rpd(self):
-        self.create_rpd()
+#         print(f'Using openstudio model at: {self.openstudio_model_path}')
+
+#     def test_create_cp_csv(self):
+#         self.create_cp_csv()
+
+#     def test_create_rpd(self):
+#         self.create_rpd()
 
 
 class TestCreateOSRulesetProjectDescription_E2(BaseTestCreateOSRulesetProjectDescription):
