@@ -3,6 +3,7 @@ import subprocess
 import os
 import shutil
 import glob
+from pathlib import Path
 
 class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
 
