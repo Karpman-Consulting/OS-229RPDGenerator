@@ -7,6 +7,7 @@
 !!
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
 
+
 OS:Version,
   {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
   3.8.0;                                  !- Version Identifier

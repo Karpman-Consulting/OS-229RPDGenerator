@@ -2166,10 +2166,10 @@ OS:Sizing:Zone,
   {c2f9c34f-64dc-4a0c-8c3f-19d2f8f8f53b}, !- Handle
   {3a9da17f-8eee-4ec9-87e9-43c51325b92c}, !- Zone or ZoneList Name
   SupplyAirTemperature,                   !- Zone Cooling Design Supply Air Temperature Input Method
-  12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
+  12.7777777777778,                       !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2396,10 +2396,10 @@ OS:Sizing:Zone,
   {ce01aeb4-ab9b-4a9e-9a3e-aff420544e80}, !- Handle
   {62560ad8-b05d-436b-a7dd-715eda6ece30}, !- Zone or ZoneList Name
   SupplyAirTemperature,                   !- Zone Cooling Design Supply Air Temperature Input Method
-  12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
+  12.7777777777778,                       !- Zone Cooling Design Supply Air Temperature {C}
   8.33333333333333,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2519,10 +2519,10 @@ OS:Sizing:Zone,
   {dcdc7c17-3c59-4f58-ab6a-54650b237dbe}, !- Handle
   {67e4c786-e5d2-4eea-a1b5-6a2dd13a000e}, !- Zone or ZoneList Name
   SupplyAirTemperature,                   !- Zone Cooling Design Supply Air Temperature Input Method
-  12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
+  12.7777777777778,                       !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2642,10 +2642,10 @@ OS:Sizing:Zone,
   {1b034c21-977f-469a-a9df-a5bf365c5c92}, !- Handle
   {d93fa6c5-92f4-4fdb-89a3-d8c40bd0770a}, !- Zone or ZoneList Name
   SupplyAirTemperature,                   !- Zone Cooling Design Supply Air Temperature Input Method
-  12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
+  12.7777777777778,                       !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -2765,10 +2765,10 @@ OS:Sizing:Zone,
   {4e5a84fe-3994-426f-be44-b193dccab5fc}, !- Handle
   {cf3d7fcc-c6b1-49eb-b08d-1bd50f1dd5e0}, !- Zone or ZoneList Name
   SupplyAirTemperature,                   !- Zone Cooling Design Supply Air Temperature Input Method
-  12.8,                                   !- Zone Cooling Design Supply Air Temperature {C}
+  12.7777777777778,                       !- Zone Cooling Design Supply Air Temperature {C}
   11.1111111111111,                       !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
   SupplyAirTemperature,                   !- Zone Heating Design Supply Air Temperature Input Method
-  32.2,                                   !- Zone Heating Design Supply Air Temperature {C}
+  32.2222222222223,                       !- Zone Heating Design Supply Air Temperature {C}
   11.11,                                  !- Zone Heating Design Supply Air Temperature Difference {deltaC}
   0.0085,                                 !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
   0.008,                                  !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
@@ -9355,7 +9355,8 @@ OS:Coil:Heating:Gas,
   ,                                       ! Temperature Setpoint Node Name
   0,                                      ! Parasitic Electric Load {W}
   ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
+  0,                                      ! Parasitic Gas Load {W}
+  NaturalGas;                             !- Fuel Type
 
 OS:Node,
   {7c4ec0aa-888b-43fe-9746-f056959ac433}, !- Handle
@@ -9395,7 +9396,8 @@ OS:Coil:Heating:Gas,
   ,                                       ! Temperature Setpoint Node Name
   0,                                      ! Parasitic Electric Load {W}
   ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
+  0,                                      ! Parasitic Gas Load {W}
+  NaturalGas;                             !- Fuel Type
 
 OS:Node,
   {a01f62b9-3b57-4ebc-a393-ccf059099c94}, !- Handle
@@ -9435,7 +9437,8 @@ OS:Coil:Heating:Gas,
   ,                                       ! Temperature Setpoint Node Name
   0,                                      ! Parasitic Electric Load {W}
   ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
+  0,                                      ! Parasitic Gas Load {W}
+  NaturalGas;                             !- Fuel Type
 
 OS:Node,
   {bf83232b-03ef-4736-a807-a243e185fbd3}, !- Handle
@@ -9475,7 +9478,8 @@ OS:Coil:Heating:Gas,
   ,                                       ! Temperature Setpoint Node Name
   0,                                      ! Parasitic Electric Load {W}
   ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
+  0,                                      ! Parasitic Gas Load {W}
+  NaturalGas;                             !- Fuel Type
 
 OS:Node,
   {4fe76ef0-acf1-4b3d-b646-ef9370a5c481}, !- Handle
@@ -9515,7 +9519,8 @@ OS:Coil:Heating:Gas,
   ,                                       ! Temperature Setpoint Node Name
   0,                                      ! Parasitic Electric Load {W}
   ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
+  0,                                      ! Parasitic Gas Load {W}
+  NaturalGas;                             !- Fuel Type
 
 OS:Node,
   {f1331868-a29a-4751-ba9f-e4e00d1aeb59}, !- Handle

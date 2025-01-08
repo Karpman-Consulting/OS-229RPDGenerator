@@ -6,6 +6,10 @@
 !!
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
 
+OS:Version,
+  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
+  3.8.0;                                  !- Version Identifier
+
 !! Zone equipment fan pressure rise was calculated from Table 3 of Appendix F 
 !! calculated from a target power of 600 W 
 !! A fan efficiency of 0.7
@@ -14,10 +18,8 @@
 
 !! No Fan efficiency was given in the spec so it was taken to be 0.7
 
-OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
-
+!! No motor efficiency was given in Table 9 of Appendix F
+!! so a motor efficiency of 0.9 was used
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
   Denver Intl AP,                         !- Name
@@ -7273,7 +7275,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalAirConditioner,
   {a38600f7-6d1c-47ff-946d-644c999c7cb5}, !- Handle
   Core_Zone_Cycling_PTAC_DX_Clg_HW_Htg,   !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {40056681-e844-4f94-8ab5-32cb9bca3e16}, !- Availability Schedule Name
   {63167bc9-9295-4763-a46c-610763e19f68}, !- Air Inlet Node Name
   {c6e1dd6d-17ec-4449-9c6d-44a18af18f3b}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7496,7 +7498,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalAirConditioner,
   {059b53e3-9afc-48a8-87dc-77007a2d1731}, !- Handle
   Perimeter_Zone_4_Cycling_PTAC_DX_Clg_HW_Htg, !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {40056681-e844-4f94-8ab5-32cb9bca3e16}, !- Availability Schedule Name
   {5e1c5b12-ecc3-488b-9513-1a5dab26f152}, !- Air Inlet Node Name
   {e8fdd3b1-8c1c-47d1-a11d-498e794d6454}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7626,7 +7628,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalAirConditioner,
   {6a02422a-07ba-4491-a174-8da31ef9f241}, !- Handle
   Perimeter_Zone_1_Cycling_PTAC_DX_Clg_HW_Htg, !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {40056681-e844-4f94-8ab5-32cb9bca3e16}, !- Availability Schedule Name
   {2daf97b0-767d-44b4-aec6-aa3784527413}, !- Air Inlet Node Name
   {de8aaa19-e345-4358-8cba-1aa4a988383f}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7756,7 +7758,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalAirConditioner,
   {7c9c8cda-3b1a-43f3-971c-e1d34ccfb607}, !- Handle
   Perimeter_Zone_2_Cycling_PTAC_DX_Clg_HW_Htg, !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {40056681-e844-4f94-8ab5-32cb9bca3e16}, !- Availability Schedule Name
   {8f600465-c8b8-4e55-8af6-667a90a89f1d}, !- Air Inlet Node Name
   {97e461ca-a09f-4419-aeef-91f8164c457f}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7886,7 +7888,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalAirConditioner,
   {caa76013-b173-4bf6-9e33-fe7d3b2f57e3}, !- Handle
   Perimeter_Zone_3_Cycling_PTAC_DX_Clg_HW_Htg, !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {d45da943-b0ee-47e8-a793-ef7f5f6ec8c7}, !- Availability Schedule Name
   {6e14de3e-0021-459a-81b8-9fe880c135d8}, !- Air Inlet Node Name
   {2858c039-eba7-4ebd-b9e7-01039da85001}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -8026,7 +8028,7 @@ OS:PlantLoop,
   ,                                       !- Maximum Loop Temperature {C}
   ,                                       !- Minimum Loop Temperature {C}
   ,                                       !- Maximum Loop Flow Rate {m3/s}
-  ,                                       !- Minimum Loop Flow Rate {m3/s}
+  0.000315450981997488,                   !- Minimum Loop Flow Rate {m3/s}
   Autocalculate,                          !- Plant Loop Volume {m3}
   {e8862521-0c75-432d-96ad-c63f63cd68a5}, !- Plant Side Inlet Node Name
   {7a396017-d37a-45df-95ac-de7e8858b70f}, !- Plant Side Outlet Node Name
@@ -8203,7 +8205,7 @@ OS:Boiler:HotWater,
   LeavingBoiler,                          !- Efficiency Curve Temperature Evaluation Variable
   {1491c85e-4180-4351-a942-90f4028d2e63}, !- Normalized Boiler Efficiency Curve Name
   ,                                       !- Design Water Flow Rate {m3/s}
-  1,                                      !- Minimum Part Load Ratio
+  0.25,                                   !- Minimum Part Load Ratio
   ,                                       !- Maximum Part Load Ratio
   ,                                       !- Optimum Part Load Ratio
   {7bad9d48-0b5c-47a6-b239-4d852bc06ffd}, !- Boiler Water Inlet Node Name
@@ -8266,7 +8268,7 @@ OS:Pump:VariableSpeed,
   Var Spd Pump,                           !- Name
   {ea7ca1d2-f19a-46e7-9b30-6836b183d414}, !- Inlet Node Name
   {40655902-2485-43dc-9ec1-28527795de6e}, !- Outlet Node Name
-  0.00126180392798995,                    !- Rated Flow Rate {m3/s}
+  0.00126180392799,                       !- Rated Flow Rate {m3/s}
   ,                                       !- Rated Pump Head {Pa}
   380,                                    !- Rated Power Consumption {W}
   ,                                       !- Motor Efficiency
@@ -8275,7 +8277,7 @@ OS:Pump:VariableSpeed,
   ,                                       !- Coefficient 2 of the Part Load Performance Curve
   ,                                       !- Coefficient 3 of the Part Load Performance Curve
   ,                                       !- Coefficient 4 of the Part Load Performance Curve
-  ,                                       !- Minimum Flow Rate {m3/s}
+  0.000315450981997488,                   !- Minimum Flow Rate {m3/s}
   ,                                       !- Pump Control Type
   ,                                       !- Pump Flow Rate Schedule Name
   ,                                       !- Pump Curve Name
@@ -8291,7 +8293,7 @@ OS:Pump:VariableSpeed,
   PowerPerFlow,                           !- Design Power Sizing Method
   301156.139690688,                       !- Design Electric Power per Unit Flow Rate {W/(m3/s)}
   1.282051282,                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
-  0.0;                                    !- Design Minimum Flow Rate Fraction
+  0.25;                                   !- Design Minimum Flow Rate Fraction
 
 OS:Node,
   {6da7b3e4-619b-45f8-aa52-446be900f67d}, !- Handle

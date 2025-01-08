@@ -6,6 +6,9 @@
 !!
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
 
+OS:Version,
+  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
+  3.8.0;                                  !- Version Identifier
 
 !! Zone equipment fan pressure rise was calculated from Table 3 of Appendix F 
 !! calculated from a target power of 600 W 
@@ -15,9 +18,14 @@
 
 !! No Fan efficiency was given in the spec so it was taken to be 0.7
 
-OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
+!! IEER for cooling given in Table 12 A of Appendix F 
+!! was converted to a COP of 3.56 
+!! using https://github.com/NREL/openstudio-standards/pull/1682
+
+!! HSPF for heating given in Table Table 12 A of Appendix F 
+!! was converted to a COP of 3.35 using
+!! https://github.com/NREL/openstudio-standards/blob/master/lib/openstudio-standards/prototypes/common/objects/Prototype.utilities.rb#L307-L311
+!! which is the hspf_to_cop_no_fan method in OpenStudio standards
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
@@ -4962,21 +4970,6 @@ OS:ScheduleTypeLimits,
   Continuous,                             !- Numeric Type
   VolumetricFlowRate;                     !- Unit Type
 
-OS:Schedule:Ruleset,
-  {1d7f637b-5be4-4f07-b911-62c927397aa9}, !- Handle
-  Heating rate per person schedule,       !- Name
-  {c93999e8-7792-449b-ba04-867bea61e584}, !- Schedule Type Limits Name
-  {b11044ea-a88d-465c-8fb1-4299fbb1ef76}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {b11044ea-a88d-465c-8fb1-4299fbb1ef76}, !- Handle
-  Schedule Day 2,                         !- Name
-  {c93999e8-7792-449b-ba04-867bea61e584}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  120;                                    !- Value Until Time 1
-
 OS:Schedule:Constant,
   {330b0146-72c2-493a-9fe0-4042f58c2d2c}, !- Handle
   Always On Discrete 1,                   !- Name
@@ -5013,14 +5006,6 @@ OS:Schedule:Constant,
   {55385725-003a-45e4-a800-696fe7892d39}, !- Schedule Type Limits Name
   1;                                      !- Value
 
-OS:Schedule:Ruleset,
-  {f6cf7966-5d45-40b8-885c-a7bc539748f8}, ! Handle
-  Large Office Activity,                  ! Name
-  {639a9e59-b907-41f4-81e8-582a65dec5e2}, ! Schedule Type Limits Name
-  {41983d69-b903-4e60-bccb-271507ca1f4d}, ! Default Day Schedule Name
-  {35b9b797-c551-4700-b2bc-2fd4a0633601}, ! Summer Design Day Schedule Name
-  {c9067609-d624-49cf-abb4-32f0e420baec}; ! Winter Design Day Schedule Name
-
 OS:ScheduleTypeLimits,
   {639a9e59-b907-41f4-81e8-582a65dec5e2}, !- Handle
   ActivityLevel 5,                        !- Name
@@ -5028,33 +5013,6 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   ActivityLevel;                          !- Unit Type
-
-OS:Schedule:Day,
-  {41983d69-b903-4e60-bccb-271507ca1f4d}, !- Handle
-  Large Office Activity Default Schedule, !- Name
-  {639a9e59-b907-41f4-81e8-582a65dec5e2}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  120;                                    !- Value Until Time 1
-
-OS:Schedule:Day,
-  {35b9b797-c551-4700-b2bc-2fd4a0633601}, !- Handle
-  Large Office Activity Summer Design Day, !- Name
-  {639a9e59-b907-41f4-81e8-582a65dec5e2}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  120;                                    !- Value Until Time 1
-
-OS:Schedule:Day,
-  {c9067609-d624-49cf-abb4-32f0e420baec}, !- Handle
-  Large Office Activity Winter Design Day, !- Name
-  {639a9e59-b907-41f4-81e8-582a65dec5e2}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  120;                                    !- Value Until Time 1
 
 OS:SizingPeriod:DesignDay,
   {842d25d8-f1a4-40ed-b154-8006562fca54}, !- Handle
@@ -6193,36 +6151,6 @@ OS:Connection,
   ,                                       !- Target Object
   2;                                      !- Inlet Port
 
-OS:Schedule:Ruleset,
-  {b1cb3d5b-7653-44d0-93cc-a3378935c581}, !- Handle
-  Min Max Temp w Deadband Max Temp Sch,   !- Name
-  {4f5b30f0-8d0e-4267-b8d7-782cc1e57a79}, !- Schedule Type Limits Name
-  {f7afbdb9-1ce2-4728-8e53-5232ba14be82}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {f7afbdb9-1ce2-4728-8e53-5232ba14be82}, !- Handle
-  Min Max Temp w Deadband Max Day,        !- Name
-  {4f5b30f0-8d0e-4267-b8d7-782cc1e57a79}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  26.7;                                   !- Value Until Time 1
-
-OS:Schedule:Ruleset,
-  {9c4b1f72-226a-49d4-8d4e-156072ce5775}, !- Handle
-  Min Max Temp w Deadband Min Temp Schedule, !- Name
-  {b59ba31b-806f-4cc2-b307-38bdfe32b84c}, !- Schedule Type Limits Name
-  {8d2c9cf6-ac1b-47ad-85d0-9dd3c4d4c297}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {8d2c9cf6-ac1b-47ad-85d0-9dd3c4d4c297}, !- Handle
-  Min Max Temp w Deadband Min Day,        !- Name
-  {b59ba31b-806f-4cc2-b307-38bdfe32b84c}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  10;                                     !- Value Until Time 1
-
 OS:ScheduleTypeLimits,
   {4f5b30f0-8d0e-4267-b8d7-782cc1e57a79}, !- Handle
   Min Max Temp w Deadband Max Limits,     !- Name
@@ -6238,36 +6166,6 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
-
-OS:Schedule:Ruleset,
-  {8461a8d2-a683-409f-a608-edd56c8b6fb9}, !- Handle
-  Min Max Temp w Deadband 55F Temp sch,   !- Name
-  {7c74137f-8c00-42c2-84fb-229b712b1a8f}, !- Schedule Type Limits Name
-  {540fb25a-3534-491a-bbb2-7440342a2511}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {540fb25a-3534-491a-bbb2-7440342a2511}, !- Handle
-  Min Max Temp w Deadband 55F Temp sch,   !- Name
-  {7c74137f-8c00-42c2-84fb-229b712b1a8f}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  23.5;                                   !- Value Until Time 1
-
-OS:Schedule:Ruleset,
-  {90d4f5fe-9f79-440e-9696-b93a9c755cdc}, !- Handle
-  Min Max Temp w Deadband 90F Temp sch 1, !- Name
-  {7c74137f-8c00-42c2-84fb-229b712b1a8f}, !- Schedule Type Limits Name
-  {335a042a-9ea3-4a43-b613-55b43c73db50}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {335a042a-9ea3-4a43-b613-55b43c73db50}, !- Handle
-  Min Max Temp w Deadband 90F Temp sch 2, !- Name
-  {7c74137f-8c00-42c2-84fb-229b712b1a8f}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  23.5;                                   !- Value Until Time 1
 
 OS:Rendering:Color,
   {bdeeeb8c-f559-4d45-83eb-c06897eb34fe}, !- Handle
@@ -6898,41 +6796,6 @@ OS:ZoneControl:Humidistat,
   {a07506b0-ff90-42db-9ca8-7209a6dafb58}, !- Humidifying Relative Humidity Setpoint Schedule Name
   {873575fd-f003-43f8-93dd-c65ffd887cf6}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
 
-OS:Schedule:Ruleset,
-  {201c23c6-c5e4-4d2e-a26c-711a1f74ff1c}, ! Handle
-  Hot Water Temperature,                  ! Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, ! Schedule Type Limits Name
-  {98d8430e-dd74-4b3e-a89c-1422c81efba3}, ! Default Day Schedule Name
-  {dbdaac7a-980e-4a4c-a4d3-9cfb659d03a9}, ! Summer Design Day Schedule Name
-  {1a9b6686-abb1-4ccc-8b9d-24fd07da802f}; ! Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {98d8430e-dd74-4b3e-a89c-1422c81efba3}, !- Handle
-  Hot Water Temperature Default,          !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {dbdaac7a-980e-4a4c-a4d3-9cfb659d03a9}, !- Handle
-  Hot Water Temperature Summer Design Day, !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {1a9b6686-abb1-4ccc-8b9d-24fd07da802f}, !- Handle
-  Hot Water Temperature Winter Design Day, !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
 OS:ScheduleTypeLimits,
   {97022a8b-9d43-469a-9930-34c23e787e67}, !- Handle
   Temperature 5,                          !- Name
@@ -6940,41 +6803,6 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
-
-OS:Schedule:Ruleset,
-  {3d0f0386-ec9c-48f3-a13f-a231882d4f00}, ! Handle
-  Hot Water Temperature 1,                ! Name
-  {db0a5b9a-a6b7-4a4f-bf6e-dff80031aa9e}, ! Schedule Type Limits Name
-  {302855fa-b746-4bc2-a31f-92aeb31c493b}, ! Default Day Schedule Name
-  {6f734f9e-23f6-4e05-b1bb-3beae897c90f}, ! Summer Design Day Schedule Name
-  {4337e8de-99a0-4f79-8351-b75b9fc73bb6}; ! Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {302855fa-b746-4bc2-a31f-92aeb31c493b}, !- Handle
-  Hot Water Temperature Default 1,        !- Name
-  {db0a5b9a-a6b7-4a4f-bf6e-dff80031aa9e}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {6f734f9e-23f6-4e05-b1bb-3beae897c90f}, !- Handle
-  Hot Water Temperature Summer Design Day 1, !- Name
-  {db0a5b9a-a6b7-4a4f-bf6e-dff80031aa9e}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {4337e8de-99a0-4f79-8351-b75b9fc73bb6}, !- Handle
-  Hot Water Temperature Winter Design Day 1, !- Name
-  {db0a5b9a-a6b7-4a4f-bf6e-dff80031aa9e}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
 
 OS:ScheduleTypeLimits,
   {db0a5b9a-a6b7-4a4f-bf6e-dff80031aa9e}, !- Handle
@@ -6984,41 +6812,6 @@ OS:ScheduleTypeLimits,
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
 
-OS:Schedule:Ruleset,
-  {eb0b2e06-56c7-4e47-858f-78fdf588816c}, ! Handle
-  Hot Water Temperature 2,                ! Name
-  {8c2b9368-9459-4e22-8abb-91b9d75df985}, ! Schedule Type Limits Name
-  {a139d0e8-7e07-4ae9-90d8-2dfe05737b0e}, ! Default Day Schedule Name
-  {9419d93e-5d8d-484d-a123-3c3cee4385d0}, ! Summer Design Day Schedule Name
-  {b1a6750f-9462-4438-b82e-29f305b33604}; ! Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {a139d0e8-7e07-4ae9-90d8-2dfe05737b0e}, !- Handle
-  Hot Water Temperature Default 2,        !- Name
-  {8c2b9368-9459-4e22-8abb-91b9d75df985}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {9419d93e-5d8d-484d-a123-3c3cee4385d0}, !- Handle
-  Hot Water Temperature Summer Design Day 2, !- Name
-  {8c2b9368-9459-4e22-8abb-91b9d75df985}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
-OS:Schedule:Day,
-  {b1a6750f-9462-4438-b82e-29f305b33604}, !- Handle
-  Hot Water Temperature Winter Design Day 2, !- Name
-  {8c2b9368-9459-4e22-8abb-91b9d75df985}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  67;                                     !- Value Until Time 1
-
 OS:ScheduleTypeLimits,
   {8c2b9368-9459-4e22-8abb-91b9d75df985}, !- Handle
   Temperature 7,                          !- Name
@@ -7026,67 +6819,6 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
-
-OS:Schedule:Ruleset,
-  {9c9b78a0-85eb-44e6-9c61-900c3ee7cc5c}, !- Handle
-  180F_HW_Loop_Design_Supply_Temp,        !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  {f1fd593f-5768-4cf9-9480-6b4e09938c78}, !- Default Day Schedule Name
-  ,                                       !- Summer Design Day Schedule Name
-  {fb22c074-2aa1-4846-b836-b5c8f19418e8}; !- Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {f1fd593f-5768-4cf9-9480-6b4e09938c78}, !- Handle
-  Schedule Day 3,                         !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  82.2222222222223;                       !- Value Until Time 1
-
-OS:Schedule:Day,
-  {fb22c074-2aa1-4846-b836-b5c8f19418e8}, !- Handle
-  Schedule Day 13,                        !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  82.2222222222223;                       !- Value Until Time 1
-
-OS:Schedule:Ruleset,
-  {411d7471-7766-489f-b71c-7b04398de707}, ! Handle
-  Chilled Water Temperature,              ! Name
-  {98cba3df-1d7e-4f87-9deb-6969394e29ef}, ! Schedule Type Limits Name
-  {526d12eb-cffd-40f7-8748-21790f000b03}, ! Default Day Schedule Name
-  {c1624102-b299-43dc-bb62-2369f10b020a}, ! Summer Design Day Schedule Name
-  {a0a50a97-02a9-44d5-81d1-23e4bfcc14b3}; ! Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {526d12eb-cffd-40f7-8748-21790f000b03}, !- Handle
-  Chilled Water Temperature Default,      !- Name
-  {98cba3df-1d7e-4f87-9deb-6969394e29ef}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  6.7;                                    !- Value Until Time 1
-
-OS:Schedule:Day,
-  {c1624102-b299-43dc-bb62-2369f10b020a}, !- Handle
-  Chilled Water Temperature Summer Design Day, !- Name
-  {98cba3df-1d7e-4f87-9deb-6969394e29ef}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  6.7;                                    !- Value Until Time 1
-
-OS:Schedule:Day,
-  {a0a50a97-02a9-44d5-81d1-23e4bfcc14b3}, !- Handle
-  Chilled Water Temperature Winter Design Day, !- Name
-  {98cba3df-1d7e-4f87-9deb-6969394e29ef}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  6.7;                                    !- Value Until Time 1
 
 OS:ScheduleTypeLimits,
   {98cba3df-1d7e-4f87-9deb-6969394e29ef}, !- Handle
@@ -7096,56 +6828,6 @@ OS:ScheduleTypeLimits,
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
 
-OS:Schedule:Ruleset,
-  {26fbd83f-717c-4b69-a3da-beccaf21b867}, !- Handle
-  Condenser Loop Leaving Water Temp,      !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  {528dc299-624a-44fe-aca5-1c4a01cdb93a}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {528dc299-624a-44fe-aca5-1c4a01cdb93a}, !- Handle
-  Schedule Day 4,                         !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  21.1111111111111;                       !- Value Until Time 1
-
-OS:Schedule:Ruleset,
-  {103ae34f-2277-410a-9bd4-eeb866f758f7}, ! Handle
-  Deck Temperature,                       ! Name
-  {b5c2f13a-ce03-4223-8d02-6370138857ce}, ! Schedule Type Limits Name
-  {fbe37392-174c-429b-a41b-05a678f5acdf}, ! Default Day Schedule Name
-  {9310a97f-271a-4f15-921d-75cfe0c84eb5}, ! Summer Design Day Schedule Name
-  {010ec58e-09c0-428e-a545-ff89878be99e}; ! Winter Design Day Schedule Name
-
-OS:Schedule:Day,
-  {fbe37392-174c-429b-a41b-05a678f5acdf}, !- Handle
-  Deck Temperature Default,               !- Name
-  {b5c2f13a-ce03-4223-8d02-6370138857ce}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  12.8;                                   !- Value Until Time 1
-
-OS:Schedule:Day,
-  {9310a97f-271a-4f15-921d-75cfe0c84eb5}, !- Handle
-  Deck Temperature Summer Design Day,     !- Name
-  {b5c2f13a-ce03-4223-8d02-6370138857ce}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  12.8;                                   !- Value Until Time 1
-
-OS:Schedule:Day,
-  {010ec58e-09c0-428e-a545-ff89878be99e}, !- Handle
-  Deck Temperature Winter Design Day,     !- Name
-  {b5c2f13a-ce03-4223-8d02-6370138857ce}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  12.8;                                   !- Value Until Time 1
-
 OS:ScheduleTypeLimits,
   {b5c2f13a-ce03-4223-8d02-6370138857ce}, !- Handle
   Temperature 9,                          !- Name
@@ -7153,21 +6835,6 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
-
-OS:Schedule:Ruleset,
-  {e994e7af-b55b-44f6-b743-44d921a36f7f}, !- Handle
-  Preheat_Coil_LAT,                       !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  {d5c5a575-76ba-4e87-9bee-93037339c343}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {d5c5a575-76ba-4e87-9bee-93037339c343}, !- Handle
-  Schedule Day 5,                         !- Name
-  {97022a8b-9d43-469a-9930-34c23e787e67}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  10.0000000000001;                       !- Value Until Time 1
 
 OS:Table:Lookup,
   {daa98814-5566-445c-9e16-6648ef9b1576}, !- Handle
@@ -7271,25 +6938,10 @@ OS:Connection,
   ,                                       !- Target Object
   2;                                      !- Inlet Port
 
-OS:Schedule:Ruleset,
-  {3fbb043f-2f11-4526-b5ab-8c16bbfb7a80}, !- Handle
-  Cycling PTAC Fan Mode Always Zero,      !- Name
-  {362cffd2-b493-4047-844c-256bef632731}, !- Schedule Type Limits Name
-  {a19d33ca-b19d-47e8-89a0-a913f3b99d22}; !- Default Day Schedule Name
-
-OS:Schedule:Day,
-  {a19d33ca-b19d-47e8-89a0-a913f3b99d22}, !- Handle
-  Cycling PTAC Fan Mode Sch Default,      !- Name
-  {362cffd2-b493-4047-844c-256bef632731}, !- Schedule Type Limits Name
-  No,                                     !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  0;                                      !- Value Until Time 1
-
 OS:ZoneHVAC:PackagedTerminalHeatPump,
   {4f12bb0a-dc87-4197-98d7-71b426878604}, !- Handle
   Core_Zone_PTHP,                         !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {64c63aec-faad-4eb0-afec-64d14e6df8a7}, !- Availability Schedule Name
   {c2137a56-1a2f-49a5-996d-3d3d16faa355}, !- Air Inlet Node Name
   {46f9a971-1c4f-493a-9af1-51cb5dd946e0}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7414,7 +7066,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   17584.2642103333,                       !- Rated Total Cooling Capacity {W}
   Autosize,                               !- Rated Sensible Heat Ratio
-  3,                                      !- Rated COP {W/W}
+  3.55,                                   !- Rated COP {W/W}
   0.9438948864,                           !- Rated Air Flow Rate {m3/s}
   773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
@@ -7503,7 +7155,7 @@ OS:Coil:Heating:Gas,
   {e1d5cb44-d181-4110-b2c7-e0fe141e6e20}, ! Handle
   PTHP Elec REPLACE WITH GAS Htg Backup Coil2, ! Name
   {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  1,                                      ! Efficiency
+  0.8,                                    ! Efficiency
   ,                                       ! Nominal Capacity {W}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -7556,7 +7208,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalHeatPump,
   {da249f06-ae68-4cf6-8ede-56db7c4add83}, !- Handle
   Perimeter_Zone_3_PTHP,                  !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {849da593-1217-48a3-94c4-26ab39bfc9c6}, !- Availability Schedule Name
   {721be9b0-d429-4eb8-affd-80937b3edc14}, !- Air Inlet Node Name
   {cf0ced46-c49c-4b89-95c1-f6fec28788f1}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7626,7 +7278,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   17584.2642103333,                       !- Rated Total Cooling Capacity {W}
   Autosize,                               !- Rated Sensible Heat Ratio
-  3,                                      !- Rated COP {W/W}
+  3.55,                                   !- Rated COP {W/W}
   0.9438948864,                           !- Rated Air Flow Rate {m3/s}
   773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
@@ -7713,7 +7365,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalHeatPump,
   {54dca620-e825-4c3f-8117-40d77b16d976}, !- Handle
   Perimeter_Zone_1_PTHP,                  !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {40056681-e844-4f94-8ab5-32cb9bca3e16}, !- Availability Schedule Name
   {54b382a2-cc04-4186-8012-52bc0019f487}, !- Air Inlet Node Name
   {c4682a18-21b4-4134-a73a-a01d22f2ef0a}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7783,7 +7435,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   17584.2642103333,                       !- Rated Total Cooling Capacity {W}
   Autosize,                               !- Rated Sensible Heat Ratio
-  3,                                      !- Rated COP {W/W}
+  3.55,                                   !- Rated COP {W/W}
   0.9438948864,                           !- Rated Air Flow Rate {m3/s}
   773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
@@ -7870,7 +7522,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalHeatPump,
   {1242dbd0-3465-4647-b164-48679b93b89c}, !- Handle
   Perimeter_Zone_4_PTHP,                  !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {d45da943-b0ee-47e8-a793-ef7f5f6ec8c7}, !- Availability Schedule Name
   {caf0981c-4157-472d-9347-c7aa5e40f4bb}, !- Air Inlet Node Name
   {2b2069a8-e871-4ad1-8846-c520aa2be399}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -7940,7 +7592,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   17584.2642103333,                       !- Rated Total Cooling Capacity {W}
   Autosize,                               !- Rated Sensible Heat Ratio
-  3,                                      !- Rated COP {W/W}
+  3.55,                                   !- Rated COP {W/W}
   0.9438948864,                           !- Rated Air Flow Rate {m3/s}
   773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
@@ -8027,7 +7679,7 @@ OS:Connection,
 OS:ZoneHVAC:PackagedTerminalHeatPump,
   {6bf2490c-53a6-4645-b997-ea17790419a3}, !- Handle
   Perimeter_Zone_2_PTHP,                  !- Name
-  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  {d2b83d32-fb6c-46d3-a675-60291cdb1eb5}, !- Availability Schedule Name
   {c18d1555-3d77-45d4-9537-3cd69a7fa8e0}, !- Air Inlet Node Name
   {2e1a3df0-d459-4919-b58d-936fb2b8e0f5}, !- Air Outlet Node Name
   OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
@@ -8097,7 +7749,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   17584.2642103333,                       !- Rated Total Cooling Capacity {W}
   Autosize,                               !- Rated Sensible Heat Ratio
-  3,                                      !- Rated COP {W/W}
+  3.55,                                   !- Rated COP {W/W}
   0.9438948864,                           !- Rated Air Flow Rate {m3/s}
   773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
