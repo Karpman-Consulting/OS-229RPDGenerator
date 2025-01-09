@@ -2114,9 +2114,9 @@ OS:InternalMass,
 
 OS:ThermalZone,
   {3a9da17f-8eee-4ec9-87e9-43c51325b92c}, !- Handle
-  Perimeter_Zone_4,                       !- Name
+  Prm Zone 4 (West),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2344,9 +2344,9 @@ OS:Construction,
 
 OS:ThermalZone,
   {62560ad8-b05d-436b-a7dd-715eda6ece30}, !- Handle
-  Core_Zone,                              !- Name
+  Core Zone 1,                            !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2467,9 +2467,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {67e4c786-e5d2-4eea-a1b5-6a2dd13a000e}, !- Handle
-  Perimeter_Zone_1,                       !- Name
+  Prm Zone 1 (South),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2590,9 +2590,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {d93fa6c5-92f4-4fdb-89a3-d8c40bd0770a}, !- Handle
-  Perimeter_Zone_2,                       !- Name
+  Prm Zone 2 (East),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2713,9 +2713,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {cf3d7fcc-c6b1-49eb-b08d-1bd50f1dd5e0}, !- Handle
-  Perimeter_Zone_3,                       !- Name
+  Prm Zone 3 (North),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -4057,7 +4057,7 @@ OS:SpaceInfiltration:DesignFlowRate,
   {3d124017-17b2-4c54-aac9-ece721b6b153}, !- Schedule Name
   Flow/Area,                              !- Design Flow Rate Calculation Method
   0,                                      !- Design Flow Rate {m3/s}
-  40.90924,                               !- Flow per Space Floor Area {m3/s-m2}
+  0.0004090924,                           !- Flow per Space Floor Area {m3/s-m2}
   0,                                      !- Flow per Exterior Surface Area {m3/s-m2}
   0,                                      !- Air Changes per Hour {1/hr}
   0,                                      !- Constant Term Coefficient
@@ -6216,7 +6216,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584,                                  !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   3,                                      !- Rated COP {W/W}
-  autosize,                               !- Rated Air Flow Rate {m3/s}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
   773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
   {b2a9a981-5767-462c-849f-7c345a6ccccf}, !- Air Inlet Node Name
@@ -7581,7 +7581,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584,                                  !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   3,                                      !- Rated COP {W/W}
-  autosize,                               !- Rated Air Flow Rate {m3/s}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
   773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
   {b3e45677-f3e1-44f3-aa11-47c59f929251}, !- Air Inlet Node Name
@@ -7891,8 +7891,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.08,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Minimum Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -8027,7 +8027,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584,                                  !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   3.1,                                    !- Rated COP {W/W}
-  autosize,                               !- Rated Air Flow Rate {m3/s}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
   773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
   {8ae729e1-4e2d-48e9-b554-b76af370b6a8}, !- Air Inlet Node Name
@@ -8473,7 +8473,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584,                                  !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   3,                                      !- Rated COP {W/W}
-  autosize,                               !- Rated Air Flow Rate {m3/s}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
   773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
   {a19e5109-f9cc-44df-bd82-5e12df911c4c}, !- Air Inlet Node Name
@@ -8919,7 +8919,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584,                                  !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   3,                                      !- Rated COP {W/W}
-  autosize,                               !- Rated Air Flow Rate {m3/s}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
   773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
   934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
   {40e55cad-499b-4137-8c46-c46002109f0d}, !- Air Inlet Node Name
@@ -9619,22 +9619,6 @@ OS:Rendering:Color,
   50,                                     !- Rendering Green Value
   205;                                    !- Rendering Blue Value
 
-OS:WeatherFile,
-  {bb171437-af46-4ae7-9153-354b5e11a2e8}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
-
 OS:Rendering:Color,
   {e5fb2fbd-2234-4cd3-b07e-9f9a755ca030}, !- Handle
   Rendering Color 142,                    !- Name
@@ -9739,4 +9723,20 @@ OS:Rendering:Color,
   199,                                    !- Rendering Red Value
   133,                                    !- Rendering Green Value
   21;                                     !- Rendering Blue Value
+
+OS:WeatherFile,
+  {0a989584-8f5e-4611-97ba-2a223723c127}, !- Handle
+  Denver Intl AP,                         !- City
+  CO,                                     !- State Province Region
+  USA,                                    !- Country
+  TMY3,                                   !- Data Source
+  725650,                                 !- WMO Number
+  39.833,                                 !- Latitude {deg}
+  -104.65,                                !- Longitude {deg}
+  -7,                                     !- Time Zone {hr}
+  1650,                                   !- Elevation {m}
+  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
+  4A7A2296,                               !- Checksum
+  ,                                       !- Start Date Actual Year
+  Sunday;                                 !- Start Day of Week
 

@@ -102,7 +102,7 @@ OS:RunPeriod,
 OS:YearDescription,
   {6f941808-f155-4e2e-ad0e-ce75e3f04f2e}, !- Handle
   ,                                       !- Calendar Year
-  Sunday,                                 !- Day of Week for Start Day
+  Friday,                                 !- Day of Week for Start Day
   ;                                       !- Is Leap Year
 
 OS:Schedule:Compact,
@@ -2114,9 +2114,9 @@ OS:InternalMass,
 
 OS:ThermalZone,
   {3a9da17f-8eee-4ec9-87e9-43c51325b92c}, !- Handle
-  Perimeter_Zone_4,                       !- Name
+  Prm Zone 4 (West),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2344,9 +2344,9 @@ OS:Construction,
 
 OS:ThermalZone,
   {62560ad8-b05d-436b-a7dd-715eda6ece30}, !- Handle
-  Core_Zone,                              !- Name
+  Core Zone 1,                            !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2467,9 +2467,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {67e4c786-e5d2-4eea-a1b5-6a2dd13a000e}, !- Handle
-  Perimeter_Zone_1,                       !- Name
+  Prm Zone 1 (South),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2590,9 +2590,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {d93fa6c5-92f4-4fdb-89a3-d8c40bd0770a}, !- Handle
-  Perimeter_Zone_2,                       !- Name
+  Prm Zone 2 (East),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2713,9 +2713,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {cf3d7fcc-c6b1-49eb-b08d-1bd50f1dd5e0}, !- Handle
-  Perimeter_Zone_3,                       !- Name
+  Prm Zone 3 (North),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -4057,7 +4057,7 @@ OS:SpaceInfiltration:DesignFlowRate,
   {3d124017-17b2-4c54-aac9-ece721b6b153}, !- Schedule Name
   Flow/Area,                              !- Design Flow Rate Calculation Method
   0,                                      !- Design Flow Rate {m3/s}
-  40.90924,                               !- Flow per Space Floor Area {m3/s-m2}
+  0.0004090924,                           !- Flow per Space Floor Area {m3/s-m2}
   0,                                      !- Flow per Exterior Surface Area {m3/s-m2}
   0,                                      !- Air Changes per Hour {1/hr}
   0,                                      !- Constant Term Coefficient
@@ -8123,22 +8123,6 @@ OS:Rendering:Color,
   222,                                    !- Rendering Red Value
   135,                                    !- Rendering Green Value
   184;                                    !- Rendering Blue Value
-
-OS:WeatherFile,
-  {2c72df58-2c8a-4911-b89f-8d04f5357296}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
 
 OS:AirTerminal:SingleDuct:VAV:Reheat,
   {80af2961-503a-44b8-9610-6328dc41c9bb}, !- Handle
