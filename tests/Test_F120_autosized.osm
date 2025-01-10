@@ -4074,50 +4074,50 @@ OS:Sizing:Parameters,
 OS:DesignSpecification:OutdoorAir,
   {4f14bd22-c668-4ca2-8498-26c944e15b00}, !- Handle
   Core_Zone_Design_OA,                    !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {7c85d2f0-cb80-43b7-9a20-c9e259504efe}, !- Handle
   Perimeter_Zone_1_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {130ce244-6e22-41ea-8882-6cb942ce5d40}, !- Handle
   Perimeter_Zone_2_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {187159cb-c262-461a-b0c8-289f2b7d9b26}, !- Handle
   Perimeter_Zone_3_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {3db07e2f-5666-4307-ad7a-1146146a2cb1}, !- Handle
   Perimeter_Zone_4_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -6176,7 +6176,7 @@ OS:Sizing:System,
   0.008,                                  !- Precool Design Humidity Ratio {kg-H2O/kg-Air}
   12.8,                                   !- Central Cooling Design Supply Air Temperature {C}
   40,                                     !- Central Heating Design Supply Air Temperature {C}
-  NonCoincident,                          !- Sizing Option
+  Coincident,                             !- Sizing Option
   No,                                     !- 100% Outdoor Air in Cooling
   No,                                     !- 100% Outdoor Air in Heating
   0.0085,                                 !- Central Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
@@ -6306,7 +6306,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.6,                                    !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -6425,7 +6425,7 @@ OS:HeatExchanger:AirToAir:SensibleAndLatent,
   {999d038b-573a-453d-833d-43e7698c9e4d}, !- Handle
   PSZ_HP_Core_Zone_Air_to_Air_Plate_HX,   !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule
-  autosize,                               !- Nominal Supply Air Flow Rate {m3/s}
+  0.94,                                   !- Nominal Supply Air Flow Rate {m3/s}
   0.8,                                    !- Sensible Effectiveness at 100% Heating Air Flow {dimensionless}
   0,                                      !- Latent Effectiveness at 100% Heating Air Flow {dimensionless}
   0.8,                                    !- Sensible Effectiveness at 100% Cooling Air Flow {dimensionless}
@@ -7445,7 +7445,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.13,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -7891,7 +7891,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0,                                      !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   0,                                      !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -8337,7 +8337,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.13,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -8783,7 +8783,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.08,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
+  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
   DifferentialDryBulb,                    !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
@@ -9724,19 +9724,38 @@ OS:Rendering:Color,
   133,                                    !- Rendering Green Value
   21;                                     !- Rendering Blue Value
 
-OS:WeatherFile,
-  {0a989584-8f5e-4611-97ba-2a223723c127}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
+OS:Rendering:Color,
+  {3a550bd5-f289-4b71-abad-332786f8c548}, !- Handle
+  Rendering Color 157,                    !- Name
+  128,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7662f5af-c5c4-45f5-b4e2-b03dabd6df05}, !- Handle
+  Rendering Color 158,                    !- Name
+  255,                                    !- Rendering Red Value
+  71,                                     !- Rendering Green Value
+  99;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {aa2ee254-43b9-49a3-b078-e22e1807af07}, !- Handle
+  Rendering Color 159,                    !- Name
+  233,                                    !- Rendering Red Value
+  122,                                    !- Rendering Green Value
+  150;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e61ed581-986c-4cd0-96f5-ddeb4dc45efe}, !- Handle
+  Rendering Color 160,                    !- Name
+  255,                                    !- Rendering Red Value
+  203,                                    !- Rendering Green Value
+  192;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {79784b9d-0dd4-4196-a3b7-267bc64aa4c6}, !- Handle
+  Rendering Color 161,                    !- Name
+  135,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  206;                                    !- Rendering Blue Value
 

@@ -4096,50 +4096,50 @@ OS:Sizing:Parameters,
 OS:DesignSpecification:OutdoorAir,
   {4f14bd22-c668-4ca2-8498-26c944e15b00}, !- Handle
   Core_Zone_Design_OA,                    !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {7c85d2f0-cb80-43b7-9a20-c9e259504efe}, !- Handle
   Perimeter_Zone_1_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {130ce244-6e22-41ea-8882-6cb942ce5d40}, !- Handle
   Perimeter_Zone_2_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {187159cb-c262-461a-b0c8-289f2b7d9b26}, !- Handle
   Perimeter_Zone_3_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
 OS:DesignSpecification:OutdoorAir,
   {3db07e2f-5666-4307-ad7a-1146146a2cb1}, !- Handle
   Perimeter_Zone_4_Design_OA,             !- Name
-  Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  Maximum,                                !- Outdoor Air Method
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
