@@ -6306,9 +6306,9 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}
@@ -7445,9 +7445,9 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}
@@ -7891,9 +7891,9 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
-  0,                                      !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}
@@ -8337,9 +8337,9 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}
@@ -8783,9 +8783,9 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  Autosize,                               !- Minimum Outdoor Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}

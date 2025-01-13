@@ -2106,9 +2106,9 @@ OS:InternalMass,
 
 OS:ThermalZone,
   {3a9da17f-8eee-4ec9-87e9-43c51325b92c}, !- Handle
-  Perimeter_Zone_4,                       !- Name
+  Prm Zone 4 (West),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2336,9 +2336,9 @@ OS:Construction,
 
 OS:ThermalZone,
   {62560ad8-b05d-436b-a7dd-715eda6ece30}, !- Handle
-  Core_Zone,                              !- Name
+  Core Zone 1,                            !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2459,9 +2459,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {67e4c786-e5d2-4eea-a1b5-6a2dd13a000e}, !- Handle
-  Perimeter_Zone_1,                       !- Name
+  Prm Zone 1 (South),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2582,9 +2582,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {d93fa6c5-92f4-4fdb-89a3-d8c40bd0770a}, !- Handle
-  Perimeter_Zone_2,                       !- Name
+  Prm Zone 2 (East),                      !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2705,9 +2705,9 @@ OS:ThermostatSetpoint:DualSetpoint,
 
 OS:ThermalZone,
   {cf3d7fcc-c6b1-49eb-b08d-1bd50f1dd5e0}, !- Handle
-  Perimeter_Zone_3,                       !- Name
+  Prm Zone 3 (North),                     !- Name
   1,                                      !- Multiplier
-  2.7432,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -4077,9 +4077,9 @@ OS:DesignSpecification:OutdoorAir,
   {7c85d2f0-cb80-43b7-9a20-c9e259504efe}, !- Handle
   Perimeter_Zone_1_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4087,9 +4087,9 @@ OS:DesignSpecification:OutdoorAir,
   {130ce244-6e22-41ea-8882-6cb942ce5d40}, !- Handle
   Perimeter_Zone_2_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4097,9 +4097,9 @@ OS:DesignSpecification:OutdoorAir,
   {187159cb-c262-461a-b0c8-289f2b7d9b26}, !- Handle
   Perimeter_Zone_3_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4107,9 +4107,9 @@ OS:DesignSpecification:OutdoorAir,
   {3db07e2f-5666-4307-ad7a-1146146a2cb1}, !- Handle
   Perimeter_Zone_4_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -10060,7 +10060,7 @@ OS:Connection,
   2;                                      !- Inlet Port
 
 OS:WeatherFile,
-  {ce9a9424-b517-49b4-ac3c-fd8c6e5ccb8e}, !- Handle
+  {894ff6fc-119a-4e4b-8871-392ce98c95bf}, !- Handle
   Denver Intl AP,                         !- City
   CO,                                     !- State Province Region
   USA,                                    !- Country

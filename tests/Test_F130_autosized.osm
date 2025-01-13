@@ -7021,7 +7021,7 @@ OS:Controller:OutdoorAir,
   ,                                       !- Actuator Node Name
   0.08,                                   !- Minimum Outdoor Air Flow Rate {m3/s}
   Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
-  DifferentialDryBulb,                    !- Economizer Control Type
+  NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
   64000,                                  !- Economizer Maximum Limit Enthalpy {J/kg}

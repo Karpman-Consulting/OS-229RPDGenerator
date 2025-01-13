@@ -4067,9 +4067,9 @@ OS:DesignSpecification:OutdoorAir,
   {4f14bd22-c668-4ca2-8498-26c944e15b00}, !- Handle
   Core_Zone_Design_OA,                    !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4077,9 +4077,9 @@ OS:DesignSpecification:OutdoorAir,
   {7c85d2f0-cb80-43b7-9a20-c9e259504efe}, !- Handle
   Perimeter_Zone_1_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4087,9 +4087,9 @@ OS:DesignSpecification:OutdoorAir,
   {130ce244-6e22-41ea-8882-6cb942ce5d40}, !- Handle
   Perimeter_Zone_2_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4097,9 +4097,9 @@ OS:DesignSpecification:OutdoorAir,
   {187159cb-c262-461a-b0c8-289f2b7d9b26}, !- Handle
   Perimeter_Zone_3_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -4107,9 +4107,9 @@ OS:DesignSpecification:OutdoorAir,
   {3db07e2f-5666-4307-ad7a-1146146a2cb1}, !- Handle
   Perimeter_Zone_4_Design_OA,             !- Name
   Sum,                                    !- Outdoor Air Method
-  1e-08,                                  !- Outdoor Air Flow per Person {m3/s-person}
-  0.000431800000670319,                   !- Outdoor Air Flow per Floor Area {m3/s-m2}
-  0,                                      !- Outdoor Air Flow Rate {m3/s}
+  0,                                      !- Outdoor Air Flow per Person {m3/s-person}
+  0,                                      !- Outdoor Air Flow per Floor Area {m3/s-m2}
+  0.09438948864,                          !- Outdoor Air Flow Rate {m3/s}
   ,                                       !- Outdoor Air Flow Air Changes per Hour {1/hr}
   ;                                       !- Outdoor Air Flow Rate Fraction Schedule Name
 
@@ -11977,4 +11977,39 @@ OS:Rendering:Color,
   255,                                    !- Rendering Red Value
   240,                                    !- Rendering Green Value
   255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {54437504-d65c-442e-a13e-17db8657749b}, !- Handle
+  Rendering Color 152,                    !- Name
+  205,                                    !- Rendering Red Value
+  63,                                     !- Rendering Green Value
+  133;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {00dc8688-06a4-4c7f-abf8-e2cb7b91a036}, !- Handle
+  Rendering Color 153,                    !- Name
+  0,                                      !- Rendering Red Value
+  127,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e9f2174c-c174-4e22-8cbf-caf40b97d098}, !- Handle
+  Rendering Color 154,                    !- Name
+  128,                                    !- Rendering Red Value
+  128,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {95e158a4-b5ca-4228-a6cf-6e8f0b59c22a}, !- Handle
+  Rendering Color 155,                    !- Name
+  255,                                    !- Rendering Red Value
+  225,                                    !- Rendering Green Value
+  228;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {68ef7c31-15df-4160-b30c-081f03ea93f4}, !- Handle
+  Rendering Color 156,                    !- Name
+  238,                                    !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  232;                                    !- Rendering Blue Value
 

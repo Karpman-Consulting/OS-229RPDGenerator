@@ -8576,19 +8576,3 @@ OS:Connection,
   {eb0bdccb-0e54-4110-bc7c-c46c6fe3c0ce}, !- Target Object
   3;                                      !- Inlet Port
 
-OS:WeatherFile,
-  {34a8dec4-37d5-4844-8511-7a9e5ab026fd}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
-

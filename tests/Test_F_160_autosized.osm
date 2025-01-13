@@ -6986,8 +6986,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.1179868608,                           !- Minimum Outdoor Air Flow Rate {m3/s}
-  0.1179868608,                           !- Maximum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
   NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -7877,7 +7877,7 @@ OS:AirTerminal:SingleDuct:ConstantVolume:NoReheat,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   {8731db9b-138e-4fc2-8661-c860ebb1e184}, !- Air Inlet Node Name
   {762011b3-f6b6-43c8-a97c-c64463d72b32}, !- Air Outlet Node Name
-  Autosize;                               !- Maximum Air Flow Rate {m3/s}
+  0.1179868608;                           !- Maximum Air Flow Rate {m3/s}
 
 OS:Node,
   {92cb6483-d2f0-4d06-93a8-02a68f000c9e}, !- Handle
@@ -7911,13 +7911,13 @@ OS:Fan:ZoneExhaust,
   Core_Zone_Exhaust Fan,                  !- Name
   ,                                       !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
-  0,                                      !- Pressure Rise {Pa}
+  12.4544455,                             !- Pressure Rise {Pa}
   0.02359737216,                          !- Maximum Flow Rate {m3/s}
   {76d9a312-27df-4382-a736-3c386c5090be}, !- Air Inlet Node Name
   {b0df1681-8d04-4835-a991-12d86daae7bf}, !- Air Outlet Node Name
   General,                                !- End-Use Subcategory
   ,                                       !- Flow Fraction Schedule Name
-  Decoupled,                              !- System Availability Manager Coupling Mode
+  Coupled,                                !- System Availability Manager Coupling Mode
   ,                                       !- Minimum Zone Temperature Limit Schedule Name
   ;                                       !- Balanced Exhaust Fraction Schedule Name
 
@@ -8181,8 +8181,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.1179868608,                           !- Minimum Outdoor Air Flow Rate {m3/s}
-  0.1179868608,                           !- Maximum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
   NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -8342,7 +8342,7 @@ OS:AirTerminal:SingleDuct:ConstantVolume:NoReheat,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   {b5fdafa0-a499-4368-82e5-0360650cd638}, !- Air Inlet Node Name
   {6a7a6e05-2c58-4d4d-8890-5ecc51fe7aca}, !- Air Outlet Node Name
-  AutoSize;                               !- Maximum Air Flow Rate {m3/s}
+  0.1179868608;                           !- Maximum Air Flow Rate {m3/s}
 
 OS:Node,
   {adef3109-1861-4f54-bb9a-cd73328e7143}, !- Handle
@@ -8563,8 +8563,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.1179868608,                           !- Minimum Outdoor Air Flow Rate {m3/s}
-  0.1179868608,                           !- Maximum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
   NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -8724,7 +8724,7 @@ OS:AirTerminal:SingleDuct:ConstantVolume:NoReheat,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   {86ced57f-8bbb-442a-8a31-63a95023989a}, !- Air Inlet Node Name
   {99bafdc8-18c5-473c-a731-64f71bd0cf1a}, !- Air Outlet Node Name
-  AutoSize;                               !- Maximum Air Flow Rate {m3/s}
+  0.1179868608;                           !- Maximum Air Flow Rate {m3/s}
 
 OS:Node,
   {21742c31-0503-4c84-b715-153054c56e40}, !- Handle
@@ -8945,8 +8945,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.1179868608,                           !- Minimum Outdoor Air Flow Rate {m3/s}
-  0.1179868608,                           !- Maximum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
   NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -9106,7 +9106,7 @@ OS:AirTerminal:SingleDuct:ConstantVolume:NoReheat,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   {5052e3a1-204b-44b8-bcfb-9f8b50daffe8}, !- Air Inlet Node Name
   {b3a79a31-64a5-4cbb-9f3d-b9242bd819c9}, !- Air Outlet Node Name
-  AutoSize;                               !- Maximum Air Flow Rate {m3/s}
+  0.1179868608;                           !- Maximum Air Flow Rate {m3/s}
 
 OS:Node,
   {c9578c30-96d1-453e-b6c9-13d9bac48fff}, !- Handle
@@ -9321,8 +9321,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Return Air Node Name
   ,                                       !- Mixed Air Node Name
   ,                                       !- Actuator Node Name
-  0.1179868608,                           !- Minimum Outdoor Air Flow Rate {m3/s}
-  0.1179868608,                           !- Maximum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Minimum Outdoor Air Flow Rate {m3/s}
+  0.09438948864,                          !- Maximum Outdoor Air Flow Rate {m3/s}
   NoEconomizer,                           !- Economizer Control Type
   ModulateFlow,                           !- Economizer Control Action Type
   28,                                     !- Economizer Maximum Limit Dry-Bulb Temperature {C}
@@ -9624,7 +9624,7 @@ OS:AirTerminal:SingleDuct:ConstantVolume:NoReheat,
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
   {09d24815-c62c-4c00-bf28-5776f504c2e2}, !- Air Inlet Node Name
   {296ff506-682c-48be-8c4e-48f2b10be407}, !- Air Outlet Node Name
-  AutoSize;                               !- Maximum Air Flow Rate {m3/s}
+  0.1179868608;                           !- Maximum Air Flow Rate {m3/s}
 
 OS:Node,
   {dfde2ffd-f64a-455e-ba8b-66248b3a1ffa}, !- Handle
@@ -9658,7 +9658,7 @@ OS:Fan:ZoneExhaust,
   Perimeter_Zone_1_Exhaust Fan,           !- Name
   ,                                       !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
-  0,                                      !- Pressure Rise {Pa}
+  12.4544455,                             !- Pressure Rise {Pa}
   0.02359737216,                          !- Maximum Flow Rate {m3/s}
   {2c641707-e1dc-4a79-9f74-abe84f1ac6bd}, !- Air Inlet Node Name
   {f1f8adc2-72ae-44e4-9464-91413edb0075}, !- Air Outlet Node Name
@@ -9706,13 +9706,13 @@ OS:Fan:ZoneExhaust,
   Perimeter_Zone_4_Exhaust Fan,           !- Name
   ,                                       !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
-  0,                                      !- Pressure Rise {Pa}
+  12.4544455,                             !- Pressure Rise {Pa}
   0.02359737216,                          !- Maximum Flow Rate {m3/s}
   {bb551f8b-a9ca-429c-8b15-5490818a2068}, !- Air Inlet Node Name
   {a256cc6a-94a5-4427-a304-49e4915f411e}, !- Air Outlet Node Name
   General,                                !- End-Use Subcategory
   ,                                       !- Flow Fraction Schedule Name
-  Decoupled,                              !- System Availability Manager Coupling Mode
+  Coupled,                                !- System Availability Manager Coupling Mode
   ,                                       !- Minimum Zone Temperature Limit Schedule Name
   ;                                       !- Balanced Exhaust Fraction Schedule Name
 
@@ -9754,13 +9754,13 @@ OS:Fan:ZoneExhaust,
   Perimeter_Zone_2_Exhaust Fan,           !- Name
   ,                                       !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
-  0,                                      !- Pressure Rise {Pa}
+  12.4544455,                             !- Pressure Rise {Pa}
   0.02359737216,                          !- Maximum Flow Rate {m3/s}
   {840b40ef-ac7c-49c9-b309-7f2c44d45c01}, !- Air Inlet Node Name
   {78fe2ed9-1fde-475f-b809-16e00f8fdd16}, !- Air Outlet Node Name
   General,                                !- End-Use Subcategory
   ,                                       !- Flow Fraction Schedule Name
-  Decoupled,                              !- System Availability Manager Coupling Mode
+  Coupled,                                !- System Availability Manager Coupling Mode
   ,                                       !- Minimum Zone Temperature Limit Schedule Name
   ;                                       !- Balanced Exhaust Fraction Schedule Name
 
@@ -9802,13 +9802,13 @@ OS:Fan:ZoneExhaust,
   Perimeter_Zone_3_Exhaust Fan,           !- Name
   ,                                       !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
-  0,                                      !- Pressure Rise {Pa}
+  12.4544455,                             !- Pressure Rise {Pa}
   0.02359737216,                          !- Maximum Flow Rate {m3/s}
   {e823760a-7ca0-4ec0-9a05-9bde2d7e3c3d}, !- Air Inlet Node Name
   {9eb66620-3c80-4358-8aff-ae5ca0e92ec8}, !- Air Outlet Node Name
   General,                                !- End-Use Subcategory
   ,                                       !- Flow Fraction Schedule Name
-  Decoupled,                              !- System Availability Manager Coupling Mode
+  Coupled,                                !- System Availability Manager Coupling Mode
   ,                                       !- Minimum Zone Temperature Limit Schedule Name
   ;                                       !- Balanced Exhaust Fraction Schedule Name
 
