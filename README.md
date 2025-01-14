@@ -72,12 +72,19 @@ Where:
 If successful this command will produce a validated rpd.json of the OpenStudio model and the compliance parameter values
 entered in step 2.
 
-
-
-
 ### Development
 
-Tests - run all tests by running "rake"
+Code is divided into Ruby for Ruby OpenStudio measures, which are used to generate a 229RPD files from a OpenStudio model
+
+and Python for createOSRulesetProjectDescription.py, which can be used to generate a 229PRD file from a OpenStudio model
+
+run all tests on Ruby measures code by running
+
+"rake"
+
+Run the createOSRulesetProjectDescription.py on all the test files from Appendix E and F of 229 
+
+by running "test_create_os_ruleset_project_description.py" in the tests directory
 
 ## Disclaimer Notice
 Acknowledgment: This material is based upon work supported by the U.S. Department of Energy’s Office of Energy Efficiency and Renewable Energy (EERE) under the Building Technologies Office - DE-FOA-0002813 - Bipartisan Infrastructure Law Resilient and Efficient Codes Implementation.
