@@ -395,7 +395,7 @@ def main():
                 raise FileNotFoundError(
                     f"Could not find the idf file at {idf_file_path}, did the simulation run correctly?"
                 )
-
+    
             if succcessfully_ran_convert_input_format(
                 args.convert_input_format_exe_path, idf_file_path
             ):

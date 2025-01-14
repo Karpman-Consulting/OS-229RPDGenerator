@@ -1,0 +1,978 @@
+{
+  "data_timestamp": "2024-12-31T01:39Z",
+  "id": "project description root",
+  "ruleset_model_descriptions": [
+    {
+      "id": "Only model description",
+      "buildings": [
+        {
+          "id": "OfficeSmall",
+          "building_segments": [
+            {
+              "id": "segment 1",
+              "heating_ventilating_air_conditioning_systems": [
+                {
+                  "id": "PSZ-AC:1",
+                  "cooling_system": {
+                    "id": "PSZ-AC:1-cooling"
+                  },
+                  "fan_system": {
+                    "id": "PSZ-AC:1 FAN-fansystem",
+                    "supply_fans": [
+                      {
+                        "id": "PSZ-AC:1 FAN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "PSZ-AC:2",
+                  "cooling_system": {
+                    "id": "PSZ-AC:2-cooling"
+                  },
+                  "fan_system": {
+                    "id": "PSZ-AC:2 FAN-fansystem",
+                    "supply_fans": [
+                      {
+                        "id": "PSZ-AC:2 FAN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "PSZ-AC:3",
+                  "cooling_system": {
+                    "id": "PSZ-AC:3-cooling"
+                  },
+                  "fan_system": {
+                    "id": "PSZ-AC:3 FAN-fansystem",
+                    "supply_fans": [
+                      {
+                        "id": "PSZ-AC:3 FAN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "PSZ-AC:4",
+                  "cooling_system": {
+                    "id": "PSZ-AC:4-cooling"
+                  },
+                  "fan_system": {
+                    "id": "PSZ-AC:4 FAN-fansystem",
+                    "supply_fans": [
+                      {
+                        "id": "PSZ-AC:4 FAN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "PSZ-AC:5",
+                  "cooling_system": {
+                    "id": "PSZ-AC:5-cooling"
+                  },
+                  "fan_system": {
+                    "id": "PSZ-AC:5 FAN-fansystem",
+                    "supply_fans": [
+                      {
+                        "id": "PSZ-AC:5 FAN"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "zones": [
+                {
+                  "id": "ATTIC",
+                  "surfaces": [
+                    {
+                      "id": "ATTIC_FLOOR_CORE",
+                      "construction": {
+                        "id": "nonres_roof_floor",
+                        "primary_layers": [
+                          {
+                            "id": "Nonres_Roof_Insulation"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_FLOOR_PERIMETER_EAST",
+                      "construction": {
+                        "id": "nonres_roof_floor~~~00000001",
+                        "primary_layers": [
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000002"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000003"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_FLOOR_PERIMETER_NORTH",
+                      "construction": {
+                        "id": "nonres_roof_floor~~~00000004",
+                        "primary_layers": [
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000005"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000006"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_FLOOR_PERIMETER_SOUTH",
+                      "construction": {
+                        "id": "nonres_roof_floor~~~00000007",
+                        "primary_layers": [
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000008"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000009"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_FLOOR_PERIMETER_WEST",
+                      "construction": {
+                        "id": "nonres_roof_floor~~~00000010",
+                        "primary_layers": [
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000011"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000012"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_ROOF_EAST",
+                      "construction": {
+                        "id": "AtticRoofDeck",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood"
+                          },
+                          {
+                            "id": "F12 Asphalt shingles"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_ROOF_NORTH",
+                      "construction": {
+                        "id": "AtticRoofDeck~~~00000013",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000014"
+                          },
+                          {
+                            "id": "F12 Asphalt shingles~~~00000015"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_ROOF_SOUTH",
+                      "construction": {
+                        "id": "AtticRoofDeck~~~00000016",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000017"
+                          },
+                          {
+                            "id": "F12 Asphalt shingles~~~00000018"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_ROOF_WEST",
+                      "construction": {
+                        "id": "AtticRoofDeck~~~00000019",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000020"
+                          },
+                          {
+                            "id": "F12 Asphalt shingles~~~00000021"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_SOFFIT_EAST",
+                      "construction": {
+                        "id": "ext_soffit_floor",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000022"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_SOFFIT_NORTH",
+                      "construction": {
+                        "id": "ext_soffit_floor~~~00000023",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000024"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_SOFFIT_SOUTH",
+                      "construction": {
+                        "id": "ext_soffit_floor~~~00000025",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000026"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "ATTIC_SOFFIT_WEST",
+                      "construction": {
+                        "id": "ext_soffit_floor~~~00000027",
+                        "primary_layers": [
+                          {
+                            "id": "G02 16mm plywood~~~00000028"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "id": "ATTIC_INFILTRATION",
+                    "measured_air_leakage_rate": 9.999
+                  },
+                  "spaces": [
+                    {
+                      "id": "ATTIC_SPACE"
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                },
+                {
+                  "id": "CORE_ZN",
+                  "surfaces": [
+                    {
+                      "id": "CORE_ZN_CEILING",
+                      "construction": {
+                        "id": "nonres_roof",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000029"
+                          },
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000030"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "CORE_ZN_FLOOR",
+                      "construction": {
+                        "id": "Core_ZN_floor_Ffactor"
+                      }
+                    },
+                    {
+                      "id": "CORE_ZN_WALL_EAST",
+                      "construction": {
+                        "id": "int_wall",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000031"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "CORE_ZN_WALL_NORTH",
+                      "construction": {
+                        "id": "int_wall~~~00000032",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000033"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000034"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "CORE_ZN_WALL_SOUTH",
+                      "construction": {
+                        "id": "int_wall~~~00000035",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000036"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000037"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "CORE_ZN_WALL_WEST",
+                      "construction": {
+                        "id": "int_wall~~~00000038",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000039"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000040"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "terminals": [
+                    {
+                      "id": "CORE_ZN DIRECT AIR ADU"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "id": "CORE_SPACE",
+                      "interior_lighting": [
+                        {
+                          "id": "CORE_ZN_LIGHTS"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "id": "CORE_ZN_MISCPLUG_EQUIP"
+                        }
+                      ]
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                },
+                {
+                  "id": "PERIMETER_ZN_1",
+                  "surfaces": [
+                    {
+                      "id": "PERIMETER_ZN_1_CEILING",
+                      "construction": {
+                        "id": "nonres_roof~~~00000041",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000042"
+                          },
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000043"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_1_FLOOR",
+                      "construction": {
+                        "id": "Perimeter_ZN_1_floor_Ffactor"
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_1_WALL_EAST",
+                      "construction": {
+                        "id": "int_wall~~~00000044",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000045"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000046"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_1_WALL_NORTH",
+                      "construction": {
+                        "id": "int_wall~~~00000047",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000048"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000049"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_1_WALL_SOUTH",
+                      "subsurfaces": [
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_DOOR"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_1"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_2"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_3"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_4"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_5"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_1_WALL_SOUTH_WINDOW_6"
+                        }
+                      ],
+                      "construction": {
+                        "id": "nonres_ext_wall",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000050"
+                          },
+                          {
+                            "id": "Nonres_Exterior_Wall_Insulation"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000051"
+                          },
+                          {
+                            "id": "F07 25mm stucco"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_1_WALL_WEST",
+                      "construction": {
+                        "id": "int_wall~~~00000052",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000053"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000054"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "id": "PERIMETER_ZN_1_DOOR_INFILTRATION",
+                    "measured_air_leakage_rate": 9.999
+                  },
+                  "terminals": [
+                    {
+                      "id": "PERIMETER_ZN_1 DIRECT AIR ADU"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "id": "PERIMETER_1_SPACE",
+                      "interior_lighting": [
+                        {
+                          "id": "PERIMETER_ZN_1_LIGHTS"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "id": "PERIMETER_ZN_1_MISCPLUG_EQUIP"
+                        }
+                      ]
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                },
+                {
+                  "id": "PERIMETER_ZN_2",
+                  "surfaces": [
+                    {
+                      "id": "PERIMETER_ZN_2_CEILING",
+                      "construction": {
+                        "id": "nonres_roof~~~00000055",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000056"
+                          },
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000057"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_2_FLOOR",
+                      "construction": {
+                        "id": "Perimeter_ZN_2_floor_Ffactor"
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_2_WALL_EAST",
+                      "subsurfaces": [
+                        {
+                          "id": "PERIMETER_ZN_2_WALL_EAST_WINDOW_1"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_2_WALL_EAST_WINDOW_2"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_2_WALL_EAST_WINDOW_3"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_2_WALL_EAST_WINDOW_4"
+                        }
+                      ],
+                      "construction": {
+                        "id": "nonres_ext_wall~~~00000058",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000059"
+                          },
+                          {
+                            "id": "Nonres_Exterior_Wall_Insulation~~~00000060"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000061"
+                          },
+                          {
+                            "id": "F07 25mm stucco~~~00000062"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_2_WALL_NORTH",
+                      "construction": {
+                        "id": "int_wall~~~00000063",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000064"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000065"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_2_WALL_SOUTH",
+                      "construction": {
+                        "id": "int_wall~~~00000066",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000067"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000068"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_2_WALL_WEST",
+                      "construction": {
+                        "id": "int_wall~~~00000069",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000070"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000071"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "id": "PERIMETER_ZN_2_INFILTRATION",
+                    "measured_air_leakage_rate": 9.999
+                  },
+                  "terminals": [
+                    {
+                      "id": "PERIMETER_ZN_2 DIRECT AIR ADU"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "id": "PERIMETER_2_SPACE",
+                      "interior_lighting": [
+                        {
+                          "id": "PERIMETER_ZN_2_LIGHTS"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "id": "PERIMETER_ZN_2_MISCPLUG_EQUIP"
+                        }
+                      ]
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                },
+                {
+                  "id": "PERIMETER_ZN_3",
+                  "surfaces": [
+                    {
+                      "id": "PERIMETER_ZN_3_CEILING",
+                      "construction": {
+                        "id": "nonres_roof~~~00000072",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000073"
+                          },
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000074"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_3_FLOOR",
+                      "construction": {
+                        "id": "Perimeter_ZN_3_floor_Ffactor"
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_3_WALL_EAST",
+                      "construction": {
+                        "id": "int_wall~~~00000075",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000076"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000077"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_3_WALL_NORTH",
+                      "subsurfaces": [
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_1"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_2"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_3"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_4"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_5"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_3_WALL_NORTH_WINDOW_6"
+                        }
+                      ],
+                      "construction": {
+                        "id": "nonres_ext_wall~~~00000078",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000079"
+                          },
+                          {
+                            "id": "Nonres_Exterior_Wall_Insulation~~~00000080"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000081"
+                          },
+                          {
+                            "id": "F07 25mm stucco~~~00000082"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_3_WALL_SOUTH",
+                      "construction": {
+                        "id": "int_wall~~~00000083",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000084"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000085"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_3_WALL_WEST",
+                      "construction": {
+                        "id": "int_wall~~~00000086",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000087"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000088"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "id": "PERIMETER_ZN_3_INFILTRATION",
+                    "measured_air_leakage_rate": 9.999
+                  },
+                  "terminals": [
+                    {
+                      "id": "PERIMETER_ZN_3 DIRECT AIR ADU"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "id": "PERIMETER_3_SPACE",
+                      "interior_lighting": [
+                        {
+                          "id": "PERIMETER_ZN_3_LIGHTS"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "id": "PERIMETER_ZN_3_MISCPLUG_EQUIP"
+                        }
+                      ]
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                },
+                {
+                  "id": "PERIMETER_ZN_4",
+                  "surfaces": [
+                    {
+                      "id": "PERIMETER_ZN_4_CEILING",
+                      "construction": {
+                        "id": "nonres_roof~~~00000089",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000090"
+                          },
+                          {
+                            "id": "Nonres_Roof_Insulation~~~00000091"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_4_FLOOR",
+                      "construction": {
+                        "id": "Perimeter_ZN_4_floor_Ffactor"
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_4_WALL_EAST",
+                      "construction": {
+                        "id": "int_wall~~~00000092",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000093"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000094"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_4_WALL_NORTH",
+                      "construction": {
+                        "id": "int_wall~~~00000095",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000096"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000097"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_4_WALL_SOUTH",
+                      "construction": {
+                        "id": "int_wall~~~00000098",
+                        "primary_layers": [
+                          {
+                            "id": "G01 13mm gypsum board~~~00000099"
+                          },
+                          {
+                            "id": "G01 13mm gypsum board~~~00000100"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "PERIMETER_ZN_4_WALL_WEST",
+                      "subsurfaces": [
+                        {
+                          "id": "PERIMETER_ZN_4_WALL_WEST_WINDOW_1"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_4_WALL_WEST_WINDOW_2"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_4_WALL_WEST_WINDOW_3"
+                        },
+                        {
+                          "id": "PERIMETER_ZN_4_WALL_WEST_WINDOW_4"
+                        }
+                      ],
+                      "construction": {
+                        "id": "nonres_ext_wall~~~00000101",
+                        "primary_layers": [
+                          {
+                            "id": "G01 16mm gypsum board~~~00000102"
+                          },
+                          {
+                            "id": "Nonres_Exterior_Wall_Insulation~~~00000103"
+                          },
+                          {
+                            "id": "G01 16mm gypsum board~~~00000104"
+                          },
+                          {
+                            "id": "F07 25mm stucco~~~00000105"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "id": "PERIMETER_ZN_4_INFILTRATION",
+                    "measured_air_leakage_rate": 9.999
+                  },
+                  "terminals": [
+                    {
+                      "id": "PERIMETER_ZN_4 DIRECT AIR ADU"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "id": "PERIMETER_4_SPACE",
+                      "interior_lighting": [
+                        {
+                          "id": "PERIMETER_ZN_4_LIGHTS"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "id": "PERIMETER_ZN_4_MISCPLUG_EQUIP"
+                        }
+                      ]
+                    }
+                  ],
+                  "conditioning_type": "HEATED_AND_COOLED"
+                }
+              ]
+            }
+          ],
+          "exterior_lighting": [
+            {
+              "id": "EXTERIOR_LIGHTS_A"
+            },
+            {
+              "id": "EXTERIOR_LIGHTS_B"
+            },
+            {
+              "id": "EXTERIOR_LIGHTS_C"
+            }
+          ]
+        }
+      ],
+      "pumps": [
+        {
+          "id": "SHWSYS1 PUMP"
+        }
+      ],
+      "output": {
+        "id": "output_1",
+        "output_instance": {
+          "id": "output_instance_1",
+          "annual_source_results": [
+            {
+              "id": "source_results_ELECTRICITY"
+            }
+          ],
+          "annual_end_use_results": [
+            {
+              "id": "end_use_ELECTRICITY-Cooling"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Exterior Lighting"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Fans"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Heating"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Interior Equipment"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Interior Lighting"
+            }
+          ]
+        }
+      },
+      "schedules": [
+        {
+          "id": "BLDG_LIGHT_SCH"
+        },
+        {
+          "id": "BLDG_EQUIP_SCH"
+        },
+        {
+          "id": "INFIL_QUARTER_ON_SCH"
+        },
+        {
+          "id": "INFIL_DOOR_OPENING_SCH"
+        },
+        {
+          "id": "ALWAYS_ON"
+        },
+        {
+          "id": "HTGSETP_SCH_NO_OPTIMUM"
+        },
+        {
+          "id": "HTGSETP_SCH_NO_OPTIMUM_W_SB"
+        },
+        {
+          "id": "CLGSETP_SCH_NO_OPTIMUM"
+        },
+        {
+          "id": "CLGSETP_SCH_NO_OPTIMUM_W_SB"
+        }
+      ]
+    }
+  ],
+  "weather": {
+    "data_source_type": "HISTORIC_AGGREGATION"
+  }
+}

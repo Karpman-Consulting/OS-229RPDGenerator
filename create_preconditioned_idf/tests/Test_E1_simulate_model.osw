@@ -1,0 +1,23 @@
+{
+    "seed_file": "C:\\Users\\AntonSzilasi\\Documents\\OpenStudio20RPD20Generator\\Test_E1\\Test_E1.osm",
+    "weather_file": "USA_CO_Denver.Intl.AP.725650_TMYx.epw",
+    "measures_only":"true",
+    "measure_paths": [
+        "..",
+        "../measures/"
+    ],
+    "file_paths": [
+        "../weather",
+        "./weather",
+        "./seed",
+        "."
+    ],
+    "run_directory": "./run",
+    "steps": [
+        {
+            "measure_dir_name": "create_preconditioned_idf",
+            "name": "CreatePreconditionedIdf",
+            "arguments": {}
+        }
+    ]
+}

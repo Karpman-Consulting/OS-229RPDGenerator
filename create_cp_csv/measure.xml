@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_compliance_parameter_csv_from_osm</name>
   <uid>9a9a1cdc-32aa-4deb-b8d5-33197887a28d</uid>
-  <version_id>71f64f38-233d-4209-a32c-830e216016f0</version_id>
-  <version_modified>2024-12-30T14:15:00Z</version_modified>
+  <version_id>7de05bbe-be8f-4848-9c43-cf53864b5d68</version_id>
+  <version_modified>2025-01-14T20:02:12Z</version_modified>
   <xml_checksum>44311B6C</xml_checksum>
   <class_name>CreateComplianceParameterCsvFromOsm</class_name>
   <display_name>CreateComplianceParameterCsvFromOsm</display_name>
@@ -112,7 +112,13 @@
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.csv</filename>
       <filetype>csv</filetype>
       <usage_type>test</usage_type>
-      <checksum>25845D05</checksum>
+      <checksum>5C11F2FF</checksum>
+    </file>
+    <file>
+      <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BEE3F941</checksum>
     </file>
     <file>
       <filename>E1.comp-param-empty.json</filename>
@@ -124,7 +130,7 @@
       <filename>Test_E1.csv</filename>
       <filetype>csv</filetype>
       <usage_type>test</usage_type>
-      <checksum>C5B7E67A</checksum>
+      <checksum>9AF77ADC</checksum>
     </file>
     <file>
       <filename>Test_E1.osm</filename>
@@ -136,19 +142,13 @@
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>736C75DB</checksum>
+      <checksum>16D09281</checksum>
     </file>
     <file>
       <filename>stdout_output.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
       <checksum>C4B39947</checksum>
-    </file>
-    <file>
-      <filename>test_produce_csv_data_from_comp_param.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4AC986FD</checksum>
     </file>
   </files>
 </measure>

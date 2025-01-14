@@ -1,10 +1,22 @@
-!! This osm is intended to implement
 !! Normative Appendix E of https://performancesystemspsd.sharepoint.com/:w:/r/sites/EnergyEngineeringServices/_layouts/15/Doc.aspx?sourcedoc=%7B79FA7E0C-577B-46EB-A46F-ADD7A04942F4%7D&file=Std229P_2nd_PPR_Draft_V1.docx&action=default&mobileredirect=true
 !! exceptions which were not able to be implemented are listed here:
 !! Table 6: Interior Air Film Resistance Summary  was unable to be implemented
 !! E1.7.2.3.1 d, The exterior air-film resistance for roof and exterior walls was unable to be implemented
 !!
 !!
+!! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
+ 
+ OS:Version,
+   {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
+   3.8.0;                                  !- Version Identifier
+ 
+!! Zone equipment fan pressure rise was calculated from Table 3 of Appendix F 
+!! calculated from a target power of 600 W 
+!! A fan efficiency of 0.7
+!! and a design airflow of 943.9 L/s 
+!! Pressure rise = 600 * 0.7 / 0.9339 = 445 Pa
+
+!! No Fan efficiency was given in the spec so it was taken to be 0.7
 
 OS:Version,
   {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle

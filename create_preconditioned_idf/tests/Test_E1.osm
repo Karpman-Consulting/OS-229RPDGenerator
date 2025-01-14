@@ -6622,11 +6622,93 @@ OS:Connection,
   {05c6afde-ab64-4685-8d7c-b8d7a304a65b}, !- Target Object
   2;                                      !- Inlet Port
 
+OS:Coil:Heating:DX:SingleSpeed,
+  {489a4bba-8f29-44a6-be48-90a71441e15b}, !- Handle
+  PSZ_HP_Core_Zone_Spd_DX_Htg_Coil,       !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Heating Capacity {W}
+  3.1,                                    !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
+  934.4,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
+  {397ab44d-ea6e-4d6d-98c8-fe235b020296}, !- Air Inlet Node Name
+  {5cfad408-fadb-4a98-87c9-f8fb93d80647}, !- Air Outlet Node Name
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, !- Total Heating Capacity Function of Temperature Curve Name
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, !- Total Heating Capacity Function of Flow Fraction Curve Name
+  {020d3fed-680f-41a1-a361-3d11c2162160}, !- Energy Input Ratio Function of Temperature Curve Name
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {a2274178-981f-459b-8ff6-7c47497007f2}, !- Part Load Fraction Correlation Curve Name
+  ,                                       !- Defrost Energy Input Ratio Function of Temperature Curve Name
+  -23.333333333333,                       !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Maximum Outdoor Dry-Bulb Temperature for Defrost Operation {C}
+  ,                                       !- Crankcase Heater Capacity {W}
+  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
+  4.4444444444445,                        !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  Resistive,                              !- Defrost Strategy
+  Timed,                                  !- Defrost Control
+  0.16666700000000001,                    !- Defrost Time Period Fraction
+  2000;                                   !- Resistive Defrost Heater Capacity {W}
+
+OS:Curve:Biquadratic,
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, ! Handle
+  OS:Curve:Biquadratic 7,                 ! Name
+  0.75874600000000003,                    ! Coefficient1 Constant
+  0,                                      ! Coefficient2 x
+  0,                                      ! Coefficient3 x**2
+  0.027626000000000001,                   ! Coefficient4 y
+  0.00014871599999999999,                 ! Coefficient5 y**2
+  0,                                      ! Coefficient6 x*y
+  0,                                      ! Minimum Value of x {BasedOnField A2}
+  1,                                      ! Maximum Value of x {BasedOnField A2}
+  0,                                      ! Minimum Value of y {BasedOnField A3}
+  1;                                      ! Maximum Value of y {BasedOnField A3}
+
+OS:Curve:Quadratic,
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, ! Handle
+  OS:Curve:Quadratic 8,                   ! Name
+  0.83999999999999997,                    ! Coefficient1 Constant
+  0.16,                                   ! Coefficient2 x
+  0,                                      ! Coefficient3 x**2
+  0.5,                                    ! Minimum Value of x {BasedOnField A2}
+  1.5;                                    ! Maximum Value of x {BasedOnField A2}
+
+OS:Curve:Biquadratic,
+  {020d3fed-680f-41a1-a361-3d11c2162160}, ! Handle
+  OS:Curve:Biquadratic 8,                 ! Name
+  1.19248,                                ! Coefficient1 Constant
+  -0.030043799999999999,                  ! Coefficient2 x
+  0.0010374500000000001,                  ! Coefficient3 x**2
+  0,                                      ! Coefficient4 y
+  0,                                      ! Coefficient5 y**2
+  0,                                      ! Coefficient6 x*y
+  -20,                                    ! Minimum Value of x {BasedOnField A2}
+  20,                                     ! Maximum Value of x {BasedOnField A2}
+  0,                                      ! Minimum Value of y {BasedOnField A3}
+  1;                                      ! Maximum Value of y {BasedOnField A3}
+
+OS:Curve:Quadratic,
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, ! Handle
+  OS:Curve:Quadratic 9,                   ! Name
+  1.3824000000000001,                     ! Coefficient1 Constant
+  -0.43359999999999999,                   ! Coefficient2 x
+  0.051200000000000002,                   ! Coefficient3 x**2
+  0,                                      ! Minimum Value of x {BasedOnField A2}
+  1;                                      ! Maximum Value of x {BasedOnField A2}
+
+OS:Curve:Quadratic,
+  {a2274178-981f-459b-8ff6-7c47497007f2}, ! Handle
+  OS:Curve:Quadratic 10,                  ! Name
+  0.84999999999999998,                    ! Coefficient1 Constant
+  0.14999999999999999,                    ! Coefficient2 x
+  0,                                      ! Coefficient3 x**2
+  0,                                      ! Minimum Value of x {BasedOnField A2}
+  1;                                      ! Maximum Value of x {BasedOnField A2}
+
 OS:Node,
   {ee69fbe9-3e2a-47c7-9759-55424f154104}, !- Handle
   Node 12,                                !- Name
   {79c193da-1c06-4ef5-9476-c8617aaba585}, !- Inlet Port
-  {4461079b-1b9f-4237-9216-2d7ce497d89d}; !- Outlet Port
+  {397ab44d-ea6e-4d6d-98c8-fe235b020296}; !- Outlet Port
 
 OS:Connection,
   {79c193da-1c06-4ef5-9476-c8617aaba585}, !- Handle
@@ -6634,6 +6716,13 @@ OS:Connection,
   10,                                     !- Outlet Port
   {ee69fbe9-3e2a-47c7-9759-55424f154104}, !- Target Object
   2;                                      !- Inlet Port
+
+OS:Connection,
+  {397ab44d-ea6e-4d6d-98c8-fe235b020296}, !- Handle
+  {ee69fbe9-3e2a-47c7-9759-55424f154104}, !- Source Object
+  3,                                      !- Outlet Port
+  {489a4bba-8f29-44a6-be48-90a71441e15b}, !- Target Object
+  8;                                      !- Inlet Port
 
 OS:Schedule:Constant,
   {a6b8ccda-8c01-42b2-9d58-3726a23cb6bb}, !- Handle
@@ -6645,7 +6734,7 @@ OS:Fan:SystemModel,
   {240b998a-e8ae-435b-867a-d8a0aee15e1f}, !- Handle
   PSZ_HP_Core_Zone_FanSystemModel_ConstantVolume, !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
-  {d9d9067e-f972-4e30-8ce1-8a08c4c4eaba}, !- Air Inlet Node Name
+  {e3a1940c-951c-45dc-8a6d-7cf18882df1b}, !- Air Inlet Node Name
   {f28bad32-1cb0-41af-8da3-42e63da51b61}, !- Air Outlet Node Name
   autosize,                               !- Design Maximum Air Flow Rate {m3/s}
   Discrete,                               !- Speed Control Method
@@ -6665,12 +6754,61 @@ OS:Fan:SystemModel,
   0,                                      !- Motor Loss Radiative Fraction
   General;                                !- End-Use Subcategory
 
+OS:Node,
+  {6aad7987-d253-48c3-a6be-efd58443542b}, !- Handle
+  Node 13,                                !- Name
+  {5cfad408-fadb-4a98-87c9-f8fb93d80647}, !- Inlet Port
+  {a1e8ba6b-69b3-4ed3-b377-3cdf2b8a862c}; !- Outlet Port
+
+OS:Connection,
+  {5cfad408-fadb-4a98-87c9-f8fb93d80647}, !- Handle
+  {489a4bba-8f29-44a6-be48-90a71441e15b}, !- Source Object
+  9,                                      !- Outlet Port
+  {6aad7987-d253-48c3-a6be-efd58443542b}, !- Target Object
+  2;                                      !- Inlet Port
+
 OS:Connection,
   {f28bad32-1cb0-41af-8da3-42e63da51b61}, !- Handle
   {240b998a-e8ae-435b-867a-d8a0aee15e1f}, !- Source Object
   4,                                      !- Outlet Port
   {17f04df6-aba0-4480-be9b-c78c5e6c23c5}, !- Target Object
   2;                                      !- Inlet Port
+
+OS:Coil:Heating:Electric,
+  {2bc4b367-c027-4c87-9b7e-03cfd46bc915}, ! Handle
+  PSZ_HP_Core_Zone_Elec_Htg_Coil,         ! Name
+  {79d6d73b-42e1-496c-a35b-7049e317f1f1}, ! Availability Schedule Name
+  ,                                       ! Efficiency
+  ,                                       ! Nominal Capacity {W}
+  {a1e8ba6b-69b3-4ed3-b377-3cdf2b8a862c}, ! Air Inlet Node Name
+  {573276d5-fe36-4fdf-9772-35ff33e51da8}; ! Air Outlet Node Name
+
+OS:Node,
+  {9a29b466-9757-428e-a570-9b841e17f988}, !- Handle
+  Node 17,                                !- Name
+  {573276d5-fe36-4fdf-9772-35ff33e51da8}, !- Inlet Port
+  {e3a1940c-951c-45dc-8a6d-7cf18882df1b}; !- Outlet Port
+
+OS:Connection,
+  {a1e8ba6b-69b3-4ed3-b377-3cdf2b8a862c}, !- Handle
+  {6aad7987-d253-48c3-a6be-efd58443542b}, !- Source Object
+  3,                                      !- Outlet Port
+  {2bc4b367-c027-4c87-9b7e-03cfd46bc915}, !- Target Object
+  5;                                      !- Inlet Port
+
+OS:Connection,
+  {573276d5-fe36-4fdf-9772-35ff33e51da8}, !- Handle
+  {2bc4b367-c027-4c87-9b7e-03cfd46bc915}, !- Source Object
+  6,                                      !- Outlet Port
+  {9a29b466-9757-428e-a570-9b841e17f988}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {e3a1940c-951c-45dc-8a6d-7cf18882df1b}, !- Handle
+  {9a29b466-9757-428e-a570-9b841e17f988}, !- Source Object
+  3,                                      !- Outlet Port
+  {240b998a-e8ae-435b-867a-d8a0aee15e1f}, !- Target Object
+  3;                                      !- Inlet Port
 
 OS:Node,
   {0e0196b2-c6c7-4e2a-bbe6-ac24bb5947da}, !- Handle
@@ -7247,6 +7385,22 @@ OS:Rendering:Color,
   128,                                    !- Rendering Green Value
   128;                                    !- Rendering Blue Value
 
+OS:WeatherFile,
+  {63d239df-5af6-4b44-9738-4922c8f4249a}, !- Handle
+  Denver.Intl.AP,                         !- City
+  CO,                                     !- State Province Region
+  USA,                                    !- Country
+  SRC-TMYx,                               !- Data Source
+  725650,                                 !- WMO Number
+  39.833,                                 !- Latitude {deg}
+  -104.658,                               !- Longitude {deg}
+  -7,                                     !- Time Zone {hr}
+  1650.2,                                 !- Elevation {m}
+  USA_CO_Denver.Intl.AP.725650_TMYx.epw,  !- Url
+  0FE00629,                               !- Checksum
+  ,                                       !- Start Date Actual Year
+  Sunday;                                 !- Start Day of Week
+
 OS:Rendering:Color,
   {ba829e37-20bb-47a2-8a83-c429ddb02be9}, !- Handle
   Rendering Color 100,                    !- Name
@@ -7662,11 +7816,38 @@ OS:Connection,
   {6870a970-cae2-4c1e-b10d-18e04e1608fc}, !- Target Object
   9;                                      !- Inlet Port
 
+OS:Coil:Heating:DX:SingleSpeed,
+  {f0508743-747d-4190-b820-90daffa24fcd}, !- Handle
+  PSZ_HP_Perimeter_Zone_1_Spd_DX_Htg_Coil 1, !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Heating Capacity {W}
+  3.1,                                    !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
+  934.4,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
+  {3bff5650-03b9-4bfd-be8f-ac73f3eb77b4}, !- Air Inlet Node Name
+  {691eca6d-2781-44ca-8f57-e54f01fb6d29}, !- Air Outlet Node Name
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, !- Total Heating Capacity Function of Temperature Curve Name
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, !- Total Heating Capacity Function of Flow Fraction Curve Name
+  {020d3fed-680f-41a1-a361-3d11c2162160}, !- Energy Input Ratio Function of Temperature Curve Name
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {a2274178-981f-459b-8ff6-7c47497007f2}, !- Part Load Fraction Correlation Curve Name
+  ,                                       !- Defrost Energy Input Ratio Function of Temperature Curve Name
+  -23.333333333333,                       !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Maximum Outdoor Dry-Bulb Temperature for Defrost Operation {C}
+  ,                                       !- Crankcase Heater Capacity {W}
+  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
+  4.4444444444445,                        !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  Resistive,                              !- Defrost Strategy
+  Timed,                                  !- Defrost Control
+  0.16666700000000001,                    !- Defrost Time Period Fraction
+  2000;                                   !- Resistive Defrost Heater Capacity {W}
+
 OS:Node,
   {a9b4833c-cebf-472f-baa8-a86a5f5ee5bb}, !- Handle
   Node 29,                                !- Name
   {ea58503e-39ee-44d9-9c8e-529cbe1c482f}, !- Inlet Port
-  {51de69fa-50b1-4231-9fb3-11b911422c0a}; !- Outlet Port
+  {3bff5650-03b9-4bfd-be8f-ac73f3eb77b4}; !- Outlet Port
 
 OS:Connection,
   {ea58503e-39ee-44d9-9c8e-529cbe1c482f}, !- Handle
@@ -7675,11 +7856,47 @@ OS:Connection,
   {a9b4833c-cebf-472f-baa8-a86a5f5ee5bb}, !- Target Object
   2;                                      !- Inlet Port
 
+OS:Connection,
+  {3bff5650-03b9-4bfd-be8f-ac73f3eb77b4}, !- Handle
+  {a9b4833c-cebf-472f-baa8-a86a5f5ee5bb}, !- Source Object
+  3,                                      !- Outlet Port
+  {f0508743-747d-4190-b820-90daffa24fcd}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Coil:Heating:Electric,
+  {a317d212-9d88-46e7-ae4c-c9cc19b44d14}, ! Handle
+  PSZ_HP_Perimeter_Zone_1_Elec_Htg_Coil,  ! Name
+  {79d6d73b-42e1-496c-a35b-7049e317f1f1}, ! Availability Schedule Name
+  ,                                       ! Efficiency
+  ,                                       ! Nominal Capacity {W}
+  {5d387b03-8026-4c89-925c-fcf85ad369c9}, ! Air Inlet Node Name
+  {abe852c7-69e7-4665-95b9-a546dfbc4e4b}; ! Air Outlet Node Name
+
+OS:Node,
+  {d5c35a26-3ba4-4283-a036-fddcef5d3d85}, !- Handle
+  Node 30,                                !- Name
+  {691eca6d-2781-44ca-8f57-e54f01fb6d29}, !- Inlet Port
+  {5d387b03-8026-4c89-925c-fcf85ad369c9}; !- Outlet Port
+
+OS:Connection,
+  {691eca6d-2781-44ca-8f57-e54f01fb6d29}, !- Handle
+  {f0508743-747d-4190-b820-90daffa24fcd}, !- Source Object
+  9,                                      !- Outlet Port
+  {d5c35a26-3ba4-4283-a036-fddcef5d3d85}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {5d387b03-8026-4c89-925c-fcf85ad369c9}, !- Handle
+  {d5c35a26-3ba4-4283-a036-fddcef5d3d85}, !- Source Object
+  3,                                      !- Outlet Port
+  {a317d212-9d88-46e7-ae4c-c9cc19b44d14}, !- Target Object
+  5;                                      !- Inlet Port
+
 OS:Fan:SystemModel,
   {1e58de9a-098f-4f82-97ab-499f65c911a9}, !- Handle
   PSZ_HP_Perimeter_Zone_1_FanSystemModel_Constant_Volume, !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
-  {77407fe0-2ac5-4efe-88e3-e0031bf92697}, !- Air Inlet Node Name
+  {1b64c476-4c84-4496-a16f-ff55e4ae513f}, !- Air Inlet Node Name
   {17e92d22-7bf8-4aaa-8ca2-9c0769b61b75}, !- Air Outlet Node Name
   autosize,                               !- Design Maximum Air Flow Rate {m3/s}
   Discrete,                               !- Speed Control Method
@@ -7698,6 +7915,26 @@ OS:Fan:SystemModel,
   ,                                       !- Motor Loss Zone Name
   0,                                      !- Motor Loss Radiative Fraction
   General;                                !- End-Use Subcategory
+
+OS:Node,
+  {4c3301b7-eb7b-4450-8bfd-79f38734e3c1}, !- Handle
+  Node 31,                                !- Name
+  {abe852c7-69e7-4665-95b9-a546dfbc4e4b}, !- Inlet Port
+  {1b64c476-4c84-4496-a16f-ff55e4ae513f}; !- Outlet Port
+
+OS:Connection,
+  {abe852c7-69e7-4665-95b9-a546dfbc4e4b}, !- Handle
+  {a317d212-9d88-46e7-ae4c-c9cc19b44d14}, !- Source Object
+  6,                                      !- Outlet Port
+  {4c3301b7-eb7b-4450-8bfd-79f38734e3c1}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {1b64c476-4c84-4496-a16f-ff55e4ae513f}, !- Handle
+  {4c3301b7-eb7b-4450-8bfd-79f38734e3c1}, !- Source Object
+  3,                                      !- Outlet Port
+  {1e58de9a-098f-4f82-97ab-499f65c911a9}, !- Target Object
+  3;                                      !- Inlet Port
 
 OS:Connection,
   {17e92d22-7bf8-4aaa-8ca2-9c0769b61b75}, !- Handle
@@ -8108,11 +8345,38 @@ OS:Connection,
   {55a13d61-b872-4dd8-bf74-73ce43300361}, !- Target Object
   9;                                      !- Inlet Port
 
+OS:Coil:Heating:DX:SingleSpeed,
+  {69ec85bc-c74f-46b3-8fb0-58090a92ee03}, !- Handle
+  PSZ_HP_Perimeter_Zone_2_Spd_DX_Htg_Coil 2, !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Heating Capacity {W}
+  3.1,                                    !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
+  934.4,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
+  {58aa3239-b1fd-4219-8b84-b3326ef13c59}, !- Air Inlet Node Name
+  {12aec524-bf16-4615-8bba-70f18eb5d2b1}, !- Air Outlet Node Name
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, !- Total Heating Capacity Function of Temperature Curve Name
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, !- Total Heating Capacity Function of Flow Fraction Curve Name
+  {020d3fed-680f-41a1-a361-3d11c2162160}, !- Energy Input Ratio Function of Temperature Curve Name
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {a2274178-981f-459b-8ff6-7c47497007f2}, !- Part Load Fraction Correlation Curve Name
+  ,                                       !- Defrost Energy Input Ratio Function of Temperature Curve Name
+  -23.333333333333,                       !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Maximum Outdoor Dry-Bulb Temperature for Defrost Operation {C}
+  ,                                       !- Crankcase Heater Capacity {W}
+  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
+  4.4444444444445,                        !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  Resistive,                              !- Defrost Strategy
+  Timed,                                  !- Defrost Control
+  0.16666700000000001,                    !- Defrost Time Period Fraction
+  2000;                                   !- Resistive Defrost Heater Capacity {W}
+
 OS:Node,
   {c1f34c60-7e96-4f81-8193-640bb7f1f89d}, !- Handle
   Node 43,                                !- Name
   {d052215e-0c76-4424-b14b-d87d942739c5}, !- Inlet Port
-  {ac8b676d-5300-46da-98d3-f5e2b6e97bd1}; !- Outlet Port
+  {58aa3239-b1fd-4219-8b84-b3326ef13c59}; !- Outlet Port
 
 OS:Connection,
   {d052215e-0c76-4424-b14b-d87d942739c5}, !- Handle
@@ -8121,11 +8385,47 @@ OS:Connection,
   {c1f34c60-7e96-4f81-8193-640bb7f1f89d}, !- Target Object
   2;                                      !- Inlet Port
 
+OS:Connection,
+  {58aa3239-b1fd-4219-8b84-b3326ef13c59}, !- Handle
+  {c1f34c60-7e96-4f81-8193-640bb7f1f89d}, !- Source Object
+  3,                                      !- Outlet Port
+  {69ec85bc-c74f-46b3-8fb0-58090a92ee03}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Coil:Heating:Electric,
+  {f93d2244-106d-4f08-a815-e24e0fbbcd85}, ! Handle
+  PSZ_HP_Perimeter_Zone_2_Elec_Htg_Coil 1, ! Name
+  {79d6d73b-42e1-496c-a35b-7049e317f1f1}, ! Availability Schedule Name
+  ,                                       ! Efficiency
+  ,                                       ! Nominal Capacity {W}
+  {03f9b35e-a793-4349-836c-665472e8b8c5}, ! Air Inlet Node Name
+  {4e2d5b66-d956-4995-9d04-4c40c2cfbbe8}; ! Air Outlet Node Name
+
+OS:Node,
+  {e3ae2a53-9bf2-45a7-9b60-4dbd44160f85}, !- Handle
+  Node 44,                                !- Name
+  {12aec524-bf16-4615-8bba-70f18eb5d2b1}, !- Inlet Port
+  {03f9b35e-a793-4349-836c-665472e8b8c5}; !- Outlet Port
+
+OS:Connection,
+  {12aec524-bf16-4615-8bba-70f18eb5d2b1}, !- Handle
+  {69ec85bc-c74f-46b3-8fb0-58090a92ee03}, !- Source Object
+  9,                                      !- Outlet Port
+  {e3ae2a53-9bf2-45a7-9b60-4dbd44160f85}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {03f9b35e-a793-4349-836c-665472e8b8c5}, !- Handle
+  {e3ae2a53-9bf2-45a7-9b60-4dbd44160f85}, !- Source Object
+  3,                                      !- Outlet Port
+  {f93d2244-106d-4f08-a815-e24e0fbbcd85}, !- Target Object
+  5;                                      !- Inlet Port
+
 OS:Fan:SystemModel,
   {a1f36291-c063-46e7-bcc7-382528331a38}, !- Handle
   PSZ_HP_Perimeter_Zone_2_FanSystemModel_Constant_Volume 1, !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
-  {ee8c5f00-4524-4473-83b2-f4a622cd10f5}, !- Air Inlet Node Name
+  {b38831c4-0c54-40b6-98ce-e2a89d49f946}, !- Air Inlet Node Name
   {8210a2a2-879f-4af2-9303-c255edde2291}, !- Air Outlet Node Name
   autosize,                               !- Design Maximum Air Flow Rate {m3/s}
   Discrete,                               !- Speed Control Method
@@ -8144,6 +8444,26 @@ OS:Fan:SystemModel,
   ,                                       !- Motor Loss Zone Name
   0,                                      !- Motor Loss Radiative Fraction
   General;                                !- End-Use Subcategory
+
+OS:Node,
+  {00ca33df-5063-413f-9c91-2156602c4536}, !- Handle
+  Node 45,                                !- Name
+  {4e2d5b66-d956-4995-9d04-4c40c2cfbbe8}, !- Inlet Port
+  {b38831c4-0c54-40b6-98ce-e2a89d49f946}; !- Outlet Port
+
+OS:Connection,
+  {4e2d5b66-d956-4995-9d04-4c40c2cfbbe8}, !- Handle
+  {f93d2244-106d-4f08-a815-e24e0fbbcd85}, !- Source Object
+  6,                                      !- Outlet Port
+  {00ca33df-5063-413f-9c91-2156602c4536}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {b38831c4-0c54-40b6-98ce-e2a89d49f946}, !- Handle
+  {00ca33df-5063-413f-9c91-2156602c4536}, !- Source Object
+  3,                                      !- Outlet Port
+  {a1f36291-c063-46e7-bcc7-382528331a38}, !- Target Object
+  3;                                      !- Inlet Port
 
 OS:Connection,
   {8210a2a2-879f-4af2-9303-c255edde2291}, !- Handle
@@ -8554,11 +8874,38 @@ OS:Connection,
   {91f58d82-efc0-4385-bea6-83aee01a35a3}, !- Target Object
   9;                                      !- Inlet Port
 
+OS:Coil:Heating:DX:SingleSpeed,
+  {ad170a86-b233-499d-a8a0-add1b00f0437}, !- Handle
+  PSZ_HP_Perimeter_Zone_3_Spd_DX_Htg_Coil, !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Heating Capacity {W}
+  3.1,                                    !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
+  934.4,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
+  {6064a005-7cf0-4a9c-8949-cc910819447c}, !- Air Inlet Node Name
+  {c36554e4-1ef6-4c6a-9786-ea99d919dec1}, !- Air Outlet Node Name
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, !- Total Heating Capacity Function of Temperature Curve Name
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, !- Total Heating Capacity Function of Flow Fraction Curve Name
+  {020d3fed-680f-41a1-a361-3d11c2162160}, !- Energy Input Ratio Function of Temperature Curve Name
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {a2274178-981f-459b-8ff6-7c47497007f2}, !- Part Load Fraction Correlation Curve Name
+  ,                                       !- Defrost Energy Input Ratio Function of Temperature Curve Name
+  -23.333333333333,                       !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Maximum Outdoor Dry-Bulb Temperature for Defrost Operation {C}
+  ,                                       !- Crankcase Heater Capacity {W}
+  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
+  4.4444444444445,                        !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  Resistive,                              !- Defrost Strategy
+  Timed,                                  !- Defrost Control
+  0.16666700000000001,                    !- Defrost Time Period Fraction
+  2000;                                   !- Resistive Defrost Heater Capacity {W}
+
 OS:Node,
   {fd205cab-6d86-4953-9b55-31820c425eae}, !- Handle
   Node 57,                                !- Name
   {6dfef82a-5bd1-4c98-b20f-dae814301cf4}, !- Inlet Port
-  {83d12fe3-d080-4c98-a2cf-f53e0e9568f5}; !- Outlet Port
+  {6064a005-7cf0-4a9c-8949-cc910819447c}; !- Outlet Port
 
 OS:Connection,
   {6dfef82a-5bd1-4c98-b20f-dae814301cf4}, !- Handle
@@ -8567,11 +8914,47 @@ OS:Connection,
   {fd205cab-6d86-4953-9b55-31820c425eae}, !- Target Object
   2;                                      !- Inlet Port
 
+OS:Connection,
+  {6064a005-7cf0-4a9c-8949-cc910819447c}, !- Handle
+  {fd205cab-6d86-4953-9b55-31820c425eae}, !- Source Object
+  3,                                      !- Outlet Port
+  {ad170a86-b233-499d-a8a0-add1b00f0437}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Coil:Heating:Electric,
+  {cdd5cd10-6ab5-4e70-9d45-dbb65068f153}, ! Handle
+  PSZ_HP_Perimeter_Zone_3_Elec_Htg_Coil,  ! Name
+  {79d6d73b-42e1-496c-a35b-7049e317f1f1}, ! Availability Schedule Name
+  ,                                       ! Efficiency
+  ,                                       ! Nominal Capacity {W}
+  {ae2cf85b-b87a-4d4d-bebb-b65aeec1d571}, ! Air Inlet Node Name
+  {eb5c653f-f3f1-416d-b58b-31bbdf20c942}; ! Air Outlet Node Name
+
+OS:Node,
+  {0ab22cd1-a886-41de-ba88-15211758e84d}, !- Handle
+  Node 58,                                !- Name
+  {c36554e4-1ef6-4c6a-9786-ea99d919dec1}, !- Inlet Port
+  {ae2cf85b-b87a-4d4d-bebb-b65aeec1d571}; !- Outlet Port
+
+OS:Connection,
+  {c36554e4-1ef6-4c6a-9786-ea99d919dec1}, !- Handle
+  {ad170a86-b233-499d-a8a0-add1b00f0437}, !- Source Object
+  9,                                      !- Outlet Port
+  {0ab22cd1-a886-41de-ba88-15211758e84d}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {ae2cf85b-b87a-4d4d-bebb-b65aeec1d571}, !- Handle
+  {0ab22cd1-a886-41de-ba88-15211758e84d}, !- Source Object
+  3,                                      !- Outlet Port
+  {cdd5cd10-6ab5-4e70-9d45-dbb65068f153}, !- Target Object
+  5;                                      !- Inlet Port
+
 OS:Fan:SystemModel,
   {71d4a625-dc79-468b-ba0a-907b35bc6aa0}, !- Handle
   PSZ_HP_Perimeter_Zone_3_FanSystemModel_Constant_Volume, !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
-  {734034ab-75a6-480b-b501-1532e27bfa89}, !- Air Inlet Node Name
+  {bbcb316c-4be6-4122-8013-f382b570a40f}, !- Air Inlet Node Name
   {8ff2f16b-0c0e-4e74-955b-f6e12758ae04}, !- Air Outlet Node Name
   autosize,                               !- Design Maximum Air Flow Rate {m3/s}
   Discrete,                               !- Speed Control Method
@@ -8590,6 +8973,26 @@ OS:Fan:SystemModel,
   ,                                       !- Motor Loss Zone Name
   0,                                      !- Motor Loss Radiative Fraction
   General;                                !- End-Use Subcategory
+
+OS:Node,
+  {7df91e07-ae9e-4371-8939-35304f27d934}, !- Handle
+  Node 59,                                !- Name
+  {eb5c653f-f3f1-416d-b58b-31bbdf20c942}, !- Inlet Port
+  {bbcb316c-4be6-4122-8013-f382b570a40f}; !- Outlet Port
+
+OS:Connection,
+  {eb5c653f-f3f1-416d-b58b-31bbdf20c942}, !- Handle
+  {cdd5cd10-6ab5-4e70-9d45-dbb65068f153}, !- Source Object
+  6,                                      !- Outlet Port
+  {7df91e07-ae9e-4371-8939-35304f27d934}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {bbcb316c-4be6-4122-8013-f382b570a40f}, !- Handle
+  {7df91e07-ae9e-4371-8939-35304f27d934}, !- Source Object
+  3,                                      !- Outlet Port
+  {71d4a625-dc79-468b-ba0a-907b35bc6aa0}, !- Target Object
+  3;                                      !- Inlet Port
 
 OS:Connection,
   {8ff2f16b-0c0e-4e74-955b-f6e12758ae04}, !- Handle
@@ -9000,11 +9403,38 @@ OS:Connection,
   {2a131be2-ac20-4b3a-b30a-6cb6b386e741}, !- Target Object
   9;                                      !- Inlet Port
 
+OS:Coil:Heating:DX:SingleSpeed,
+  {3ca9842e-19f4-48ea-8bf2-bb0f9ff206ce}, !- Handle
+  PSZ_HP_Perimeter_Zone_4_Spd_DX_Htg_Coil, !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Heating Capacity {W}
+  3.1,                                    !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
+  934.4,                                  !- Rated Supply Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
+  {a2db616e-e09c-43b0-ba9c-aa634f22feb8}, !- Air Inlet Node Name
+  {6e08bbe3-2e61-40e7-a037-cc8ea8407c74}, !- Air Outlet Node Name
+  {d05f6a9c-8e36-4867-86eb-cc39e80068ef}, !- Total Heating Capacity Function of Temperature Curve Name
+  {f853f7a5-a2c2-4aab-a201-b7ee0ccb583b}, !- Total Heating Capacity Function of Flow Fraction Curve Name
+  {020d3fed-680f-41a1-a361-3d11c2162160}, !- Energy Input Ratio Function of Temperature Curve Name
+  {d9914c0b-5132-426c-b4ca-fe82962d72d3}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {a2274178-981f-459b-8ff6-7c47497007f2}, !- Part Load Fraction Correlation Curve Name
+  ,                                       !- Defrost Energy Input Ratio Function of Temperature Curve Name
+  -23.333333333333,                       !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Maximum Outdoor Dry-Bulb Temperature for Defrost Operation {C}
+  ,                                       !- Crankcase Heater Capacity {W}
+  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
+  4.4444444444445,                        !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  Resistive,                              !- Defrost Strategy
+  Timed,                                  !- Defrost Control
+  0.16666700000000001,                    !- Defrost Time Period Fraction
+  2000;                                   !- Resistive Defrost Heater Capacity {W}
+
 OS:Node,
   {9f211ae4-5b6c-404f-a88c-5b80c8cf050a}, !- Handle
   Node 71,                                !- Name
   {9d04551f-55d9-483b-93c4-2e5aa263ada6}, !- Inlet Port
-  {b0f4b11a-a3ae-4f3d-a12d-f21990894ac2}; !- Outlet Port
+  {a2db616e-e09c-43b0-ba9c-aa634f22feb8}; !- Outlet Port
 
 OS:Connection,
   {9d04551f-55d9-483b-93c4-2e5aa263ada6}, !- Handle
@@ -9013,11 +9443,47 @@ OS:Connection,
   {9f211ae4-5b6c-404f-a88c-5b80c8cf050a}, !- Target Object
   2;                                      !- Inlet Port
 
+OS:Connection,
+  {a2db616e-e09c-43b0-ba9c-aa634f22feb8}, !- Handle
+  {9f211ae4-5b6c-404f-a88c-5b80c8cf050a}, !- Source Object
+  3,                                      !- Outlet Port
+  {3ca9842e-19f4-48ea-8bf2-bb0f9ff206ce}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Coil:Heating:Electric,
+  {38ebc406-5f0f-4740-89b4-8cf661f4d072}, ! Handle
+  PSZ_HP_Perimeter_Zone_4_Elec_Htg_Coil,  ! Name
+  {79d6d73b-42e1-496c-a35b-7049e317f1f1}, ! Availability Schedule Name
+  ,                                       ! Efficiency
+  ,                                       ! Nominal Capacity {W}
+  {1f0b2101-22e9-4184-abf0-a13231e9909f}, ! Air Inlet Node Name
+  {59113ebc-1587-48c2-83cd-2809bea871fb}; ! Air Outlet Node Name
+
+OS:Node,
+  {ac33fa45-1b04-4c03-93c5-6e1ea717388d}, !- Handle
+  Node 72,                                !- Name
+  {6e08bbe3-2e61-40e7-a037-cc8ea8407c74}, !- Inlet Port
+  {1f0b2101-22e9-4184-abf0-a13231e9909f}; !- Outlet Port
+
+OS:Connection,
+  {6e08bbe3-2e61-40e7-a037-cc8ea8407c74}, !- Handle
+  {3ca9842e-19f4-48ea-8bf2-bb0f9ff206ce}, !- Source Object
+  9,                                      !- Outlet Port
+  {ac33fa45-1b04-4c03-93c5-6e1ea717388d}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {1f0b2101-22e9-4184-abf0-a13231e9909f}, !- Handle
+  {ac33fa45-1b04-4c03-93c5-6e1ea717388d}, !- Source Object
+  3,                                      !- Outlet Port
+  {38ebc406-5f0f-4740-89b4-8cf661f4d072}, !- Target Object
+  5;                                      !- Inlet Port
+
 OS:Fan:SystemModel,
   {43f8b45a-11fa-491d-83a7-b40e705583ba}, !- Handle
   PSZ_HP_Perimeter_Zone_4_FanSystemModel_Constant_Volume, !- Name
   {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
-  {9a801727-a55b-4fb6-a439-45cd62a2137a}, !- Air Inlet Node Name
+  {e3f35bae-cd53-4682-8383-69071146810d}, !- Air Inlet Node Name
   {7b284712-abf0-4167-8af9-71e14b9492d0}, !- Air Outlet Node Name
   autosize,                               !- Design Maximum Air Flow Rate {m3/s}
   Discrete,                               !- Speed Control Method
@@ -9036,6 +9502,26 @@ OS:Fan:SystemModel,
   ,                                       !- Motor Loss Zone Name
   0,                                      !- Motor Loss Radiative Fraction
   General;                                !- End-Use Subcategory
+
+OS:Node,
+  {f95174c3-849b-4d43-9944-518a81d22c15}, !- Handle
+  Node 73,                                !- Name
+  {59113ebc-1587-48c2-83cd-2809bea871fb}, !- Inlet Port
+  {e3f35bae-cd53-4682-8383-69071146810d}; !- Outlet Port
+
+OS:Connection,
+  {59113ebc-1587-48c2-83cd-2809bea871fb}, !- Handle
+  {38ebc406-5f0f-4740-89b4-8cf661f4d072}, !- Source Object
+  6,                                      !- Outlet Port
+  {f95174c3-849b-4d43-9944-518a81d22c15}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {e3f35bae-cd53-4682-8383-69071146810d}, !- Handle
+  {f95174c3-849b-4d43-9944-518a81d22c15}, !- Source Object
+  3,                                      !- Outlet Port
+  {43f8b45a-11fa-491d-83a7-b40e705583ba}, !- Target Object
+  3;                                      !- Inlet Port
 
 OS:Connection,
   {7b284712-abf0-4167-8af9-71e14b9492d0}, !- Handle
@@ -9649,256 +10135,4 @@ OS:Rendering:Color,
   123,                                    !- Rendering Red Value
   238,                                    !- Rendering Green Value
   104;                                    !- Rendering Blue Value
-
-OS:Rendering:Color,
-  {cc7f795d-7350-48e5-85a5-bddc9f4a0eb6}, !- Handle
-  Rendering Color 172,                    !- Name
-  216,                                    !- Rendering Red Value
-  216,                                    !- Rendering Green Value
-  191;                                    !- Rendering Blue Value
-
-OS:Rendering:Color,
-  {43a3f641-f7ba-42d3-915a-3f30659490e1}, !- Handle
-  Rendering Color 173,                    !- Name
-  135,                                    !- Rendering Red Value
-  250,                                    !- Rendering Green Value
-  206;                                    !- Rendering Blue Value
-
-OS:Rendering:Color,
-  {2ff60ba9-f23a-494d-a548-53a6e380ba6c}, !- Handle
-  Rendering Color 174,                    !- Name
-  128,                                    !- Rendering Red Value
-  0,                                      !- Rendering Green Value
-  0;                                      !- Rendering Blue Value
-
-OS:Rendering:Color,
-  {88980f0f-d651-4abc-86db-5ff52e8bec43}, !- Handle
-  Rendering Color 175,                    !- Name
-  255,                                    !- Rendering Red Value
-  196,                                    !- Rendering Green Value
-  228;                                    !- Rendering Blue Value
-
-OS:Rendering:Color,
-  {a49a9ad0-cc4b-4a2c-9053-b600bbb38889}, !- Handle
-  Rendering Color 176,                    !- Name
-  255,                                    !- Rendering Red Value
-  245,                                    !- Rendering Green Value
-  240;                                    !- Rendering Blue Value
-
-OS:Coil:Heating:Gas,
-  {2ffdc90c-2580-4d0b-acb1-f84799902dc1}, ! Handle
-  Gas Htg Coil,                           ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.80000000000000004,                    ! Gas Burner Efficiency
-  AutoSize,                               ! Nominal Capacity {W}
-  {4461079b-1b9f-4237-9216-2d7ce497d89d}, ! Air Inlet Node Name
-  {b14368c6-2b1b-4f6a-bd12-988610b2f238}, ! Air Outlet Node Name
-  ,                                       ! Temperature Setpoint Node Name
-  0,                                      ! Parasitic Electric Load {W}
-  ,                                       ! Part Load Fraction Correlation Curve Name
-  0,                                      ! Parasitic Gas Load {W}
-  ;                                       !- Fuel Type
-
-OS:Node,
-  {f6c25213-2382-4fb6-82d6-d7bf7a39a99d}, !- Handle
-  Node 13,                                !- Name
-  {b14368c6-2b1b-4f6a-bd12-988610b2f238}, !- Inlet Port
-  {d9d9067e-f972-4e30-8ce1-8a08c4c4eaba}; !- Outlet Port
-
-OS:Connection,
-  {4461079b-1b9f-4237-9216-2d7ce497d89d}, !- Handle
-  {ee69fbe9-3e2a-47c7-9759-55424f154104}, !- Source Object
-  3,                                      !- Outlet Port
-  {2ffdc90c-2580-4d0b-acb1-f84799902dc1}, !- Target Object
-  5;                                      !- Inlet Port
-
-OS:Connection,
-  {b14368c6-2b1b-4f6a-bd12-988610b2f238}, !- Handle
-  {2ffdc90c-2580-4d0b-acb1-f84799902dc1}, !- Source Object
-  6,                                      !- Outlet Port
-  {f6c25213-2382-4fb6-82d6-d7bf7a39a99d}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {d9d9067e-f972-4e30-8ce1-8a08c4c4eaba}, !- Handle
-  {f6c25213-2382-4fb6-82d6-d7bf7a39a99d}, !- Source Object
-  3,                                      !- Outlet Port
-  {240b998a-e8ae-435b-867a-d8a0aee15e1f}, !- Target Object
-  3;                                      !- Inlet Port
-
-OS:WeatherFile,
-  {112215fc-76b1-4ebc-8471-b01cd5b4a6e3}, !- Handle
-  Denver.Intl.AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  SRC-TMYx,                               !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.658,                               !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650.2,                                 !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMYx.epw,  !- Url
-  0FE00629,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
-
-OS:Coil:Heating:Gas,
-  {8d339060-fc02-4ce1-98a4-f7a799f9bf8c}, ! Handle
-  Gas Htg Coil 1,                         ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.80000000000000004,                    ! Gas Burner Efficiency
-  AutoSize,                               ! Nominal Capacity {W}
-  {51de69fa-50b1-4231-9fb3-11b911422c0a}, ! Air Inlet Node Name
-  {a313f0fb-c2f4-4501-86cf-6df7f73dc7f8}, ! Air Outlet Node Name
-  ,                                       ! Temperature Setpoint Node Name
-  0,                                      ! Parasitic Electric Load {W}
-  ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
-
-OS:Node,
-  {831e6543-2edb-4521-8872-29cf15d64c40}, !- Handle
-  Node 17,                                !- Name
-  {a313f0fb-c2f4-4501-86cf-6df7f73dc7f8}, !- Inlet Port
-  {77407fe0-2ac5-4efe-88e3-e0031bf92697}; !- Outlet Port
-
-OS:Connection,
-  {51de69fa-50b1-4231-9fb3-11b911422c0a}, !- Handle
-  {a9b4833c-cebf-472f-baa8-a86a5f5ee5bb}, !- Source Object
-  3,                                      !- Outlet Port
-  {8d339060-fc02-4ce1-98a4-f7a799f9bf8c}, !- Target Object
-  5;                                      !- Inlet Port
-
-OS:Connection,
-  {a313f0fb-c2f4-4501-86cf-6df7f73dc7f8}, !- Handle
-  {8d339060-fc02-4ce1-98a4-f7a799f9bf8c}, !- Source Object
-  6,                                      !- Outlet Port
-  {831e6543-2edb-4521-8872-29cf15d64c40}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {77407fe0-2ac5-4efe-88e3-e0031bf92697}, !- Handle
-  {831e6543-2edb-4521-8872-29cf15d64c40}, !- Source Object
-  3,                                      !- Outlet Port
-  {1e58de9a-098f-4f82-97ab-499f65c911a9}, !- Target Object
-  3;                                      !- Inlet Port
-
-OS:Coil:Heating:Gas,
-  {5562065e-22aa-44c6-838f-300cc9205231}, ! Handle
-  Gas Htg Coil 2,                         ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.80000000000000004,                    ! Gas Burner Efficiency
-  AutoSize,                               ! Nominal Capacity {W}
-  {ac8b676d-5300-46da-98d3-f5e2b6e97bd1}, ! Air Inlet Node Name
-  {103f8aee-1e69-495a-808a-7e0ba177232a}, ! Air Outlet Node Name
-  ,                                       ! Temperature Setpoint Node Name
-  0,                                      ! Parasitic Electric Load {W}
-  ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
-
-OS:Node,
-  {fcf39f29-0512-4cb5-89fe-661e4acb8d8b}, !- Handle
-  Node 30,                                !- Name
-  {103f8aee-1e69-495a-808a-7e0ba177232a}, !- Inlet Port
-  {ee8c5f00-4524-4473-83b2-f4a622cd10f5}; !- Outlet Port
-
-OS:Connection,
-  {ac8b676d-5300-46da-98d3-f5e2b6e97bd1}, !- Handle
-  {c1f34c60-7e96-4f81-8193-640bb7f1f89d}, !- Source Object
-  3,                                      !- Outlet Port
-  {5562065e-22aa-44c6-838f-300cc9205231}, !- Target Object
-  5;                                      !- Inlet Port
-
-OS:Connection,
-  {103f8aee-1e69-495a-808a-7e0ba177232a}, !- Handle
-  {5562065e-22aa-44c6-838f-300cc9205231}, !- Source Object
-  6,                                      !- Outlet Port
-  {fcf39f29-0512-4cb5-89fe-661e4acb8d8b}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {ee8c5f00-4524-4473-83b2-f4a622cd10f5}, !- Handle
-  {fcf39f29-0512-4cb5-89fe-661e4acb8d8b}, !- Source Object
-  3,                                      !- Outlet Port
-  {a1f36291-c063-46e7-bcc7-382528331a38}, !- Target Object
-  3;                                      !- Inlet Port
-
-OS:Coil:Heating:Gas,
-  {17e35b34-91e9-4707-9134-c1dc5e30b98d}, ! Handle
-  Gas Htg Coil 3,                         ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.80000000000000004,                    ! Gas Burner Efficiency
-  AutoSize,                               ! Nominal Capacity {W}
-  {83d12fe3-d080-4c98-a2cf-f53e0e9568f5}, ! Air Inlet Node Name
-  {5f47ddf5-776c-4ec3-a226-1283ee8cd678}, ! Air Outlet Node Name
-  ,                                       ! Temperature Setpoint Node Name
-  0,                                      ! Parasitic Electric Load {W}
-  ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
-
-OS:Node,
-  {bb06b06f-97f3-4813-a6ac-21546f252221}, !- Handle
-  Node 31,                                !- Name
-  {5f47ddf5-776c-4ec3-a226-1283ee8cd678}, !- Inlet Port
-  {734034ab-75a6-480b-b501-1532e27bfa89}; !- Outlet Port
-
-OS:Connection,
-  {83d12fe3-d080-4c98-a2cf-f53e0e9568f5}, !- Handle
-  {fd205cab-6d86-4953-9b55-31820c425eae}, !- Source Object
-  3,                                      !- Outlet Port
-  {17e35b34-91e9-4707-9134-c1dc5e30b98d}, !- Target Object
-  5;                                      !- Inlet Port
-
-OS:Connection,
-  {5f47ddf5-776c-4ec3-a226-1283ee8cd678}, !- Handle
-  {17e35b34-91e9-4707-9134-c1dc5e30b98d}, !- Source Object
-  6,                                      !- Outlet Port
-  {bb06b06f-97f3-4813-a6ac-21546f252221}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {734034ab-75a6-480b-b501-1532e27bfa89}, !- Handle
-  {bb06b06f-97f3-4813-a6ac-21546f252221}, !- Source Object
-  3,                                      !- Outlet Port
-  {71d4a625-dc79-468b-ba0a-907b35bc6aa0}, !- Target Object
-  3;                                      !- Inlet Port
-
-OS:Coil:Heating:Gas,
-  {c97d6052-e497-40ec-b62f-c8d902689686}, ! Handle
-  Gas Htg Coil 4,                         ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.80000000000000004,                    ! Gas Burner Efficiency
-  AutoSize,                               ! Nominal Capacity {W}
-  {b0f4b11a-a3ae-4f3d-a12d-f21990894ac2}, ! Air Inlet Node Name
-  {3e2b0f3a-9037-4d56-aa64-b6aaab16aef1}, ! Air Outlet Node Name
-  ,                                       ! Temperature Setpoint Node Name
-  0,                                      ! Parasitic Electric Load {W}
-  ,                                       ! Part Load Fraction Correlation Curve Name
-  0;                                      ! Parasitic Gas Load {W}
-
-OS:Node,
-  {c1ba7fb7-8495-451e-b27c-dd47c35f26de}, !- Handle
-  Node 44,                                !- Name
-  {3e2b0f3a-9037-4d56-aa64-b6aaab16aef1}, !- Inlet Port
-  {9a801727-a55b-4fb6-a439-45cd62a2137a}; !- Outlet Port
-
-OS:Connection,
-  {b0f4b11a-a3ae-4f3d-a12d-f21990894ac2}, !- Handle
-  {9f211ae4-5b6c-404f-a88c-5b80c8cf050a}, !- Source Object
-  3,                                      !- Outlet Port
-  {c97d6052-e497-40ec-b62f-c8d902689686}, !- Target Object
-  5;                                      !- Inlet Port
-
-OS:Connection,
-  {3e2b0f3a-9037-4d56-aa64-b6aaab16aef1}, !- Handle
-  {c97d6052-e497-40ec-b62f-c8d902689686}, !- Source Object
-  6,                                      !- Outlet Port
-  {c1ba7fb7-8495-451e-b27c-dd47c35f26de}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {9a801727-a55b-4fb6-a439-45cd62a2137a}, !- Handle
-  {c1ba7fb7-8495-451e-b27c-dd47c35f26de}, !- Source Object
-  3,                                      !- Outlet Port
-  {43f8b45a-11fa-491d-83a7-b40e705583ba}, !- Target Object
-  3;                                      !- Inlet Port
 

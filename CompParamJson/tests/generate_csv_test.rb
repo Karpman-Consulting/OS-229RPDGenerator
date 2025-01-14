@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require_relative '../generate_csv'
-require 'pry-byebug'
 
 class GenerateCsvDataTest < Minitest::Test
 

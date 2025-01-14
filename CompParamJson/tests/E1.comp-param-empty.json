@@ -1,0 +1,1009 @@
+{
+  "id": "project description root",
+  "data_timestamp": "2024-12-20T18:45Z",
+  "ruleset_model_descriptions": [
+    {
+      "type": "PROPOSED",
+      "measured_infiltration_pressure_difference": 0,
+      "is_measured_infiltration_based_on_test": false,
+      "site_zone_type": "ZONE_4_HIGH_ACTIVITY_COMMERCIAL",
+      "id": "Only model description",
+      "buildings": [
+        {
+          "id": "Model for 229 Test Cases",
+          "building_segments": [
+            {
+              "is_all_new": true,
+              "area_type_vertical_fenestration": "OFFICE_MEDIUM",
+              "lighting_building_area_type": "OFFICE",
+              "area_type_heating_ventilating_air_conditioning_system": "OTHER_NON_RESIDENTIAL",
+              "id": "segment 1",
+              "heating_ventilating_air_conditioning_systems": [
+                {
+                  "status_type": "NEW",
+                  "id": "PSZ_HP_CORE_ZONE",
+                  "cooling_system": {
+                    "id": "PSZ_HP_CORE_ZONE-cooling"
+                  },
+                  "fan_system": {
+                    "air_filter_merv_rating": 8,
+                    "has_fully_ducted_return": false,
+                    "id": "PSZ_HP_CORE_ZONE_FANSYSTEMMODEL_CONSTANTVOLUME-fansystem",
+                    "supply_fans": [
+                      {
+                        "motor_nameplate_power": 0.0,
+                        "shaft_power": 0.0,
+                        "status_type": "NEW",
+                        "id": "PSZ_HP_CORE_ZONE_FANSYSTEMMODEL_CONSTANTVOLUME"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "status_type": "NEW",
+                  "id": "PSZ_HP_PERIMETER_ZONE_1",
+                  "cooling_system": {
+                    "id": "PSZ_HP_PERIMETER_ZONE_1-cooling"
+                  },
+                  "fan_system": {
+                    "air_filter_merv_rating": 8,
+                    "has_fully_ducted_return": false,
+                    "id": "PSZ_HP_PERIMETER_ZONE_1_FANSYSTEMMODEL_CONSTANT_VOLUME-fansystem",
+                    "supply_fans": [
+                      {
+                        "motor_nameplate_power": 0.0,
+                        "shaft_power": 0.0,
+                        "status_type": "NEW",
+                        "id": "PSZ_HP_PERIMETER_ZONE_1_FANSYSTEMMODEL_CONSTANT_VOLUME"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "status_type": "NEW",
+                  "id": "PSZ_HP_PERIMETER_ZONE_2",
+                  "cooling_system": {
+                    "id": "PSZ_HP_PERIMETER_ZONE_2-cooling"
+                  },
+                  "fan_system": {
+                    "air_filter_merv_rating": 8,
+                    "has_fully_ducted_return": false,
+                    "id": "PSZ_HP_PERIMETER_ZONE_2_FANSYSTEMMODEL_CONSTANT_VOLUME 1-fansystem",
+                    "supply_fans": [
+                      {
+                        "motor_nameplate_power": 0.0,
+                        "shaft_power": 0.0,
+                        "status_type": "NEW",
+                        "id": "PSZ_HP_PERIMETER_ZONE_2_FANSYSTEMMODEL_CONSTANT_VOLUME 1"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "status_type": "NEW",
+                  "id": "PSZ_HP_PERIMETER_ZONE_3",
+                  "cooling_system": {
+                    "id": "PSZ_HP_PERIMETER_ZONE_3-cooling"
+                  },
+                  "fan_system": {
+                    "air_filter_merv_rating": 8,
+                    "has_fully_ducted_return": false,
+                    "id": "PSZ_HP_PERIMETER_ZONE_3_FANSYSTEMMODEL_CONSTANT_VOLUME-fansystem",
+                    "supply_fans": [
+                      {
+                        "motor_nameplate_power": 0.0,
+                        "shaft_power": 0.0,
+                        "status_type": "NEW",
+                        "id": "PSZ_HP_PERIMETER_ZONE_3_FANSYSTEMMODEL_CONSTANT_VOLUME"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "status_type": "NEW",
+                  "id": "PSZ_HP_PERIMETER_ZONE_4",
+                  "cooling_system": {
+                    "id": "PSZ_HP_PERIMETER_ZONE_4-cooling"
+                  },
+                  "fan_system": {
+                    "air_filter_merv_rating": 8,
+                    "has_fully_ducted_return": false,
+                    "id": "PSZ_HP_PERIMETER_ZONE_4_FANSYSTEMMODEL_CONSTANT_VOLUME-fansystem",
+                    "supply_fans": [
+                      {
+                        "motor_nameplate_power": 0.0,
+                        "shaft_power": 0.0,
+                        "status_type": "NEW",
+                        "id": "PSZ_HP_PERIMETER_ZONE_4_FANSYSTEMMODEL_CONSTANT_VOLUME"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "zones": [
+                {
+                  "conditioning_type": "HEATED_AND_COOLED",
+                  "aggregation_factor": 1,
+                  "id": "CORE_ZONE",
+                  "surfaces": [
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_1_CEILING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Roof Type 1",
+                        "primary_layers": [
+                          {
+                            "id": "Roof Type 1 Continuous Insulation"
+                          },
+                          {
+                            "id": "Roof Type 1 Built-up roofing"
+                          },
+                          {
+                            "id": "Roof Type 1 Metal Deck"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_FLOOR",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 1",
+                        "primary_layers": [
+                          {
+                            "id": "Slab-on-grade Type 1 Concrete"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_EAST",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_NORTH",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000001",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000002"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_SOUTH",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000003",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000004"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_WEST",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000005",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000006"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "measured_air_leakage_rate": 0,
+                    "id": "INFILTRATION_METHOD_1_CORE_ZONE"
+                  },
+                  "terminals": [
+                    {
+                      "is_supply_ducted": false,
+                      "id": "ADU PSZ_HP_CORE_ZONE_AIR_TERMINAL_SINGLE_DUCT_CONSTANT_VOLUME_NO_REHEAT"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "status_type": "NEW",
+                      "function": "OTHER",
+                      "envelope_space_type": "NONRESIDENTIAL_CONDITIONED",
+                      "lighting_space_type": "OFFICE_ENCLOSED",
+                      "ventilation_space_type": "OFFICE_BUILDINGS_OFFICE_SPACE",
+                      "service_water_heating_area_type": "OFFICE",
+                      "id": "CORE_SPACE_1",
+                      "interior_lighting": [
+                        {
+                          "purpose_type": "GENERAL",
+                          "occupancy_control_type": "NONE",
+                          "id": "CORE_BOTTOM LIGHTING"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "type": "PLUG",
+                          "has_automatic_control": false,
+                          "id": "CORE_BOTTOM ELEC EQUIP"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "conditioning_type": "HEATED_AND_COOLED",
+                  "aggregation_factor": 1,
+                  "id": "PERIMETER_ZONE_1",
+                  "surfaces": [
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_SOUTH REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000007",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000008"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_1_CEILING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Roof Type 1~~~00000009",
+                        "primary_layers": [
+                          {
+                            "id": "Roof Type 1 Continuous Insulation~~~00000010"
+                          },
+                          {
+                            "id": "Roof Type 1 Built-up roofing~~~00000011"
+                          },
+                          {
+                            "id": "Roof Type 1 Metal Deck~~~00000012"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_1_FLOOR",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 1~~~00000013",
+                        "primary_layers": [
+                          {
+                            "id": "Slab-on-grade Type 1 Concrete~~~00000014"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_1_INTERIOR_WALL_ZN_1_EAST",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000015",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000016"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_1_WALL_SOUTH",
+                      "subsurfaces": [
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE1_WALL_SOUTH_WINDOW3"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2"
+                        }
+                      ],
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Exterior Wall Type 1",
+                        "primary_layers": [
+                          {
+                            "id": "Exterior Wall Type 1 Gypsum Board"
+                          },
+                          {
+                            "id": "Exterior Wall Type 1 Insulation"
+                          },
+                          {
+                            "id": "Exterior Wall Type 1 Gypsum Board~~~00000017"
+                          },
+                          {
+                            "id": "Exterior Wall Type 1 Stucco"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_WALL_SOUTH REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000018",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000019"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "measured_air_leakage_rate": 0,
+                    "id": "INFILTRATION_METHOD_1_ZONE_1"
+                  },
+                  "terminals": [
+                    {
+                      "is_supply_ducted": false,
+                      "id": "ADU PSZ_HP_PERIMETER_ZONE_1_AIR_TERMINAL_SINGLE_DUCT_CONSTANT_VOLUME_NO_REHEAT"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "status_type": "NEW",
+                      "function": "OTHER",
+                      "envelope_space_type": "NONRESIDENTIAL_CONDITIONED",
+                      "lighting_space_type": "OFFICE_ENCLOSED",
+                      "ventilation_space_type": "OFFICE_BUILDINGS_OFFICE_SPACE",
+                      "service_water_heating_area_type": "OFFICE",
+                      "id": "PERIMETER_SPACE_1",
+                      "interior_lighting": [
+                        {
+                          "purpose_type": "GENERAL",
+                          "occupancy_control_type": "NONE",
+                          "id": "PERIMETER_BOT_ZN_1 LIGHTING"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "type": "PLUG",
+                          "has_automatic_control": false,
+                          "id": "PERIMETER_BOT_ZN_1 ELEC EQUIP"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "conditioning_type": "HEATED_AND_COOLED",
+                  "aggregation_factor": 1,
+                  "id": "PERIMETER_ZONE_2",
+                  "surfaces": [
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_EAST REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000020",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000021"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_1_WALL_EAST REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000022",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000023"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_2_CEILING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Roof Type 1~~~00000024",
+                        "primary_layers": [
+                          {
+                            "id": "Roof Type 1 Continuous Insulation~~~00000025"
+                          },
+                          {
+                            "id": "Roof Type 1 Built-up roofing~~~00000026"
+                          },
+                          {
+                            "id": "Roof Type 1 Metal Deck~~~00000027"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_2_FLOOR",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 1~~~00000028",
+                        "primary_layers": [
+                          {
+                            "id": "Slab-on-grade Type 1 Concrete~~~00000029"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_2_WALL_EAST",
+                      "subsurfaces": [
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_2_WALL_EAST_WINDOW1"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_2_WALL_EAST_WINDOW2"
+                        }
+                      ],
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Exterior Wall Type 2",
+                        "primary_layers": [
+                          {
+                            "id": "Exterior Wall Type 2 Gypsum Board"
+                          },
+                          {
+                            "id": "Exterior Wall Type 2 Insulation"
+                          },
+                          {
+                            "id": "Exterior Wall Type 2 Gypsum Board~~~00000030"
+                          },
+                          {
+                            "id": "Exterior Wall Type 2 Stucco"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_2_WALL_NORTH",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000031",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000032"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "measured_air_leakage_rate": 0,
+                    "id": "INFILTRATION_METHOD_2_ZONE_2"
+                  },
+                  "terminals": [
+                    {
+                      "is_supply_ducted": false,
+                      "id": "ADU PSZ_HP_PERIMETER_ZONE_2_AIR_TERMINAL_SINGLE_DUCT_CONSTANT_VOLUME_NO_REHEAT"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "status_type": "NEW",
+                      "function": "OTHER",
+                      "envelope_space_type": "NONRESIDENTIAL_CONDITIONED",
+                      "lighting_space_type": "OFFICE_ENCLOSED",
+                      "ventilation_space_type": "OFFICE_BUILDINGS_OFFICE_SPACE",
+                      "service_water_heating_area_type": "OFFICE",
+                      "id": "PERIMETER_SPACE_2",
+                      "interior_lighting": [
+                        {
+                          "purpose_type": "GENERAL",
+                          "occupancy_control_type": "NONE",
+                          "id": "PERIMETER_BOT_ZN_2 LIGHTING"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "type": "PLUG",
+                          "has_automatic_control": false,
+                          "id": "PERIMETER_BOT_ZN_2 ELEC EQUIP"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "conditioning_type": "HEATED_AND_COOLED",
+                  "aggregation_factor": 1,
+                  "id": "PERIMETER_ZONE_3",
+                  "surfaces": [
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_NORTH REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000033",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000034"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_2_WALL_NORTH REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000035",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000036"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_CEILING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Roof Type 2",
+                        "primary_layers": [
+                          {
+                            "id": "Roof Type 2 Continuous Insulation"
+                          },
+                          {
+                            "id": "Roof Type 2 Built-up roofing"
+                          },
+                          {
+                            "id": "Roof Type 2 Metal Deck"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_FLOOR",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 2",
+                        "primary_layers": [
+                          {
+                            "id": "Insulation for Slab on grade Type 2"
+                          },
+                          {
+                            "id": "Slab-on-grade Type 2 Concrete"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_FOOTING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 2~~~00000037",
+                        "primary_layers": [
+                          {
+                            "id": "Insulation for Slab on grade Type 2~~~00000038"
+                          },
+                          {
+                            "id": "Slab-on-grade Type 2 Concrete~~~00000039"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_WALL_NORTH",
+                      "subsurfaces": [
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_3_WALL_NORTH_WINDOW1"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_3_WALL_NORTH_WINDOW2"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_3_WALL_NORTH_WINDOW3"
+                        }
+                      ],
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Exterior Wall Type 3",
+                        "primary_layers": [
+                          {
+                            "id": "Exterior Wall Type 3 Total surface-to-surface thermal resistance"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_WALL_WEST",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000040",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000041"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "measured_air_leakage_rate": 0,
+                    "id": "INFILTRATION_METHOD_3_ZONE_3"
+                  },
+                  "terminals": [
+                    {
+                      "is_supply_ducted": false,
+                      "id": "ADU PSZ_HP_PERIMETER_ZONE_3_AIR_TERMINAL_SINGLE_DUCT_CONSTANT_VOLUME_NO_REHEAT"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "status_type": "NEW",
+                      "function": "OTHER",
+                      "envelope_space_type": "NONRESIDENTIAL_CONDITIONED",
+                      "lighting_space_type": "OFFICE_ENCLOSED",
+                      "ventilation_space_type": "OFFICE_BUILDINGS_OFFICE_SPACE",
+                      "service_water_heating_area_type": "OFFICE",
+                      "id": "PERIMETER_SPACE_3",
+                      "interior_lighting": [
+                        {
+                          "purpose_type": "GENERAL",
+                          "occupancy_control_type": "NONE",
+                          "id": "PERIMETER_BOT_ZN_3 LIGHTING"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "type": "PLUG",
+                          "has_automatic_control": false,
+                          "id": "PERIMETER_BOT_ZN_3 ELEC EQUIP"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "conditioning_type": "HEATED_AND_COOLED",
+                  "aggregation_factor": 1,
+                  "id": "PERIMETER_ZONE_4",
+                  "surfaces": [
+                    {
+                      "status_type": "NEW",
+                      "id": "CORE_ZONE_5_WALL_WEST REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000042",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000043"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_3_WALL_WEST REVERSED",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000044",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000045"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_CEILING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Roof Type 3",
+                        "primary_layers": [
+                          {
+                            "id": "Roof Type 3 Total surface-to-surface thermal resistance"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_FLOOR",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 2~~~00000046",
+                        "primary_layers": [
+                          {
+                            "id": "Insulation for Slab on grade Type 2~~~00000047"
+                          },
+                          {
+                            "id": "Slab-on-grade Type 2 Concrete~~~00000048"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_WALL_SOUTH",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Interior Wall~~~00000049",
+                        "primary_layers": [
+                          {
+                            "id": "Interior Wall surface-to-surface thermal resistance~~~00000050"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_WALL_WEST",
+                      "subsurfaces": [
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_4_WALL_WEST_WINDOW1"
+                        },
+                        {
+                          "subclassification": "OTHER",
+                          "is_operable": false,
+                          "has_open_sensor": false,
+                          "framing_type": "ALUMINUM_WITH_BREAK",
+                          "has_manual_interior_shades": false,
+                          "status_type": "NEW",
+                          "id": "PERIMETER_ZONE_4_WALL_WEST_WINDOW2"
+                        }
+                      ],
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Exterior Wall Type 3~~~00000051",
+                        "primary_layers": [
+                          {
+                            "id": "Exterior Wall Type 3 Total surface-to-surface thermal resistance~~~00000052"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "status_type": "NEW",
+                      "id": "PERIMETER_ZONE_4_WALL_WEST_FOOTING",
+                      "construction": {
+                        "classification": "STEEL_FRAMED",
+                        "id": "Slab-on-grade Type 2~~~00000053",
+                        "primary_layers": [
+                          {
+                            "id": "Insulation for Slab on grade Type 2~~~00000054"
+                          },
+                          {
+                            "id": "Slab-on-grade Type 2 Concrete~~~00000055"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "infiltration": {
+                    "measured_air_leakage_rate": 0,
+                    "id": "INFILTRATION_METHOD_3_ZONE_4"
+                  },
+                  "terminals": [
+                    {
+                      "is_supply_ducted": false,
+                      "id": "ADU PSZ_HP_PERIMETER_ZONE_4_AIR_TERMINAL_SINGLE_DUCT_CONSTANT_VOLUME_NO_REHEAT"
+                    }
+                  ],
+                  "spaces": [
+                    {
+                      "status_type": "NEW",
+                      "function": "OTHER",
+                      "envelope_space_type": "NONRESIDENTIAL_CONDITIONED",
+                      "lighting_space_type": "OFFICE_ENCLOSED",
+                      "ventilation_space_type": "OFFICE_BUILDINGS_OFFICE_SPACE",
+                      "service_water_heating_area_type": "OFFICE",
+                      "id": "PERIMETER_SPACE_4",
+                      "interior_lighting": [
+                        {
+                          "purpose_type": "GENERAL",
+                          "occupancy_control_type": "NONE",
+                          "id": "PERIMETER_BOT_ZN_4 LIGHTING"
+                        }
+                      ],
+                      "miscellaneous_equipment": [
+                        {
+                          "type": "PLUG",
+                          "has_automatic_control": false,
+                          "id": "PERIMETER_BOT_ZN_4 ELEC EQUIP"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "output": {
+        "id": "output_1",
+        "output_instance": {
+          "id": "output_instance_1",
+          "annual_source_results": [
+            {
+              "id": "source_results_ELECTRICITY"
+            }
+          ],
+          "annual_end_use_results": [
+            {
+              "id": "end_use_ELECTRICITY-Cooling"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Fans"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Heating"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Interior Equipment"
+            },
+            {
+              "id": "end_use_ELECTRICITY-Interior Lighting"
+            }
+          ]
+        }
+      },
+      "schedules": [
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "HEATING THERMOSTAT SETPOINT"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "COOLING THEMOSTAT SETPOINT"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "CONSTANT SCHEDULE"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "CORE_SPACE_LIGHTING_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "CORE_SPACE_ELEC_EQUIP_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_1_LIGHTING_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_1_ELEC_EQUIP_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_2_LIGHTING_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_2_ELEC_EQUIP_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_3_LIGHTING_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_3_ELEC_EQUIP_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_SPACE_4_LIGHTING_SCH"
+        },
+        {
+          "prescribed_type": "NOT_APPLICABLE",
+          "is_modified_for_workaround": false,
+          "id": "PERIMETER_BOT_ZN_4 ELEC EQUIP SCH"
+        }
+      ]
+    }
+  ],
+  "weather": {
+    "data_source_type": "HISTORIC_AGGREGATION",
+    "climate_zone": "CZ0A"
+  },
+  "calendar": {}
+}

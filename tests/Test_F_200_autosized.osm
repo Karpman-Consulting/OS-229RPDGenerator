@@ -12,8 +12,8 @@ OS:Version,
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
-  Denver Intl Ap,                         !- Name
-  39.83,                                  !- Latitude {deg}
+  Denver Intl AP,                         !- Name
+  39.833,                                 !- Latitude {deg}
   -104.65,                                !- Longitude {deg}
   -7,                                     !- Time Zone {hr}
   1650,                                   !- Elevation {m}
@@ -2108,7 +2108,7 @@ OS:ThermalZone,
   {3a9da17f-8eee-4ec9-87e9-43c51325b92c}, !- Handle
   Prm Zone 4 (West),                      !- Name
   1,                                      !- Multiplier
-  3.96,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2338,7 +2338,7 @@ OS:ThermalZone,
   {62560ad8-b05d-436b-a7dd-715eda6ece30}, !- Handle
   Core Zone 1,                            !- Name
   1,                                      !- Multiplier
-  3.96,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2461,7 +2461,7 @@ OS:ThermalZone,
   {67e4c786-e5d2-4eea-a1b5-6a2dd13a000e}, !- Handle
   Prm Zone 1 (South),                     !- Name
   1,                                      !- Multiplier
-  3.96,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2584,7 +2584,7 @@ OS:ThermalZone,
   {d93fa6c5-92f4-4fdb-89a3-d8c40bd0770a}, !- Handle
   Prm Zone 2 (East),                      !- Name
   1,                                      !- Multiplier
-  3.96,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -2707,7 +2707,7 @@ OS:ThermalZone,
   {cf3d7fcc-c6b1-49eb-b08d-1bd50f1dd5e0}, !- Handle
   Prm Zone 3 (North,                      !- Name
   1,                                      !- Multiplier
-  3.96,                                 !- Ceiling Height {m}
+  3.96,                                   !- Ceiling Height {m}
   ,                                       !- Volume {m3}
   ,                                       !- Floor Area {m2}
   ,                                       !- Zone Inside Convection Algorithm
@@ -11242,4 +11242,20 @@ OS:Rendering:Color,
   127,                                    !- Rendering Red Value
   212,                                    !- Rendering Green Value
   255;                                    !- Rendering Blue Value
+
+OS:WeatherFile,
+  {3a433803-341d-4c73-b52a-35a65319d97b}, !- Handle
+  Denver Intl AP,                         !- City
+  CO,                                     !- State Province Region
+  USA,                                    !- Country
+  TMY3,                                   !- Data Source
+  725650,                                 !- WMO Number
+  39.833,                                 !- Latitude {deg}
+  -104.65,                                !- Longitude {deg}
+  -7,                                     !- Time Zone {hr}
+  1650,                                   !- Elevation {m}
+  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
+  4A7A2296,                               !- Checksum
+  ,                                       !- Start Date Actual Year
+  Sunday;                                 !- Start Day of Week
 

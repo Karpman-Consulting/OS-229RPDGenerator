@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>read_compliance_parameter_csv_from_osm</name>
   <uid>03cd339f-4c29-4f65-9256-84850c6b1975</uid>
-  <version_id>1169e741-5626-413e-b164-5a4cc48793c7</version_id>
-  <version_modified>2024-12-30T14:15:07Z</version_modified>
+  <version_id>b9ecdfd1-15e1-4827-9c8e-6b0e4d20eed8</version_id>
+  <version_modified>2025-01-14T20:02:18Z</version_modified>
   <xml_checksum>44311B6C</xml_checksum>
   <class_name>ReadComplianceParameterCsvFromOsm</class_name>
   <display_name>ReadComplianceParameterCsvFromOsm</display_name>
@@ -102,7 +102,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>345BA102</checksum>
+      <checksum>A0EC04BC</checksum>
     </file>
     <file>
       <filename>.ruby-lsp/Gemfile</filename>
@@ -120,13 +120,19 @@
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
-      <checksum>964320CD</checksum>
+      <checksum>190EEBD2</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-new.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
       <checksum>9A9C8655</checksum>
+    </file>
+    <file>
+      <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-two-building-segments.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>88F508ED</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-updated.json</filename>
@@ -138,13 +144,19 @@
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-updated_success.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
-      <checksum>4628DA26</checksum>
+      <checksum>A027F6DA</checksum>
+    </file>
+    <file>
+      <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BEE3F941</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm-empty.csv</filename>
       <filetype>csv</filetype>
       <usage_type>test</usage_type>
-      <checksum>78E31C90</checksum>
+      <checksum>EA0C4CB1</checksum>
     </file>
     <file>
       <filename>ASHRAE901_OfficeSmall_STD2019_Denver.osm-empty_bad.csv</filename>
@@ -162,13 +174,19 @@
       <filename>compliance_parameter_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A5629F48</checksum>
+      <checksum>F85AC2CD</checksum>
+    </file>
+    <file>
+      <filename>read_cp_csv_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9DC5FBAE</checksum>
     </file>
     <file>
       <filename>set_building_segments_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1EA5FEFE</checksum>
+      <checksum>72696282</checksum>
     </file>
     <file>
       <filename>updated_json_values_empty</filename>

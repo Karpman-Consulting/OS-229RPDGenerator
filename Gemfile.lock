@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    jsonpath (1.1.5)
+      multi_json
+    minitest (5.14.4)
+    multi_json (1.15.0)
+    open3 (0.1.2)
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  jsonpath (= 1.1.5)
+  minitest (~> 5.14.0)
+  open3
+
+RUBY VERSION
+   ruby 3.2.2p53
+
+BUNDLED WITH
+   2.5.18
