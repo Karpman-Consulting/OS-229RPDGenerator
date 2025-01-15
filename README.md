@@ -1,5 +1,9 @@
 # OpenStudio-229RPDGenerator
 
+## Authors
+
+Anton Szilasi and Chris Balbach of Performance Systems Development of Ithaca, New York
+
 ## Purpose
 Provides a command-line utility for OpenStudio users to create generate Ruleset Project Description files with supplementary compliance parameter details in a 2-step process.
 
