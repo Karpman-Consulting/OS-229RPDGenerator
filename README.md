@@ -1,5 +1,9 @@
 # OpenStudio-229RPDGenerator
 
+## Purpose
+Provides a command-line utility for OpenStudio users to create generate Ruleset Project Description files with supplementary compliance parameter details in a 2-step process.
+
+## Description
 This repository provides the application and source code for a compliance wizard which allows users to select OpenStudio .osm files, enter additional compliance details, and create and pre-validate RPD json files for use with the ASHRAE Standard 229 Ruleset Checking Tool (RCT).
 
 Please note that this project is currently in its initial stages of development. It is not yet operational for practical use. We are actively working on its development and enhancement. Contributions, suggestions, and feedback are welcome as we progress towards a fully functional version. Stay tuned for updates and feel free to explore the existing codebase.
