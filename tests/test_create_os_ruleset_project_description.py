@@ -239,8 +239,8 @@ class TestCreateOSRulesetProjectDescription_F160(BaseTestCreateOSRulesetProjectD
     def setUp(self):
         super().setUp()
         self.initial_filed_csv_file_path = os.path.join(os.path.dirname(__file__),'Test_E1_filled.csv')
-        self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_F_160_autosized2.osm')
-        self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_F_160_autosized2', 'run','Test_E1_filled.csv' )
+        self.openstudio_model_path = os.path.join(os.path.dirname(__file__), 'Test_F_160_autosized.osm')
+        self.filled_csv_file_path = os.path.join(os.path.dirname(__file__), 'Test_F_160_autosized', 'run','Test_E1_filled.csv' )
 
         print(f'Using openstudio model at: {self.openstudio_model_path}')
 
