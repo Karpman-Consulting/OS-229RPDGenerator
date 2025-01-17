@@ -38,6 +38,8 @@ which be installed through the OpenStudio app, please see here: https://openstud
 
     Please ensure that when you are installing the app that you are also installing the OpenStudio CLI.
 
+OpenStudio 3.9.0 is required
+
 ### 2. 
 The Openstudio-229RPDGenerator requires Python3 > 3.13 and Ruby 3.2.2 installed
 

@@ -6,12 +6,11 @@
 !! E1.7.2.3.1 d, The exterior air-film resistance for roof and exterior walls was unable to be implemented
 !!
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
-!! 
-
+!!
 
 OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
+  {8839c32c-c02f-47c1-88fc-6ba60a858d77}, !- Handle
+  3.9.0;                                  !- Version Identifier
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
@@ -2196,7 +2195,8 @@ OS:Sizing:Zone,
   1,                                      !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1,                                      !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {e86f4392-669e-4eca-9ce0-67ba4f7000ad}, !- Handle
@@ -2426,7 +2426,8 @@ OS:Sizing:Zone,
   1,                                      !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1,                                      !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {f4e4f900-94d6-44ff-bbc7-483e08642c44}, !- Handle
@@ -2549,7 +2550,8 @@ OS:Sizing:Zone,
   1,                                      !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1,                                      !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {ffe66714-2f8f-4568-8af5-1a62bb6c8931}, !- Handle
@@ -2672,7 +2674,8 @@ OS:Sizing:Zone,
   1,                                      !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1,                                      !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {cc9d2981-5659-4f29-80c6-22e09cc8b864}, !- Handle
@@ -2795,7 +2798,8 @@ OS:Sizing:Zone,
   1,                                      !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1,                                      !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {0c049a7e-0b69-43ba-9f1d-49c08bbfedeb}, !- Handle
@@ -6200,8 +6204,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -7451,8 +7455,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -7981,8 +7985,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -8511,8 +8515,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -9041,8 +9045,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 

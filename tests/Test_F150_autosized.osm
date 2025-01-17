@@ -7,8 +7,8 @@
 !!
 
 OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
+  {156be72f-6944-4f4e-b5eb-f1dc60512bd5}, !- Handle
+  3.9.0;                                  !- Version Identifier
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
@@ -2194,7 +2194,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {e86f4392-669e-4eca-9ce0-67ba4f7000ad}, !- Handle
@@ -2425,7 +2426,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {f4e4f900-94d6-44ff-bbc7-483e08642c44}, !- Handle
@@ -2549,7 +2551,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {ffe66714-2f8f-4568-8af5-1a62bb6c8931}, !- Handle
@@ -2673,7 +2676,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {cc9d2981-5659-4f29-80c6-22e09cc8b864}, !- Handle
@@ -2797,7 +2801,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {0c049a7e-0b69-43ba-9f1d-49c08bbfedeb}, !- Handle
@@ -6869,8 +6874,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -7416,23 +7421,28 @@ OS:Connection,
   3;                                      !- Inlet Port
 
 OS:AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  {48b7b8ca-039b-414d-8ee2-05ef0463e5ae}, ! Handle
-  Parallel PIU Elec Rht,                  ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.9438948864,                           ! Maximum Primary Air Flow Rate {m3/s}
-  2.8316846592,                           ! Maximum Secondary Air Flow Rate {m3/s}
-  0.15,                                   ! Minimum Primary Air Flow Fraction
-  Autosize,                               ! Fan On Flow Fraction
-  {9cb264df-eda9-4ee9-a621-ab499902618e}, ! Supply Air Inlet Node Name
-  {76c769db-f846-498a-8f38-639571cf20bb}, ! Secondary Air Inlet Node Name
-  {13896c4a-f422-428a-a505-6b02d8930e7e}, ! Outlet Node Name
-  ,                                       ! Reheat Coil Air Inlet Node Name
-  ,                                       ! Zone Mixer Name
-  {ea89022d-eb2c-4ad7-83b4-ab67e04e1878}, ! Fan Name
-  {cae078be-5c65-4e8f-bed9-0b88d9491c8e}, ! Reheat Coil Name
-  Autosize,                               ! Maximum Hot Water or Steam Flow Rate {m3/s}
-  0,                                      ! Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  ! Convergence Tolerance
+  {48b7b8ca-039b-414d-8ee2-05ef0463e5ae}, !- Handle
+  Parallel PIU Elec Rht,                  !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  0.9438948864,                           !- Maximum Primary Air Flow Rate {m3/s}
+  2.8316846592,                           !- Maximum Secondary Air Flow Rate {m3/s}
+  0.15,                                   !- Minimum Primary Air Flow Fraction
+  Autosize,                               !- Fan On Flow Fraction
+  {9cb264df-eda9-4ee9-a621-ab499902618e}, !- Supply Air Inlet Node Name
+  {76c769db-f846-498a-8f38-639571cf20bb}, !- Secondary Air Inlet Node Name
+  {13896c4a-f422-428a-a505-6b02d8930e7e}, !- Outlet Node Name
+  ,                                       !- Reheat Coil Air Inlet Node Name
+  ,                                       !- Zone Mixer Name
+  {ea89022d-eb2c-4ad7-83b4-ab67e04e1878}, !- Fan Name
+  {cae078be-5c65-4e8f-bed9-0b88d9491c8e}, !- Reheat Coil Name
+  Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
+  0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
+  0.001,                                  !- Convergence Tolerance
+  ConstantSpeed,                          !- Fan Control Type
+  0.3,                                    !- Minimum Fan Turn Down Ratio {dimensionless}
+  ,                                       !- Heating Control Type
+  32.1,                                   !- Design Heating Discharge Air Temperature {C}
+  37.7;                                   !- High Limit Heating Discharge Air Temperature {C}
 
 OS:Coil:Heating:Electric,
   {cae078be-5c65-4e8f-bed9-0b88d9491c8e}, ! Handle
@@ -7644,23 +7654,28 @@ OS:Schedule:Day,
   18.3333333333334;                       !- Value Until Time 3
 
 OS:AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  {66dfc0ae-61cf-4a39-b59d-90a71931f201}, ! Handle
-  Parallel PIU Elec Rht 1,                ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.9438948864,                           ! Maximum Primary Air Flow Rate {m3/s}
-  2.8316846592,                           ! Maximum Secondary Air Flow Rate {m3/s}
-  0.15,                                   ! Minimum Primary Air Flow Fraction
-  Autosize,                               ! Fan On Flow Fraction
-  {2a532bfa-e191-4287-b1c5-070a3d3589ff}, ! Supply Air Inlet Node Name
-  {1bc7d556-b969-4017-b507-3a4742538496}, ! Secondary Air Inlet Node Name
-  {16916c62-b685-4ee5-9409-702c68e493d3}, ! Outlet Node Name
-  ,                                       ! Reheat Coil Air Inlet Node Name
-  ,                                       ! Zone Mixer Name
-  {7ef46f0a-70ec-4bc3-9340-9d4447dd6296}, ! Fan Name
-  {467c3455-95c7-4c1b-9dc5-49b19ca0ca13}, ! Reheat Coil Name
-  Autosize,                               ! Maximum Hot Water or Steam Flow Rate {m3/s}
-  0,                                      ! Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  ! Convergence Tolerance
+  {66dfc0ae-61cf-4a39-b59d-90a71931f201}, !- Handle
+  Parallel PIU Elec Rht 1,                !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  0.9438948864,                           !- Maximum Primary Air Flow Rate {m3/s}
+  2.8316846592,                           !- Maximum Secondary Air Flow Rate {m3/s}
+  0.15,                                   !- Minimum Primary Air Flow Fraction
+  Autosize,                               !- Fan On Flow Fraction
+  {2a532bfa-e191-4287-b1c5-070a3d3589ff}, !- Supply Air Inlet Node Name
+  {1bc7d556-b969-4017-b507-3a4742538496}, !- Secondary Air Inlet Node Name
+  {16916c62-b685-4ee5-9409-702c68e493d3}, !- Outlet Node Name
+  ,                                       !- Reheat Coil Air Inlet Node Name
+  ,                                       !- Zone Mixer Name
+  {7ef46f0a-70ec-4bc3-9340-9d4447dd6296}, !- Fan Name
+  {467c3455-95c7-4c1b-9dc5-49b19ca0ca13}, !- Reheat Coil Name
+  Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
+  0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
+  0.001,                                  !- Convergence Tolerance
+  ConstantSpeed,                          !- Fan Control Type
+  0.3,                                    !- Minimum Fan Turn Down Ratio {dimensionless}
+  ,                                       !- Heating Control Type
+  32.1,                                   !- Design Heating Discharge Air Temperature {C}
+  37.7;                                   !- High Limit Heating Discharge Air Temperature {C}
 
 OS:Coil:Heating:Electric,
   {467c3455-95c7-4c1b-9dc5-49b19ca0ca13}, ! Handle
@@ -7765,23 +7780,28 @@ OS:Connection,
   8;                                      !- Inlet Port
 
 OS:AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  {e54a79f0-2cf0-4808-85c3-c5fa73dbf3df}, ! Handle
-  Parallel PIU Elec Rht 2,                ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.9438948864,                           ! Maximum Primary Air Flow Rate {m3/s}
-  2.8316846592,                           ! Maximum Secondary Air Flow Rate {m3/s}
-  0.15,                                   ! Minimum Primary Air Flow Fraction
-  Autosize,                               ! Fan On Flow Fraction
-  {c2faab5c-78d8-4380-9703-81ee8c7c4df4}, ! Supply Air Inlet Node Name
-  {bae742a0-30f1-4872-af1a-1f1f98e48350}, ! Secondary Air Inlet Node Name
-  {1bb68e1d-c87a-4f8c-967e-ab88b55385b8}, ! Outlet Node Name
-  ,                                       ! Reheat Coil Air Inlet Node Name
-  ,                                       ! Zone Mixer Name
-  {dba2f277-859d-46b9-bbeb-ea0299eba88d}, ! Fan Name
-  {6930a6eb-6123-4431-b4cd-4f2e1b987652}, ! Reheat Coil Name
-  Autosize,                               ! Maximum Hot Water or Steam Flow Rate {m3/s}
-  0,                                      ! Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  ! Convergence Tolerance
+  {e54a79f0-2cf0-4808-85c3-c5fa73dbf3df}, !- Handle
+  Parallel PIU Elec Rht 2,                !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  0.9438948864,                           !- Maximum Primary Air Flow Rate {m3/s}
+  2.8316846592,                           !- Maximum Secondary Air Flow Rate {m3/s}
+  0.15,                                   !- Minimum Primary Air Flow Fraction
+  Autosize,                               !- Fan On Flow Fraction
+  {c2faab5c-78d8-4380-9703-81ee8c7c4df4}, !- Supply Air Inlet Node Name
+  {bae742a0-30f1-4872-af1a-1f1f98e48350}, !- Secondary Air Inlet Node Name
+  {1bb68e1d-c87a-4f8c-967e-ab88b55385b8}, !- Outlet Node Name
+  ,                                       !- Reheat Coil Air Inlet Node Name
+  ,                                       !- Zone Mixer Name
+  {dba2f277-859d-46b9-bbeb-ea0299eba88d}, !- Fan Name
+  {6930a6eb-6123-4431-b4cd-4f2e1b987652}, !- Reheat Coil Name
+  Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
+  0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
+  0.001,                                  !- Convergence Tolerance
+  ConstantSpeed,                          !- Fan Control Type
+  0.3,                                    !- Minimum Fan Turn Down Ratio {dimensionless}
+  ,                                       !- Heating Control Type
+  32.1,                                   !- Design Heating Discharge Air Temperature {C}
+  37.7;                                   !- High Limit Heating Discharge Air Temperature {C}
 
 OS:Coil:Heating:Electric,
   {6930a6eb-6123-4431-b4cd-4f2e1b987652}, ! Handle
@@ -7886,23 +7906,28 @@ OS:Connection,
   8;                                      !- Inlet Port
 
 OS:AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  {45bcec5b-51c2-4dbd-8004-3fc36b923e78}, ! Handle
-  Parallel PIU Elec Rht 3,                ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.9438948864,                           ! Maximum Primary Air Flow Rate {m3/s}
-  2.8316846592,                           ! Maximum Secondary Air Flow Rate {m3/s}
-  0.15,                                   ! Minimum Primary Air Flow Fraction
-  Autosize,                               ! Fan On Flow Fraction
-  {6993f2a3-a203-48dc-828b-d5441ac9de53}, ! Supply Air Inlet Node Name
-  {cd302aed-a6ab-4685-86a5-0f727fa6a003}, ! Secondary Air Inlet Node Name
-  {c9f240f5-7352-4871-97df-7c0a308bcb91}, ! Outlet Node Name
-  ,                                       ! Reheat Coil Air Inlet Node Name
-  ,                                       ! Zone Mixer Name
-  {600cdcdf-b3d6-4601-b1b5-623ef3b6f273}, ! Fan Name
-  {0c6d2b5f-6e2b-484d-995e-178458bc7962}, ! Reheat Coil Name
-  Autosize,                               ! Maximum Hot Water or Steam Flow Rate {m3/s}
-  0,                                      ! Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  ! Convergence Tolerance
+  {45bcec5b-51c2-4dbd-8004-3fc36b923e78}, !- Handle
+  Parallel PIU Elec Rht 3,                !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  0.9438948864,                           !- Maximum Primary Air Flow Rate {m3/s}
+  2.8316846592,                           !- Maximum Secondary Air Flow Rate {m3/s}
+  0.15,                                   !- Minimum Primary Air Flow Fraction
+  Autosize,                               !- Fan On Flow Fraction
+  {6993f2a3-a203-48dc-828b-d5441ac9de53}, !- Supply Air Inlet Node Name
+  {cd302aed-a6ab-4685-86a5-0f727fa6a003}, !- Secondary Air Inlet Node Name
+  {c9f240f5-7352-4871-97df-7c0a308bcb91}, !- Outlet Node Name
+  ,                                       !- Reheat Coil Air Inlet Node Name
+  ,                                       !- Zone Mixer Name
+  {600cdcdf-b3d6-4601-b1b5-623ef3b6f273}, !- Fan Name
+  {0c6d2b5f-6e2b-484d-995e-178458bc7962}, !- Reheat Coil Name
+  Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
+  0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
+  0.001,                                  !- Convergence Tolerance
+  ConstantSpeed,                          !- Fan Control Type
+  0.3,                                    !- Minimum Fan Turn Down Ratio {dimensionless}
+  ,                                       !- Heating Control Type
+  32.1,                                   !- Design Heating Discharge Air Temperature {C}
+  37.7;                                   !- High Limit Heating Discharge Air Temperature {C}
 
 OS:Coil:Heating:Electric,
   {0c6d2b5f-6e2b-484d-995e-178458bc7962}, ! Handle
@@ -8007,23 +8032,28 @@ OS:Connection,
   8;                                      !- Inlet Port
 
 OS:AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  {9a0eaaa0-b677-4d5f-86f2-efcb312f2dec}, ! Handle
-  Parallel PIU Elec Rht 4,                ! Name
-  {94e416e2-127b-453c-814b-463474dded40}, ! Availability Schedule Name
-  0.9438948864,                           ! Maximum Primary Air Flow Rate {m3/s}
-  2.8316846592,                           ! Maximum Secondary Air Flow Rate {m3/s}
-  0.15,                                   ! Minimum Primary Air Flow Fraction
-  Autosize,                               ! Fan On Flow Fraction
-  {08795fe2-7ade-4cd6-90f8-60170716325f}, ! Supply Air Inlet Node Name
-  {3511bbb6-197d-4244-9fff-49a976bc76ca}, ! Secondary Air Inlet Node Name
-  {9f0567b7-2a4d-4cd8-921d-d7dcbe3c798b}, ! Outlet Node Name
-  ,                                       ! Reheat Coil Air Inlet Node Name
-  ,                                       ! Zone Mixer Name
-  {85bfa536-5241-42ec-badf-2222f40442f7}, ! Fan Name
-  {51dc9dd2-cd86-4fab-b70f-2ac8d28569e6}, ! Reheat Coil Name
-  Autosize,                               ! Maximum Hot Water or Steam Flow Rate {m3/s}
-  0,                                      ! Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  ! Convergence Tolerance
+  {9a0eaaa0-b677-4d5f-86f2-efcb312f2dec}, !- Handle
+  Parallel PIU Elec Rht 4,                !- Name
+  {94e416e2-127b-453c-814b-463474dded40}, !- Availability Schedule Name
+  0.9438948864,                           !- Maximum Primary Air Flow Rate {m3/s}
+  2.8316846592,                           !- Maximum Secondary Air Flow Rate {m3/s}
+  0.15,                                   !- Minimum Primary Air Flow Fraction
+  Autosize,                               !- Fan On Flow Fraction
+  {08795fe2-7ade-4cd6-90f8-60170716325f}, !- Supply Air Inlet Node Name
+  {3511bbb6-197d-4244-9fff-49a976bc76ca}, !- Secondary Air Inlet Node Name
+  {9f0567b7-2a4d-4cd8-921d-d7dcbe3c798b}, !- Outlet Node Name
+  ,                                       !- Reheat Coil Air Inlet Node Name
+  ,                                       !- Zone Mixer Name
+  {85bfa536-5241-42ec-badf-2222f40442f7}, !- Fan Name
+  {51dc9dd2-cd86-4fab-b70f-2ac8d28569e6}, !- Reheat Coil Name
+  Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
+  0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
+  0.001,                                  !- Convergence Tolerance
+  ConstantSpeed,                          !- Fan Control Type
+  0.3,                                    !- Minimum Fan Turn Down Ratio {dimensionless}
+  ,                                       !- Heating Control Type
+  32.1,                                   !- Design Heating Discharge Air Temperature {C}
+  37.7;                                   !- High Limit Heating Discharge Air Temperature {C}
 
 OS:Coil:Heating:Electric,
   {51dc9dd2-cd86-4fab-b70f-2ac8d28569e6}, ! Handle
@@ -8338,7 +8368,13 @@ OS:Chiller:Electric:EIR,
   1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
   ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
   ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
-  General;                                !- End-Use Subcategory
+  General,                                !- End-Use Subcategory
+  ConstantFlow,                           !- Condenser Flow Control
+  ,                                       !- Condenser Loop Flow Rate Fraction Function of Loop Part Load Ratio Curve Name
+  ,                                       !- Temperature Difference Across Condenser Schedule Name
+  0.2,                                    !- Condenser Minimum Flow Fraction
+  ,                                       !- Thermosiphon Capacity Fraction Curve Name
+  0;                                      !- Thermosiphon Minimum Temperature Difference
 
 OS:Curve:Biquadratic,
   {93a21024-0496-479a-8280-3d76cfa59000}, ! Handle

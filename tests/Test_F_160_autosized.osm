@@ -7,8 +7,8 @@
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
 
 OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
+  {8a517536-122c-4830-a2f5-11a5baca6a0e}, !- Handle
+  3.9.0;                                  !- Version Identifier
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
@@ -2194,7 +2194,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {e86f4392-669e-4eca-9ce0-67ba4f7000ad}, !- Handle
@@ -2430,7 +2431,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {f4e4f900-94d6-44ff-bbc7-483e08642c44}, !- Handle
@@ -2559,7 +2561,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {ffe66714-2f8f-4568-8af5-1a62bb6c8931}, !- Handle
@@ -2688,7 +2691,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {cc9d2981-5659-4f29-80c6-22e09cc8b864}, !- Handle
@@ -2817,7 +2821,8 @@ OS:Sizing:Zone,
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   0.8,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {0c049a7e-0b69-43ba-9f1d-49c08bbfedeb}, !- Handle
@@ -7901,22 +7906,6 @@ OS:Connection,
   4,                                      !- Outlet Port
   {df5d7137-044d-488a-9f22-716facf1157e}, !- Target Object
   2;                                      !- Inlet Port
-
-OS:WeatherFile,
-  {454c0732-0d9f-419b-a85f-4fc7c094d761}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
 
 OS:Fan:ZoneExhaust,
   {071c61a0-e3a4-40e0-a7e3-af2fb3c74978}, !- Handle

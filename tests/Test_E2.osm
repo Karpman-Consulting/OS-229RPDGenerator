@@ -7,10 +7,9 @@
 !!
 !! 2. The ground temperature schedule set in E1.7.2.1 was adjusted from 10 C to 21C otherwise no cooling load was present
 
-
 OS:Version,
-  {4e7ae713-4be1-469e-95dc-ae2ed34d0cdb}, !- Handle
-  3.8.0;                                  !- Version Identifier
+  {f6b43e48-ffab-4573-a594-840218c445ab}, !- Handle
+  3.9.0;                                  !- Version Identifier
 
 OS:Site,
   {b3f399e6-dd21-4abe-86a4-0f68b83115cf}, !- Handle
@@ -2196,7 +2195,8 @@ OS:Sizing:Zone,
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {e86f4392-669e-4eca-9ce0-67ba4f7000ad}, !- Handle
@@ -2427,7 +2427,8 @@ OS:Sizing:Zone,
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {f4e4f900-94d6-44ff-bbc7-483e08642c44}, !- Handle
@@ -2551,7 +2552,8 @@ OS:Sizing:Zone,
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {ffe66714-2f8f-4568-8af5-1a62bb6c8931}, !- Handle
@@ -2675,7 +2677,8 @@ OS:Sizing:Zone,
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {cc9d2981-5659-4f29-80c6-22e09cc8b864}, !- Handle
@@ -2799,7 +2802,8 @@ OS:Sizing:Zone,
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Cooling Mode
   1.2,                                    !- Design Zone Air Distribution Effectiveness in Heating Mode
   ,                                       !- Design Zone Secondary Recirculation Fraction {dimensionless}
-  0;                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  0,                                      !- Design Minimum Zone Ventilation Efficiency {dimensionless}
+  Coincident;                             !- Sizing Option
 
 OS:ZoneHVAC:EquipmentList,
   {0c049a7e-0b69-43ba-9f1d-49c08bbfedeb}, !- Handle
@@ -6248,8 +6252,8 @@ OS:Controller:OutdoorAir,
   ,                                       !- Time of Day Economizer Control Schedule Name
   No,                                     !- High Humidity Control
   ,                                       !- Humidistat Control Zone Name
-  ,                                       !- High Humidity Outdoor Air Flow Ratio
-  ,                                       !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
+  1,                                      !- High Humidity Outdoor Air Flow Ratio
+  Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
   BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
   InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
@@ -7542,7 +7546,13 @@ OS:Chiller:Electric:EIR,
   1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
   ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
   ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
-  General;                                !- End-Use Subcategory
+  General,                                !- End-Use Subcategory
+  ConstantFlow,                           !- Condenser Flow Control
+  ,                                       !- Condenser Loop Flow Rate Fraction Function of Loop Part Load Ratio Curve Name
+  ,                                       !- Temperature Difference Across Condenser Schedule Name
+  0.2,                                    !- Condenser Minimum Flow Fraction
+  ,                                       !- Thermosiphon Capacity Fraction Curve Name
+  0;                                      !- Thermosiphon Minimum Temperature Difference
 
 OS:Curve:Biquadratic,
   {6f987f69-1c8d-4b6e-8fe4-7828e31e8d3d}, !- Handle
@@ -7636,7 +7646,13 @@ OS:Chiller:Electric:EIR,
   1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
   ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
   ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
-  General;                                !- End-Use Subcategory
+  General,                                !- End-Use Subcategory
+  ConstantFlow,                           !- Condenser Flow Control
+  ,                                       !- Condenser Loop Flow Rate Fraction Function of Loop Part Load Ratio Curve Name
+  ,                                       !- Temperature Difference Across Condenser Schedule Name
+  0.2,                                    !- Condenser Minimum Flow Fraction
+  ,                                       !- Thermosiphon Capacity Fraction Curve Name
+  0;                                      !- Thermosiphon Minimum Temperature Difference
 
 OS:Node,
   {270c7f77-5e4b-4d16-a5fe-0690c082391c}, !- Handle
@@ -10007,22 +10023,6 @@ OS:Rendering:Color,
   143,                                    !- Rendering Red Value
   143,                                    !- Rendering Green Value
   188;                                    !- Rendering Blue Value
-
-OS:WeatherFile,
-  {ecc1593b-4156-47fd-b09c-398aa762c849}, !- Handle
-  Denver Intl AP,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.833,                                 !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  USA_CO_Denver.Intl.AP.725650_TMY3.epw,  !- Url
-  4A7A2296,                               !- Checksum
-  ,                                       !- Start Date Actual Year
-  Sunday;                                 !- Start Day of Week
 
 OS:Pump:ConstantSpeed,
   {a2de0375-2bf7-4778-af6c-feb691c75db0}, !- Handle
