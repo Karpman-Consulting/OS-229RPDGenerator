@@ -34,14 +34,21 @@ This package will change significantly during the next several versions.
 
 ### 1. 
 The Openstudio-229RPDGenerator contains OpenStudio measures which requires the OpenStudio CLI to run,
-which be installed through the OpenStudio app, please see here: https://openstudiocoalition.org/getting_started/getting_started/
+which can be installed through the OpenStudio app, please see here: https://openstudiocoalition.org/getting_started/getting_started/
+**Ensure that when you are installing the app that you are also installing the OpenStudio CLI.**
 
-    Please ensure that when you are installing the app that you are also installing the OpenStudio CLI.
+OpenStudio 3.9.0 is required
+**the folder containing the openstudio.exe must be added to the PATH system environment variable**
 
-OpenStudio 3.9.0 is required, and **the folder containing the openstudio.exe must be added to the PATH environment variable**
-Typically it is the following path:
+Typically, it is the following path:
 
     C:\openstudio-3.9.0\bin
+
+**the folder containing the openstudio.rb must be added to the RUBYLIB system environment variable**
+
+Typically, it is the following path:
+
+    C:\openstudio-3.9.0\Ruby
 
 ### 2. 
 The Openstudio-229RPDGenerator requires Python3 > 3.13 and Ruby 3.2.2 installed
