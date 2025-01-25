@@ -38,7 +38,10 @@ which be installed through the OpenStudio app, please see here: https://openstud
 
     Please ensure that when you are installing the app that you are also installing the OpenStudio CLI.
 
-OpenStudio 3.9.0 is required
+OpenStudio 3.9.0 is required, and **the folder containing the openstudio.exe must be added to the PATH environment variable**
+Typically it is the following path:
+
+    C:\openstudio-3.9.0\bin
 
 ### 2. 
 The Openstudio-229RPDGenerator requires Python3 > 3.13 and Ruby 3.2.2 installed
