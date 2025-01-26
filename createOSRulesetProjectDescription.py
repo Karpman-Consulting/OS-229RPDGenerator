@@ -5,7 +5,17 @@ import json
 from pathlib import Path, WindowsPath
 import os
 import shutil
+import logging
+
 from rpdvalidator.validate import schema_validate
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 
 def return_openstudio_workflow_simulate_model_and_add_analysis_outputs(
@@ -121,13 +131,16 @@ def succcessfully_ran_convert_input_format(
     """
     try:
         subprocess.check_call(
-            [sys.executable, "-m", convert_input_format_exe_path, idf_file_path],
+            [convert_input_format_exe_path, idf_file_path],
             env=os.environ
         )
         return True
-    except subprocess.CalledProcessError:
-        print(
-            f"Failed to run the command {convert_input_format_exe_path} on {idf_file_path}"
+    except subprocess.CalledProcessError as e:
+        logging.error(
+            "Failed to run the command '%s' on '%s'. Error: %s",
+            convert_input_format_exe_path,
+            idf_file_path,
+            str(e)
         )
         return False
 
@@ -140,19 +153,17 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                sys.executable,
-                "-m",
-                "createRulesetProjectDescription",
+                "energyplus_create_rpd",
                 "--create_empty_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str,
-            env=os.environ
+            cwd=analysis_run_path_str
         )
         return True
-    except subprocess.CalledProcessError:
-        print(
-            f"Failed to run the command createRulesetProjectDescription --create_empty_cp in {analysis_run_path}"
+    except subprocess.CalledProcessError as e:
+        logging.error(
+            "Failed to run 'createRulesetProjectDescription --create_empty_cp' in %s. Error: %s",
+            analysis_run_path_str, str(e)
         )
         return False
 
@@ -161,14 +172,11 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                sys.executable,
-                "-m",
-                "createRulesetProjectDescription",
+                "energyplus_create_rpd",
                 "--add_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str,
-            env=os.environ
+            cwd=analysis_run_path_str
         )
         return True
     except subprocess.CalledProcessError:
@@ -228,8 +236,6 @@ def is_osw_success(
 
         if measures_only:
             run_osw = [
-                sys.executable,
-                "-m",
                 "openstudio",
                 "run",
                 "--measures_only",
@@ -237,8 +243,6 @@ def is_osw_success(
             ]
         if reporting_measures_only:
             run_osw = [
-                sys.executable,
-                "-m",
                 "openstudio",
                 "run",
                 "--postprocess_only",
@@ -260,24 +264,24 @@ def is_osw_success(
         return False
 
 
-def get_resource_path(script_arg, default_path=None):
-    if script_arg is None and default_path is None:
-        raise ValueError("You must provide either a script_arg or a default_path")
-
-    if script_arg is None:
-        if not Path(default_path).exists():
-            raise FileNotFoundError(
-                f"Attempted to find {Path(default_path).name} at {default_path}, as you did not specify a path in the command arguments "
-                f"but could not find the file {default_path}"
-            )
-        else:
-            return Path(default_path)
-
-    else:
-        if not Path(script_arg).exists():
-            raise FileNotFoundError(
-                f"The file '{script_arg}' which you specified in the command arguements does not exist."
-            )
+# def get_resource_path(script_arg, default_path=None):
+#     if script_arg is None and default_path is None:
+#         raise ValueError("You must provide either a script_arg or a default_path")
+#
+#     if script_arg is None:
+#         if not Path(default_path).exists():
+#             raise FileNotFoundError(
+#                 f"Attempted to find {Path(default_path).name} at {default_path}, as you did not specify a path in the command arguments "
+#                 f"but could not find the file {default_path}"
+#             )
+#         else:
+#             return Path(default_path)
+#
+#     else:
+#         if not Path(script_arg).exists():
+#             raise FileNotFoundError(
+#                 f"The file '{script_arg}' which you specified in the command arguements does not exist."
+#             )
 
 
 def main():
@@ -441,36 +445,31 @@ def main():
                             measures_only=False,
                             reporting_measures_only=True,
                     ):
-                        print(
-                            f"""\n\n\033[92mSuccessfully created the CSV file with compliance parameters for the model {openstudio_model_path.name} 
-                        and have updated the compliance parameter json file {empty_comp_param_json_file_path.name} with the values.\033[0m"""
+                        logger.info(
+                            f"\n\033[92mSuccessfully created the CSV with compliance parameters for the model "
+                            f"'{openstudio_model_path.name}', and updated the JSON file "
+                            f"'{empty_cp_json_default.name}' with those values.\033[0m"
                         )
-
                     else:
-                        print(
-                            f"""\n\n\033[91mFailed to create the CSV file with compliance parameters for the model 
-                            {openstudio_model_path.name}, please ensure that the openstudio model simulated correctly.\033[0m"""
+                        logger.error(
+                            f"\n\033[91mFailed to create the CSV file with compliance parameters for the model "
+                            f"'{openstudio_model_path.name}'. Please ensure that the OpenStudio model "
+                            f"simulated correctly.\033[0m"
                         )
-
                 else:
-                    print(
-                        f"""\n\n\033[91m Failed to run command createRulesetProjectDescription to create empty cp json file at path 
-                    {analysis_run_path(analysis_path).as_posix()},
-                    and try again.\n\n\033[0m"""
+                    logger.error(
+                        f"\n\033[91mFailed to create the empty CP JSON file at path "
+                        f"'{analysis_run_path(analysis_path).as_posix()}'.\033[0m"
                     )
-
             else:
-                print(
-                    f"""\n\n\033[91m Failed to convert idf at #{idf_file_path} to .epJson using EnergyPlus
-                utilty ConvertInputFormat.exe. Please ensure that the idf file and the path to the exe is correct
-                and try again.\n\n\033[0m"""
+                logger.error(
+                    f"\n\033[91mFailed to convert the IDF at '{idf_file_path}' to epJSON. "
+                    "Please check the path to ConvertInputFormat.exe and the IDF file.\033[0m"
                 )
-
         else:
-            print(
-                f"""\n\n\033[91mFailed to create the CSV file with compliance parameters for the model 
-            {openstudio_model_path.name}, "
-                  "please ensure that the openstudio model simulated correctly.\n\n\033[0m"""
+            logger.error(
+                f"\n\033[91mFailed to simulate the OpenStudio model '{openstudio_model_path.name}'. "
+                "CSV creation was not completed.\033[0m"
             )
 
     # --------------------- create_rpd Command --------------------- #
@@ -512,13 +511,10 @@ def main():
                 measures_only=False,
                 reporting_measures_only=True,
         ):
-            print(
-                f"""\n\n\033[92mSuccessfully read the CSV file with compliance parameters values for the model 
-            {openstudio_model_path.name} 
-            and have updated the compliance parameter json file {comp_param_json_file_path}
-            with the values. 
-            Attempting to validate with rpd validator
-            """
+            logger.info(
+                f"\n\033[92mSuccessfully read compliance parameters from '{csv_file_path.name}' for the model "
+                f"'{openstudio_model_path.name}'. Updated JSON: '{comp_param_json_file_path}'.\n"
+                "Attempting to validate with the RPD validator...\033[0m"
             )
             remove_output_object(comp_param_json_file_path.as_posix())
 
@@ -531,41 +527,34 @@ def main():
             result = schema_validate(
                 json.load(open(comp_param_json_file_path.as_posix(), "r"))
             )
-
             if result["passed"]:
-                print(
-                    f"""\033[92mThe compliance parameter json file {comp_param_json_file_path.name} 
-                for the model {openstudio_model_path.name} has passed validation with details {result}.\033[0m"""
+                logger.info(
+                    f"\033[92mValidation PASSED for '{comp_param_json_file_path.name}'. Details: {result}.\033[0m"
                 )
 
                 # 3) Attempt to generate rpd.json
                 if create_add_cp_json_file_success(
                     analysis_run_path(analysis_path).as_posix()
                 ):
-                    print(
-                        f"""\033[92m Successfully generated rpd.json at {analysis_run_path(analysis_path).as_posix()}
-                             \033[0m"""
+                    logger.info(
+                        f"\033[92mSuccessfully generated 'rpd.json' in '{analysis_run_path(analysis_path).as_posix()}'.\033[0m"
                     )
                 else:
-                    print(
-                        f"""\033[91m Failed to generate rpd.json! 
-                            at {analysis_run_path(analysis_path).as_posix()}\033[0m"""
+                    logger.error(
+                        f"\033[91mFailed to generate 'rpd.json' in "
+                        f"'{analysis_run_path(analysis_path).as_posix()}'.\033[0m"
                     )
             else:
-                print(
-                    f"""\033[91mThe compliance parameter json file {comp_param_json_file_path.name} 
-                for the model {openstudio_model_path.name} 
-                at path {analysis_run_path(analysis_path).as_posix()} 
-                has failed validation with {len(result['errors'])} errors, please see below \n\n.\033[0m"""
+                logger.error(
+                    f"\033[91mValidation FAILED for '{comp_param_json_file_path.name}' with "
+                    f"{len(result['errors'])} errors:\033[0m"
                 )
-
                 for index, error in enumerate(result["errors"]):
-                    print(f"\033[91m-{index+1}. {error}\033[0m" "\n")
-
+                    logger.error(f"\033[91m - {index + 1}. {error}\033[0m")
         else:
-            print(
-                f"""\033[91mFailed to read the CSV file with compliance parameters
-             values for the model {openstudio_model_path.name}, .\033[0m"""
+            logger.error(
+                f"\033[91mFailed to read the CSV file '{csv_file_path.name}' for the model "
+                f"'{openstudio_model_path.name}'. The process did not complete.\033[0m"
             )
 
 
