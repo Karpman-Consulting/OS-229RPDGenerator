@@ -153,7 +153,7 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "energyplus_create_rpd",
+                "createRulesetProjectDescription",
                 "--create_empty_cp",
                 "in.epJSON",
             ],
@@ -172,7 +172,7 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "energyplus_create_rpd",
+                "createRulesetProjectDescription",
                 "--add_cp",
                 "in.epJSON",
             ],
@@ -264,24 +264,24 @@ def is_osw_success(
         return False
 
 
-# def get_resource_path(script_arg, default_path=None):
-#     if script_arg is None and default_path is None:
-#         raise ValueError("You must provide either a script_arg or a default_path")
-#
-#     if script_arg is None:
-#         if not Path(default_path).exists():
-#             raise FileNotFoundError(
-#                 f"Attempted to find {Path(default_path).name} at {default_path}, as you did not specify a path in the command arguments "
-#                 f"but could not find the file {default_path}"
-#             )
-#         else:
-#             return Path(default_path)
-#
-#     else:
-#         if not Path(script_arg).exists():
-#             raise FileNotFoundError(
-#                 f"The file '{script_arg}' which you specified in the command arguements does not exist."
-#             )
+def get_resource_path(script_arg, default_path=None):
+    if script_arg is None and default_path is None:
+        raise ValueError("You must provide either a script_arg or a default_path")
+
+    if script_arg is None:
+        if not Path(default_path).exists():
+            raise FileNotFoundError(
+                f"Attempted to find {Path(default_path).name} at {default_path}, as you did not specify a path in the command arguments "
+                f"but could not find the file {default_path}"
+            )
+        else:
+            return Path(default_path)
+
+    else:
+        if not Path(script_arg).exists():
+            raise FileNotFoundError(
+                f"The file '{script_arg}' which you specified in the command arguements does not exist."
+            )
 
 
 def main():
