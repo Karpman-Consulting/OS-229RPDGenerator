@@ -2,7 +2,6 @@ import sys
 import unittest
 import subprocess
 import os
-import shutil
 import glob
 from pathlib import Path
 
@@ -16,9 +15,7 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         self.env = os.environ.copy()
         self.env["PYTHONPATH"] = os.pathsep.join([self.env.get("PYTHONPATH", ""), os.path.dirname(self.script_path)])
 
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1.osm"
-        )
+        self.openstudio_model_path = ""
         self.weather_file_name = "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
         self.initial_filed_csv_file_path = os.path.join(
             os.path.dirname(__file__), "Test_E1_filled.csv"
@@ -61,10 +58,6 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         self.assertEqual(
             result.returncode, 0, f"Script failed with error: {result.stderr}"
         )
-        print(
-            f"Copying {self.initial_filed_csv_file_path} to {self.filled_csv_file_path}"
-        )
-        shutil.copy(self.initial_filed_csv_file_path, self.filled_csv_file_path)
 
     def create_rpd(self):
         result = subprocess.run(
@@ -106,9 +99,6 @@ class TestCreateOSRulesetProjectDescriptionE1(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_E1.osm"
         )
@@ -134,14 +124,11 @@ class TestCreateOSRulesetProjectDescriptionE2(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_E2.osm"
         )
         self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E2", "run", "Test_E1_filled.csv"
+            os.path.dirname(__file__), "Test_E2", "run", "Test_E2_filled.csv"
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -162,14 +149,11 @@ class TestCreateOSRulesetProjectDescriptionE3(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_E3.osm"
         )
         self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E3", "run", "Test_E1_filled.csv"
+            os.path.dirname(__file__), "Test_E3", "run", "Test_E3_filled.csv"
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -190,9 +174,6 @@ class TestCreateOSRulesetProjectDescriptionF100(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F100_autosized.osm"
         )
@@ -200,7 +181,7 @@ class TestCreateOSRulesetProjectDescriptionF100(
             os.path.dirname(__file__),
             "Test_F100_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F100_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -221,9 +202,6 @@ class TestCreateOSRulesetProjectDescriptionF110(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F110_autosized.osm"
         )
@@ -231,7 +209,7 @@ class TestCreateOSRulesetProjectDescriptionF110(
             os.path.dirname(__file__),
             "Test_F110_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F110_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -252,9 +230,6 @@ class TestCreateOSRulesetProjectDescriptionF120(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F120_autosized.osm"
         )
@@ -262,7 +237,7 @@ class TestCreateOSRulesetProjectDescriptionF120(
             os.path.dirname(__file__),
             "Test_F120_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F120_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -283,9 +258,6 @@ class TestCreateOSRulesetProjectDescriptionF130(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F130_autosized.osm"
         )
@@ -293,7 +265,7 @@ class TestCreateOSRulesetProjectDescriptionF130(
             os.path.dirname(__file__),
             "Test_F130_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F130_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -314,9 +286,6 @@ class TestCreateOSRulesetProjectDescriptionF140(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F140_autosized.osm"
         )
@@ -324,7 +293,7 @@ class TestCreateOSRulesetProjectDescriptionF140(
             os.path.dirname(__file__),
             "Test_F140_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F140_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -345,9 +314,6 @@ class TestCreateOSRulesetProjectDescriptionF150(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F150_autosized.osm"
         )
@@ -355,7 +321,7 @@ class TestCreateOSRulesetProjectDescriptionF150(
             os.path.dirname(__file__),
             "Test_F150_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F150_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -376,17 +342,14 @@ class TestCreateOSRulesetProjectDescriptionF160(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_160_autosized.osm"
+            os.path.dirname(__file__), "Test_F160_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_160_autosized",
+            "Test_F160_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F160_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -407,17 +370,11 @@ class TestCreateOSRulesetProjectDescriptionF170(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_170_autosized.osm"
-        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_170_autosized",
+            "Test_F170_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F170_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -438,17 +395,11 @@ class TestCreateOSRulesetProjectDescriptionF180(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_180_autosized.osm"
-        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_180_autosized",
+            "Test_F180_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F180_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -469,17 +420,14 @@ class TestCreateOSRulesetProjectDescriptionF190(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_190_autosized.osm"
+            os.path.dirname(__file__), "Test_F190_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_190_autosized",
+            "Test_F190_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F190_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -500,17 +448,14 @@ class TestCreateOSRulesetProjectDescriptionF200(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_200_autosized.osm"
+            os.path.dirname(__file__), "Test_F200_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_200_autosized",
+            "Test_F200_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F200_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -522,13 +467,13 @@ class TestCreateOSRulesetProjectDescriptionF200(
         self.create_cp_csv()
 
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_200_autosized.osm"
+            os.path.dirname(__file__), "Test_F200_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_220_autosized",
+            "Test_F200_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F200_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -543,17 +488,14 @@ class TestCreateOSRulesetProjectDescriptionF210(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_210_autosized.osm"
+            os.path.dirname(__file__), "Test_F210_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_210_autosized",
+            "Test_F210_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F210_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -565,13 +507,13 @@ class TestCreateOSRulesetProjectDescriptionF210(
         self.create_cp_csv()
 
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_210_autosized.osm"
+            os.path.dirname(__file__), "Test_F210_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_210_autosized",
+            "Test_F210_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F210_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -586,17 +528,11 @@ class TestCreateOSRulesetProjectDescriptionF220(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_220_autosized.osm"
-        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_220_autosized",
+            "Test_F220_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F220_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -608,13 +544,13 @@ class TestCreateOSRulesetProjectDescriptionF220(
         self.create_cp_csv()
 
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_220_autosized.osm"
+            os.path.dirname(__file__), "Test_F220_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_220_autosized",
+            "Test_F220_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F220_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -629,17 +565,11 @@ class TestCreateOSRulesetProjectDescriptionF230(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_230_autosized.osm"
-        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_230_autosized",
+            "Test_F230_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F230_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -660,17 +590,14 @@ class TestCreateOSRulesetProjectDescriptionF240(
 ):
     def setUp(self):
         super().setUp()
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F_240_autosized.osm"
+            os.path.dirname(__file__), "Test_F240_autosized.osm"
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F_240_autosized",
+            "Test_F240_autosized",
             "run",
-            "Test_E1_filled.csv",
+            "Test_F240_filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
