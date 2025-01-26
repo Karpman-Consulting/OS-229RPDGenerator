@@ -157,7 +157,8 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
                 "--create_empty_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str
+            cwd=analysis_run_path_str,
+            env=os.environ
         )
         return True
     except subprocess.CalledProcessError as e:
@@ -176,7 +177,8 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
                 "--add_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str
+            cwd=analysis_run_path_str,
+            env=os.environ
         )
         return True
     except subprocess.CalledProcessError:
