@@ -32,68 +32,93 @@ This package will change significantly during the next several versions.
 
 ## Setup
 
-### 1. 
-The Openstudio-229RPDGenerator contains OpenStudio measures which requires the OpenStudio CLI to run,
-which can be installed through the OpenStudio app, please see here: https://openstudiocoalition.org/getting_started/getting_started/
-**Ensure that when you are installing the app that you are also installing the OpenStudio CLI.**
+### 1. Install Python 3
+https://www.python.org/downloads/
 
-OpenStudio 3.9.0 is required
-**the folder containing the openstudio.exe must be added to the PATH system environment variable**
+### 2. Install Ruby 3.2.2
+https://www.ruby-lang.org/en/downloads/releases/
+
+### 3. Install OpenStudio 3.9.0
+**IMPORTANT: OpenStudio 3.9.0 is required** - any other version of OpenStudio will very likely cause issues.
+
+**When you are installing the app, ensure that you are also installing the OpenStudio CLI.** The Openstudio-229RPDGenerator uses OpenStudio measures which require the OpenStudio CLI to run. 
+https://openstudiocoalition.org/getting_started/getting_started/
+
+
+**the folder containing the openstudio.exe must exist in the PATH system environment variable** (it may or may not already be there).
 
 Typically, it is the following path:
 
     C:\openstudio-3.9.0\bin
 
-**the folder containing the openstudio.rb must be added to the RUBYLIB system environment variable**
 
-Typically, it is the following path:
+It is critical that the OpenStudio version and Ruby version are exactly as described. See the OpenStudio compatibility matrix here:  
+https://github.com/NREL/OpenStudio/wiki/OpenStudio-SDK-Version-Compatibility-Matrix
 
-    C:\openstudio-3.9.0\Ruby
+### 4. Link OpenStudio to Ruby
+https://nrel.github.io/OpenStudio-user-documentation/getting_started/getting_started/  
+Under the **Optional - Install Ruby** section, follow the instructions to link OpenStudio to Ruby. For this application to work, this step is mandatory - not optional.
 
-### 2. 
-The Openstudio-229RPDGenerator requires Python3 > 3.13 and Ruby 3.2.2 installed
+      To link openstudio to your Ruby installation, follow these steps:
+      1. Create a text file with the following text inside (modify C:\openstudio-3.9.0 based on where your version of OpenStudio SDK is installed):
 
-### 3. 
-Run `bundle install` to install Ruby dependencies
+        require 'C:\openstudio-3.9.0\Ruby\openstudio.rb'
 
-### 4. 
-Run `pip install -r requirements.txt` to install Python dependencies
+      2. Save the file as openstudio.rb to C:\ruby-2.7.2-x64-mingw32\lib\ruby\site_ruby\openstudio.rb (or wherever you installed Ruby).
+
+**Alternatively,** 
+
+Create a `RUBYLIB` system environment variable (if it does not exist) and add the path to the folder containing `openstudio.rb`. Typically, the path is:
+
+        C:\openstudio-3.9.0\Ruby
+
+### 5. Install Python dependencies
+Run the following command to install the required Python packages:
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Install Ruby dependencies
+Run the following command to install the required Ruby packages:
+```bash
+bundle install
+```
 
 ## Steps to run the OpenStudio-229RPDGenerator on a OpenStudio model (.osm)
 
-### 1. 
-Run command, to create a csv file of the OpenStudio model's compliance parameters
+### 1. Create the empty Compliance Parameter csv
+Where  `filename.osm` is the OpenStudio model to process, this command will generate a csv named in the format
+`filename-empty.csv` which contains all the compliance parameters that may be applicable to the model with their initial values set according to any values which may be stored in OS:AdditionalProperties.
 
-    python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
+Sample command to create a csv file of the OpenStudio model's compliance parameters:
+
+`python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
 
 Where:
---openstudio_model_path is the path to the openstudio model ie "./test_files/Test_E1.osm", can be absolute or relative
+`--openstudio_model_path` is the path to the openstudio model, i.e. `"./test_files/Test_E1.osm"`. Path can be absolute or relative
 
---weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" ie a weather file places in the directory weather
+`--weather_file_name` is the name of the weather file within the Weather directory (the Weather folder is a sibling to the OpenStudio model), i.e. `"USA_CO_Denver.Intl.AP.725650_TMYx.epw"`
 
---convert_intput_format_exe_path, The path to the EnergyPlus utility ConvertInputFormat ie "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
+`--convert_intput_format_exe_path` is the path to the EnergyPlus utility ConvertInputFormat, i.e. `"C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
 
-where  filename.osm is osm to process, this command will generate a csv named in the format
-filename_cp-empty.csv which contains all the compliance parameters of a particular .osm where compliance parameters
-set in the osm using the OS:AdditionalProperties will be prefilled in the csv
+### 2. Complete the Compliance Parameter csv
 
-### 2. Open the filename_cp-empty.csv
-
-Enter values in the compliance parameter value column, these values will be used in step 3.
+Enter values for compliance parameters that are applicable to your model, and save the csv file.
 
 ### 3. Run the command 
 
-    python .\createOSRulesetProjectDescription.py create_rpd --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --csv_file_path "xx"
-
-Where:
---openstudio_model_path is the path to the openstudio model ie "./test_files/Test_E1.osm", can be absolute or relative
-
---weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" ie a weather file places in the directory weather
-
---csv_file_path, the absolute path to the csv were values in 2. where entered ie "C:\Users\AntonSzilasi\Documents\OpenStudio20RPD20Generator\Test_E1\run\Test_E1.csv"
-
 If successful this command will produce a validated rpd.json of the OpenStudio model and the compliance parameter values
 entered in step 2.
+
+`python .\createOSRulesetProjectDescription.py create_rpd --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --csv_file_path "xx"`
+
+Where:
+`--openstudio_model_path` is the path to the openstudio model, i.e. `"./test_files/Test_E1.osm"`. Path can be absolute or relative
+
+`--weather_file_name` is the name of the weather file within the Weather directory (the Weather folder is a sibling to the OpenStudio model), i.e. `"USA_CO_Denver.Intl.AP.725650_TMYx.epw"`
+
+`--csv_file_path,` the absolute path to the csv file that was saved in Step 2, i.e. `"C:\Users\AntonSzilasi\Documents\OpenStudio20RPD20Generator\Test_E1\run\Test_E1.csv"`
+
 
 ### Development
 
