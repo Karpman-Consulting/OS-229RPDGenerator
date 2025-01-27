@@ -132,7 +132,7 @@ def succcessfully_ran_convert_input_format(
     try:
         subprocess.check_call(
             [convert_input_format_exe_path, idf_file_path],
-            env=os.environ
+            env=os.environ,
         )
         return True
     except subprocess.CalledProcessError as e:
@@ -157,8 +157,8 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
                 "--create_empty_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str,
-            env=os.environ
+            cwd=analysis_run_path,
+            env=os.environ,
         )
         return True
     except subprocess.CalledProcessError as e:
@@ -177,8 +177,8 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
                 "--add_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path_str,
-            env=os.environ
+            cwd=analysis_run_path,
+            env=os.environ,
         )
         return True
     except subprocess.CalledProcessError:
@@ -256,10 +256,8 @@ def is_osw_success(
         if isinstance(path_to_osw, str):
             command_args = [path_to_osw]
         full_command = run_osw + command_args
-        subprocess.check_call(
-            full_command,
-            env=os.environ
-        )
+        subprocess.check_call(full_command, env=os.environ)
+
         return True
 
     except subprocess.CalledProcessError:
