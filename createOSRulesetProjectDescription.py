@@ -1,4 +1,3 @@
-import sys
 import subprocess
 import argparse
 import json
@@ -153,11 +152,11 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "createRulesetProjectDescription",
+                "energyplus_create_rpd",
                 "--create_empty_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path,
+            cwd=analysis_run_path_str,
             env=os.environ,
         )
         return True
@@ -173,11 +172,11 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "createRulesetProjectDescription",
+                "energyplus_create_rpd",
                 "--add_cp",
                 "in.epJSON",
             ],
-            cwd=analysis_run_path,
+            cwd=analysis_run_path_str,
             env=os.environ,
         )
         return True

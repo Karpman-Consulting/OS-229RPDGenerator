@@ -15,16 +15,15 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
         self.env = os.environ.copy()
         self.env["PYTHONPATH"] = os.pathsep.join([self.env.get("PYTHONPATH", ""), os.path.dirname(self.script_path)])
 
+        self.tests_dir = os.path.dirname(__file__)
+
         self.openstudio_model_path = ""
-        self.weather_file_name = "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
-        self.initial_filed_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1_filled.csv"
-        )
         self.filled_csv_file_path = ""
+
+        self.weather_file_name = "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
         self.convert_input_format_exe_path = (
             "C:/EnergyPlusV24-2-0/ConvertInputFormat.exe"
         )
-        self.tests_dir = os.path.dirname(__file__)
 
         # Check if convert_input_format_exe_path exists
         if not os.path.exists(self.convert_input_format_exe_path):
@@ -370,6 +369,9 @@ class TestCreateOSRulesetProjectDescriptionF170(
 ):
     def setUp(self):
         super().setUp()
+        self.openstudio_model_path = os.path.join(
+            os.path.dirname(__file__), "Test_F170_autosized.osm"
+        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
             "Test_F170_autosized",
@@ -395,6 +397,9 @@ class TestCreateOSRulesetProjectDescriptionF180(
 ):
     def setUp(self):
         super().setUp()
+        self.openstudio_model_path = os.path.join(
+            os.path.dirname(__file__), "Test_F180_autosized.osm"
+        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
             "Test_F180_autosized",
@@ -466,18 +471,6 @@ class TestCreateOSRulesetProjectDescriptionF200(
         )
         self.create_cp_csv()
 
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F200_autosized.osm"
-        )
-        self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__),
-            "Test_F200_autosized",
-            "run",
-            "Test_F200_filled.csv",
-        )
-
-        print(f"Using openstudio model at: {self.openstudio_model_path}")
-
     def test_create_rpd(self):
         print(f"Testing create_rpd for model {Path(self.openstudio_model_path).stem}")
         self.create_rpd()
@@ -506,18 +499,6 @@ class TestCreateOSRulesetProjectDescriptionF210(
         )
         self.create_cp_csv()
 
-        self.openstudio_model_path = os.path.join(
-            os.path.dirname(__file__), "Test_F210_autosized.osm"
-        )
-        self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__),
-            "Test_F210_autosized",
-            "run",
-            "Test_F210_filled.csv",
-        )
-
-        print(f"Using openstudio model at: {self.openstudio_model_path}")
-
     def test_create_rpd(self):
         print(f"Testing create_rpd for model {Path(self.openstudio_model_path).stem}")
         self.create_rpd()
@@ -528,21 +509,6 @@ class TestCreateOSRulesetProjectDescriptionF220(
 ):
     def setUp(self):
         super().setUp()
-        self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__),
-            "Test_F220_autosized",
-            "run",
-            "Test_F220_filled.csv",
-        )
-
-        print(f"Using openstudio model at: {self.openstudio_model_path}")
-
-    def test_create_cp_csv(self):
-        print(
-            f"Testing create_cp_csv for model {Path(self.openstudio_model_path).stem}"
-        )
-        self.create_cp_csv()
-
         self.openstudio_model_path = os.path.join(
             os.path.dirname(__file__), "Test_F220_autosized.osm"
         )
@@ -552,8 +518,13 @@ class TestCreateOSRulesetProjectDescriptionF220(
             "run",
             "Test_F220_filled.csv",
         )
-
         print(f"Using openstudio model at: {self.openstudio_model_path}")
+
+    def test_create_cp_csv(self):
+        print(
+            f"Testing create_cp_csv for model {Path(self.openstudio_model_path).stem}"
+        )
+        self.create_cp_csv()
 
     def test_create_rpd(self):
         print(f"Testing create_rpd for model {Path(self.openstudio_model_path).stem}")
@@ -565,6 +536,9 @@ class TestCreateOSRulesetProjectDescriptionF230(
 ):
     def setUp(self):
         super().setUp()
+        self.openstudio_model_path = os.path.join(
+            os.path.dirname(__file__), "Test_F230_autosized.osm"
+        )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
             "Test_F230_autosized",
