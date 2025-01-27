@@ -102,7 +102,7 @@ class TestCreateOSRulesetProjectDescriptionE1(
             os.path.dirname(__file__), "Test_E1.osm"
         )
         self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E1", "run", "Test_E1_filled.csv"
+            os.path.dirname(__file__), "Test_E1", "run", "Test_E1-filled.csv"
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -127,7 +127,7 @@ class TestCreateOSRulesetProjectDescriptionE2(
             os.path.dirname(__file__), "Test_E2.osm"
         )
         self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E2", "run", "Test_E2_filled.csv"
+            os.path.dirname(__file__), "Test_E2", "run", "Test_E2-filled.csv"
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -152,7 +152,7 @@ class TestCreateOSRulesetProjectDescriptionE3(
             os.path.dirname(__file__), "Test_E3.osm"
         )
         self.filled_csv_file_path = os.path.join(
-            os.path.dirname(__file__), "Test_E3", "run", "Test_E3_filled.csv"
+            os.path.dirname(__file__), "Test_E3", "run", "Test_E3-filled.csv"
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -178,9 +178,7 @@ class TestCreateOSRulesetProjectDescriptionF100(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F100",
-            "run",
-            "Test_F100_filled.csv",
+            "Test_F100-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -206,9 +204,7 @@ class TestCreateOSRulesetProjectDescriptionF110(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F110",
-            "run",
-            "Test_F110_filled.csv",
+            "Test_F110-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -234,9 +230,7 @@ class TestCreateOSRulesetProjectDescriptionF120(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F120",
-            "run",
-            "Test_F120_filled.csv",
+            "Test_F120-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -262,9 +256,7 @@ class TestCreateOSRulesetProjectDescriptionF130(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F130",
-            "run",
-            "Test_F130_filled.csv",
+            "Test_F130-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -290,9 +282,7 @@ class TestCreateOSRulesetProjectDescriptionF140(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F140",
-            "run",
-            "Test_F140_filled.csv",
+            "Test_F140-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -318,9 +308,7 @@ class TestCreateOSRulesetProjectDescriptionF150(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F150",
-            "run",
-            "Test_F150_filled.csv",
+            "Test_F150-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -346,9 +334,7 @@ class TestCreateOSRulesetProjectDescriptionF160(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F160",
-            "run",
-            "Test_F160_filled.csv",
+            "Test_F160-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -374,9 +360,7 @@ class TestCreateOSRulesetProjectDescriptionF170(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F170",
-            "run",
-            "Test_F170_filled.csv",
+            "Test_F170-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -402,9 +386,7 @@ class TestCreateOSRulesetProjectDescriptionF180(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F180",
-            "run",
-            "Test_F180_filled.csv",
+            "Test_F180-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -430,9 +412,7 @@ class TestCreateOSRulesetProjectDescriptionF190(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F190",
-            "run",
-            "Test_F190_filled.csv",
+            "Test_F190-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -458,9 +438,7 @@ class TestCreateOSRulesetProjectDescriptionF200(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F200",
-            "run",
-            "Test_F200_filled.csv",
+            "Test_F200-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -486,9 +464,7 @@ class TestCreateOSRulesetProjectDescriptionF210(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F210",
-            "run",
-            "Test_F210_filled.csv",
+            "Test_F210-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -514,9 +490,7 @@ class TestCreateOSRulesetProjectDescriptionF220(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F220",
-            "run",
-            "Test_F220_filled.csv",
+            "Test_F220-filled.csv",
         )
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
@@ -541,9 +515,7 @@ class TestCreateOSRulesetProjectDescriptionF230(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F230",
-            "run",
-            "Test_F230_filled.csv",
+            "Test_F230-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
@@ -569,9 +541,7 @@ class TestCreateOSRulesetProjectDescriptionF240(
         )
         self.filled_csv_file_path = os.path.join(
             os.path.dirname(__file__),
-            "Test_F240",
-            "run",
-            "Test_F240_filled.csv",
+            "Test_F240-filled.csv",
         )
 
         print(f"Using openstudio model at: {self.openstudio_model_path}")
