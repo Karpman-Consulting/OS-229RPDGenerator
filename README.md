@@ -37,7 +37,19 @@ The Openstudio-229RPDGenerator contains OpenStudio measures which requires the O
 which can be installed through the OpenStudio app, please see here: https://openstudiocoalition.org/getting_started/getting_started/
 **Ensure that when you are installing the app that you are also installing the OpenStudio CLI.**
 
-OpenStudio 3.9.0 is required
+**OpenStudio 3.9.0 is required, this is really important the wrong version of OpenStudio will very likely cause issues**
+
+Additionally ensure that the correct version of Ruby in the OpenStudio compatibility matrix is installed and the instructions here:
+https://nrel.github.io/OpenStudio-user-documentation/getting_started/getting_started/
+
+See the compatibility matrix here: 
+
+https://github.com/NREL/OpenStudio/wiki/OpenStudio-SDK-Version-Compatibility-Matrix
+
+Are followed under the **Optional - Install Ruby** section. 
+
+In particular the Ruby version must be linked to the OpenStudio 3.9.0 as described.
+
 **the folder containing the openstudio.exe must be added to the PATH system environment variable**
 
 Typically, it is the following path:
