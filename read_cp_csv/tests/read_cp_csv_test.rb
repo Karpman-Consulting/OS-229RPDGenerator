@@ -110,7 +110,7 @@ class ReadComplianceParameterCsvFromOsmTest < Minitest::Test
 
     updated_cp_json = JSON.parse(File.read(updated_cp_json_path))
 
-    assert_equal updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"], 9.999
+    assert_equal 9.999, updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"]
 
     assert_no_empty_values(updated_cp_json)
 

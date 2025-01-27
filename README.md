@@ -76,7 +76,7 @@ Run `pip install -r requirements.txt` to install Python dependencies
 ### 1. 
 Run command, to create a csv file of the OpenStudio model's compliance parameters
 
-    python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
+    python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./tests/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMY3.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"
 
 Where:
 --openstudio_model_path is the path to the openstudio model ie "./test_files/Test_E1.osm", can be absolute or relative

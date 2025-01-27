@@ -59,6 +59,12 @@ class GenerateCsvDataTest < Minitest::Test
 
     zn_two_wall_east_window_four_updated_framing_type = "a_test_of_framing_type_update"
 
+
+    csv_row_of_compliance_path = csv_data.find { |csv_row_data| csv_row_data[:compliance_parameter_name].downcase == "compliance_path".downcase }
+
+
+    csv_row_of_compliance_path[:compliance_parameter_value] = "CODE_COMPLIANT!!!!"
+
     ### Update zone aggreation factor for PERIMETER_ZN_1
     #
     csv_row_of_climate_zone = csv_data.find { |csv_row_data| csv_row_data[:compliance_parameter_name].downcase == "climate_zone".downcase }
@@ -106,7 +112,10 @@ class GenerateCsvDataTest < Minitest::Test
     csv_row_of_zn_two_wall_east_window_four_framing_type[:compliance_parameter_value] = zn_two_wall_east_window_four_updated_framing_type
 
     ### Run the code
+
     updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json,csv_data)
+
+    assert_equal "CODE_COMPLIANT!!!!" ,updated_cp_json["compliance_path"]
 
     assert_equal "CZ_111" ,updated_cp_json.dig('weather',"climate_zone")
 

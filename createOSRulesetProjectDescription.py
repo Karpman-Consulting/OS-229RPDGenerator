@@ -152,7 +152,7 @@ def create_empty_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "energyplus_create_rpd",
+                "createRulesetProjectDescription",
                 "--create_empty_cp",
                 "in.epJSON",
             ],
@@ -172,7 +172,7 @@ def create_add_cp_json_file_success(analysis_run_path_str: str) -> bool:
     try:
         subprocess.check_call(
             [
-                "energyplus_create_rpd",
+                "createRulesetProjectDescription",
                 "--add_cp",
                 "in.epJSON",
             ],

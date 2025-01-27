@@ -1,5 +1,5 @@
 229 data group id,229 parent type,229 parent id,compliance parameter category,compliance parameter name,compliance parameter value
-Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,PROPOSED
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,BASELINE_0
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,measured_infiltration_pressure_difference,0
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,is_measured_infiltration_based_on_test,FALSE
 segment 1,building_segments,OfficeSmall,building_segment,is_all_new,TRUE
