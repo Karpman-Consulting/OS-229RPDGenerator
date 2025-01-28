@@ -1,0 +1,216 @@
+229 data group id,229 parent type,229 parent id,compliance parameter category,compliance parameter name,compliance parameter value
+n/a,n/a,n/a,weather,climate_zone,CZ4A
+n/a,n/a,n/a,ruleset_project_description,compliance_path,CODE_COMPLIANT
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,BASELINE_90
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,measured_infiltration_pressure_difference,
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,is_measured_infiltration_based_on_test,
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,site_zone_type,ZONE_4_HIGH_ACTIVITY_COMMERCIAL
+Model for 229 Test Cases,buildings,Only model description,building,building_open_schedule,
+segment 1,building_segments,Model for 229 Test Cases,building_segment,is_all_new,TRUE
+segment 1,building_segments,Model for 229 Test Cases,building_segment,is_all_new,TRUE
+segment 1,building_segments,Model for 229 Test Cases,building_segment,lighting_building_area_type,
+segment 1,building_segments,Model for 229 Test Cases,building_segment,area_type_vertical_fenestration,
+segment 1,building_segments,Model for 229 Test Cases,building_segment,area_type_heating_ventilating_air_conditioning_system,
+CORE ZONE 1,zones,segment 1,zone,aggregation_factor,1
+PRM ZONE 1 (SOUTH),zones,segment 1,zone,aggregation_factor,1
+PRM ZONE 2 (EAST),zones,segment 1,zone,aggregation_factor,1
+PRM ZONE 3 (NORTH),zones,segment 1,zone,aggregation_factor,1
+PRM ZONE 4 (WEST),zones,segment 1,zone,aggregation_factor,1
+INFILTRATION_METHOD_1_CORE_ZONE,infiltration,CORE ZONE 1,infiltration,measured_air_leakage_rate,
+INFILTRATION_METHOD_1_ZONE_1,infiltration,PRM ZONE 1 (SOUTH),infiltration,measured_air_leakage_rate,
+INFILTRATION_METHOD_2_ZONE_2,infiltration,PRM ZONE 2 (EAST),infiltration,measured_air_leakage_rate,
+INFILTRATION_METHOD_3_ZONE_3,infiltration,PRM ZONE 3 (NORTH),infiltration,measured_air_leakage_rate,
+INFILTRATION_METHOD_3_ZONE_4,infiltration,PRM ZONE 4 (WEST),infiltration,measured_air_leakage_rate,
+CORE_SPACE_1,spaces,CORE ZONE 1,space,status_type,NEW
+PERIMETER_SPACE_1,spaces,PRM ZONE 1 (SOUTH),space,status_type,NEW
+PERIMETER_SPACE_2,spaces,PRM ZONE 2 (EAST),space,status_type,NEW
+PERIMETER_SPACE_3,spaces,PRM ZONE 3 (NORTH),space,status_type,NEW
+PERIMETER_SPACE_4,spaces,PRM ZONE 4 (WEST),space,status_type,NEW
+CORE_SPACE_1,spaces,CORE ZONE 1,space,lighting_space_type,OFFICE_ENCLOSED
+PERIMETER_SPACE_1,spaces,PRM ZONE 1 (SOUTH),space,lighting_space_type,OFFICE_ENCLOSED
+PERIMETER_SPACE_2,spaces,PRM ZONE 2 (EAST),space,lighting_space_type,OFFICE_ENCLOSED
+PERIMETER_SPACE_3,spaces,PRM ZONE 3 (NORTH),space,lighting_space_type,OFFICE_ENCLOSED
+PERIMETER_SPACE_4,spaces,PRM ZONE 4 (WEST),space,lighting_space_type,OFFICE_ENCLOSED
+CORE_SPACE_1,spaces,CORE ZONE 1,space,ventilation_space_type,
+PERIMETER_SPACE_1,spaces,PRM ZONE 1 (SOUTH),space,ventilation_space_type,
+PERIMETER_SPACE_2,spaces,PRM ZONE 2 (EAST),space,ventilation_space_type,
+PERIMETER_SPACE_3,spaces,PRM ZONE 3 (NORTH),space,ventilation_space_type,
+PERIMETER_SPACE_4,spaces,PRM ZONE 4 (WEST),space,ventilation_space_type,
+CORE_SPACE_1,spaces,CORE ZONE 1,space,envelope_space_type,
+PERIMETER_SPACE_1,spaces,PRM ZONE 1 (SOUTH),space,envelope_space_type,
+PERIMETER_SPACE_2,spaces,PRM ZONE 2 (EAST),space,envelope_space_type,
+PERIMETER_SPACE_3,spaces,PRM ZONE 3 (NORTH),space,envelope_space_type,
+PERIMETER_SPACE_4,spaces,PRM ZONE 4 (WEST),space,envelope_space_type,
+CORE_BOTTOM LIGHTING,interior_lighting,CORE_SPACE_1,space,occupancy_control_type,
+PERIMETER_BOT_ZN_1 LIGHTING,interior_lighting,PERIMETER_SPACE_1,space,occupancy_control_type,
+PERIMETER_BOT_ZN_2 LIGHTING,interior_lighting,PERIMETER_SPACE_2,space,occupancy_control_type,
+PERIMETER_BOT_ZN_3 LIGHTING,interior_lighting,PERIMETER_SPACE_3,space,occupancy_control_type,
+PERIMETER_BOT_ZN_4 LIGHTING,interior_lighting,PERIMETER_SPACE_4,space,occupancy_control_type,
+CORE_BOTTOM LIGHTING,interior_lighting,CORE_SPACE_1,space,purpose_type,
+PERIMETER_BOT_ZN_1 LIGHTING,interior_lighting,PERIMETER_SPACE_1,space,purpose_type,
+PERIMETER_BOT_ZN_2 LIGHTING,interior_lighting,PERIMETER_SPACE_2,space,purpose_type,
+PERIMETER_BOT_ZN_3 LIGHTING,interior_lighting,PERIMETER_SPACE_3,space,purpose_type,
+PERIMETER_BOT_ZN_4 LIGHTING,interior_lighting,PERIMETER_SPACE_4,space,purpose_type,
+CORE_BOTTOM ELEC EQUIP,miscellaneous_equipment,CORE_SPACE_1,space,type,
+PERIMETER_BOT_ZN_1 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_1,space,type,
+PERIMETER_BOT_ZN_2 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_2,space,type,
+PERIMETER_BOT_ZN_3 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_3,space,type,
+PERIMETER_BOT_ZN_4 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_4,space,type,
+CORE_BOTTOM ELEC EQUIP,miscellaneous_equipment,CORE_SPACE_1,space,has_automatic_control,
+PERIMETER_BOT_ZN_1 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_1,space,has_automatic_control,
+PERIMETER_BOT_ZN_2 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_2,space,has_automatic_control,
+PERIMETER_BOT_ZN_3 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_3,space,has_automatic_control,
+PERIMETER_BOT_ZN_4 ELEC EQUIP,miscellaneous_equipment,PERIMETER_SPACE_4,space,has_automatic_control,
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,subclassification,OTHER
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,subclassification,OTHER
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,subclassification,OTHER
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,subclassification,OTHER
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,subclassification,OTHER
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,has_manual_interior_shades,FALSE
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,is_operable,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,is_operable,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,is_operable,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,is_operable,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,is_operable,FALSE
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,framing_type,
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,framing_type,
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,framing_type,
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,framing_type,
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,framing_type,
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,framing_type,
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,framing_type,
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,framing_type,
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,framing_type,
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,framing_type,
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,status_type,NEW
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,status_type,NEW
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,status_type,NEW
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,status_type,NEW
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,status_type,NEW
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,status_type,NEW
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,status_type,NEW
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,status_type,NEW
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,status_type,NEW
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,status_type,NEW
+PERIMETER_ZONE1_WALL_SOUTH_WINDOW3,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW1,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_1_WALL_SOUTH_WINDOW2,subsurfaces,PERIMETER_ZONE_1_WALL_SOUTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW1,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_2_WALL_EAST_WINDOW2,subsurfaces,PERIMETER_ZONE_2_WALL_EAST,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW1,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW2,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_3_WALL_NORTH_WINDOW3,subsurfaces,PERIMETER_ZONE_3_WALL_NORTH,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW1,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,has_open_sensor,FALSE
+PERIMETER_ZONE_4_WALL_WEST_WINDOW2,subsurfaces,PERIMETER_ZONE_4_WALL_WEST,subsurface,has_open_sensor,FALSE
+HEATING THERMOSTAT SETPOINT,schedules,Only model description,schedule,prescribed_type,
+COOLING THEMOSTAT SETPOINT,schedules,Only model description,schedule,prescribed_type,
+CONSTANT SCHEDULE,schedules,Only model description,schedule,prescribed_type,
+CORE_SPACE_LIGHTING_SCH,schedules,Only model description,schedule,prescribed_type,
+CORE_SPACE_ELEC_EQUIP_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_1_LIGHTING_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_1_ELEC_EQUIP_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_2_LIGHTING_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_2_ELEC_EQUIP_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_3_LIGHTING_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_3_ELEC_EQUIP_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_SPACE_4_LIGHTING_SCH,schedules,Only model description,schedule,prescribed_type,
+PERIMETER_BOT_ZN_4 ELEC EQUIP SCH,schedules,Only model description,schedule,prescribed_type,
+HEATING THERMOSTAT SETPOINT,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+COOLING THEMOSTAT SETPOINT,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+CONSTANT SCHEDULE,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+CORE_SPACE_LIGHTING_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+CORE_SPACE_ELEC_EQUIP_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_1_LIGHTING_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_1_ELEC_EQUIP_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_2_LIGHTING_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_2_ELEC_EQUIP_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_3_LIGHTING_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_3_ELEC_EQUIP_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_SPACE_4_LIGHTING_SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+PERIMETER_BOT_ZN_4 ELEC EQUIP SCH,schedules,Only model description,schedule,is_modified_for_workaround,FALSE
+CORE_ZONE_1_CEILING,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_FLOOR,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_WALL_EAST,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_WALL_NORTH,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_WALL_SOUTH,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_WALL_WEST,surfaces,CORE ZONE 1,surface,status_type,NEW
+CORE_ZONE_5_WALL_SOUTH REVERSED,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+PERIMETER_ZONE_1_CEILING,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+PERIMETER_ZONE_1_FLOOR,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+PERIMETER_ZONE_1_INTERIOR_WALL_ZN_1_EAST,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+PERIMETER_ZONE_1_WALL_SOUTH,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+PERIMETER_ZONE_4_WALL_SOUTH REVERSED,surfaces,PRM ZONE 1 (SOUTH),surface,status_type,NEW
+CORE_ZONE_5_WALL_EAST REVERSED,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+PERIMETER_ZONE_1_WALL_EAST REVERSED,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+PERIMETER_ZONE_2_CEILING,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+PERIMETER_ZONE_2_FLOOR,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+PERIMETER_ZONE_2_WALL_EAST,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+PERIMETER_ZONE_2_WALL_NORTH,surfaces,PRM ZONE 2 (EAST),surface,status_type,NEW
+CORE_ZONE_5_WALL_NORTH REVERSED,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+PERIMETER_ZONE_2_WALL_NORTH REVERSED,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+PERIMETER_ZONE_3_CEILING,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+PERIMETER_ZONE_3_FLOOR,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+PERIMETER_ZONE_3_WALL_NORTH,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+PERIMETER_ZONE_3_WALL_WEST,surfaces,PRM ZONE 3 (NORTH),surface,status_type,NEW
+CORE_ZONE_5_WALL_WEST REVERSED,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+PERIMETER_ZONE_3_WALL_WEST REVERSED,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+PERIMETER_ZONE_4_CEILING,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+PERIMETER_ZONE_4_FLOOR,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+PERIMETER_ZONE_4_WALL_SOUTH,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+PERIMETER_ZONE_4_WALL_WEST,surfaces,PRM ZONE 4 (WEST),surface,status_type,NEW
+VAR SPD PUMP,pumps,Only model description,pump,impeller_efficiency,
+HW BOILER,boilers,Only model description,boiler,draft_type,NATURAL
+CORE ZONE 1,zones,segment 1,zone,conditioning_type,HEATED_AND_COOLED
+PRM ZONE 1 (SOUTH),zones,segment 1,zone,conditioning_type,HEATED_AND_COOLED
+PRM ZONE 2 (EAST),zones,segment 1,zone,conditioning_type,HEATED_AND_COOLED
+PRM ZONE 3 (NORTH),zones,segment 1,zone,conditioning_type,HEATED_AND_COOLED
+PRM ZONE 4 (WEST),zones,segment 1,zone,conditioning_type,HEATED_AND_COOLED
+Roof Type 1,construction,CORE_ZONE_1_CEILING,construction,classification,OTHER
+Slab-on-grade Type 1,construction,CORE_ZONE_5_FLOOR,construction,classification,OTHER
+Interior Wall,construction,CORE_ZONE_5_WALL_EAST,construction,classification,OTHER
+Interior Wall~~~00000001,construction,CORE_ZONE_5_WALL_NORTH,construction,classification,OTHER
+Interior Wall~~~00000003,construction,CORE_ZONE_5_WALL_SOUTH,construction,classification,OTHER
+Interior Wall~~~00000005,construction,CORE_ZONE_5_WALL_WEST,construction,classification,OTHER
+Interior Wall~~~00000007,construction,CORE_ZONE_5_WALL_SOUTH REVERSED,construction,classification,OTHER
+Roof Type 1~~~00000009,construction,PERIMETER_ZONE_1_CEILING,construction,classification,OTHER
+Slab-on-grade Type 1~~~00000013,construction,PERIMETER_ZONE_1_FLOOR,construction,classification,OTHER
+Interior Wall~~~00000015,construction,PERIMETER_ZONE_1_INTERIOR_WALL_ZN_1_EAST,construction,classification,OTHER
+Exterior Wall Type 1,construction,PERIMETER_ZONE_1_WALL_SOUTH,construction,classification,OTHER
+Interior Wall~~~00000018,construction,PERIMETER_ZONE_4_WALL_SOUTH REVERSED,construction,classification,OTHER
+Interior Wall~~~00000020,construction,CORE_ZONE_5_WALL_EAST REVERSED,construction,classification,OTHER
+Interior Wall~~~00000022,construction,PERIMETER_ZONE_1_WALL_EAST REVERSED,construction,classification,OTHER
+Roof Type 1~~~00000024,construction,PERIMETER_ZONE_2_CEILING,construction,classification,OTHER
+Slab-on-grade Type 1~~~00000028,construction,PERIMETER_ZONE_2_FLOOR,construction,classification,OTHER
+Exterior Wall Type 2,construction,PERIMETER_ZONE_2_WALL_EAST,construction,classification,OTHER
+Interior Wall~~~00000031,construction,PERIMETER_ZONE_2_WALL_NORTH,construction,classification,OTHER
+Interior Wall~~~00000033,construction,CORE_ZONE_5_WALL_NORTH REVERSED,construction,classification,OTHER
+Interior Wall~~~00000035,construction,PERIMETER_ZONE_2_WALL_NORTH REVERSED,construction,classification,OTHER
+Roof Type 2,construction,PERIMETER_ZONE_3_CEILING,construction,classification,OTHER
+Slab-on-grade Type 2,construction,PERIMETER_ZONE_3_FLOOR,construction,classification,OTHER
+Exterior Wall Type 3,construction,PERIMETER_ZONE_3_WALL_NORTH,construction,classification,OTHER
+Interior Wall~~~00000037,construction,PERIMETER_ZONE_3_WALL_WEST,construction,classification,OTHER
+Interior Wall~~~00000039,construction,CORE_ZONE_5_WALL_WEST REVERSED,construction,classification,OTHER
+Interior Wall~~~00000041,construction,PERIMETER_ZONE_3_WALL_WEST REVERSED,construction,classification,OTHER
+Roof Type 3,construction,PERIMETER_ZONE_4_CEILING,construction,classification,OTHER
+Slab-on-grade Type 2~~~00000043,construction,PERIMETER_ZONE_4_FLOOR,construction,classification,OTHER
+Interior Wall~~~00000046,construction,PERIMETER_ZONE_4_WALL_SOUTH,construction,classification,OTHER
+Exterior Wall Type 3~~~00000048,construction,PERIMETER_ZONE_4_WALL_WEST,construction,classification,OTHER
