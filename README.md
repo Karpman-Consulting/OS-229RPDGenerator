@@ -95,7 +95,7 @@ Enter values in the compliance parameter value column, these values will be used
 
 ### 3. Run the command 
 
-    python .\createOSRulesetProjectDescription.py create_rpd --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --csv_file_path "xx"
+    python .\createOSRulesetProjectDescription.py create_rpd --openstudio_model_path "./tests/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --csv_file_path "./tests/Test_E1_filled.csv"
 
 Where:
 --openstudio_model_path is the path to the openstudio model ie "./test_files/Test_E1.osm", can be absolute or relative
