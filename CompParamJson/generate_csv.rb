@@ -43,12 +43,7 @@ REQUIRED_COMPLIANCE_PARAMETERS = [
     "compliance_parameter": "building_open_schedule",
     "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0]'
   },
-    {
-    "compliance_parameter_category": "BuildingSegment",
-    "compliance_parameter": "is_all_new",
-    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
-  },
-    {
+  {
     "compliance_parameter_category": "BuildingSegment",
     "compliance_parameter": "is_all_new",
     "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
