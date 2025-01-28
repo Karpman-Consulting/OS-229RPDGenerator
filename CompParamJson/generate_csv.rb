@@ -281,10 +281,10 @@ module GenerateTwoTwoNineCompParamJsonCsv
 
       ids.each_with_index do |id, index|
         csv_data << {
+          compliance_parameter_category: compliance_parameter_category,
           two_twenty_nine_group_id: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a" : id,
           two_twenty_nine_parent_type: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a": self.get_last_part_json_path(two_twenty_nine_type[index]),
           two_twenty_nine_parent_id: compliance_parameter[:compliance_parameter_has_no_id] ? "n/a": self.get_last_part_json_path(two_twenty_nine_parent_id[index]),
-          compliance_parameter_category: compliance_parameter_category,
           compliance_parameter_name: compliance_parameter[:compliance_parameter],
           ### NOTE do not read values from comp param empty json
           compliance_parameter_value: ""
