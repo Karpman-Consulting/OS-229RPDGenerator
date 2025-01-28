@@ -3,237 +3,263 @@ require 'csv'
 require 'jsonpath'
 
 module GenerateTwoTwoNineCompParamJsonCsv
-  ##
-  REQUIRED_COMPLIANCE_PARAMETERS = [
-  ### com_param_path is taken from comp param file
-  ### Project and building
+##
+REQUIRED_COMPLIANCE_PARAMETERS = [
+### Project and building
   {
-    "compliance_parameter_category": "weather",
-    "compliance_parameter": "climate_zone",
-    "comp_param_path":'$.weather',
-    "compliance_parameter_has_no_id": true
-  },
-  {
-    "compliance_parameter_category": "ruleset_project_description",
+    "compliance_parameter_category": "RulesetProjectDescription",
     "compliance_parameter": "compliance_path",
-    "comp_param_path":'$.',
+    "comp_param_path": '$.',
     "compliance_parameter_has_no_id": true
   },
   {
-    "compliance_parameter_category": "ruleset_project_description",
-    "compliance_parameter": "type",
-    "comp_param_path":'$.ruleset_model_descriptions[0]'
+    "compliance_parameter_category": "Weather",
+    "compliance_parameter": "climate_zone",
+    "comp_param_path": '$.weather',
+    "compliance_parameter_has_no_id": true
   },
   {
-    "compliance_parameter_category": "ruleset_project_description",
+    "compliance_parameter_category": "RulesetModelDescription",
+    "compliance_parameter": "type",
+    "comp_param_path": '$.ruleset_model_descriptions[0]'
+  },
+  {
+    "compliance_parameter_category": "RulesetModelDescription",
     "compliance_parameter": "measured_infiltration_pressure_difference",
-    "comp_param_path":'$.ruleset_model_descriptions[0]'
+    "comp_param_path": '$.ruleset_model_descriptions[0]'
   },
   {
-    "compliance_parameter_category": "ruleset_project_description",
+    "compliance_parameter_category": "RulesetModelDescription",
     "compliance_parameter": "is_measured_infiltration_based_on_test",
-    "comp_param_path":'$.ruleset_model_descriptions[0]'
+    "comp_param_path": '$.ruleset_model_descriptions[0]'
   },
   {
-    "compliance_parameter_category": "ruleset_project_description",
+    "compliance_parameter_category": "RulesetModelDescription",
     "compliance_parameter": "site_zone_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0]'
+    "comp_param_path": '$.ruleset_model_descriptions[0]'
   },
   {
-    "compliance_parameter_category": "building",
+    "compliance_parameter_category": "Building",
     "compliance_parameter": "building_open_schedule",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0]'
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0]'
   },
     {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"is_all_new",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+    "compliance_parameter_category": "BuildingSegment",
+    "compliance_parameter": "is_all_new",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
     {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"is_all_new",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+    "compliance_parameter_category": "BuildingSegment",
+    "compliance_parameter": "is_all_new",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
   {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"lighting_building_area_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+    "compliance_parameter_category": "BuildingSegment",
+    "compliance_parameter": "lighting_building_area_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
   {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"area_type_vertical_fenestration",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+    "compliance_parameter_category": "BuildingSegment",
+    "compliance_parameter": "area_type_vertical_fenestration",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
   {
-    "compliance_parameter_category":"building_segment",
+    "compliance_parameter_category": "BuildingSegment",
     "compliance_parameter": "area_type_heating_ventilating_air_conditioning_system",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
-    # HeatingVentilatingAirConditioningSystem
-    {
-    "compliance_parameter_category":"heating_ventilating_air_conditioning_systems",
-    "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
-  },
-  ###HeatingVentilatingAirConditioningSystem.FanSystem
+### HeatingVentilatingAirConditioningSystem
   {
-    "compliance_parameter_category":"heating_ventilation_airconditioning_system",
+    "compliance_parameter_category": "HeatingVentilatingAirConditioningSystem",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+  },
+  {
+    "compliance_parameter_category": "HeatingVentilatingAirConditioningSystem",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+  },
+### FanSystem
+  {
+    "compliance_parameter_category": "FanSystem",
     "compliance_parameter": "air_filter_merv_rating",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
-  },
-  ### TODO question for JACKSON
-  # {
-  #   "compliance_parameter_category":"heating_ventilation_airconditioning_system",
-  #   "compliance_parameter": "status_type",
-  #   "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
-  # },
-  {
-    "compliance_parameter_category":"zone",
-    "compliance_parameter": "aggregation_factor",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
-  },
-  ### Zone.Infiltration
-  {
-    "compliance_parameter_category":"infiltration",
-    "compliance_parameter": "measured_air_leakage_rate",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].infiltration'
-  },
-  ### Terminals
-  {
-    "compliance_parameter_category":"terminal",
-    "compliance_parameter": "is_supply_ducted",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].terminals[*]'
-  },
-  ### Spaces - Note could not see this in comp param json
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
   {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "lighting_space_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
-  },
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "ventilation_space_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
-  },
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "envelope_space_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
-  },
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "occupancy_control_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
-  },
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "purpose_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
-  },
-  ### Miscellenous equipment
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
-  },
-  {
-    "compliance_parameter_category":"space",
-    "compliance_parameter": "has_automatic_control",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
-  },
-    ### Subsurfaces
-    {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "subclassification",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-    {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "has_manual_interior_shades",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-    {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "is_operable",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-        {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "framing_type",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-          {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "status_type",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-            {
-      "compliance_parameter_category":"subsurface",
-      "compliance_parameter": "has_open_sensor",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
-    },
-
-  ## Schedules
-  {
-    "compliance_parameter_category":"schedule",
-    "compliance_parameter": "prescribed_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].schedules[*]'
-  },
-  {
-    "compliance_parameter_category":"schedule",
-    "compliance_parameter": "is_modified_for_workaround",
-    "comp_param_path":'$.ruleset_model_descriptions[0].schedules[*]'
-  },
-  ### SUrfaces
-  {
-      "compliance_parameter_category":"surface",
-      "compliance_parameter": "status_type",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*]'
-  },
-  {
-    "compliance_parameter_category":"heating_ventilation_airconditioning_system",
+    "compliance_parameter_category": "FanSystem",
     "compliance_parameter": "has_fully_ducted_return",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system'
   },
-  ### Pump
+### Fan
   {
-    "compliance_parameter_category":"pump",
-    "compliance_parameter": "impeller_efficiency",
-    "comp_param_path":'$.ruleset_model_descriptions[0].pumps[*]'
-  },
-  {
-    "compliance_parameter_category":"boiler",
-    "compliance_parameter": "draft_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].boilers[*]'
-  },
-  {
-    "compliance_parameter_category":"chillers",
-    "compliance_parameter": "compressor_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].chillers[*]'
-  },
-  {
-    "compliance_parameter_category":"heating_ventilating_air_conditioning_system",
+    "compliance_parameter_category": "Fan",
     "compliance_parameter": "status_type",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system.supply_fans[*]'
   },
-    ### Zone
-    {
-      "compliance_parameter_category":"zone",
-      "compliance_parameter": "conditioning_type",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
-    },
-    ### Construction
-    {
-      "compliance_parameter_category":"construction",
-      "compliance_parameter": "classification",
-      "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
-    },
-  ]
+  {
+    "compliance_parameter_category": "Fan",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system.return_fans[*]'
+  },
+  {
+    "compliance_parameter_category": "Fan",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system.exhaust_fans[*]'
+  },
+  {
+    "compliance_parameter_category": "Fan",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*].fan_system.relief_fans[*]'
+  },
+  {
+    "compliance_parameter_category": "Fan",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].zonal_exhaust_fan'
+  },
+  {
+    "compliance_parameter_category": "Fan",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].terminals[*].fan'
+  },
+### Zone
+  {
+    "compliance_parameter_category": "Zone",
+    "compliance_parameter": "conditioning_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
+  },
+  {
+    "compliance_parameter_category": "Zone",
+    "compliance_parameter": "aggregation_factor",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*]'
+  },
+### Zone.Infiltration
+  {
+    "compliance_parameter_category": "Infiltration",
+    "compliance_parameter": "measured_air_leakage_rate",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].infiltration'
+  },
+### Terminals
+  {
+    "compliance_parameter_category": "Terminal",
+    "compliance_parameter": "is_supply_ducted",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].terminals[*]'
+  },
+### Spaces
+  {
+    "compliance_parameter_category": "Space",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Space",
+    "compliance_parameter": "lighting_space_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Space",
+    "compliance_parameter": "ventilation_space_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Space",
+    "compliance_parameter": "envelope_space_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*]'
+  },
+### InteriorLighting
+  {
+    "compliance_parameter_category": "InteriorLighting",
+    "compliance_parameter": "occupancy_control_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
+  },
+  {
+    "compliance_parameter_category": "InteriorLighting",
+    "compliance_parameter": "purpose_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].interior_lighting[*]'
+  },
+### Miscellenous equipment
+  {
+    "compliance_parameter_category": "MiscellaneousEquipment",
+    "compliance_parameter": "type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
+  },
+  {
+    "compliance_parameter_category": "MiscellaneousEquipment",
+    "compliance_parameter": "has_automatic_control",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].spaces[*].miscellaneous_equipment[*]'
+  },
+### Surfaces
+  {
+    "compliance_parameter_category": "Surface",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*]'
+  },
+### Subsurfaces
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "subclassification",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "has_manual_interior_shades",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "is_operable",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "framing_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "status_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+  {
+    "compliance_parameter_category": "Subsurface",
+    "compliance_parameter": "has_open_sensor",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
+  },
+### Construction
+  {
+    "compliance_parameter_category": "Construction",
+    "compliance_parameter": "classification",
+    "comp_param_path": '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
+  },
+### Schedules
+  {
+    "compliance_parameter_category": "Schedule",
+    "compliance_parameter": "prescribed_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].schedules[*]'
+  },
+  {
+    "compliance_parameter_category": "Schedule",
+    "compliance_parameter": "is_modified_for_workaround",
+    "comp_param_path": '$.ruleset_model_descriptions[0].schedules[*]'
+  },
+### Pump
+  {
+    "compliance_parameter_category": "Pump",
+    "compliance_parameter": "impeller_efficiency",
+    "comp_param_path": '$.ruleset_model_descriptions[0].pumps[*]'
+  },
+### Boiler
+  {
+    "compliance_parameter_category": "Boiler",
+    "compliance_parameter": "draft_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].boilers[*]'
+  },
+### Chiller
+  {
+    "compliance_parameter_category": "Chiller",
+    "compliance_parameter": "compressor_type",
+    "comp_param_path": '$.ruleset_model_descriptions[0].chillers[*]'
+  },
+]
 
   def self.parse_value(value)
     # Check if the value can be converted to a float
