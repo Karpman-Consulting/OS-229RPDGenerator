@@ -1,5 +1,5 @@
 229 data group id,229 parent type,229 parent id,compliance parameter category,compliance parameter name,compliance parameter value
-Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,
+Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,CODE_COMPLIANT123
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,measured_infiltration_pressure_difference,
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,is_measured_infiltration_based_on_test,
 segment 1,building_segments,OfficeSmall,building_segment,is_all_new,
@@ -239,5 +239,5 @@ HTGSETP_SCH_NO_OPTIMUM_W_SB,schedules,Only model description,schedule,is_modifie
 CLGSETP_SCH_NO_OPTIMUM,schedules,Only model description,schedule,is_modified_for_workaround,
 CLGSETP_SCH_NO_OPTIMUM_W_SB,schedules,Only model description,schedule,is_modified_for_workaround,
 SHWSYS1 PUMP,pumps,Only model description,pump,impeller_efficiency,
-n/a,n/a,n/a,weather,climate_zone,CZ5B
-n/a,n/a,n/a,ruleset_project_description,compliance_path,CODE_COMPLIANT
+n/a,n/a,n/a,weather,climate_zone,ACLIMATEZONE
+n/a,n/a,n/a,ruleset_project_description,compliance_path,CODE_COMPLIANT456

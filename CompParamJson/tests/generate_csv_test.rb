@@ -8,7 +8,15 @@ class GenerateCsvDataTest < Minitest::Test
 
     @empty_cp_json_file_path = File.join(File.dirname(File.realpath(__FILE__)), 'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')
 
+    @empty_cp_json_file_pathtwo = File.join(File.dirname(File.realpath(__FILE__)), 'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty2.json')
+    ### comp_param_json_input_test.jso is an input to the script set_comp_param_json_from_csv_data
+    @empty_cp_json_file_paththree = File.join(File.dirname(File.realpath(__FILE__)), 'comp_param_json_input_test.json')
+
     @empty_cp_json = JSON.parse(File.read(@empty_cp_json_file_path))
+
+    @empty_cp_json_two = JSON.parse(File.read(@empty_cp_json_file_pathtwo))
+
+    @empty_cp_json_three = JSON.parse(File.read(@empty_cp_json_file_paththree))
 
     @empty_cp_json_file_path_e1 = File.join(File.dirname(File.realpath(__FILE__)), '229_E1.comp-param-empty.json')
 
@@ -136,6 +144,34 @@ class GenerateCsvDataTest < Minitest::Test
     zn_two_wall_east_window_four = GenerateTwoTwoNineCompParamJsonCsv.find_by_id(updated_cp_json, "PERIMETER_ZN_2_WALL_EAST_WINDOW_4".downcase)
 
     assert_equal zn_two_wall_east_window_four_updated_framing_type, zn_two_wall_east_window_four["framing_type"]
+
+  end
+
+  def test_comp_param_json_to_csv_data_two
+
+
+    csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@empty_cp_json_three)
+
+    ### Update zone aggreation factor for PERIMETER_ZN_1
+    #
+    csv_row_of_climate_zone = csv_data.find { |csv_row_data| csv_row_data[:compliance_parameter_name].downcase == "climate_zone".downcase }
+
+    csv_row_of_climate_zone[:compliance_parameter_value] = "CZ_111"
+
+    ###
+
+    measured_air_leakage_rates = csv_data.select { |csv_row_data| csv_row_data[:compliance_parameter_name] == "measured_air_leakage_rate" }
+
+    measured_air_leakage_rates.each do |row|
+      row[:compliance_parameter_value] = "9.999"
+    end
+
+    ### Run the code
+    updated_cp_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(@empty_cp_json_three,csv_data)
+
+    assert_equal "CZ_111" ,updated_cp_json.dig('weather',"climate_zone")
+
+    assert_equal updated_cp_json.dig("ruleset_model_descriptions", 0, "buildings", 0, "building_segments",0,"zones").first["infiltration"]["measured_air_leakage_rate"], 9.999
 
   end
 
