@@ -49,11 +49,6 @@ module GenerateTwoTwoNineCompParamJsonCsv
     "compliance_parameter":"is_all_new",
     "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
   },
-    {
-    "compliance_parameter_category":"building_segment",
-    "compliance_parameter":"is_all_new",
-    "comp_param_path":'$.ruleset_model_descriptions[0].buildings[0].building_segments[0]'
-  },
   {
     "compliance_parameter_category":"building_segment",
     "compliance_parameter":"lighting_building_area_type",
