@@ -129,7 +129,7 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
     @comp_param_json = JSON.parse(File.read(File.join(File.dirname(File.realpath(__FILE__)),
     'ASHRAE901_OfficeSmall_STD2019_Denver.comp-param-empty.json')))
 
-    @csv_data = GenerateTwoTwoNineCompParamJsonCsv.produce_csv_data_from_comp_param_json(@comp_param_json)
+    @csv_data = GenerateCompParamJsonCsv.produce_csv_data_from_comp_param_json(@comp_param_json)
 
     ### This code will count the number of times that the compliance_parameter_value
     ### has been set
@@ -164,33 +164,33 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
 
     additional_property_of_subsurface_with_compliance_parameter = compliance_parameters.find { |ap| ap.handle.to_s == '{b0c16963-bf29-4919-9474-4e647b365c38}' }
 
-    ## If ALL OF two_twenty_nine_group_id & compliance_parameter_category & compliance_parameter_name
+    ## If ALL OF group_id & compliance_parameter_category & compliance_parameter_name
     #### do match additional property and its associated object is_additional_property_this_compliance_parameter? should return true
 
     assert ParseOsmAdditionalProperties.is_additional_property_this_compliance_parameter?(
       additional_property_of_subsurface_with_compliance_parameter,
       ### Test csv row is copied directly from the output_comp_param.csv
       {
-        two_twenty_nine_group_id: 'Perimeter_ZN_1_wall_south_Window_2',
-        two_twenty_nine_parent_type: 'subsurfaces',
-        two_twenty_nine_parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
-        compliance_parameter_category: 'subsurface',
+        group_id: 'Perimeter_ZN_1_wall_south_Window_2',
+        parent_key: 'subsurfaces',
+        parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
+        compliance_parameter_category: 'Subsurface',
         compliance_parameter_name: 'has_open_sensor',
         compliance_parameter_value: 'true'
       }
     )
 
-    ## If ANY OF two_twenty_nine_group_id OR compliance_parameter_category OR compliance_parameter_name
+    ## If ANY OF group_id OR compliance_parameter_category OR compliance_parameter_name
     #### do not match additional property and its associated object is_additional_property_this_compliance_parameter? should return false
 
     refute ParseOsmAdditionalProperties.is_additional_property_this_compliance_parameter?(
       additional_property_of_subsurface_with_compliance_parameter,
       ### Test csv row is copied directly from the output_comp_param.csv
       {
-        two_twenty_nine_group_id: 'Perimeter_ZN_1_wall_south_Window_1',
-        two_twenty_nine_parent_type: 'subsurfaces',
-        two_twenty_nine_parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
-        compliance_parameter_category: 'subsurface',
+        group_id: 'Perimeter_ZN_1_wall_south_Window_1',
+        parent_key: 'subsurfaces',
+        parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
+        compliance_parameter_category: 'Subsurface',
         compliance_parameter_name: 'has_open_sensor',
         compliance_parameter_value: 'true'
       }
@@ -200,10 +200,10 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
       additional_property_of_subsurface_with_compliance_parameter,
       ### Test csv row is copied directly from the output_comp_param.csv
       {
-        two_twenty_nine_group_id: 'Perimeter_ZN_1_wall_south_Window_2',
-        two_twenty_nine_parent_type: 'subsurfaces',
-        two_twenty_nine_parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
-        compliance_parameter_category: 'subsurface1',
+        group_id: 'Perimeter_ZN_1_wall_south_Window_2',
+        parent_key: 'subsurfaces',
+        parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
+        compliance_parameter_category: 'Subsurface1',
         compliance_parameter_name: 'has_open_sensor',
         compliance_parameter_value: 'true'
       }
@@ -213,10 +213,10 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
       additional_property_of_subsurface_with_compliance_parameter,
       ### Test csv row is copied directly from the output_comp_param.csv
       {
-        two_twenty_nine_group_id: 'Perimeter_ZN_1_wall_south_Window_2',
-        two_twenty_nine_parent_type: 'subsurfaces',
-        two_twenty_nine_parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
-        compliance_parameter_category: 'subsurface',
+        group_id: 'Perimeter_ZN_1_wall_south_Window_2',
+        parent_key: 'subsurfaces',
+        parent_id: 'PERIMETER_ZN_1_WALL_SOUTH',
+        compliance_parameter_category: 'Subsurface',
         compliance_parameter_name: 'has_open_sensor1',
         compliance_parameter_value: 'true'
       }
@@ -228,14 +228,14 @@ class ParseOsmAndPlaceComplianceParametersInOsm < Minitest::Test
     ## No values in the csv data should been set
     assert_equal @csv_data.sum { |row| row.get_set_count },0
 
-    test_case_string_data_type_row = @csv_data.select { |row_of_csv_data|  (row_of_csv_data[:two_twenty_nine_group_id].downcase == 'ATTIC_FLOOR_CORE'.downcase &&
+    test_case_string_data_type_row = @csv_data.select { |row_of_csv_data|  (row_of_csv_data[:group_id].downcase == 'ATTIC_FLOOR_CORE'.downcase &&
     row_of_csv_data[:compliance_parameter_name] == "status_type" &&
-    row_of_csv_data[:compliance_parameter_category] == "surface"
+    row_of_csv_data[:compliance_parameter_category] == "Surface"
     ) }
 
-    test_case_boolean_data_type_row = @csv_data.select { |row_of_csv_data|  (row_of_csv_data[:two_twenty_nine_group_id].downcase == 'Perimeter_ZN_1_wall_south_Window_1'.downcase &&
+    test_case_boolean_data_type_row = @csv_data.select { |row_of_csv_data|  (row_of_csv_data[:group_id].downcase == 'Perimeter_ZN_1_wall_south_Window_1'.downcase &&
     row_of_csv_data[:compliance_parameter_name] == "has_manual_interior_shades" &&
-    row_of_csv_data[:compliance_parameter_category] == "subsurface"
+    row_of_csv_data[:compliance_parameter_category] == "Subsurface"
     )}
 
     csv_data_with_updated_values1 = ParseOsmAdditionalProperties.

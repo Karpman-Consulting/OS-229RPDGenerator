@@ -10,7 +10,7 @@ csv_data = JSON.parse(File.read(csv_data_file_path))
 .map { |csv_row| csv_row.transform_keys(&:to_sym) }
 
 # Process the data
-updated_comp_param_json = GenerateTwoTwoNineCompParamJsonCsv.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
+updated_comp_param_json = GenerateCompParamJsonCsv.set_comp_param_json_from_csv_data(comp_param_json,csv_data)
 
 # Output the result
 puts updated_comp_param_json.to_json

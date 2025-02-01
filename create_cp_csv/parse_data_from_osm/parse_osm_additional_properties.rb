@@ -6,7 +6,7 @@ module ParseOsmAdditionalProperties
     ap_with_compliance_parameters = osm_model.getAdditionalPropertiess.select { |ap| ap.hasFeature("is_229_compliance_parameter") }
 
     if ap_with_compliance_parameters.empty?
-      print('No 90.1 2019 prm compliance parameters found in osm model')
+      puts 'No 90.1 2019 prm compliance parameters found in osm model'
       return csv_data
     end
 
@@ -30,7 +30,7 @@ module ParseOsmAdditionalProperties
     row_of_csv_data[:compliance_parameter_category].downcase &&
     get_additional_property_feature_value(os_additional_property,"compliance_parameter_name").downcase ==
     row_of_csv_data[:compliance_parameter_name].downcase &&
-    get_object_name_of_additional_property(os_additional_property).downcase == row_of_csv_data[:two_twenty_nine_group_id].downcase
+    get_object_name_of_additional_property(os_additional_property).downcase == row_of_csv_data[:group_id].downcase
 
   end
 

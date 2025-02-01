@@ -37,9 +37,9 @@ class ReadComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasure
     csv_data = []
 
     expected_headers = {
-      '229 data group id' => :two_twenty_nine_group_id,
-      '229 parent type' => :two_twenty_nine_parent_type,
-      '229 parent id' => :two_twenty_nine_parent_id,
+      '229 data group id' => :group_id,
+      '229 parent type' => :parent_key,
+      '229 parent id' => :parent_id,
       'compliance parameter category' => :compliance_parameter_category,
       'compliance parameter name' => :compliance_parameter_name,
       'compliance parameter value' => :compliance_parameter_value

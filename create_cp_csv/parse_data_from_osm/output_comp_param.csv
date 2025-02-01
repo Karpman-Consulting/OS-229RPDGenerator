@@ -1,4 +1,4 @@
-229 data group id,229 parent type,229 parent id,compliance parameter category,compliance parameter name,compliance parameter value
+229 Data Group ID,229 Parent Key,229 Parent ID,Compliance Parameter Category,Compliance Parameter Name,Compliance Parameter Value
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,type,PROPOSED
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,measured_infiltration_pressure_difference,0
 Only model description,ruleset_model_descriptions,project description root,ruleset_project_description,is_measured_infiltration_based_on_test,false

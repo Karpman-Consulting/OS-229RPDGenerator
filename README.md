@@ -75,7 +75,7 @@ Create a `RUBYLIB` system environment variable (if it does not exist) and add th
 ### 5. Install Python dependencies
 Run the following command to install the required Python packages:
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
 ### 6. Install Ruby dependencies
@@ -86,39 +86,39 @@ bundle install
 
 ## Steps to run the OpenStudio-229RPDGenerator on a OpenStudio model (.osm)
 
-### 1. Create the empty Compliance Parameter csv
-Where  `filename.osm` is the OpenStudio model to process, this command will generate a csv named in the format
+### 1. Create the Compliance Parameter CSV
+Where  `filename.osm` is the OpenStudio model to process, this command will generate a CSV named in the format
 `filename-empty.csv` which contains all the compliance parameters that may be applicable to the model with their initial values set according to any values which may be stored in OS:AdditionalProperties.
 
-Sample command to create a csv file of the OpenStudio model's compliance parameters:
+Sample command to create a CSV file of the OpenStudio model's compliance parameters:
 
-`python .\createOSRulesetProjectDescription.py create_cp_csv --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe_path "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
+`openstudio229 create_csv --openstudio_model "./tests/Test_E1.osm" --weather_file "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --convert_input_format_exe "C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
 
-Where:
-`--openstudio_model_path` is the path to the openstudio model, i.e. `"./test_files/Test_E1.osm"`. Path can be absolute or relative
+Arguments:
+`--openstudio_model` is the path to the OpenStudio model, i.e. `"./tests/Test_E1.osm"`. Path can be absolute or relative to base_dir
 
-`--weather_file_name` is the name of the weather file within the Weather directory (the Weather folder is a sibling to the OpenStudio model), i.e. `"USA_CO_Denver.Intl.AP.725650_TMYx.epw"`
+`--weather_file` is the path to the weather file, i.e. `"USA_CO_Denver.Intl.AP.725650_TMYx.epw"`. Path can be absolute or relative to a "weather" folder in base_dir
 
-`--convert_intput_format_exe_path` is the path to the EnergyPlus utility ConvertInputFormat, i.e. `"C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
+`--base_dir` (optional) is the absolute path to a directory where the analysis will be performed and files will be created. Default is the current working directory.
+
+`--convert_input_format_exe_path` is the absolute path to ConvertInputFormat.exe. Default is `"C:\EnergyPlusV24-2-0\ConvertInputFormat.exe"`
 
 ### 2. Complete the Compliance Parameter csv
 
-Enter values for compliance parameters that are applicable to your model, and save the csv file.
+Enter values in the last column for compliance parameters that are applicable to your model, and save the CSV file with a different filename to prevent the file from being overwritten if you ever decide to repeat Step 1.
 
-### 3. Run the command 
+### 3. Create the RPD file
 
-If successful this command will produce a validated rpd.json of the OpenStudio model and the compliance parameter values
-entered in step 2.
+This command will merge data from the CSV to produce the RPD file associated with the OpenStudio model and will validate the RPD file against the schema.
 
-`python .\createOSRulesetProjectDescription.py create_rpd --openstudio_model_path "./test_files/Test_E1.osm" --weather_file_name "USA_CO_Denver.Intl.AP.725650_TMYx.epw" --csv_file_path "xx"`
+`openstudio229 create_rpd --openstudio_model "./tests/Test_E1.osm" --csv_file "./tests/Test_E1/run/Test_E1-filled.csv"`
 
 Where:
-`--openstudio_model_path` is the path to the openstudio model, i.e. `"./test_files/Test_E1.osm"`. Path can be absolute or relative
+`--openstudio_model` is the path to the OpenStudio model, i.e. `"./tests/Test_E1.osm"`. Path can be absolute or relative to base_dir
 
-`--weather_file_name` is the name of the weather file within the Weather directory (the Weather folder is a sibling to the OpenStudio model), i.e. `"USA_CO_Denver.Intl.AP.725650_TMYx.epw"`
+`--csv_file,` is the path to the CSV file that was saved in Step 2, i.e. `"./tests/Test_E1/run/Test_E1-filled.csv"`. Path can be absolute or relative to base_dir
 
-`--csv_file_path,` the absolute path to the csv file that was saved in Step 2, i.e. `"C:\Users\AntonSzilasi\Documents\OpenStudio20RPD20Generator\Test_E1\run\Test_E1.csv"`
-
+`--base_dir` (optional) is the absolute path to a directory where the analysis will be performed and files will be created. Default is the current working directory.
 
 ### Development
 
@@ -128,11 +128,14 @@ and Python for createOSRulesetProjectDescription.py, which can be used to genera
 
 run all tests on Ruby measures code by running
 
-"rake"
+```bash
+rake
+```
 
-Run the createOSRulesetProjectDescription.py on all the test files from Appendix E and F of 229 
-
-by running "test_create_os_ruleset_project_description.py" in the tests directory
+Run the createOSRulesetProjectDescription.py on all the test files from Appendix E and F of 229 by running:
+```python
+python tests/test_createOSRulesetProjectDescription.py
+```
 
 ## Disclaimer Notice
 Acknowledgment: This material is based upon work supported by the U.S. Department of Energy’s Office of Energy Efficiency and Renewable Energy (EERE) under the Building Technologies Office - DE-FOA-0002813 - Bipartisan Infrastructure Law Resilient and Efficient Codes Implementation.

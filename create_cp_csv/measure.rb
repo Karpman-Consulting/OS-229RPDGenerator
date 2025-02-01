@@ -101,9 +101,9 @@ class CreateComplianceParameterCsvFromOsm < OpenStudio::Measure::ReportingMeasur
 
     csv_data.each { |row_as_hash_of_data|
       csv_data_as_excel << [
-        row_as_hash_of_data[:two_twenty_nine_parent_id],
-        row_as_hash_of_data[:two_twenty_nine_parent_type],
-        row_as_hash_of_data[:two_twenty_nine_group_id],
+        row_as_hash_of_data[:parent_id],
+        row_as_hash_of_data[:parent_key],
+        row_as_hash_of_data[:group_id],
         row_as_hash_of_data[:compliance_parameter_category],
         row_as_hash_of_data[:compliance_parameter_name],
         row_as_hash_of_data[:compliance_parameter_value]
