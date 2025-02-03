@@ -19,4 +19,4 @@ dependencies = [
 find = {}
 
 [project.scripts]
-openstudio229 = "createOSRulesetProjectDescription:cli"
+openstudio229 = "openstudio229.createOSRulesetProjectDescription:cli"
