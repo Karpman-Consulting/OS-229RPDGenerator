@@ -7,26 +7,22 @@ project description root,ruleset_model_descriptions,Only model description,Rules
 project description root,ruleset_model_descriptions,Only model description,RulesetModelDescription,measured_infiltration_pressure_difference,10
 Only model description,buildings,Model for 229 Test Cases,Building,building_open_schedule,building open hours
 Model for 229 Test Cases,building_segments,segment 1,BuildingSegment,is_all_new,TRUE
+Model for 229 Test Cases,building_segments,segment 2,BuildingSegment,is_all_new,TRUE
 Model for 229 Test Cases,building_segments,segment 1,BuildingSegment,lighting_building_area_type,RETAIL
 Model for 229 Test Cases,building_segments,segment 1,BuildingSegment,area_type_vertical_fenestration,RETAIL_STRIP_MALL
 Model for 229 Test Cases,building_segments,segment 1,BuildingSegment,area_type_heating_ventilating_air_conditioning_system,HEATED_ONLY_STORAGE
-segment 1,zones,CORE ZONE 1,Zone,conditioning_type,HEATED_AND_COOLED
-segment 1,zones,PRM ZONE 1 (SOUTH),Zone,conditioning_type,HEATED_AND_COOLED
+segment 2,zones,CORE ZONE 1,Zone,conditioning_type,HEATED_AND_COOLED
+segment 2,zones,PRM ZONE 1 (SOUTH),Zone,conditioning_type,HEATED_AND_COOLED
 segment 1,zones,PRM ZONE 2 (EAST),Zone,conditioning_type,HEATED_AND_COOLED
 segment 1,zones,PRM ZONE 3 (NORTH),Zone,conditioning_type,HEATED_AND_COOLED
 segment 1,zones,PRM ZONE 4 (WEST),Zone,conditioning_type,HEATED_AND_COOLED
-segment 1,zones,CORE ZONE 1,Zone,aggregation_factor,1
-segment 1,zones,PRM ZONE 1 (SOUTH),Zone,aggregation_factor,1
+segment 2,zones,CORE ZONE 1,Zone,aggregation_factor,1
+segment 2,zones,PRM ZONE 1 (SOUTH),Zone,aggregation_factor,1
 segment 1,zones,PRM ZONE 2 (EAST),Zone,aggregation_factor,1
 segment 1,zones,PRM ZONE 3 (NORTH),Zone,aggregation_factor,1
 segment 1,zones,PRM ZONE 4 (WEST),Zone,aggregation_factor,1
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_CORE_ZONE,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_1,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_2,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_3,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_4,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_CORE_ZONE,HeatingVentilatingAirConditioningSystem,status_type,NEW
-segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_1,HeatingVentilatingAirConditioningSystem,status_type,NEW
+segment 2,heating_ventilating_air_conditioning_systems,PSZ_HP_CORE_ZONE,HeatingVentilatingAirConditioningSystem,status_type,NEW
+segment 2,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_1,HeatingVentilatingAirConditioningSystem,status_type,NEW
 segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_2,HeatingVentilatingAirConditioningSystem,status_type,NEW
 segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_3,HeatingVentilatingAirConditioningSystem,status_type,NEW
 segment 1,heating_ventilating_air_conditioning_systems,PSZ_HP_PERIMETER_ZONE_4,HeatingVentilatingAirConditioningSystem,status_type,NEW

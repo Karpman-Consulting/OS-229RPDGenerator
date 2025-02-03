@@ -2,7 +2,7 @@ import csv
 import json
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict, Union
+from typing import Tuple, List, Dict, Union, Any
 
 
 def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
@@ -19,7 +19,8 @@ def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
     with json_dict_path.open(mode="r", encoding="utf-8") as file:
         json_dict = json.load(file)
 
-    csv_map = load_csv_to_dict(csv_file_path)
+    csv_map, building_segment_map = load_csv_to_dict(csv_file_path)
+    add_building_segments(json_dict, building_segment_map)
     json_dict = transfer_data_recursive(json_dict, csv_map)
 
     output_path = json_dict_path.parent / "in.rpd"
@@ -29,7 +30,7 @@ def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
     return 1
 
 
-def load_csv_to_dict(csv_file_path: Path) -> Dict[str, Dict[str, Dict[str, str]]]:
+def load_csv_to_dict(csv_file_path: Path) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, Dict[str, List[Dict[str, str]]]]]:
     """
     Reads a CSV file and organizes the data into a nested dictionary for mapping.
 
@@ -44,18 +45,24 @@ def load_csv_to_dict(csv_file_path: Path) -> Dict[str, Dict[str, Dict[str, str]]
             - The second key is the "Compliance Parameter".
             - The value is the corresponding row dictionary from the CSV.
     """
-    json_map: Dict[str, Dict[str, Dict[str, str]]] = defaultdict(dict)
+    param_map: Dict[str, Dict[str, Dict[str, str]]] = defaultdict(dict)
+    segment_map: Dict[str, Dict[str, list]] = defaultdict(lambda: defaultdict(list))
 
     with csv_file_path.open(mode="r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for row in reader:
+            parent_id = row.get("229 Parent ID")
+            parent_key = row.get("229 Parent Key")
             data_group_id = row.get("229 Data Group ID")
             param = row.get("Compliance Parameter")
 
             if data_group_id and param:
-                json_map[data_group_id][param] = row
+                param_map[data_group_id][param] = row
 
-    return json_map
+            if parent_key in ["zones", "heating_ventilating_air_conditioning_systems"]:
+                segment_map[parent_id][parent_key].append(row)
+
+    return param_map, segment_map
 
 
 def transfer_data_recursive(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[str, Dict[str, str]]]) -> Dict[str, Any]:
@@ -94,6 +101,66 @@ def transfer_data_recursive(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[s
                 transfer_data_recursive(item, csv_map) if isinstance(item, dict) else item
                 for item in value
             ]
+
+    return json_dict
+
+
+def add_building_segments(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[str, List[Dict[str, str]]]]) -> Dict[str, Any]:
+    building_segments = (
+        json_dict.get("ruleset_model_descriptions", [{}])[0]
+        .get("buildings", [{}])[0]
+        .get("building_segments", [])
+    )
+    # Create a map for fast lookup of segments by ID
+    segment_map = {segment.get("id"): segment for segment in building_segments}
+
+    # Collect all zones and HVAC systems from existing segments
+    zone_map = {}
+    hvac_map = {}
+
+    for segment in building_segments:
+        segment.setdefault("zones", [])
+        segment.setdefault("heating_ventilating_air_conditioning_systems", [])
+
+        # Store zones and HVACs in dictionaries by ID for easy retrieval
+        for zone in segment["zones"]:
+            zone_map[zone["id"]] = zone
+
+        for hvac in segment["heating_ventilating_air_conditioning_systems"]:
+            hvac_map[hvac["id"]] = hvac
+
+        # Clear zones and HVACs
+        segment["zones"] = []
+        segment["heating_ventilating_air_conditioning_systems"] = []
+
+    added_ids = set()
+    for segment_id, mappings in csv_map.items():
+
+        if segment_id not in segment_map:
+            segment_map[segment_id] = {
+                "id": segment_id,
+                "zones": [],
+                "heating_ventilating_air_conditioning_systems": []
+            }
+            building_segments.append(segment_map[segment_id])
+
+        segment = segment_map[segment_id]
+
+        # Move zones
+        if "zones" in mappings:
+            for zone_csv_data in mappings["zones"]:
+                zone_id = zone_csv_data.get("229 Data Group ID")
+                if zone_id not in added_ids:
+                    segment["zones"].append(zone_map[zone_id])
+                    added_ids.add(zone_id)
+
+        # Move HVAC systems
+        if "heating_ventilating_air_conditioning_systems" in mappings:
+            for hvac_csv_data in mappings["heating_ventilating_air_conditioning_systems"]:
+                hvac_id = hvac_csv_data.get("229 Data Group ID")
+                if hvac_id not in added_ids:
+                    segment["heating_ventilating_air_conditioning_systems"].append(hvac_map[hvac_id])
+                    added_ids.add(hvac_id)
 
     return json_dict
 

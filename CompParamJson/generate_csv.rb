@@ -79,11 +79,6 @@ REQUIRED_COMPLIANCE_PARAMETERS = [
     compliance_parameter: "status_type",
     comp_param_path: '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
   },
-  {
-    compliance_parameter_category: "HeatingVentilatingAirConditioningSystem",
-    compliance_parameter: "status_type",
-    comp_param_path: '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].heating_ventilating_air_conditioning_systems[*]'
-  },
 ### Zone.Infiltration
   {
     compliance_parameter_category: "Infiltration",

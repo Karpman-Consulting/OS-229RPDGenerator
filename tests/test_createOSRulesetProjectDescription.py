@@ -3,7 +3,7 @@ import os
 import glob
 from pathlib import Path
 
-from createOSRulesetProjectDescription import handle_create_comp_param_csv, handle_create_rpd, setup_analysis_directory
+from openstudio229.createOSRulesetProjectDescription import handle_create_comp_param_csv, handle_create_rpd, setup_analysis_directory
 
 
 class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
