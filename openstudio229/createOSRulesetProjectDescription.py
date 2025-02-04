@@ -268,8 +268,8 @@ def validate_paths(paths: [list, Path, str]):
         raise ValueError(f"Invalid type '{type(paths)}' for 'paths'.")
 
 
-def setup_analysis_directory(base_dir, openstudio_model_path):
-    analysis_path = base_dir / openstudio_model_path.stem
+def setup_analysis_directory(openstudio_model_path):
+    analysis_path = openstudio_model_path.parent / openstudio_model_path.stem
     analysis_path.mkdir(parents=True, exist_ok=True)
     return analysis_path
 
@@ -406,7 +406,7 @@ def cli():
     if not openstudio_model_path.is_absolute():
         openstudio_model_path = base_dir / openstudio_model_path
 
-    analysis_path = setup_analysis_directory(base_dir, openstudio_model_path)
+    analysis_path = setup_analysis_directory(openstudio_model_path)
 
     if args.command == "create_csv":
         convert_input_format_exe_path = args.convert_input_format_exe

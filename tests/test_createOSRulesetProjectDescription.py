@@ -60,7 +60,7 @@ class TestCreateOSRulesetProjectDescriptionE1(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_E1.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_E1-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -81,7 +81,7 @@ class TestCreateOSRulesetProjectDescriptionE2(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_E2.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_E2-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -102,7 +102,7 @@ class TestCreateOSRulesetProjectDescriptionE3(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_E3.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_E3-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -123,7 +123,7 @@ class TestCreateOSRulesetProjectDescriptionF100(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F100.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F100-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -144,7 +144,7 @@ class TestCreateOSRulesetProjectDescriptionF110(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F110.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F110-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -165,7 +165,7 @@ class TestCreateOSRulesetProjectDescriptionF120(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F120.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F120-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -186,7 +186,7 @@ class TestCreateOSRulesetProjectDescriptionF130(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F130.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F130-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -207,7 +207,7 @@ class TestCreateOSRulesetProjectDescriptionF140(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F140.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F140-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -228,7 +228,7 @@ class TestCreateOSRulesetProjectDescriptionF150(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F150.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F150-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -249,7 +249,7 @@ class TestCreateOSRulesetProjectDescriptionF160(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F160.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F160-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -270,7 +270,7 @@ class TestCreateOSRulesetProjectDescriptionF170(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F170.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F170-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -291,7 +291,7 @@ class TestCreateOSRulesetProjectDescriptionF180(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F180.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F180-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -312,7 +312,7 @@ class TestCreateOSRulesetProjectDescriptionF190(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F190.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F190-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -333,7 +333,7 @@ class TestCreateOSRulesetProjectDescriptionF200(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F200.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F200-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -354,7 +354,7 @@ class TestCreateOSRulesetProjectDescriptionF210(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F210.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F210-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -375,7 +375,7 @@ class TestCreateOSRulesetProjectDescriptionF220(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F220.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F220-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -396,7 +396,7 @@ class TestCreateOSRulesetProjectDescriptionF230(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F230.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F230-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
@@ -417,7 +417,7 @@ class TestCreateOSRulesetProjectDescriptionF240(
         super().setUp()
         self.openstudio_model_path = self.tests_dir / "Test_F240.osm"
         self.filled_csv_file_path = self.tests_dir / "Test_F240-filled.csv"
-        setup_analysis_directory(self.tests_dir, self.openstudio_model_path)
+        setup_analysis_directory(self.openstudio_model_path)
         print(f"Using openstudio model at: {self.openstudio_model_path}")
 
     def test_create_cp_csv(self):
