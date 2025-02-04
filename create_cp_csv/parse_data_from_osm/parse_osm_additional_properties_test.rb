@@ -74,7 +74,7 @@ class GetComplianceParameterFromOsm < Minitest::Test
   end
 
   def test_get_additional_property_no_value
-    ### Shoudl throw an error as compliance_parameter_value is not defined
+    ### Should throw an error as compliance_parameter_value is not defined
     #   OS:AdditionalProperties,
     # {b0c16963-bf29-4919-9474-4e647b365c24}, !- Handle
     # {1c7487fe-94e4-4b4b-924e-bc15951fc750}, !- Object Name

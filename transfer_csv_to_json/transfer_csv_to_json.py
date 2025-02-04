@@ -136,6 +136,7 @@ def add_building_segments(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[str
     added_ids = set()
     for segment_id, mappings in csv_map.items():
 
+        # Create a new BuildingSegment if the ID doesn't already exist
         if segment_id not in segment_map:
             segment_map[segment_id] = {
                 "id": segment_id,
@@ -150,6 +151,8 @@ def add_building_segments(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[str
         if "zones" in mappings:
             for zone_csv_data in mappings["zones"]:
                 zone_id = zone_csv_data.get("229 Data Group ID")
+                if zone_id not in zone_map:
+                    raise ValueError(f"Zone ID ({zone_id}) was referenced in the CSV file but could not be found in the model files.")
                 if zone_id not in added_ids:
                     segment["zones"].append(zone_map[zone_id])
                     added_ids.add(zone_id)
@@ -158,6 +161,8 @@ def add_building_segments(json_dict: Dict[str, Any], csv_map: Dict[str, Dict[str
         if "heating_ventilating_air_conditioning_systems" in mappings:
             for hvac_csv_data in mappings["heating_ventilating_air_conditioning_systems"]:
                 hvac_id = hvac_csv_data.get("229 Data Group ID")
+                if hvac_id not in hvac_map:
+                    raise ValueError(f"HVAC ID ({hvac_id}) was referenced in the CSV file but could not be found in the model files.")
                 if hvac_id not in added_ids:
                     segment["heating_ventilating_air_conditioning_systems"].append(hvac_map[hvac_id])
                     added_ids.add(hvac_id)
