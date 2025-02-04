@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openstudio_229_rpd_generator"
+version = "0.1.0"
+authors = [
+    { name = "Anton Szilasi" },
+    { name = "Chris Balbach" }
+]
+description = "CLI tool for generating 229 Ruleset Project Description files from OpenStudio models"
+dependencies = [
+    "rpdvalidator",
+    "energyplus-ruleset-model",
+]
+
+[tool.setuptools.packages]
+find = {}
+
+[project.scripts]
+openstudio229 = "openstudio229.createOSRulesetProjectDescription:cli"
