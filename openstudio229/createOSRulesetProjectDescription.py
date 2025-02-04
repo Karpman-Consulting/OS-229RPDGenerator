@@ -1,18 +1,21 @@
+import os
+import shutil
 import subprocess
 import argparse
 import json
-from pathlib import Path, WindowsPath
-import os
-import shutil
 import logging
+from pathlib import Path, WindowsPath
 from rpdvalidator.validate import schema_validate
+
 from transfer_csv_to_json import transfer_csv_to_rpd
 
-# Configure logging
+# ANSI color codes
 RED = "\033[31m"
 GREEN = "\033[32m"
 GRAY = "\033[37m"
 RESET = "\033[0m"
+
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format=f'{GRAY}%(asctime)s [%(levelname)s] %(message)s{RESET}',
@@ -22,15 +25,17 @@ logger = logging.getLogger(__name__)
 
 
 def return_openstudio_workflow_simulate_model_and_add_analysis_outputs(
-    seed_model_path: str,
-    weather_file_path: str
+    seed_model_path: Path,
+    weather_file_path: Path
 ) -> dict:
+    root_path = Path(__file__).parent.parent.resolve()
+    run_directory = seed_model_path.parent / "run"
     return {
-        "seed_file": seed_model_path,
-        "weather_file": weather_file_path,
-        "measure_paths": ["..", "../measures/", "../..", "../../.."],
-        "file_paths": ["../weather", "./weather", "./seed", "."],
-        "run_directory": "./run",
+        "seed_file": seed_model_path.as_posix(),
+        "weather_file": weather_file_path.as_posix(),
+        "root": root_path.as_posix(),
+        "measure_paths": ["."],
+        "run_directory": run_directory.as_posix(),
         "steps": [
             {
                 "measure_dir_name": "create_preconditioned_idf",
@@ -50,53 +55,58 @@ def return_openstudio_workflow_simulate_model_and_add_analysis_outputs(
         },
     }
 
-
-def return_open_studio_workflow_read_cp_csv(
-    seed_model_path: str,
-    weather_file_name: str,
-    empty_comp_param_json_file_path: str,
-    updated_comp_param_json_file_path: str,
-    csv_file_path: str
-) -> dict:
-    return {
-        "seed_file": seed_model_path,
-        "weather_file": weather_file_name,
-        "measure_paths": ["..", "../measures/", "../..", "../../.."],
-        "file_paths": ["../weather", "./weather", "./seed", "."],
-        "run_directory": "./run",
-        "steps": [
-            {
-                "measure_dir_name": "read_cp_csv",
-                "name": "ReadComplianceParameterCsvFromOsm",
-                "arguments": {
-                    "empty_comp_param_json_file_path": empty_comp_param_json_file_path,
-                    "updated_comp_param_json_file_path": updated_comp_param_json_file_path,
-                    "csv_file_path": csv_file_path,
-                },
-            }
-        ],
-    }
+# REPLACED BY transfer_csv_to_json
+# --------------------------------
+# def return_open_studio_workflow_read_cp_csv(
+#     seed_model_path: Path,
+#     weather_file_path: Path,
+#     empty_comp_param_json_file_path: Path,
+#     updated_comp_param_json_file_path: Path,
+#     csv_file_path: Path
+# ) -> dict:
+#     root_path = Path(__file__).parent.parent.resolve()
+#     run_directory = seed_model_path.parent / seed_model_path.stem / "run"
+#     return {
+#         "seed_file": seed_model_path.as_posix(),
+#         "weather_file": weather_file_path.as_posix(),
+#         "root": current_file_path.as_posix(),
+#         "measure_paths": ["."],
+#         "run_directory": run_directory.as_posix(),
+#         "steps": [
+#             {
+#                 "measure_dir_name": "read_cp_csv",
+#                 "name": "ReadComplianceParameterCsvFromOsm",
+#                 "arguments": {
+#                     "empty_comp_param_json_file_path": empty_comp_param_json_file_path.as_posix(),
+#                     "updated_comp_param_json_file_path": updated_comp_param_json_file_path.as_posix(),
+#                     "csv_file_path": csv_file_path.as_posix(),
+#                 },
+#             }
+#         ],
+#     }
 
 
 def return_open_studio_workflow_create_cp_csv(
-    seed_model_path: str,
-    weather_file_name: str,
-    empty_comp_param_json_file_path: str,
-    output_csv_file_path: str
+    seed_model_path: Path,
+    weather_file_name: Path,
+    empty_comp_param_json_file_path: Path,
+    output_csv_file_path: Path
 ) -> dict:
+    root_path = Path(__file__).parent.parent.resolve()
+    run_directory = seed_model_path.parent / "run"
     return {
-        "seed_file": seed_model_path,
-        "weather_file": weather_file_name,
-        "measure_paths": ["..", "../measures/", "../..", "../../.."],
-        "file_paths": ["../weather", "./weather", "./seed", "."],
-        "run_directory": "./run",
+        "seed_file": seed_model_path.as_posix(),
+        "weather_file": weather_file_name.as_posix(),
+        "root": root_path.as_posix(),
+        "measure_paths": ["."],
+        "run_directory": run_directory.as_posix(),
         "steps": [
             {
                 "measure_dir_name": "create_cp_csv",
                 "name": "CreateComplianceParameterCsvFromOsm",
                 "arguments": {
-                    "empty_comp_param_json_file_path": empty_comp_param_json_file_path,
-                    "output_csv_file_path": output_csv_file_path,
+                    "empty_comp_param_json_file_path": empty_comp_param_json_file_path.as_posix(),
+                    "output_csv_file_path": output_csv_file_path.as_posix(),
                 },
             }
         ],
@@ -150,7 +160,7 @@ def run_convert_input_format(
 
 def run_create_empty_cp_json_file(analysis_run_path_str: str) -> bool:
     """
-    Attempts to create an empty cp JSON file by running the 'createRulesetProjectDescription' command.
+    Attempts to create an empty cp JSON file by running the 'energyplus_create_rpd' command.
     Returns True if successful, False otherwise.
     """
     try:
@@ -184,7 +194,7 @@ def run_create_empty_cp_json_file(analysis_run_path_str: str) -> bool:
         logging.error(f"{RED}OS error occurred while running subprocess: %s{RESET}", str(e))
     except subprocess.CalledProcessError as e:
         logging.error(
-            f"{RED}Failed to run 'createRulesetProjectDescription --create_empty_cp' in %s. Error: %s{RESET}",
+            f"{RED}Failed to run 'energyplus_create_rpd --create_empty_cp' in %s. Error: %s{RESET}",
             analysis_run_path_str, str(e)
         )
     return False
@@ -284,7 +294,7 @@ def handle_simulation_workflow(analysis_path, openstudio_model_path, weather_fil
     osw_return_code = run_openstudio_workflow(
         json.dumps(
             return_openstudio_workflow_simulate_model_and_add_analysis_outputs(
-                str(target_osm_path), str(weather_file_path)
+                target_osm_path, weather_file_path
             ),
             indent=4,
         ),
@@ -321,10 +331,10 @@ def handle_convert_json_to_csv(analysis_path, openstudio_model_path, weather_fil
     if not run_openstudio_workflow(
         json.dumps(
             return_open_studio_workflow_create_cp_csv(
-                target_osm_path.as_posix(),
-                weather_file_path.as_posix(),
-                comp_param_json_file_path.as_posix(),
-                empty_csv_file_path.as_posix(),
+                target_osm_path,
+                weather_file_path,
+                comp_param_json_file_path,
+                empty_csv_file_path,
             ),
             indent=4,
         ),
