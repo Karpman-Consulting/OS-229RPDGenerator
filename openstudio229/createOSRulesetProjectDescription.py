@@ -350,22 +350,20 @@ def handle_convert_json_to_csv(analysis_path, openstudio_model_path, weather_fil
 
 def handle_csv_data_transfer(analysis_path, csv_file_path):
     rpd_file_path = analysis_path / "run" / "in.rpd"
-    validate_paths([csv_file_path, rpd_file_path])
 
+    validate_paths([rpd_file_path, csv_file_path])
     # Read CSV and update JSON
-    if not transfer_csv_to_rpd(rpd_file_path, csv_file_path):
-        logger.error(f"{RED}Failed to process CSV file.{RESET}")
-        return
+    output_path = transfer_csv_to_rpd(rpd_file_path, csv_file_path)
 
-    logger.info(f"{GREEN}Successfully transferred CSV data to RPD.{RESET}")
+    logger.info(f"{GREEN}Successfully transferred CSV data to {output_path.as_posix()}.{RESET}")
+    return output_path
 
 
-def handle_rpd_validation(analysis_path):
-    rpd_file_path = analysis_path / "run" / "in.rpd"
-    logger.info(f"{GRAY}Validating '{rpd_file_path}'{RESET}")
+def handle_rpd_validation(output_rpd_path):
+    logger.info(f"{GRAY}Validating '{output_rpd_path.stem}'{RESET}")
 
     # Validate updated JSON
-    with open(rpd_file_path.as_posix(), "r") as f:
+    with open(output_rpd_path.as_posix(), "r") as f:
         validation_result = schema_validate(json.load(f))
         if not validation_result["passed"]:
             logger.error(f"{RED}Validation FAILED with errors:{RESET}")
@@ -373,7 +371,7 @@ def handle_rpd_validation(analysis_path):
                 logger.error(f"{RED}{index + 1}.) {error}{RESET}")
             return
 
-    logger.info(f"{GREEN}Validation PASSED. Successfully generated '{rpd_file_path}'.{RESET}")
+    logger.info(f"{GREEN}Validation PASSED. RPD is ready for evaluation at '{output_rpd_path.as_posix()}'.{RESET}")
 
 
 def handle_create_comp_param_csv(convert_input_format_exe_path, openstudio_model_path, weather_file_path, analysis_path):
@@ -384,8 +382,8 @@ def handle_create_comp_param_csv(convert_input_format_exe_path, openstudio_model
 
 
 def handle_create_rpd(analysis_path, csv_file_path):
-    handle_csv_data_transfer(analysis_path, csv_file_path)
-    handle_rpd_validation(analysis_path)
+    output_rpd_path = handle_csv_data_transfer(analysis_path, csv_file_path)
+    handle_rpd_validation(output_rpd_path)
 
 
 def cli():

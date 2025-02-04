@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Tuple, List, Dict, Union, Any
 
 
-def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
+def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> Path:
     """
     Transfers data from a CSV file to a JSON dictionary and writes the result to an RPD file.
 
@@ -14,7 +14,7 @@ def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
         csv_file_path (Path): Path to the CSV file containing data mappings.
 
     Returns:
-        int: Returns 1 upon successful completion.
+        Path: Path to the output RPD file.
     """
     with json_dict_path.open(mode="r", encoding="utf-8") as file:
         json_dict = json.load(file)
@@ -23,11 +23,11 @@ def transfer_csv_to_rpd(json_dict_path: Path, csv_file_path: Path) -> int:
     add_building_segments(json_dict, building_segment_map)
     json_dict = transfer_data_recursive(json_dict, csv_map)
 
-    output_path = json_dict_path.parent / "in.rpd"
+    output_path = csv_file_path.parent / f"{csv_file_path.stem}.rpd"
     with output_path.open(mode="w", encoding="utf-8") as file:
         json.dump(json_dict, file, indent=4)
 
-    return 1
+    return output_path
 
 
 def load_csv_to_dict(csv_file_path: Path) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, Dict[str, List[Dict[str, str]]]]]:
