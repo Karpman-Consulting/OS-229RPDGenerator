@@ -3,7 +3,7 @@ import os
 import glob
 from pathlib import Path
 
-from openstudio229.createOSRulesetProjectDescription import handle_create_comp_param_csv, handle_create_rpd, setup_analysis_directory
+from openstudio229.createOSRulesetProjectDescription import handle_create_csv, handle_create_rpd, setup_analysis_directory
 
 
 class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
@@ -32,7 +32,7 @@ class BaseTestCreateOSRulesetProjectDescription(unittest.TestCase):
     def create_comp_param_csv(self):
         analysis_path = Path(self.openstudio_model_path).parent / Path(self.openstudio_model_path).stem
         try:
-            handle_create_comp_param_csv(self.convert_input_format_exe_path, self.openstudio_model_path, self.weather_file_path, analysis_path)
+            handle_create_csv(self.convert_input_format_exe_path, self.openstudio_model_path, self.weather_file_path, analysis_path)
 
         except Exception as e:
             self.fail(f"Test Error in create_cp_csv: {e}")

@@ -15,8 +15,18 @@ dependencies = [
     "energyplus-ruleset-model",
 ]
 
-[tool.setuptools.packages]
-find = {}
+[tool.setuptools.packages.find]
+include = [
+    "CompParamJson",
+    "create_cp_csv",
+    "create_preconditioned_idf",
+    "create_preconditioned_idf_energyplus",
+    "openstudio229",
+    "transfer_csv_to_json"
+]
+
+[tool.setuptools.package-data]
+"*" = ["**/*.rb", "**/*.xml"]
 
 [project.scripts]
 openstudio229 = "openstudio229.createOSRulesetProjectDescription:cli"

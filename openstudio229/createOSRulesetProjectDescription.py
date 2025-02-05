@@ -325,7 +325,7 @@ def handle_create_empty_comp_param_json(analysis_path):
 def handle_convert_json_to_csv(analysis_path, openstudio_model_path, weather_file_path):
     target_osm_path = analysis_path / openstudio_model_path.name
     comp_param_json_file_path = analysis_path / "run" / "in.comp-param-empty.json"
-    empty_csv_file_path = analysis_path / "run" / f"{target_osm_path.stem}-empty.csv"
+    empty_csv_file_path = analysis_path.parent / f"{target_osm_path.stem}-empty.csv"
 
     # Create the CSV from JSON
     if not run_openstudio_workflow(
@@ -374,7 +374,7 @@ def handle_rpd_validation(output_rpd_path):
     logger.info(f"{GREEN}Validation PASSED. RPD is ready for evaluation at '{output_rpd_path.as_posix()}'.{RESET}")
 
 
-def handle_create_comp_param_csv(convert_input_format_exe_path, openstudio_model_path, weather_file_path, analysis_path):
+def handle_create_csv(convert_input_format_exe_path, openstudio_model_path, weather_file_path, analysis_path):
     handle_simulation_workflow(analysis_path, openstudio_model_path, weather_file_path)
     handle_convert_input_format(convert_input_format_exe_path, analysis_path)
     handle_create_empty_comp_param_json(analysis_path)
@@ -425,7 +425,7 @@ def cli():
             weather_file_path = base_dir / "weather" / args.weather_file
 
         # Run create_comp_param_csv
-        handle_create_comp_param_csv(convert_input_format_exe_path, openstudio_model_path, weather_file_path, analysis_path)
+        handle_create_csv(convert_input_format_exe_path, openstudio_model_path, weather_file_path, analysis_path)
 
     elif args.command == "create_rpd":
         # Resolve csv_file_path
