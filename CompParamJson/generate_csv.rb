@@ -214,11 +214,11 @@ REQUIRED_COMPLIANCE_PARAMETERS = [
 #     comp_param_path: '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].subsurfaces[*]'
 #   },
 ### Construction
-  {
-    compliance_parameter_category: "Construction",
-    compliance_parameter: "classification",
-    comp_param_path: '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
-  },
+#   {
+#     compliance_parameter_category: "Construction",
+#     compliance_parameter: "classification",
+#     comp_param_path: '$.ruleset_model_descriptions[0].buildings[0].building_segments[0].zones[*].surfaces[*].construction'
+#   },
 ### Schedules
 #   {
 #     compliance_parameter_category: "Schedule",
